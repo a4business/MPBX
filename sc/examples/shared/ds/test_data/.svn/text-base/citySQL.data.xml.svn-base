@@ -1,0 +1,32 @@
+<List>
+  <citySQL>
+    <cityId>1</cityId>
+    <cityName>Vilnius</cityName>
+    <countryId>1</countryId>
+  </citySQL>
+  <citySQL>
+    <cityId>2</cityId>
+    <cityName>Riga</cityName>
+    <countryId>2</countryId>
+  </citySQL>
+  <citySQL>
+    <cityId>3</cityId>
+    <cityName>Tallinn</cityName>
+    <countryId>3</countryId>
+  </citySQL>
+  <citySQL>
+    <cityId>4</cityId>
+    <cityName>Kaunas</cityName>
+    <countryId>1</countryId>
+  </citySQL>
+  <citySQL>
+    <cityId>5</cityId>
+    <cityName>New York</cityName>
+    <countryId>4</countryId>
+  </citySQL>
+  <citySQL>
+    <cityId>6</cityId>
+    <cityName>Washington</cityName>
+    <countryId>4</countryId>
+  </citySQL>
+</List>

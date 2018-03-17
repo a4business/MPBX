@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/itenant/!svn/ver/1/sc/examples/shared/ds/serverExamples/test_data
+END
+queuing_order.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/1/sc/examples/shared/ds/serverExamples/test_data/queuing_order.data.xml
+END
+masterDetail_order.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/1/sc/examples/shared/ds/serverExamples/test_data/masterDetail_order.data.xml
+END
+lastUpdated.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/1/sc/examples/shared/ds/serverExamples/test_data/lastUpdated.data.xml
+END
+orderItem.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/1/sc/examples/shared/ds/serverExamples/test_data/orderItem.data.xml
+END
+queuing_user.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/1/sc/examples/shared/ds/serverExamples/test_data/queuing_user.data.xml
+END
+flattenedBeans_flatUserHB.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/itenant/!svn/ver/1/sc/examples/shared/ds/serverExamples/test_data/flattenedBeans_flatUserHB.data.xml
+END

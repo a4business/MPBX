@@ -1,0 +1,101 @@
+<List>
+<stockQuotes>
+    <id>1</id>
+    <name>Electronic Arts Inc.</name>
+    <symbol>ERTS</symbol>
+    <lastValue>17.85</lastValue>
+    <changeValue>0.23</changeValue>
+    <openValue>17.52</openValue>
+    <dayHighValue>17.92</dayHighValue>
+    <dayLowValue>17.78</dayLowValue>
+</stockQuotes>
+<stockQuotes>
+    <id>2</id>
+    <name>Intel Corporation</name>
+    <symbol>INTC</symbol>
+    <lastValue>21.62</lastValue>
+    <changeValue>0.14</changeValue>
+    <openValue>21.50</openValue>
+    <dayHighValue>21.67</dayHighValue>
+    <dayLowValue>21.42</dayLowValue>
+</stockQuotes>
+<stockQuotes>
+    <id>3</id>
+    <name>Broadcom Corporation</name>
+    <symbol>BRCM</symbol>
+    <lastValue>42.90</lastValue>
+    <changeValue>-3.49</changeValue>
+    <openValue>45.35</openValue>
+    <dayHighValue>45.35</dayHighValue>
+    <dayLowValue>42.12</dayLowValue>
+</stockQuotes>
+<stockQuotes>
+    <id>4</id>
+    <name>Microsoft Corporation</name>
+    <symbol>MSFT</symbol>
+    <lastValue>27.99</lastValue>
+    <changeValue>-0.01</changeValue>
+    <openValue>27.98</openValue>
+    <dayHighValue>28.01</dayHighValue>
+    <dayLowValue>27.97</dayLowValue>
+</stockQuotes>
+<stockQuotes>
+    <id>5</id>
+    <name>Cisco Systems, Inc.</name>
+    <symbol>CSCO</symbol>
+    <lastValue>21.64</lastValue>
+    <changeValue>0.17</changeValue>
+    <openValue>21.17</openValue>
+    <dayHighValue>21.67</dayHighValue>
+    <dayLowValue>21.02</dayLowValue>
+</stockQuotes>
+<stockQuotes>
+    <id>6</id>
+    <name>NVIDIA Corporation</name>
+    <symbol>NVDA</symbol>
+    <lastValue>25.23</lastValue>
+    <changeValue>-0.76</changeValue>
+    <openValue>25.99</openValue>
+    <dayHighValue>25.99</dayHighValue>
+    <dayLowValue>25.12</dayLowValue>
+</stockQuotes>
+<stockQuotes>
+    <id>7</id>
+    <name>Micron Technology, Inc.</name>
+    <symbol>MU</symbol>
+    <lastValue>10.93</lastValue>
+    <changeValue>0.12</changeValue>
+    <openValue>10.80</openValue>
+    <dayHighValue>10.97</dayHighValue>
+    <dayLowValue>10.69</dayLowValue>
+</stockQuotes>
+<stockQuotes>
+    <id>8</id>
+    <name>Applied Materials, Inc.</name>
+    <symbol>AMAT</symbol>
+    <lastValue>16.39</lastValue>
+    <changeValue>0.17</changeValue>
+    <openValue>16.22</openValue>
+    <dayHighValue>16.47</dayHighValue>
+    <dayLowValue>16.32</dayLowValue>
+</stockQuotes>
+<stockQuotes>
+    <id>9</id>
+    <name>Oracle Corporation</name>
+    <symbol>ORCL</symbol>
+    <lastValue>33.32</lastValue>
+    <changeValue>-0.08</changeValue>
+    <openValue>33.40</openValue>
+    <dayHighValue>33.37</dayHighValue>
+    <dayLowValue>33.25</dayLowValue>
+</stockQuotes>
+<stockQuotes>
+    <id>10</id>
+    <name>Dell Inc.</name>
+    <symbol>DELL</symbol>
+    <lastValue>13.71</lastValue>
+    <changeValue>0.26</changeValue>
+    <openValue>13.45</openValue>
+    <dayHighValue>13.77</dayHighValue>
+    <dayLowValue>13.41</dayLowValue>
+</stockQuotes></List>

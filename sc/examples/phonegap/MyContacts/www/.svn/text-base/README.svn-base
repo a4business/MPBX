@@ -1,0 +1,8 @@
+You will need to copy into this folder the following JavaScripts from a SmartClient SDK package:
+
+ISC_Core.js
+ISC_Foundation.js
+ISC_Containers.js
+ISC_Grids.js
+ISC_Forms.js
+ISC_DataBinding.js

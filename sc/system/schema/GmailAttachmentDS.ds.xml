@@ -1,0 +1,10 @@
+<DataSource ID="GmailAttachmentDS"
+            serverConstructor="com.isomorphic.mail.GmailAttachmentDataSource"
+>
+	<fields>
+		<field name="userId" type="text" primaryKey="true"/>
+		<field name="messageId" type="text" primaryKey="true"/>
+		<field name="attachmentId" type="text" primaryKey="true"/>
+		<field name="file" type="binary"/>
+	</fields>
+</DataSource>

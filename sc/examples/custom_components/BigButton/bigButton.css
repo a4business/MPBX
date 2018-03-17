@@ -1,0 +1,48 @@
+.bigButton {
+	font-family:Tahoma,Verdana,Helvetica,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	color:black;
+	border-left:2px solid #FFFFFF; border-top:2px solid #FFFFFF;
+	border-right:2px solid #808080; border-bottom:2px solid #808080;
+	background-color:#DDDDDD;
+}
+.bigButtonOver {
+	font-family:Tahoma,Verdana,Helvetica,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	color:black;
+	border-left:2px solid #FFFFFF; border-top:2px solid #FFFFFF;
+	border-right:2px solid #808080; border-bottom:2px solid #808080;
+	background-color:#CCCCCC;
+}
+.bigButtonSelected {
+	font-family:Tahoma,Verdana,Helvetica,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	color:black;
+	border-left:2px solid #808080; border-top:2px solid #808080;
+	border-right:2px solid #FFFFFF; border-bottom:2px solid #FFFFFF;
+	background-color:#DDDDDD;
+}
+.bigButtonDown,
+.bigButtonSelectedOver, 
+.bigButtonSelectedDown {
+	font-family:Tahoma,Verdana,Helvetica,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	color:black;
+	border-left:2px solid #808080; border-top:2px solid #808080;
+	border-right:2px solid #FFFFFF; border-bottom:2px solid #FFFFFF;
+	background-color:#CCCCCC;
+}
+.bigButtonDisabled,
+.bigButtonSelectedDisabled {
+	font-family:Tahoma,Verdana,Helvetica,sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	color:#808080;
+	border-left:2px solid #808080; border-top:2px solid #808080;
+	border-right:2px solid #808080; border-bottom:2px solid #808080;
+	background-color:#CCCCCC;
+}

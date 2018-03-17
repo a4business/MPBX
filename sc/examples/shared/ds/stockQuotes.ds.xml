@@ -1,0 +1,17 @@
+<DataSource
+    ID="stockQuotes"
+    serverType="sql"
+    tableName="stockQuotes"
+    titleField="name"
+    testFileName="/examples/shared/ds/test_data/stockQuotes.data.xml">
+    <fields>
+        <field name="id" hidden="true" primaryKey="true"/>
+    	<field name="name" type="text" title="Name" length="128" required="true" width="200" />
+    	<field name="symbol" type="text" title="Symbol" length="16" required="true"/>
+    	<field name="lastValue" type="float" title="Last" />
+    	<field name="changeValue" type="float" title="Change" />
+    	<field name="openValue" type="float" title="Open" />
+    	<field name="dayHighValue" type="float" title="DayHigh" />
+    	<field name="dayLowValue" type="float" title="DayLow" />
+    </fields>
+</DataSource>

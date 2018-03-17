@@ -1,0 +1,26 @@
+<!-- DataSource to support the BatchUploader component
+     NOTE: This is not the DataSource responsible for performing the batch update of verified
+           records, it is an internal resource used to handle the initial upload of the client-
+           side file. The only time you would ever want to change this DataSource is if you wanted 
+           a hook into the upload process (for security reasons, for example).  See the 
+           BatchUploader documentation in the SmartClient reference.
+-->
+
+<DataSource ID="batchUpload">
+    <operationBindings>
+        <operationBinding 
+            operationType="update" 
+            operationId="upload" 
+            serverMethod="batchUpload" 
+        />
+    </operationBindings>
+    <serverObject 
+        ID="batchUpload" 
+        className="com.isomorphic.tools.BatchUpload" 
+        dropExtraFields="false"
+    >
+        <visibleMethods>
+            <method name="batchUpload"/>
+        </visibleMethods>
+    </serverObject>
+</DataSource>

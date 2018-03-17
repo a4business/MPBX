@@ -1,0 +1,61 @@
+10
+
+dir
+1
+http://myrepo:8181/itenant/sc/examples/phonegap/MyContacts-Android/res
+http://myrepo:8181/itenant
+
+
+
+2018-01-04T02:13:28.144381Z
+1
+neo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a4202001-9434-4e42-9fea-acf09bc0ba6d
+
+values
+dir
+
+xml
+dir
+
+drawable-hdpi
+dir
+
+values-v11
+dir
+
+menu
+dir
+
+values-v14
+dir
+
+values-large
+dir
+
+drawable-ldpi
+dir
+
+drawable-mdpi
+dir
+
+drawable-xhdpi
+dir
+
+layout
+dir
+

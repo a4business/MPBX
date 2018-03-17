@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/examples/titanium/Contacts-android
+END
+LICENSE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/itenant/!svn/ver/1/sc/examples/titanium/Contacts-android/LICENSE.txt
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/itenant/!svn/ver/1/sc/examples/titanium/Contacts-android/LICENSE
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/itenant/!svn/ver/1/sc/examples/titanium/Contacts-android/.gitignore
+END
+CHANGELOG.txt
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/itenant/!svn/ver/1/sc/examples/titanium/Contacts-android/CHANGELOG.txt
+END
+manifest
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/itenant/!svn/ver/1/sc/examples/titanium/Contacts-android/manifest
+END
+tiapp.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/itenant/!svn/ver/1/sc/examples/titanium/Contacts-android/tiapp.xml
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/itenant/!svn/ver/1/sc/examples/titanium/Contacts-android/README
+END

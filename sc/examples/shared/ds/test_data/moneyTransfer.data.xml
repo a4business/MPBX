@@ -1,0 +1,16 @@
+<List>
+    <record>
+        <id>1</id>
+        <name>Transfer from EUR to USD</name>
+        <sourceCurrencyId>2</sourceCurrencyId>
+        <paymentCurrencyId>1</paymentCurrencyId>
+        <paymentAmount>100</paymentAmount>
+    </record>
+    <record>
+        <id>2</id>
+        <name>Transfer from USD to EUR</name>
+        <sourceCurrencyId>1</sourceCurrencyId>
+        <paymentCurrencyId>2</paymentCurrencyId>
+        <paymentAmount>200</paymentAmount>
+    </record>
+</List>

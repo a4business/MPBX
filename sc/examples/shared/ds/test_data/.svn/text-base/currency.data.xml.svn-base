@@ -1,0 +1,12 @@
+<List>
+    <record>
+        <id>1</id>
+        <code>USD</code>
+        <symbol>$</symbol>
+    </record>
+    <record>
+        <id>2</id>
+        <code>EUR</code>
+        <symbol>&#8364;</symbol>
+    </record>
+</List>

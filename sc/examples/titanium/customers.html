@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width;initial-scale=1.0;maximum-scale=1.0;user-scalable=0;"/>
+    <script>var isomorphicDir="./";</script>
+    <script SRC=ISC_Core.js></script>
+    <script SRC=ISC_Foundation.js></script>
+    <script SRC=ISC_Containers.js></script>
+    <script SRC=ISC_Grids.js></script>
+    <script SRC=ISC_DataBinding.js></script>
+    <script SRC=skins/Mobile/load_skin.js></script>
+  </HEAD>
+<body>
+<script>
+    try {
+        var testData = [
+            {name:"Acme Inc"},
+            {name:"ABC Co"}
+        ];
+        isc.DataSource.create({
+            ID:"customersDS",
+            clientOnly:true,
+            testData:testData,
+            fields:[
+                {name:"name", type:"text", canEdit:false, title:"Name"}
+            ]
+        });
+        isc.ListGrid.create({
+            ID: "customers",
+            width:isc.Page.getScreenWidth(),
+            height:isc.Page.getScreenHeight()-110,
+            alternateRecordStyles:true,
+            autoFetchData:true,
+            dataSource:customersDS,
+            showAllRecords:true,
+            leaveScrollbarGap:false,
+            fields:[
+                {name:"name", title:"Name"}
+            ],
+            cellClick: function (record, rowNum, colNum) {
+                Titanium.App.fireEvent('customer_selected',{customer:record.name});
+            }
+        });
+    } catch(e) {
+        alert(e.message);
+    }
+</script>
+</body>
+</html>

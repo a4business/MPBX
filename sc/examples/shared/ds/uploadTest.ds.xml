@@ -1,0 +1,6 @@
+<DataSource	ID="uploadTest" dataSourceType="sql">
+	<fields>
+		<field name="id" type="sequence" primaryKey="true" hidden="true" />
+        <field name="title" type="text" length="100" />
+	</fields>
+</DataSource>

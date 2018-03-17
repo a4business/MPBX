@@ -1,0 +1,61 @@
+#!/usr/bin/php -q
+<?php
+
+
+  include_once(dirname( __DIR__)  . '/include/config.php');
+  
+  $dialplans = array( 'inbound', 'internal', 'outbound', 'ivrmenus', 'ringgroups', 'queues' );
+  
+  
+  
+  // Default execution   of this script - without options,  
+  // It calls ITELSEF in Recursion with different options,
+  // YOU can also call it with  options as well for debug (all in one file - is it so good??)  
+  $options = getopt('t:t:', $dialplans );
+  if ( !count($options)  ){
+  	// Dynamic scripts
+  	  foreach( $dialplans as $dialplan ){
+       exec("/var/www/html/core/gen_extensions.php --{$dialplan} > /etc/asterisk/{$dialplan}.include 2>/dev/null");      
+       echo "#include {$dialplan}.include\n";
+     }
+   // Static macros
+   echo "#include conferences.include\n";
+   echo "#include macros.include\n";
+   return;
+    	
+  }	
+  
+  
+   if ( isset($options['inbound']) ){
+       include_once( __DIR__  . '/gen_inbound.php');
+       gen_inbound_context();
+   }
+   
+   if ( isset($options['ivrmenus'])  ) {
+       include_once( __DIR__  . '/gen_ivrmenus.php');
+       gen_ivrmenus_context();
+   }
+  
+	if ( isset($options['internal'])  ) {
+       include_once( __DIR__  . '/gen_internal.php');
+       gen_internal_context();
+   }
+	 
+	if ( isset($options['outbound']) ){
+       include_once( __DIR__  . '/gen_outbound.php');
+       gen_outbound_context();
+   }
+   
+   if ( isset($options['ringgroups']) ){
+       include_once( __DIR__  . '/gen_ringgroups.php');
+       gen_ringgroups_context();
+   }
+   
+    if ( isset($options['queues']) ){
+       include_once( __DIR__  . '/gen_queues.php');
+       gen_queues_context();
+   }
+	    	 
+	    	 
+ 
+?>

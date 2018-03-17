@@ -1,0 +1,58 @@
+10
+
+dir
+1
+http://myrepo:8181/itenant/sc/examples/titanium/Contacts-android/Resources/android/images
+http://myrepo:8181/itenant
+
+
+
+2018-01-04T02:13:28.144381Z
+1
+neo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a4202001-9434-4e42-9fea-acf09bc0ba6d
+
+res-notlong-port-ldpi
+dir
+
+res-notlong-port-mdpi
+dir
+
+res-long-land-hdpi
+dir
+
+res-notlong-land-hdpi
+dir
+
+res-long-land-ldpi
+dir
+
+res-notlong-land-ldpi
+dir
+
+res-notlong-land-mdpi
+dir
+
+res-long-port-hdpi
+dir
+
+res-notlong-port-hdpi
+dir
+
+res-long-port-ldpi
+dir
+

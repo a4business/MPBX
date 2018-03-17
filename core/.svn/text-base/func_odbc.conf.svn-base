@@ -1,0 +1,16 @@
+[EXTEN]
+prefix=GET
+dsn=pbxdb
+readsql=SELECT t_sip_users.name as dev_name FROM tenants,t_sip_users WHERE tenants.ref_id = '${ARG1}' AND tenants.id = t_sip_users.tenant_id AND t_sip_users.extension = '${ARG2}' AND '${ARG1}' != '' AND '${ARG2}' != '' 
+
+[VMAIL]
+prefix=GET
+dsn=pbxdb
+readsql=SELECT t_vmusers.vm_timeout as vm_timeout FROM tenants,t_vmusers WHERE tenants.ref_id = '${ARG1}' AND tenants.id = t_vmusers.tenant_id AND t_vmusers.mailbox = '${ARG2}' AND '${ARG1}' != '' AND '${ARG2}' != ''
+
+[CONF]
+prefix=GET
+dsn=pbxdb
+readsql=call get_conferenceinfo(${ARG1})
+ 
+

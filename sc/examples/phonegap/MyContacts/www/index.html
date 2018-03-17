@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width">
+        <title>My Contacts</title>
+        <style type="text/css">
+            .show_contact {
+                font: normal 28px/28px Verdana;
+                color: #808080;
+                display: block;
+                float: right;
+                height: 24px,
+                margin-top: -2px;
+                margin-bottom: -20px;
+                margin-left: -10px;
+            }
+            .add_contact {
+                font: normal 18px/11px Verdana;
+                font-weight: bold;
+                background-color: #6292e6;
+                background-image:
+                -webkit-gradient(linear, left top, left bottom,
+                color-stop(0, rgba(0,0,0,.05)),
+                color-stop(.5, rgba(0,0,0,.05)),
+                color-stop(.5, rgba(0,0,0,.2)),
+                color-stop(1, rgba(0,0,0,.2)));
+                color: #fff;
+                display: block;
+                -webkit-border-radius: 12px;
+                border-radius: 12px;
+                border: solid 3px #fff;
+                -webkit-box-shadow: 0 1px 3px #666;
+                float: right;
+                -webkit-box-sizing: border-box;
+            }
+        </style>
+        <script type="text/javascript" language="JavaScript">var isomorphicDir="./";</script>
+        <script type="text/javascript" charset="UTF-8" language="JavaScript" src="ISC_Core.js"></script>
+        <script type="text/javascript" language="JavaScript">
+            var scriptName;
+            if (isc.Browser.isAndroid) {
+                scriptName = "cordova-2.0.0-android.js";
+            } else if (isc.Browser.isIPad || isc.Browser.isIPhone) {
+                scriptName = "cordova-2.0.0-iOS.js";
+            }
+            if (scriptName) document.write("<script type='text/javascript' charset='UTF-8' language='JavaScript' src='" + encodeURI(scriptName) + "'><" + "/script>");
+        </script>
+        <script type="text/javascript" charset="UTF-8" language="JavaScript" src="ISC_Foundation.js"></script>
+        <script type="text/javascript" charset="UTF-8" language="JavaScript" src="ISC_Containers.js"></script>
+        <script type="text/javascript" charset="UTF-8" language="JavaScript" src="ISC_Grids.js"></script>
+        <script type="text/javascript" charset="UTF-8" language="JavaScript" src="ISC_Forms.js"></script>
+        <script type="text/javascript" charset="UTF-8" language="JavaScript" src="ISC_DataBinding.js"></script>
+        <script type="text/javascript" charset="UTF-8" language="JavaScript" src="skins/Mobile/load_skin.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript" charset="UTF-8">
+            var DIALOG_WIDTH = Math.min(360, Math.round(0.65 * isc.Page.getScreenWidth()));
+
+            document.addEventListener("deviceready", function onDeviceReady() {
+                var customerData = [
+                    { name: "Acme Inc" },
+                    { name: "ABC Co" }
+                ];
+                isc.DataSource.create({
+                    ID: "customersDS",
+                    clientOnly: true,
+                    cacheData: customerData,
+                    fields: [
+                        {
+                            name: "name",
+                            type: "text",
+                            canEdit: false,
+                            title: "Name"
+                        }
+                    ]
+                });
+
+                isc.DataSource.create({
+                    ID: "customerContactsDS",
+                    clientOnly: true,
+                    fields:[
+                        { name: "contactID", type: "text" },
+                        { name: "fullName", type: "text", primaryKey: true },
+                        { name: "givenName", type: "text" },
+                        { name: "familyName", type: "text" },
+                        { name: "phone", type: "text" },
+                        { name: "streetAddress", type: "text" },
+                        { name: "locality", type: "text" },
+                        { name: "region", type: "text" },
+                        { name: "postalCode", type: "text" },
+                        { name: "country", type: "text" },
+                        { name: "contact", type: "boolean", hidden: true }
+                    ]
+                });
+
+                var options = new ContactFindOptions();
+                options.filter = "";
+                options.multiple = true;
+                var fields = [ "displayName" ];
+                navigator.contacts.find(fields, onSuccess, onError, options);
+            }, false);
+
+            var names = {};
+
+            function onSuccess(contacts) {
+                contacts.forEach(function (contact) {
+                    names[contact.displayName] = contact.id;
+                }, this);
+                showCustomers();
+            }
+
+            function onError() {
+                isc.say("Failed to access your contacts.", null, { width: DIALOG_WIDTH });
+            }
+
+            function showCustomers() {
+                isc.NavigationBar.create({
+                    ID: "customersNavBar",
+                    title: "Customers",
+                    leftButtonTitle: "Back",
+
+                    initWidget : function () {
+                        this.Super("initWidget", arguments);
+                        this.setShowLeftButton(false);
+                        this.setShowRightButton(false);
+                    }
+                });
+
+                var customers = isc.ListGrid.create({
+                    height: "*",
+                    autoFetchData: true,
+                    dataSource: customersDS,
+                    alternateRecordStyles: false,
+                    selectionType: "single",
+                    showAllRecords: true,
+                    leaveScrollbarGap: false,
+                    fields: [
+                        { name: "name", title: "Name" }
+                    ],
+
+                    cellClick : function (record, rowNum, colNum) {
+                        var contacts = [], contact;
+                        if (record.name === "Acme Inc") {
+                            contact = {
+                                contact: false,
+                                fullName: "Bill Adams",
+                                givenName: "Bill",
+                                familyName: "Adams",
+                                phone: "408-344-5609",
+                                streetAddress: "1192 Hedding St.",
+                                locality: "San Jose",
+                                region: "CA",
+                                postalCode: "95112",
+                                country: "U.S.A."
+                            };
+                            if (names.hasOwnProperty(contact.fullName)) {
+                                contact.contactID = names[contact.fullName];
+                                contact.contact = true;
+                            }
+                            contacts.push(contact);
+                        } else if(record.name === "ABC Co") {
+                            contact = {
+                                contact: false,
+                                fullName: "Abe Larson",
+                                givenName: "Abe",
+                                familyName: "Larson",
+                                phone: "408-901-8887",
+                                streetAddress: "201 San Antonio St.",
+                                locality: "San Jose",
+                                region: "CA",
+                                postalCode: "95112",
+                                country: "U.S.A."
+                            };
+                            if (names.hasOwnProperty(contact.fullName)) {
+                                contact.contactID = names[contact.fullName];
+                                contact.contact = true;
+                            }
+                            contacts.push(contact);
+                        }
+                        slideTransition(customersContainer, showCustomerContacts(contacts), contactsApp, false);
+                    }
+                });
+
+                isc.VLayout.create({
+                    ID: "customersContainer",
+                    width: "100%",
+                    height: "100%",
+                    members: [
+                        customersNavBar,
+                        customers
+                    ]
+                });
+
+                isc.VLayout.create({
+                    ID: "contactsApp",
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "white",
+                    members: [
+                        customersContainer
+                    ]
+                });
+            } // end showCustomers()
+
+            function showCustomerContacts(contacts) {
+                customerContactsDS.setCacheData(contacts);
+
+                isc.NavigationBar.create({
+                    ID: "customerContactsNavBar",
+                    title: "Customer Contacts",
+                    leftButtonTitle: "Back",
+
+                    initWidget : function () {
+                        this.Super("initWidget", arguments);
+                        this.setShowLeftButton(true);
+                        this.setShowRightButton(false);
+                    },
+
+                    navigationClick : function (direction) {
+                        if (direction === "back") {
+                            slideTransition(customerContactsContainer, customersContainer, contactsApp, true);
+                        }
+                    }
+                });
+
+                var customerContacts = isc.ListGrid.create({
+                    height: "*",
+                    autoFetchData: true,
+                    dataSource: customerContactsDS,
+                    alternateRecordStyles: false,
+                    selectionType: "single",
+                    canEdit: true,
+                    editEvent: "click",
+                    modalEditing: true,
+                    leaveScrollbarGap: false,
+                    fields: [
+                        {
+                            name: "fullName",
+                            title: "Name",
+                            canEdit: false,
+                            width: "25%"
+                        },
+                        {
+                            name: "phone",
+                            title: "Phone&nbsp;#",
+                            canEdit: false,
+                            width: "25%"
+                        },
+                        {
+                            name: "formattedAddress",
+                            title: "Address",
+                            canEdit: false,
+                            width: "40%",
+
+                            formatCellValue : function (value, record, rowNum, colNum, grid) {
+                                return record.streetAddress + "<br>" +
+                                       record.locality + ", " + record.region + " " + record.postalCode + "<br>" +
+                                       record.country;
+                            }
+                        },
+                        {
+                            name: "contact",
+                            title: "Contact",
+                            canToggle: true,
+
+                            change : function (form, item, value, oldValue) {
+                                var contactRecord = customerContacts.getSelectedRecord();
+                                if (value) {
+                                    slideTransition(customerContactsContainer, createContact(contactRecord), contactsApp, false);
+                                } else {
+                                    // If for some reason the record does not have a 'contactID' value, then
+                                    // allow the change to proceed.
+                                    if (!contactRecord.contactID) return true;
+
+                                    isc.ask("Are you sure you want to remove " + contactRecord.fullName + " from your contacts?", function (value) {
+                                        if (value) {
+                                            var contact = navigator.contacts.create({ id: contactRecord.contactID });
+                                            contact.remove(function () {
+                                                delete names[contactRecord.fullName];
+                                                delete contactRecord.contactID;
+                                                contactRecord.contact = false;
+                                                customerContactsDS.updateData(contactRecord);
+                                            }, function (error) {
+                                                isc.say(contactRecord.fullName + " could not be removed.", null, { title: "Remove Failed", width: DIALOG_WIDTH });
+                                            });
+                                        }
+                                    }, { title: "Remove Contact?", width: DIALOG_WIDTH });
+                                }
+                                return false;
+                            }
+                        }
+                    ]
+                });
+
+                return isc.VLayout.create({
+                    ID: "customerContactsContainer",
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "white",
+                    members: [
+                        customerContactsNavBar,
+                        customerContacts
+                    ]
+                });
+            } // end showCustomerContacts()
+
+            function createContact(contact) {
+                var contactCreateNavBar = isc.NavigationBar.create({
+                    title: "New Contact",
+                    leftButtonTitle: "Back",
+
+                    initWidget : function () {
+                        this.Super("initWidget", arguments);
+                        this.setShowLeftButton(true);
+                        this.setShowRightButton(false);
+                    },
+
+                    navigationClick : function (direction) {
+                        if (direction === "back") {
+                            slideTransition(createContactContainer, customerContactsContainer, contactsApp, true);
+                        }
+                    }
+                });
+
+                var createContactForm = isc.DynamicForm.create({
+                    padding: 5,
+                    height: "*",
+                    fields: [
+                        {
+                            name: "givenName",
+                            title: "First&nbsp;Name",
+                            type: "text",
+                            required: true,
+                            defaultValue: contact.givenName
+                        },
+                        {
+                            name: "familyName",
+                            title: "Last&nbsp;Name",
+                            type: "text",
+                            required: true,
+                            defaultValue: contact.familyName
+                        },
+                        {
+                            name: "fullName",
+                            title: "Full&nbsp;Name",
+                            type: "text",
+                            required: true,
+                            defaultValue: contact.fullName
+                        },
+                        {
+                            name: "phone",
+                            title: "Phone&nbsp;#",
+                            required: true,
+                            type: "text",
+                            defaultValue: contact.phone
+                        },
+                        {
+                            name: "streetAddress",
+                            title: "Street&nbsp;Address",
+                            type: "text",
+                            required: true,
+                            defaultValue: contact.streetAddress
+                        },
+                        {
+                            name: "locality",
+                            title: "City",
+                            type: "text",
+                            required: true,
+                            defaultValue: contact.locality
+                        },
+                        {
+                            name: "region",
+                            title: "State",
+                            type: "text",
+                            required: true,
+                            defaultValue: contact.region
+                        },
+                        {
+                            name: "postalCode",
+                            title: "Postal&nbsp;Code",
+                            type: "text",
+                            required: true,
+                            defaultValue: contact.postalCode
+                        },
+                        {
+                            name: "country",
+                            title: "Country",
+                            type: "text",
+                            required: true,
+                            defaultValue: contact.country
+                        }
+                    ]
+                });
+
+                var createContactButton = isc.IButton.create({
+                    width: "40%",
+                    height: 50,
+                    title: "Add to Contacts",
+
+                    click : function () {
+                        var form = createContactForm;
+                        var contactAddress = isc.addProperties(new ContactAddress(), {
+                            streetAddress: form.getValue("streetAddress"),
+                            locality: form.getValue("locality"),
+                            region: form.getValue("region"),
+                            postalCode: form.getValue("postalCode"),
+                            country: form.getValue("country")
+                        });
+                        contactAddress.formatted = contactAddress.streetAddress + "\n" +
+                                                   contactAddress.locality + ", " + contactAddress.region + " " + contactAddress.postalCode + "\n" +
+                                                   contactAddress.country;
+                        var newContact = {
+                            displayName: form.getValue("fullName"),
+                            name: isc.addProperties(new ContactName(), {
+                                formatted: form.getValue("fullName"),
+                                givenName: form.getValue("givenName"),
+                                familyName: form.getValue("familyName")
+                            }),
+                            phoneNumbers: [
+                                isc.addProperties(new ContactField(), {
+                                    value: form.getValue("phone")
+                                })
+                            ],
+                            addresses: [ contactAddress ]
+                        };
+                        newContact = navigator.contacts.create(newContact);
+                        newContact.save(function (newContact) {
+                            names[contact.fullName] = newContact.id;
+                            contact.contactID = newContact.id;
+                            contact.contact = true;
+                            customerContactsDS.updateData(contact);
+
+                            isc.say(contact.fullName + " was added successfully.", function () {
+                                slideTransition(createContactContainer, customerContactsContainer, contactsApp, true);
+                            }, { width: DIALOG_WIDTH });
+                        }, function (contactError) {
+                            isc.say(contact.fullName + " could not be added to your contacts.", function () {
+                                slideTransition(createContactContainer, customerContactsContainer, contactsApp, true);
+                            }, { title: "Save Failed", width: DIALOG_WIDTH });
+                        });
+                    }
+                });
+
+                var contactHContainer = isc.HStack.create({
+                    height: "*",
+                    padding: 5,
+                    align: "center",
+                    members: [
+                        createContactButton
+                    ]
+                });
+
+                return isc.VLayout.create({
+                    ID: "createContactContainer",
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "white",
+                    members: [
+                        contactCreateNavBar,
+                        createContactForm,
+                        isc.LayoutSpacer.create(),
+                        contactHContainer
+                    ]
+                });
+            } // end createContact()
+
+            function slideTransition(oldPane, newPane, container, right) {
+                if (!isc.Browser.isSafari) {
+                    container.removeChild(oldPane);
+                    container.addChild(newPane);
+                    return;
+                }
+
+                var viewportWidth = container.getViewportWidth();
+
+                newPane.hide();
+                container.addChild(newPane);
+                if (!newPane.isDrawn()) {
+                    newPane.draw();
+                }
+
+                var oldStyle = oldPane.getStyleHandle();
+                var newStyle = newPane.getStyleHandle();
+
+                // place the new element off screen (instantly)
+                newStyle.setProperty("-webkit-transition", "none");
+                var translation = "translateX(" + (right ? "-" : "") + viewportWidth + "px)";
+                newStyle.setProperty("-webkit-transform", translation);
+
+                var oldOverflow = container.overflow;
+                container.setOverflow("hidden");
+                // will be initially invisible since clipped
+                newPane.show();
+
+                isc.Timer.setTimeout(function () {
+                    // set both to animate
+                    oldStyle.setProperty("-webkit-transition", "-webkit-transform 0.3s ease-in-out");
+                    newStyle.setProperty("-webkit-transition", "-webkit-transform 0.3s ease-in-out");
+
+                    // move old off screen
+                    translation = "translateX(" + (right ? "" : "-") + viewportWidth + "px)";
+                    oldStyle.setProperty("-webkit-transform", translation);
+
+                    // undo translation on new
+                    newStyle.setProperty("-webkit-transform", "translateX(0px)");
+
+                    isc.Timer.setTimeout(function () {
+                        oldPane.hide();
+                        container.setOverflow(oldOverflow);
+                    }, 350);
+                }, 1);
+            }
+        </script>
+    </body>
+</html>

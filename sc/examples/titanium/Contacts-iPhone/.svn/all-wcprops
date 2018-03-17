@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/examples/titanium/Contacts-iPhone
+END
+LICENSE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/itenant/!svn/ver/1/sc/examples/titanium/Contacts-iPhone/LICENSE.txt
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/itenant/!svn/ver/1/sc/examples/titanium/Contacts-iPhone/LICENSE
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/itenant/!svn/ver/1/sc/examples/titanium/Contacts-iPhone/.gitignore
+END
+CHANGELOG.txt
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/itenant/!svn/ver/1/sc/examples/titanium/Contacts-iPhone/CHANGELOG.txt
+END
+manifest
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/itenant/!svn/ver/1/sc/examples/titanium/Contacts-iPhone/manifest
+END
+tiapp.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/itenant/!svn/ver/1/sc/examples/titanium/Contacts-iPhone/tiapp.xml
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/itenant/!svn/ver/1/sc/examples/titanium/Contacts-iPhone/README
+END

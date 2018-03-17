@@ -1,0 +1,108 @@
+<?php
+
+ include_once(dirname( __DIR__)  . '/include/config.php');
+ 
+ 
+ function gen_inbound_context() {
+	  echo "[did-inbound]\n";
+		  $res = mysql_query("SELECT dids.did, action, destination,ref_id,opt1 as timeout, opt2 as prefix,
+		                             t_moh.name as moh_name,
+		                             t_sip_users.extension as user_exten,
+		                             t_queues.name as queue_name, t_queues.musiconhold as queue_musiconhold, t_queues.queue_welcome as queue_welcome,
+		                             concat(t_vmusers.mailbox,'@',t_vmusers.context) as vmailbox 
+		                        FROM dids 
+		                               LEFT JOIN t_inbound ON t_inbound.did_id = dids.id 
+		                               LEFT JOIN t_inbound_rules ON t_inbound_rules.inbound_id = t_inbound.id     
+		                               LEFT JOIN t_moh ON t_moh.id = t_inbound_rules.destination AND t_inbound_rules.action = 'moh'
+                                     LEFT JOIN t_sip_users ON t_sip_users.id = t_inbound_rules.destination AND t_inbound_rules.action = 'extension'
+                                     LEFT JOIN t_queues ON t_queues.id = t_inbound_rules.destination AND t_inbound_rules.action = 'queue'
+                                     LEFT JOIN t_vmusers ON t_vmusers.id = t_inbound_rules.destination AND ( t_inbound_rules.action = 'voicemail' OR t_inbound_rules.action = 'checkvm'),
+		                             tenants  
+		                        WHERE tenants.id = dids.tenant_id 
+		                        ORDER BY dids.did      ");
+		                          
+		    while($row = mysql_fetch_assoc($res)){
+		    	  $_tenant = $row['ref_id'];
+		    	  $DID = $row['did'];  // We support only numeric destinations
+		    	  $EXT = preg_replace('/SIP\/|Local\//','',$row['destination']);
+		    	  $EXT = $EXT ? $EXT : 0;
+		      	  
+		    	  echo "\n\n   exten => {$DID},1,Verbose(2, Inbound DID: {$DID} Route to: {$_tenant}-> [{$row['action']}][{$EXT}] )] \n";
+		    	  if ( $row['prefix'] )     
+		          echo " exten => {$DID},n,Set(CALLERID(name)={$row['prefix']} \${CALLERID(name)})\n";
+		     
+		         $items = array();     
+		         // ROUTING LOGIC  //         	     
+		        if ( isset($_tenant) && isset($row['action']) ){
+		          switch( $row['action'] ) {
+		          	case "extension":
+		               $items[] = " exten => {$DID},n,Dial(Local/{$row['user_exten']}@internal-{$_tenant}-local,{$row['timeout']},tT)" ;
+		          	   break;          	   
+		          	   
+		          	case "number":
+		          	   $items[] = " exten => {$DID},n,Dial(Local/{$EXT}@internal-{$_tenant}-local,{$row['timeout']},tT)" ;          	   
+		          	   break;        
+		          	   
+                  case "voicemail":
+		          	   $items[] = " exten => {$DID},n,VoiceMail(${row['vmailbox']})" ;          	   
+		          	   break;
+		          	   
+		          	case "checkvm":
+		          	   $items[] = " exten => {$DID},n,VoiceMailMain(${row['vmailbox']})" ;          	   
+		          	   break;
+		          	
+		          	case "conference":
+		          	   $items[] = " exten => {$DID},n,Macro(dialconference,{$EXT},,,,snd_{$_tenant})" ;
+		          	   break; 
+		          	    
+		          	case "ivrmenu":		          	       
+		          	     if ( $EXT )
+		          	       $items[] = " exten => {$DID},n,Dial(Local/s@internal-{$_tenant}-ivrmenu-{$EXT},{$row['timeout']},tT)" ;          	   
+		          	   break;
+		          	   
+		          	case "ringgroup":		          	       
+		          	     if ( $EXT )
+		          	       $items[] = " exten => {$DID},n,Dial(Local/s@internal-{$_tenant}-ringgroup-{$EXT},{$row['timeout']},tT)" ;          	   
+		          	   break;
+		          	    
+	          	   case "queue":
+	          	      $items[] = " exten => t,n,Dial(Local/s@internal-{$_tenant}-queue-{$EXT},,tT)" ;
+		          	   break;    
+		          	   
+		          	case "play_invalid":
+		          	   $items[] = " exten => {$DID},n,Playback(invalid)" ;          	   
+		          	   break;
+		          	   
+                  case "play_rec":
+		          	   $items[] = " exten => {$DID},n,Playback(snd_{$_tenant}/{$EXT})" ;          	   
+		          	   break;
+		          	   
+		          	case "play_tts":
+		          	   $tts_file = '/tts/' . md5("{$EXT}..en-US_LisaVoice.1");
+		          	   $items[] = " exten => {$DID},n,Playback({$tts_file})" ;          	   
+		          	   break;
+
+ 	          	   case "moh": 	          	      
+		          	   $items[] = " exten => {$DID},n,MusicOnHold({$row['moh_name']})" ;          	   
+		          	   break;
+		          	   
+		          	case "hangup":
+		          	   $items[] = " exten => {$DID},n,Verbose(2,'HANGUP ACtion executed')" ;          	   
+		          	   break;
+		          } 
+		       }else{
+		          $items[] = " exten => {$DID},n,Playback(the-number-u-dialed&not-yet-assigned)";
+		       }  
+		   
+		   if (!count($items))
+		     echo  "   exten => {$DID},n,Dial(Local/s@general-{$_tenant}-error)\n";
+		   else		   
+		    foreach( $items as $item )
+		     echo "  {$item} \n";
+		    
+		   echo "   exten => {$DID},n,Hangup()\n" ;  
+		     
+      }		     
+	      
+	       
+}		

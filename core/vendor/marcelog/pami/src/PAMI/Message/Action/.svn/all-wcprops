@@ -1,0 +1,593 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action
+END
+StopMonitorAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/StopMonitorAction.php
+END
+GetConfigJSONAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/GetConfigJSONAction.php
+END
+AGIAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/AGIAction.php
+END
+SIPQualifyPeerAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/SIPQualifyPeerAction.php
+END
+EventsAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/EventsAction.php
+END
+CoreShowChannelsAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/CoreShowChannelsAction.php
+END
+ReloadAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/ReloadAction.php
+END
+WaitEventAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/WaitEventAction.php
+END
+MeetmeMuteAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/MeetmeMuteAction.php
+END
+LoginAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/LoginAction.php
+END
+MeetmeUnmuteAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/MeetmeUnmuteAction.php
+END
+DBDelAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DBDelAction.php
+END
+DongleResetAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DongleResetAction.php
+END
+StopMixMonitorAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/StopMixMonitorAction.php
+END
+LogoffAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/LogoffAction.php
+END
+DongleRestartAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DongleRestartAction.php
+END
+DongleStopAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DongleStopAction.php
+END
+DAHDIRestartAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DAHDIRestartAction.php
+END
+PlayDTMFAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/PlayDTMFAction.php
+END
+UserEventAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/UserEventAction.php
+END
+DongleSendUSSDAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DongleSendUSSDAction.php
+END
+HangupAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/HangupAction.php
+END
+ChallengeAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/ChallengeAction.php
+END
+SIPNotifyAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/SIPNotifyAction.php
+END
+DBGetAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DBGetAction.php
+END
+DongleStartAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DongleStartAction.php
+END
+MonitorAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/MonitorAction.php
+END
+UnpauseMonitorAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/UnpauseMonitorAction.php
+END
+AgentLogoffAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/AgentLogoffAction.php
+END
+ListCommandsAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/ListCommandsAction.php
+END
+ConfbridgeMuteAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/ConfbridgeMuteAction.php
+END
+SendTextAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/SendTextAction.php
+END
+ConfbridgeUnmuteAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/ConfbridgeUnmuteAction.php
+END
+QueueRemoveAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/QueueRemoveAction.php
+END
+QueuesAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/QueuesAction.php
+END
+UpdateConfigAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/UpdateConfigAction.php
+END
+DBPutAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DBPutAction.php
+END
+DAHDIDialOffHookAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DAHDIDialOffHookAction.php
+END
+ListCategoriesAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/ListCategoriesAction.php
+END
+AgentsAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/AgentsAction.php
+END
+StatusAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/StatusAction.php
+END
+QueueLogAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/QueueLogAction.php
+END
+VoicemailUsersListAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/VoicemailUsersListAction.php
+END
+ModuleUnloadAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/ModuleUnloadAction.php
+END
+CreateConfigAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/CreateConfigAction.php
+END
+DAHDIDNDOffAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DAHDIDNDOffAction.php
+END
+DBDelTreeAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DBDelTreeAction.php
+END
+SIPPeersAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/SIPPeersAction.php
+END
+DAHDIDNDOnAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DAHDIDNDOnAction.php
+END
+ChangeMonitorAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/ChangeMonitorAction.php
+END
+QueueAddAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/QueueAddAction.php
+END
+MailboxStatusAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/MailboxStatusAction.php
+END
+MailboxCountAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/MailboxCountAction.php
+END
+DongleSendSMSAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DongleSendSMSAction.php
+END
+MeetmeListAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/MeetmeListAction.php
+END
+QueueReloadAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/QueueReloadAction.php
+END
+ModuleReloadAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/ModuleReloadAction.php
+END
+DAHDIHangupAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DAHDIHangupAction.php
+END
+ExtensionStateAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/ExtensionStateAction.php
+END
+CommandAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/CommandAction.php
+END
+OriginateAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/OriginateAction.php
+END
+QueuePenaltyAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/QueuePenaltyAction.php
+END
+ModuleCheckAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/ModuleCheckAction.php
+END
+PauseMonitorAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/PauseMonitorAction.php
+END
+QueueUnpauseAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/QueueUnpauseAction.php
+END
+SIPShowRegistryAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/SIPShowRegistryAction.php
+END
+DAHDIShowChannelsAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DAHDIShowChannelsAction.php
+END
+GetVarAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/GetVarAction.php
+END
+DongleSendPDUAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DongleSendPDUAction.php
+END
+BridgeAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/BridgeAction.php
+END
+CoreStatusAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/CoreStatusAction.php
+END
+ParkAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/ParkAction.php
+END
+LocalOptimizeAwayAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/LocalOptimizeAwayAction.php
+END
+BlindTransferAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/BlindTransferAction.php
+END
+AttendedTransferAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/AttendedTransferAction.php
+END
+PingAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/PingAction.php
+END
+JabberSendAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/JabberSendAction.php
+END
+DongleReloadAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DongleReloadAction.php
+END
+MixMonitorMuteAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/MixMonitorMuteAction.php
+END
+RedirectAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/RedirectAction.php
+END
+QueueSummaryAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/QueueSummaryAction.php
+END
+SetVarAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/SetVarAction.php
+END
+MixMonitorAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/MixMonitorAction.php
+END
+GetConfigAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/GetConfigAction.php
+END
+SIPShowPeerAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/SIPShowPeerAction.php
+END
+CoreSettingsAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/CoreSettingsAction.php
+END
+VGSMSMSTxAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/VGSMSMSTxAction.php
+END
+DongleShowDevicesAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DongleShowDevicesAction.php
+END
+QueueRuleAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/QueueRuleAction.php
+END
+DAHDITransferAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/DAHDITransferAction.php
+END
+QueuePauseAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/QueuePauseAction.php
+END
+ActionMessage.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/ActionMessage.php
+END
+ModuleLoadAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/ModuleLoadAction.php
+END
+AbsoluteTimeoutAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/AbsoluteTimeoutAction.php
+END
+ParkedCallsAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/ParkedCallsAction.php
+END
+ShowDialPlanAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/ShowDialPlanAction.php
+END
+QueueResetAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/QueueResetAction.php
+END
+QueueStatusAction.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Action/QueueStatusAction.php
+END

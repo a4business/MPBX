@@ -1,0 +1,44 @@
+<List>
+    <dynamicDSField>
+        <name>itemID</name>
+        <type>sequence</type>
+        <hidden>true</hidden>
+        <primaryKey>true</primaryKey>
+    </dynamicDSField>
+    <dynamicDSField>
+        <name>itemName</name>
+        <title>Item</title>
+        <type>text</type>
+        <required>true</required>
+        <length>128</length>
+    </dynamicDSField>    
+    <dynamicDSField>
+        <name>SKU</name>
+        <title>SKU</title>
+        <type>text</type>
+        <required>true</required>
+        <length>10</length>
+    </dynamicDSField>    
+    <dynamicDSField>
+        <name>description</name>
+        <title>Description</title>
+        <type>text</type>
+        <length>2000</length>
+    </dynamicDSField>    
+    <dynamicDSField>
+        <name>unitCost</name>
+        <title>Unit Cost</title>
+        <type>float</type>
+        <required>true</required>
+    </dynamicDSField>    
+    <dynamicDSField>
+        <name>inStock</name>
+        <title>In Stock</title>
+        <type>boolean</type>
+    </dynamicDSField>    
+    <dynamicDSField>
+        <name>nextShipment</name>
+        <title>Next Shipment</title>
+        <type>date</type>
+    </dynamicDSField>    
+</List>

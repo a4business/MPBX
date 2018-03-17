@@ -1,0 +1,23 @@
+<DataSource
+    ID="googleFeedResponse"
+    dataURL="http://ajax.googleapis.com/ajax/services/feed/load"
+    dataFormat="json"
+    recordXPath="responseData/feed/entries"
+    
+>
+    <fields>
+        <field name="link"  type="link"/>
+        <field name="title"  />
+        <field name="content" />
+        <field name="author" detail="true" />
+        <field name="publishedDate" detail="true" />
+        <field name="contentSnippet" detail="true" />
+        <transformRequest>
+            if (dsRequest.data["search"]) {
+                dsRequest.data.q = dsRequest.data["search"];
+                dsRequest.data.v = "1.0";
+            }
+            return dsRequest.data;
+        </transformRequest>
+    </fields>
+</DataSource>

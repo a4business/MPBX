@@ -1,0 +1,73 @@
+<DataSource
+    ID="user"
+    tableName="user"
+    serverType="sql" 
+    testFileName="/examples/shared/ds/test_data/user.data.xml"
+    requiresAuthentication="true"
+    dataURL="/examples/secureApp/authenticatedOperations.jsp">
+    <fields>
+	    <field name="id" type="sequence"  length="10" title="User ID" detail="true" primaryKey="true" />
+        <field name="username" type="text" required="true" length="32" title="User Name">
+            <validators>
+                <validator type="regexp" 
+                    expression="^([a-zA-Z0-9_.\-+])+@(([a-zA-Z0-9\-])+\.)+[a-zA-Z0-9]{2,4}$"/>
+            </validators>
+        </field>
+        <field name="password" type="text" required="true" length="32"  title="Password"/>
+        <field name="profile" type="text" length="100" title="Profile"/>
+    </fields>
+    <operationBindings>
+        <!-- administrator operations: complete account control -->
+
+        <operationBinding operationType="fetch" operationId="adminFetch" requiresRole="admin"/>
+
+        <!-- prevent administrators from accidentally removing their own account -->
+        <operationBinding operationType="remove" operationId="adminRemove" requiresRole="admin"
+            requires="$values.id != $dataSources.user.fetchSingle('username', $dsRequest.userId).id"/>
+
+        <operationBinding operationType="update" operationId="adminUpdate" requiresRole="admin"/>
+
+        <operationBinding operationType="add" operationId="adminAdd"  requiresRole="admin"/>
+
+        <!-- authenticated user operations: access/update own account -->
+        <operationBinding operationType="fetch">
+            <criteria fieldName="username" value="$dsRequest.userId"/>
+        </operationBinding>
+
+        <operationBinding operationType="update">
+            <criteria fieldName="username" value="$dsRequest.userId"/>
+            <serverObject className="com.isomorphic.examples.SecureAppUserDMI" methodName="update" />
+        </operationBinding>
+
+        <!-- non-authenticated user operations: no login required -->
+        <operationBinding operationId="register"
+            operationType="add"
+            requiresAuthentication="false"
+            dataURL="/examples/secureApp/nonAuthenticatedOperations.jsp"
+            cacheSyncOperation="registerCacheSyncFetch"
+            />
+            
+        <operationBinding operationType="fetch" operationId="registerCacheSyncFetch"
+            outputs="username"
+            relaxSecurityRulesForCacheSync="true"
+        />
+
+        <operationBinding operationType="update"
+            operationId="resetPassword" requiresAuthentication="false" 
+            cacheSyncOperation="resetCacheSyncFetch"
+            dataURL="/examples/secureApp/nonAuthenticatedOperations.jsp">
+            <values fieldName="password" value="$util.randomText(8)" />
+            <mail to="$username" from="john.smith@isomorphic.com" replyto="john.smith@isomorphic.com"
+                subject="Password Request (SmartClient Secure Application Example)">
+<messageTemplate>SmartClient Secure Application Example
+---
+Your new password is $values.password.</messageTemplate>
+            </mail>
+        </operationBinding>
+            
+        <operationBinding operationType="fetch" operationId="resetCacheSyncFetch"
+            outputs="username,password"
+            relaxSecurityRulesForCacheSync="true"
+        />
+    </operationBindings>
+</DataSource>

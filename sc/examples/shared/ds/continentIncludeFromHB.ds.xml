@@ -1,0 +1,8 @@
+<DataSource
+    ID="continentIncludeFromHB"
+    serverType="hibernate"
+    schemaBean="com.isomorphic.examples.server.hibernate.relations.ContinentManyToOneSimple"
+    autoDeriveSchema="true"
+>
+</DataSource>
+

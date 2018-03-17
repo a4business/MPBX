@@ -1,0 +1,221 @@
+<HTML><HEAD><TITLE>
+    SmartClient animation programming
+</TITLE>
+    <SCRIPT>var isomorphicDir = "../../isomorphic/"</SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_Core.js></SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_Foundation.js></SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_Containers.js></SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_Grids.js></SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_Forms.js></SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_DataBinding.js></SCRIPT>
+	<SCRIPT SRC=../../isomorphic/skins/SmartClient/load_skin.js></SCRIPT>
+</HEAD><BODY bgcolor=tan><SCRIPT>
+
+//===========================================================================
+// SmartClient animation programming
+//===========================================================================
+// Demonstrates the following public methods for component animations:
+//
+//      animateMove (left, top, callback, time, acceleration)
+//      animateResize (width, height, callback, time, acceleration)
+//      animateRect (left, top, width, height, callback, time, acceleration)
+//      animateFade (opacity, callback, time, acceleration)
+//      animateShow (slideIn, callback, time, acceleration)
+//      animateHide (slideOut, callback, time, acceleration)
+//      animateScroll (scrollLeft, scrollTop, callback, time, acceleration)
+//
+//===========================================================================
+
+// interval 20ms = 50fps
+isc.Animation.interval = 20;
+
+Canvas.create({
+    ID:"dest",
+    overflow:"hidden",
+    align:"center",
+    showEdges:true,
+    edgeSize:5,
+    edgeImage:"[SKIN]/rounded/frame/FFFFFF/5.png",
+    backgroundColor:"#FFFFA0",
+    canDragReposition:true,
+    dragRepositionStop:"this.sendToBack()",
+    canDragResize:true,
+    dragResizeStop:"this.sendToBack()",
+    dragAppearance:"target",
+    contents:"<b>Destination</b> (drag to move or resize)",
+    left:400, top:200, width:200, height:200
+})
+
+Canvas.create({
+    ID:"anim",
+    overflow:"hidden",
+    border:"1px solid black",
+    backgroundColor:"#A0FFA0",
+    canDragReposition:true,
+    canDragResize:true,
+    dragAppearance:"target",
+    smoothFade:true,
+    contents:"1<br>2<br>3<br><b>Animated Object</b> (drag to move or resize)<br>3<br>2<br>1",
+    left:100, top:250, width:100, height:100
+})
+
+var numberStackHTML = "0";
+for (i=1; i<100; i++) numberStackHTML += "<br>"+i;
+
+HTMLPane.create({
+    ID:"scroller",
+    showEdges:true,
+    edgeSize:5,
+    edgeImage:"[SKIN]/rounded/frame/FFFFFF/5.png",
+    backgroundColor:"#D0D0FF",
+    canDragReposition:true,
+    canDragResize:true,
+    dragAppearance:"target",
+    contents:numberStackHTML,
+    left:640, top:10, width:100, height:160
+})
+
+Slider.create({
+    ID:"timeSlider",
+    left:20, top:0, width:550,
+    vertical:false,
+    value:1000,
+    minValue:250,
+    maxValue:4000,
+    numValues:16,
+    title:"Duration (ms)",
+    animateThumb:true,
+    animateThumbInit:true
+})
+
+Button.create({
+    left:260, top:150,
+    title:"<b>Reset</b>",
+    click: function () {
+        anim.setRect(100,250,100,100);
+        anim.setOpacity(100);
+        anim.scrollTo(0,0);
+        anim.show();
+        dest.setRect(400,200,200,200);
+        scroller.setRect(640,10,100,160);
+        scroller.scrollTo(0,0);
+    }
+})
+
+Button.create({
+    left:20, top:80,
+    title:"Move",
+    click: function () {anim.animateMove(
+        dest.getLeft(),
+        dest.getTop(),
+        null,
+        timeSlider.getValue()
+    )}
+})
+
+Button.create({
+    left:20, top:110,
+    title:"Resize",
+    click: function () {anim.animateResize(
+        dest.getWidth(),
+        dest.getHeight(),
+        null,
+        timeSlider.getValue()
+    )}
+})
+
+Button.create({
+    left:140, top:80,
+    title:"Move &amp; Resize",
+    click: function () {anim.animateRect(
+        dest.getLeft(),
+        dest.getTop(),
+        dest.getWidth(),
+        dest.getHeight(),
+        null,
+        timeSlider.getValue()
+    )}
+})
+Button.create({
+    left:140, top:110,
+    title:"Move, Resize",
+    click: function () {anim.animateMove(
+        dest.getLeft(),
+        dest.getTop(),
+        "anim.animateResize(dest.getWidth(),dest.getHeight(),null,timeSlider.getValue())",
+        timeSlider.getValue()
+    )}
+})
+
+Button.create({
+    left:260, top:80,
+    title:"Fade out",
+//    click: function () {anim.animateFade(0, null, timeSlider.getValue())}
+    click: function () {anim.animateHide("fade", null, timeSlider.getValue())}
+})
+Button.create({
+    left:260, top:110,
+    title:"Fade in",
+//    click: function () {anim.animateFade(100, null, timeSlider.getValue())}
+    click: function () {anim.animateShow("fade", null, timeSlider.getValue())}    
+})
+Button.create({
+    left:380, top:80,
+    title:"Slide out",
+    click: function () {anim.animateHide("slide", null, timeSlider.getValue())}
+})
+Button.create({
+    left:380, top:110,
+    title:"Slide in",
+    click: function () {anim.animateShow("slide", null, timeSlider.getValue())}
+})
+Button.create({
+    left:500, top:80,
+    title:"Wipe out",
+    click: function () {anim.animateHide("wipe", null, timeSlider.getValue())}
+})
+Button.create({
+    left:500, top:110,
+    title:"Wipe in",
+    click: function () {anim.animateShow("wipe", null, timeSlider.getValue())}
+})
+Button.create({
+    left:760, top:50,
+    title:"Scroll top",
+    click: function () {scroller.animateScroll(0, 0, null, timeSlider.getValue())}
+})
+Button.create({
+    left:760, top:80,
+    title:"Scroll middle",
+    click: function () {scroller.animateScroll(0, (scroller.getScrollHeight()-scroller.getHeight())/2, null, timeSlider.getValue())}
+})
+Button.create({
+    left:760, top:110,
+    title:"Scroll end",
+    click: function () {scroller.animateScroll(0, scroller.getScrollBottom(), null, timeSlider.getValue())}
+})
+
+FormLayout.create({
+    left:150, top:550, width:300, backgroundColor:"white", border:"1px solid black",
+    titlePrefix:"<b>", titleSuffix:"</b>",
+    items:[
+        {name:"Acceleration", type:"radioGroup", 
+            valueMap:["smoothStart", "smoothEnd", "smoothStartEnd", "none", "custom"],
+            defaultValue:"smoothEnd",
+            change:function (form, item, value, oldValue) {
+                if (value == "custom") {
+                    // custom acceleration function
+                    isc.Canvas.addProperties({
+                        animateAcceleration:function(ratio) { return Math.pow(ratio, 6) }
+                    });
+                } else {
+                    // built-in acceleration functions
+                    isc.Canvas.addProperties({animateAcceleration:value})
+                }
+            }
+        }
+    ]
+})
+
+
+</SCRIPT></BODY></HTML>

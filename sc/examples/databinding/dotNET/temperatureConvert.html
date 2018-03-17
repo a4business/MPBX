@@ -1,0 +1,70 @@
+<HTML><HEAD><TITLE>Integrating with a .NET web service</TITLE>
+    <SCRIPT>var isomorphicDir="/isomorphic/";</SCRIPT>
+    <SCRIPT SRC=/isomorphic/system/modules/ISC_Core.js></SCRIPT>
+    <SCRIPT SRC=/isomorphic/system/modules/ISC_Foundation.js></SCRIPT>
+    <SCRIPT SRC=/isomorphic/system/modules/ISC_Containers.js></SCRIPT>
+    <SCRIPT SRC=/isomorphic/system/modules/ISC_Grids.js></SCRIPT>
+    <SCRIPT SRC=/isomorphic/system/modules/ISC_Forms.js></SCRIPT>
+    <SCRIPT SRC=/isomorphic/system/modules/ISC_DataBinding.js></SCRIPT>
+	<SCRIPT SRC=/isomorphic/skins/SmartClient/load_skin.js></SCRIPT>
+</HEAD>
+<BODY>
+
+<SCRIPT>
+// This is an example of a SmartClient application integrating with an ASP.NET XML web service
+// created by following this walkthrough:
+//
+// http://msdn2.microsoft.com/en-us/library/87h5xz7x(VS.80).aspx
+
+isc.Label.create({
+    left:10, top:10, width:150, height:20,
+    contents:"<b>Convert Temperatures</b>"
+});
+
+isc.DynamicForm.create({
+    ID:"inputForm",
+    left:10, top:40, width:275,
+    items:[
+        {name:"temperature", title:"Temperature (in F)", type:"float", required:true}
+    ],
+    convert : function() {
+        if (!this.validate()) return;
+        
+        if (!this.service) {
+            isc.say("Please try again in a moment  - still loading web service descriptor");
+            return;
+        }
+        
+        var temperature = this.getValue("temperature");
+        
+        this.service.callOperation("ConvertTemperature", {dFahrenheit:temperature},
+                                   "ConvertTemperatureResponse", "FtoC.setData(data[0])");
+    }
+});
+
+isc.IButton.create({
+    left:275, top:40,
+    title:"Convert",
+    click:"inputForm.convert()"
+});
+
+isc.Label.create({
+    left:10, top:80, width:275, height:40,
+    contents:"The following displays the value you converted as indicated:"
+});
+
+isc.DetailViewer.create({
+    ID:"FtoC",
+    left:10, top:150, width:400, height:20,
+    emptyMessage:"&nbsp;",
+    fields:[
+        {name:"ConvertTemperatureResult", title:"Fahrenheit -> Celsius"}
+    ]
+});
+
+isc.XMLTools.loadWSDL("http://localhost/TempConvert1/Service1.asmx?WSDL",
+                      "inputForm.service = service");
+</SCRIPT>
+
+</BODY>
+</HTML>

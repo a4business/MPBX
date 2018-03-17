@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/itenant/!svn/ver/1/sc/examples/secureApp
+END
+register.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/examples/secureApp/register.jsp
+END
+SecureAppDMI.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/examples/secureApp/SecureAppDMI.java
+END
+authenticatedOperations.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/itenant/!svn/ver/1/sc/examples/secureApp/authenticatedOperations.jsp
+END
+server.properties
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/examples/secureApp/server.properties
+END
+index.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/examples/secureApp/index.jsp
+END
+admin.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/examples/secureApp/admin.jsp
+END
+login.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/examples/secureApp/login.jsp
+END
+loginDialog.js
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/examples/secureApp/loginDialog.js
+END
+nonAuthenticatedOperations.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/itenant/!svn/ver/1/sc/examples/secureApp/nonAuthenticatedOperations.jsp
+END

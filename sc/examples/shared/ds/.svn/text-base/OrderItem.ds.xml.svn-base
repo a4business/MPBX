@@ -1,0 +1,10 @@
+<DataSource
+    ID="OrderItem"
+>
+    <fields>
+        <field name="itemDescription" title="Description" type="text" />
+        <field name="totalPrice"      title="Total Price" type="float" javaClass="com.isomorphic.test.TestBigDecimal"/>
+        <field name="stockItems"      title="Stock Items" type="StockItem" />
+    </fields>
+</DataSource>
+ 

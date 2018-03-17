@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 24
+/itenant/!svn/ver/1/core
+END
+composer.json
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/itenant/!svn/ver/10/core/composer.json
+END
+composer.phar
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/itenant/!svn/ver/10/core/composer.phar
+END
+gen_trunks.php
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/itenant/!svn/ver/2/core/gen_trunks.php
+END
+func_odbc.conf
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/itenant/!svn/ver/12/core/func_odbc.conf
+END
+gen_queues.php
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/itenant/!svn/ver/10/core/gen_queues.php
+END
+gen_ivrmenus.php
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/itenant/!svn/ver/12/core/gen_ivrmenus.php
+END
+gen_parking.php
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/itenant/!svn/ver/7/core/gen_parking.php
+END
+gen_internal.php
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/itenant/!svn/ver/12/core/gen_internal.php
+END
+Listener.php
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/itenant/!svn/ver/10/core/Listener.php
+END
+gen_inbound.php
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/itenant/!svn/ver/12/core/gen_inbound.php
+END
+gen_extensions.php
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/itenant/!svn/ver/12/core/gen_extensions.php
+END
+gen_outbound.php
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/itenant/!svn/ver/9/core/gen_outbound.php
+END
+composer.lock
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/itenant/!svn/ver/10/core/composer.lock
+END
+gen_ringgroups.php
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/itenant/!svn/ver/11/core/gen_ringgroups.php
+END

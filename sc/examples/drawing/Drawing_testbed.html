@@ -1,0 +1,512 @@
+<HTML>
+<HEAD><TITLE>CONFIDENTIAL - SmartClient Drawing - www.isomorphic.com</TITLE>
+<SCRIPT>window.isomorphicDir='/isomorphic/';</SCRIPT>
+<SCRIPT SRC=/isomorphic/system/modules/ISC_Core.js></SCRIPT>
+<SCRIPT SRC=/isomorphic/system/modules/ISC_Foundation.js></SCRIPT>
+<SCRIPT SRC=/isomorphic/system/modules/ISC_Containers.js></SCRIPT>
+<SCRIPT SRC=/isomorphic/system/modules/ISC_Grids.js></SCRIPT>
+<SCRIPT SRC=/isomorphic/system/modules/ISC_Forms.js></SCRIPT>
+<SCRIPT SRC=/isomorphic/system/modules/ISC_DataBinding.js></SCRIPT>
+<SCRIPT SRC=/isomorphic/system/modules/ISC_Drawing.js></SCRIPT>
+<SCRIPT SRC=/isomorphic/skins/SmartClient/load_skin.js></SCRIPT>
+
+    <SCRIPT SRC=PopupSliderItem.js></SCRIPT>
+</HEAD><BODY BGCOLOR=#d0d0d0>
+
+<style>
+.paneTitle {font-family:Arial; font-weight:bold; font-size:18px; color:#800000}
+.drawLabelText {font-family:Tahoma; font-weight:bold; font-size:18px; color:purple;}
+</style>
+<SCRIPT>
+
+
+// TODO
+//  - create drawpanes inside resizable windows (test clipping, resizing)
+//  - draw onload (test timing)
+
+isc.setAutoDraw(false);
+
+Page.setAppImgDir("drawcontrols/");
+
+//------------------------------------------------------------
+//  sliders & color pickers to control drawing properties
+//------------------------------------------------------------
+
+isc.FormLayout.create({
+    ID:"drawPropsForm",
+    left:20, top:20,
+    numCols:6, cellPadding:4, cellSpacing:0, titlePrefix:"", titleSuffix:"&nbsp;",
+    backgroundColor:"#f0f0f0",
+    showEdges:true, edgeImage:"[SKIN]/rounded/frame/A3B2CC/4.png", edgeSize:4, 
+    values:{
+        lineColor:"#000080",
+        lineOpacity:50,
+        lineWidth:2,
+        linePattern:"solid",
+        lineArrows:"end",
+        fillColor:"#FF0000",
+        fillOpacity:50
+    },
+    fields:[
+        {type:"header", defaultValue:"Line", endRow:false, colSpan:1},
+
+        {name:"lineColor", showTitle:false, title:"Color", width:90,
+            type:"color",
+            change:"changeDrawingProperty('lineColor', value)"
+            },
+
+        {name:"lineOpacity", showTitle:false, title:"Opacity", width:60,
+            icons:[{src:"opacity_control.gif", width:18, height:18}],
+            editorType:"PopupSlider",
+            minValue:0, maxValue:100, numValues:11,
+            change:"changeDrawingProperty('lineOpacity', value/100)"
+            },
+
+        {name:"lineWidth", showTitle:false, title:"Width", width:122,
+            //editorType:"PopupSlider", minValue:1, maxValue:10, numValues:10,
+            valueMap:{
+                1:"1 "+isc.Canvas.imgHTML("lw1.png",106,13),
+                2:"2 "+isc.Canvas.imgHTML("lw2.png",106,13),
+                3:"3 "+isc.Canvas.imgHTML("lw3.png",106,13),
+                4:"4 "+isc.Canvas.imgHTML("lw4.png",106,13),
+                5:"5 "+isc.Canvas.imgHTML("lw5.png",106,13),
+                6:"6 "+isc.Canvas.imgHTML("lw6.png",106,13),
+                7:"7 "+isc.Canvas.imgHTML("lw7.png",106,13),
+                8:"8 "+isc.Canvas.imgHTML("lw8.png",106,13),
+                9:"9 "+isc.Canvas.imgHTML("lw9.png",106,13),
+                10:"10 "+isc.Canvas.imgHTML("lw10.png",106,13)
+            },
+            change:"changeDrawingProperty('lineWidth', value)"
+            },
+
+        {name:"linePattern", showTitle:false, title:"Pattern", width:122,
+            valueMap:{
+                solid:isc.Canvas.imgHTML("lpSolid.png",106,13),
+                shortdot:isc.Canvas.imgHTML("lpShortDot.png",106,13),
+                shortdash:isc.Canvas.imgHTML("lpShortDash.png",106,13),
+                dot:isc.Canvas.imgHTML("lpDot.png",106,13),
+                dash:isc.Canvas.imgHTML("lpDash.png",106,13),
+                longdash:isc.Canvas.imgHTML("lpLongDash.png",106,13)
+            },
+            change:"changeDrawingProperty('linePattern', value)"
+            },
+
+        {name:"lineArrows", showTitle:false, title:"Arrows", width:122,
+            valueMap:{
+                none:isc.Canvas.imgHTML("laNone.png",88,13),
+                end:isc.Canvas.imgHTML("laEnd.png",88,13),
+                start:isc.Canvas.imgHTML("laStart.png",88,13),
+                both:isc.Canvas.imgHTML("laBoth.png",88,13)
+            },
+            change: function (form, item, value, oldValue) {
+                if (value=="start" || value=="both") {
+                    changeDrawingProperty('startArrow', "block");
+                } else {
+                    changeDrawingProperty('startArrow', null);                
+                }
+                if (value=="end" || value=="both") {
+                    changeDrawingProperty('endArrow', "block");
+                } else {
+                    changeDrawingProperty('endArrow', null);                
+                }
+            }
+            },
+
+        {type:"header", defaultValue:"Fill", endRow:false, colSpan:1},
+
+        {name:"fillColor", showTitle:false, title:"Color", width:90,
+            type:"color",
+            change:"changeDrawingProperty('fillColor', value)"
+            },
+
+        {name:"fillOpacity", showTitle:false, title:"Opacity", width:60,
+            icons:[{src:"opacity_control.gif", width:18, height:18}],
+            editorType:"PopupSlider",
+            minValue:0, maxValue:100, numValues:11,
+            change:"changeDrawingProperty('fillOpacity', value/100)"
+            }
+    ],
+    autoDraw:true
+});
+
+function changeDrawingProperty (name, value) {
+    if (window.dp1 && dp1.drawItems.length > 0) {
+        for (var i=0; i<dp1.drawItems.length; i++) {
+            dp1.drawItems[i].setProperty(name, value); }}
+    if (window.dp2 && dp2.drawItems.length > 0) {
+        for (var i=0; i<dp2.drawItems.length; i++) {
+            dp2.drawItems[i].setProperty(name, value); }}
+}
+
+
+//------------------------------------------------------------
+//  helper functions to create shapes based on the slider/
+//  picker control settings
+//------------------------------------------------------------
+
+function makeLine (x1, y1, x2, y2, drawPane, drawGroup) {
+    var drawProps = drawPropsForm.getValues();
+    return isc.DrawLine.create({
+        drawPane: drawPane,
+        drawGroup: drawGroup,
+        startPoint: [x1,y1],
+        endPoint: [x2,y2],
+        lineColor: drawProps.lineColor,
+        lineOpacity: drawProps.lineOpacity/100,
+        lineWidth: drawProps.lineWidth,
+        linePattern: drawProps.linePattern,
+        startArrow: ((drawProps.lineArrows == "start" || drawProps.lineArrows=="both") 
+            ? "block" : null),
+        endArrow: ((drawProps.lineArrows == "end" || drawProps.lineArrows=="both")
+            ? "block" : null),
+        autoDraw: true
+    })
+}
+
+function makeOval (cx, cy, rx, ry, drawPane, drawGroup) {
+    return isc.DrawOval.create({
+        drawPane: drawPane,
+        drawGroup: drawGroup,
+        centerPoint: [cx, cy],
+        rx: rx,
+        ry: ry, // not respected in CANVAS rendering (no oval yet) 20060129
+        lineColor: drawPropsForm.getValue("lineColor"),
+        lineOpacity: drawPropsForm.getValue("lineOpacity")/100,
+        lineWidth: drawPropsForm.getValue("lineWidth"),
+        linePattern: drawPropsForm.getValue("linePattern"),
+        fillColor: drawPropsForm.getValue("fillColor"),
+        fillOpacity: drawPropsForm.getValue("fillOpacity")/100,
+        autoDraw: true
+    })
+}
+
+function makeCurve (x1, y1, x2, y2, cx1, cy1, cx2, cy2, drawPane, drawGroup) {
+    return isc.DrawCurve.create({
+        drawPane: drawPane,
+        drawGroup: drawGroup,
+        startPoint: [x1,y1],
+        endPoint: [x2,y2],
+        controlPoint1: [cx1,cy1],
+        controlPoint2: [cx2,cy2],
+        lineColor: drawPropsForm.getValue("lineColor"),
+        lineOpacity: drawPropsForm.getValue("lineOpacity")/100,
+        lineWidth: drawPropsForm.getValue("lineWidth"),
+        linePattern: drawPropsForm.getValue("linePattern"),
+        autoDraw: true
+    })
+}
+
+
+//------------------------------------------------------------
+//  drawpanes and buttons to create test drawings
+//------------------------------------------------------------
+
+isc.IButton.addProperties({width:60});
+
+if (isc.Browser.hasVML || isc.Browser.hasSVG) {
+    isc.HLayout.create({left:20, top:100, width:564, height:28, membersMargin:10, members:[
+        isc.FormLayout.create({ID:"zoomForm", numCols:2, cellSpacing:0, cellPadding:0,
+        titlePrefix:"<b>", titleSuffix:"</b>", width:1, height:1, layoutAlign:"center", fields:[
+            {name:"zoom", title:"Zoom", editorType:"PopupSlider", width:60,
+                defaultValue:1, minValue:-10, maxValue:10, numValues:21,
+                change:"if (value<-1) {dp1.zoom(-1/value)} else if (value>1) {dp1.zoom(value)} else {dp1.zoom(1)}"
+            }
+        ]}),
+        isc.IButton.create({title:"Web", click:"drawTestWeb(dp1)"}),
+        isc.FormLayout.create({ID:"testPropsForm", numCols:1, cellSpacing:0, cellPadding:0,
+            width:1, height:1, layoutAlign:"center", fields:[
+            {name:"webSize", showTitle:false, editorType:"PopupSlider", width:60,
+                defaultValue:20, minValue:5, maxValue:100, numValues:20
+            }
+        ]}),
+        isc.IButton.create({title:"Curve", click:"drawTestCurve(dp1)"}),
+        isc.IButton.create({title:"Text", click:"drawTestText(dp1)"}),
+        isc.IButton.create({title:"Image", click:"drawTestImage(dp1)"}),
+        isc.IButton.create({title:"Connector", click:"drawTestConnector(dp1)"}),
+        isc.LayoutSpacer.create(),
+        isc.IButton.create({title:"Erase", click:"eraseTests(dp1)"})
+    ], autoDraw:true});
+    isc.DrawPane.create({
+        ID:"dp1",
+        top:130, left:20,
+        width:600, height:500,
+        showEdges:true, edgeImage:"[SKIN]/rounded/frame/A3B2CC/4.png", edgeSize:4, 
+        backgroundColor:"white",
+        overflow:"hidden", // otherwise will expand during drag on bottom/left
+        drawingType:isc.Browser.hasVML ? "vml" : isc.Browser.hasSVG ? "svg" : "none",
+        autoDraw:true
+    }).sendToBack();
+}
+
+// HACK mask the iframe in moz
+dp1.addChild(Canvas.create({ID:"dpmask", width:600, height:500,
+    // also use this as a drag-panning pane
+    canDrag:true,
+    dragAppearance:"none",
+    cursor:"all-scroll",
+    dragStart: function () {
+        // save total pan offset since dragStart
+        this.totalPanDeltaX = 0;
+        this.totalPanDeltaY = 0;
+    },
+    dragMove: function () {
+        var totalMouseDeltaX = isc.EH.lastEvent.x - isc.EH.mouseDownEvent.x,
+            totalMouseDeltaY = isc.EH.lastEvent.y - isc.EH.mouseDownEvent.y;
+        dp1.pan(
+            this.totalPanDeltaX - totalMouseDeltaX,
+            this.totalPanDeltaY - totalMouseDeltaY
+        )
+        this.totalPanDeltaX = totalMouseDeltaX;
+        this.totalPanDeltaY = totalMouseDeltaY;
+    }
+}));
+//dpmask.bringToFront();
+
+/*
+if (isc.Browser.hasCANVAS) {
+    isc.HLayout.create({left:600, top:100, width:500, height:28, membersMargin:20, members:[
+        isc.Label.create({className:"paneTitle", contents:"Bitmap"}),
+        isc.LayoutSpacer.create(),
+        isc.IButton.create({title:"Draw Web", click:"drawTestWeb(dp2)"}),
+        isc.IButton.create({title:"Draw Curve", click:"drawTestCurve(dp2)"}),
+        isc.IButton.create({title:"Erase", click:"eraseTests(dp2)"})
+    ], autoDraw:true});
+    isc.DrawPane.create({
+        ID:"dp2",
+        top:130, left:600,
+        width:500, height:500,
+        border:"2px solid #606060", backgroundColor:"white",
+        overflow:"hidden", // otherwise will expand during drag on bottom/left
+        drawingType:"bitmap",
+        autoDraw:true
+    }).sendToBack();
+}
+*/
+
+
+//------------------------------------------------------------
+//  DrawKnob
+//  Attaches to one or more point properties of drawItems:
+//      - startPoint
+//      - endPoint
+//      - centerPoint
+//      - controlPoint1
+//      - controlPoint2
+//  Dragging a DrawKnob updates the attached properties
+//  to the new position of the knob.
+//------------------------------------------------------------
+
+isc.defineClass("DrawKnob", "Canvas").addProperties({
+    width:10, height:10, overflow:"hidden",
+//    backgroundColor:"#FFFFD0",
+//    border:"1px solid #808080",
+    dragRepositionCursor:"crosshair",
+    canDragReposition:true, dragAppearance:"target",
+    dragRepositionMove:"this.updatePoints()",
+    dragRepositionStop:"this.updatePoints()",
+    keepInParentRect:true,
+    autoDraw:false, // typically addChild to drawPane
+    knobShapeDefaults : {
+        _constructor:isc.DrawOval,
+        radius : 5,
+        lineWidth:2,
+        fillColor:"#FF0000",
+        fillOpacity:0.5,
+        autoDraw:true
+    },
+    initWidget: function () {
+        if (!this.movePoints) this.movePoints = [];
+        if (!this.startPoints) this.startPoints = [];
+        if (!this.endPoints) this.endPoints = [];
+        if (!this.centerPoints) this.centerPoints = [];
+        if (!this.c1Points) this.c1Points = [];
+        if (!this.c2Points) this.c2Points = [];
+        this.left = this.x - this.width/2;
+        this.top = this.y - this.height/2;
+
+        // create the shape that serves as a visible representation of the knob
+        this.knobShape = this.createAutoChild("knobShape", { 
+            drawPane : this.drawPane,
+            centerPoint : [this.x, this.y]
+        });
+        this.centerPoints.add(this.knobShape);
+    },
+    updatePoints: function () {
+        var drawingCoords = this.drawPane.screen2drawing([
+            this.getLeft() + this.width/2,
+            this.getTop() + this.height/2,
+            0, 0 // not using width & height
+        ]);
+        var x = drawingCoords[0];
+        var y = drawingCoords[1];
+        // remember to update cached drawing coords! (correcting center to topleft)
+        this._drawingLeft = x - this._drawingWidth/2;
+        this._drawingTop = y - this._drawingHeight/2;
+        for (var i=0; i<this.movePoints.length; i++) this.movePoints[i].moveTo(x,y);
+        for (var i=0; i<this.startPoints.length; i++) this.startPoints[i].setStartPoint(x,y);
+        for (var i=0; i<this.endPoints.length; i++) this.endPoints[i].setEndPoint(x,y);
+        for (var i=0; i<this.centerPoints.length; i++) this.centerPoints[i].setCenterPoint(x,y);
+        for (var i=0; i<this.c1Points.length; i++) this.c1Points[i].setControlPoint1(x,y);
+        for (var i=0; i<this.c2Points.length; i++) this.c2Points[i].setControlPoint2(x,y);
+    },
+    destroy : function () {
+        this.knobShape.erase();
+        this.Super("destroy", arguments);
+    }
+})
+
+
+
+//------------------------------------------------------------
+//  drawTestWeb - draw a web of DrawLines with control points
+//------------------------------------------------------------
+function drawTestWeb (drawPane) {
+    eraseTests(drawPane);
+    var centerX = 300;
+    var centerY = 250;
+    var radius = 150;
+    var numPoints = testPropsForm.getValue("webSize");
+    var fullCircle = 2*Math.PI;
+    var centerPoint = drawPane.addCanvasItem(isc.DrawKnob.create({
+            x:centerX, y:centerY, drawPane:drawPane
+        }));
+    var firstPoint, lastPoint, newLine;
+    for (var i=1, angle, x, y, newPoint; i<numPoints+1; i++) {
+        angle = i/numPoints * fullCircle;
+        x = Math.round((radius * Math.cos(angle))) + centerX;
+        y = Math.round((radius * Math.sin(angle))) + centerY;
+        newPoint = drawPane.addCanvasItem(isc.DrawKnob.create({
+            x:x, y:y, drawPane:drawPane
+        }));
+        newLine = makeLine(centerX, centerY, x, y, drawPane);
+        centerPoint.startPoints.add(newLine);
+        newPoint.endPoints.add(newLine);
+        if (!lastPoint) {
+            firstPoint = lastPoint = newPoint;
+        } else {
+            newLine = makeLine(lastPoint.x, lastPoint.y, x, y, drawPane);
+            lastPoint.startPoints.add(newLine);
+            newPoint.endPoints.add(newLine);
+            lastPoint = newPoint;
+        }
+    }
+    newLine = makeLine(lastPoint.x, lastPoint.y, firstPoint.x, firstPoint.y, drawPane);
+    lastPoint.startPoints.add(newLine);
+    firstPoint.endPoints.add(newLine);
+}
+
+
+//------------------------------------------------------------
+//  drawTestCurve - draw a bezier with control points/lines
+//------------------------------------------------------------
+
+function drawTestCurve (dp) {
+    var x1 = Math.round(Math.random()*300) + 100, // 100,
+        y1 = Math.round(Math.random()*300) + 100, // 300,
+        x2 = Math.round(Math.random()*300) + 100, // 400,
+        y2 = Math.round(Math.random()*300) + 100, // 300,
+        cx1 = Math.round(Math.random()*300) + 100, // 175,
+        cy1 = Math.round(Math.random()*300) + 100, // 200,
+        cx2 = Math.round(Math.random()*300) + 100, // 325,
+        cy2 = Math.round(Math.random()*300) + 100; // 200;
+    
+    var newCurve = makeCurve(x1, y1, x2, y2, cx1, cy1, cx2, cy2, dp);
+    var controlLine1 = makeLine(x1, y1, cx1, cy1, dp);
+    var controlLine2 = makeLine(x2, y2, cx2, cy2, dp);
+    
+    var startKnob = dp.addCanvasItem(isc.DrawKnob.create({x:x1, y:y1, drawPane:dp}));
+    startKnob.startPoints.add(newCurve);
+    startKnob.startPoints.add(controlLine1);
+
+    var endKnob = dp.addCanvasItem(isc.DrawKnob.create({x:x2, y:y2, drawPane:dp}));
+    endKnob.endPoints.add(newCurve);
+    endKnob.startPoints.add(controlLine2);
+
+    var controlKnob1 = dp.addCanvasItem(isc.DrawKnob.create({x:cx1, y:cy1, drawPane:dp}));
+    controlKnob1.c1Points.add(newCurve);
+    controlKnob1.endPoints.add(controlLine1);
+
+    var controlKnob2 = dp.addCanvasItem(isc.DrawKnob.create({x:cx2, y:cy2, drawPane:dp}));
+    controlKnob2.c2Points.add(newCurve);
+    controlKnob2.endPoints.add(controlLine2);
+}
+
+
+//------------------------------------------------------------
+//  drawTestConnector - draw a connector with control points
+//------------------------------------------------------------
+
+function drawTestConnector (dp) {
+    var x1 = Math.round(Math.random()*300) + 100,
+        y1 = Math.round(Math.random()*300) + 100,
+        x2 = Math.round(Math.random()*300) + 100,
+        y2 = Math.round(Math.random()*300) + 100;
+    var newConnector = isc.DrawConnector.create({
+        startPoint: [x1,y1],
+        endPoint: [x2,y2],
+        drawPane: dp,
+        autoDraw: true
+    })
+    dp.addCanvasItem(isc.DrawKnob.create({
+        x:x1, y:y1,
+        drawPane:dp,
+        startPoints:[newConnector]
+    }));
+    dp.addCanvasItem(isc.DrawKnob.create({
+        x:x2, y:y2,
+        drawPane:dp,
+        endPoints:[newConnector]
+    }));
+}
+
+
+var dg1, dg2, dg3;
+// creates a nested set of 3 groups, each containing a circle
+// outermost group is draggable; need global moveTo() to use global DrawKnobs on
+// the contained groups
+function drawTestGroup (dp) {
+    dg1 = isc.DrawGroup.create({left:50, top:50, autoDraw:true, drawPane:dp});
+    makeOval(0,0,50,50,null,dg1);
+    dg2 = isc.DrawGroup.create({left:100, top:0, autoDraw:true, drawGroup:dg1});
+    makeOval(0,0,50,50,null,dg2);
+    dg3 = isc.DrawGroup.create({left:100, top:0, autoDraw:true, drawGroup:dg2});
+    makeOval(0,0,50,50,null,dg3);
+    var knob1 = dp.addCanvasItem(isc.DrawKnob.create({x:50, y:50, drawPane:dp, movePoints:[dg1]}));
+}
+
+function drawTestText (dp) {
+    isc.DrawLabel.create({autoDraw:true, drawPane:dp,
+        left:Math.round(Math.random()*200) + 100,
+        top:Math.round(Math.random()*200) + 100,
+        contents:"This is a scalable text label."
+    });
+}
+
+function drawTestImage (dp) {
+    isc.DrawImage.create({autoDraw:true, drawPane:dp,
+        left:Math.round(Math.random()*300) + 100,
+        top:Math.round(Math.random()*300) + 100,
+        width:Math.round(Math.random()*80) + 20,
+        height:Math.round(Math.random()*80) + 20,
+        src:"cube.png"
+    });
+}
+
+//------------------------------------------------------------
+//  eraseTests - remove/destroy all drawItems and
+//      control-point children
+//------------------------------------------------------------
+
+function eraseTests (dp) {
+    dp.erase();
+    if (dp.children) {
+        for (var list=dp.children.duplicate(), i=0; i<list.length; i++) {
+			if (list[i].getID() != "dpmask") list[i].destroy(true);
+		}
+    }
+}
+
+
+
+</SCRIPT>
+</BODY></HTML>

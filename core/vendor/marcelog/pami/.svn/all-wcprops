@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/itenant/!svn/ver/10/core/vendor/marcelog/pami
+END
+composer.json
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/composer.json
+END
+composer.phar
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/composer.phar
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/LICENSE
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/.gitignore
+END
+.travis.yml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/.travis.yml
+END
+.codeclimate.yml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/.codeclimate.yml
+END
+README.md
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/README.md
+END
+build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/build.xml
+END

@@ -1,0 +1,14 @@
+<DataSource
+    ID="cityIncludeFromSQL"
+    serverType="sql"
+    tableName="city"
+>
+    <fields>
+        <field name="cityId"        type="sequence" hidden="true"   primaryKey="true" />
+        <field name="cityName"      type="text"     title="City"    required="true" />
+        <field name="continent" includeFrom="countryIncludeFromSQL.continentName"   title="Continent"   />
+        <field name="countryId" type="integer"  foreignKey="countryIncludeFromSQL.countryId" displayField="countryName" title="Country" editorType="ComboBoxItem" />
+        <field includeFrom="countryIncludeFromSQL.countryName"  hidden="true"   />
+    </fields>
+</DataSource>
+

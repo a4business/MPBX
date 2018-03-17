@@ -1,0 +1,18 @@
+<DataSource
+    ID="googleSearchRequest"
+   
+>
+    <fields>
+        <field name="v" title="version" />
+        <field name="q" title="query" />
+        <field name="key" title="google key" detail="true" />
+        <field name="start" title="start" detail="true" />
+        <field name="maxResults" title="maximum results" detail="true" />
+        <field name="filter" title="trim similar results" detail="true" />
+        <field name="restricts" title="restrict search to" detail="true" />
+        <field name="safeSearch" title="safeSearch" detail="true" />
+        <field name="lr" title="language restrict" detail="true" />
+        <field name="ie" title="input encoding" detail="true" />
+        <field name="oe" title="output encoding" detail="true" />
+    </fields>
+</DataSource>

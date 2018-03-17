@@ -1,0 +1,15 @@
+<DataSource ID="validationDMI_orderForm" serverType="sql">
+    <fields>
+        <field name="orderItem" type="sequence" primaryKey="true"/>
+        <field name="itemId" foreignKey="StockItem.id" required="true"/>
+        <field name="quantity" type="integer" length="9" enforceLength="true">
+            <validators>
+                <validator type="serverCustom">
+                    <serverObject lookupStyle="new" className="com.isomorphic.examples.server.validation.ValidatorDMI"/>
+                    <errorMessage>Only $available in stock</errorMessage>
+                </validator>
+            </validators>
+        </field>
+        <field name="instructions" type="text"/>
+     </fields>
+</DataSource>

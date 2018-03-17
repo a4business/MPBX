@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/itenant/!svn/ver/1/sc/skins/Tahoe/images/Dialog
+END
+say.png
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/skins/Tahoe/images/Dialog/say.png
+END
+confirm.png
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/skins/Tahoe/images/Dialog/confirm.png
+END
+ask.png
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/skins/Tahoe/images/Dialog/ask.png
+END
+stop.png
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/skins/Tahoe/images/Dialog/stop.png
+END
+warn.png
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/skins/Tahoe/images/Dialog/warn.png
+END
+notify.png
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/skins/Tahoe/images/Dialog/notify.png
+END
+error.png
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/skins/Tahoe/images/Dialog/error.png
+END

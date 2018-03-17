@@ -1,0 +1,8 @@
+<DataSource
+    ID="cityOneToManyJPA"
+    serverType="jpa"
+    beanClassName="com.isomorphic.examples.server.jpa.relations.CityOneToMany"
+    schemaBean="com.isomorphic.examples.server.jpa.relations.CityOneToMany"
+>
+</DataSource>
+

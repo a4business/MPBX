@@ -1,0 +1,205 @@
+-- MySQL dump 10.13  Distrib 5.1.73, for redhat-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: etor_pbx
+-- ------------------------------------------------------
+-- Server version	5.1.73
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `etor_users`
+--
+
+DROP TABLE IF EXISTS `etor_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `etor_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Record ID',
+  `username` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `password` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `allowed_tabs` varchar(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_access` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `etor_users`
+--
+
+LOCK TABLES `etor_users` WRITE;
+/*!40000 ALTER TABLE `etor_users` DISABLE KEYS */;
+INSERT INTO `etor_users` VALUES (1,'admin','etor','',NULL);
+/*!40000 ALTER TABLE `etor_users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mtree`
+--
+
+DROP TABLE IF EXISTS `mtree`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mtree` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Record ID',
+  `name` varchar(100) DEFAULT NULL,
+  `action` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mtree`
+--
+
+LOCK TABLES `mtree` WRITE;
+/*!40000 ALTER TABLE `mtree` DISABLE KEYS */;
+INSERT INTO `mtree` VALUES (30,'PBX Manage','action1',10),(40,'Extensions','extensions',30),(50,'Inbound Profiles','action_inprofile_list',30),(60,'Outbound Profiles','action_outprofile_list',30),(24,'Tenants','tenants',10),(26,'Trunks','action_show_trunks',10),(28,'DIDs','action_show_dids',10);
+/*!40000 ALTER TABLE `mtree` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_sip_users`
+--
+
+DROP TABLE IF EXISTS `t_sip_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_sip_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) NOT NULL,
+  `secret` varchar(80) NOT NULL,
+  `transport` varchar(31) DEFAULT 'udp',
+  `host` varchar(31) DEFAULT 'dynamic',
+  `context` varchar(80) DEFAULT 'default',
+  `deny` varchar(95) DEFAULT NULL,
+  `permit` varchar(95) DEFAULT NULL,
+  `md5secret` varchar(80) DEFAULT NULL,
+  `remotesecret` varchar(250) DEFAULT NULL,
+  `nat` varchar(20) NOT NULL DEFAULT 'yes',
+  `type` enum('user','peer','friend') NOT NULL DEFAULT 'friend',
+  `accountcode` varchar(20) DEFAULT NULL,
+  `amaflags` varchar(13) DEFAULT NULL,
+  `callgroup` varchar(10) DEFAULT NULL,
+  `callerid` varchar(80) DEFAULT NULL,
+  `defaultip` varchar(15) DEFAULT NULL,
+  `dtmfmode` varchar(7) DEFAULT NULL,
+  `fromuser` varchar(80) DEFAULT NULL,
+  `fromdomain` varchar(80) DEFAULT NULL,
+  `insecure` varchar(50) DEFAULT NULL,
+  `language` char(2) DEFAULT NULL,
+  `mailbox` varchar(50) DEFAULT NULL,
+  `pickupgroup` varchar(10) DEFAULT NULL,
+  `qualify` char(3) DEFAULT NULL,
+  `regexten` varchar(80) DEFAULT NULL,
+  `rtptimeout` char(3) DEFAULT NULL,
+  `rtpholdtimeout` char(3) DEFAULT NULL,
+  `setvar` varchar(100) DEFAULT NULL,
+  `disallow` varchar(100) DEFAULT 'all',
+  `allow` varchar(50) NOT NULL DEFAULT 'ulaw;alaw;gsm',
+  `fullcontact` varchar(80) NOT NULL DEFAULT '',
+  `ipaddr` varchar(15) NOT NULL DEFAULT '',
+  `port` mediumint(5) unsigned NOT NULL DEFAULT '0',
+  `username` varchar(80) NOT NULL DEFAULT '',
+  `defaultuser` varchar(80) NOT NULL DEFAULT '',
+  `subscribecontext` varchar(80) DEFAULT NULL,
+  `directmedia` enum('yes','no') DEFAULT NULL,
+  `trustrpid` enum('yes','no') DEFAULT NULL,
+  `sendrpid` enum('yes','no') DEFAULT NULL,
+  `progressinband` enum('never','yes','no') DEFAULT NULL,
+  `callingpres` enum('allowed_not_screened','allowed_passed_screen','allowed_failed_screen','allowed','prohib_not_screened','prohib_passed_screen','prohib_failed_screen','prohib','unavailable') DEFAULT 'allowed_not_screened',
+  `promiscredir` enum('yes','no') DEFAULT NULL,
+  `useclientcode` enum('yes','no') DEFAULT NULL,
+  `callcounter` enum('yes','no') DEFAULT 'yes',
+  `busylevel` int(10) unsigned DEFAULT NULL,
+  `allowoverlap` enum('yes','no') DEFAULT 'yes',
+  `allowsubscribe` enum('yes','no') DEFAULT 'yes',
+  `allowtransfer` enum('yes','no') DEFAULT 'yes',
+  `ignoresdpversion` enum('yes','no') DEFAULT 'no',
+  `videosupport` enum('yes','no','always') DEFAULT 'no',
+  `maxcallbitrate` int(10) unsigned DEFAULT NULL,
+  `rfc2833compensate` enum('yes','no') DEFAULT 'yes',
+  `session-timers` enum('originate','accept','refuse') DEFAULT 'accept',
+  `session-expires` int(5) unsigned DEFAULT '1800',
+  `session-minse` int(5) unsigned DEFAULT '90',
+  `session-refresher` enum('uac','uas') DEFAULT 'uas',
+  `t38pt_usertpsource` enum('yes','no') DEFAULT NULL,
+  `outboundproxy` varchar(250) DEFAULT NULL,
+  `callbackextension` varchar(250) DEFAULT NULL,
+  `registertrying` enum('yes','no') DEFAULT 'yes',
+  `timert1` int(5) unsigned DEFAULT '500',
+  `timerb` int(8) unsigned DEFAULT NULL,
+  `qualifyfreq` int(5) unsigned DEFAULT '120',
+  `contactpermit` varchar(250) DEFAULT NULL,
+  `contactdeny` varchar(250) DEFAULT NULL,
+  `lastms` int(11) NOT NULL,
+  `regserver` varchar(100) NOT NULL DEFAULT '',
+  `regseconds` int(11) NOT NULL DEFAULT '0',
+  `useragent` varchar(50) NOT NULL DEFAULT '',
+  `avpf` varchar(10) DEFAULT 'yes',
+  `force_rport` varchar(30) DEFAULT 'yes',
+  `email` varchar(50) DEFAULT NULL,
+  `register` varchar(10) DEFAULT NULL,
+  `canreinvite` varchar(10) DEFAULT 'no',
+  `extension` varchar(30) DEFAULT NULL,
+  `tenant_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_sip_users`
+--
+
+LOCK TABLES `t_sip_users` WRITE;
+/*!40000 ALTER TABLE `t_sip_users` DISABLE KEYS */;
+INSERT INTO `t_sip_users` VALUES (37,'scnd-4','4','udp','dynamic','internal-scnd',NULL,NULL,NULL,NULL,'yes','friend',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'all','ulaw;alaw;gsm','','',0,'','',NULL,NULL,NULL,NULL,NULL,'allowed_not_screened',NULL,NULL,'yes',NULL,'yes','yes','yes','no','no',NULL,'yes','accept',1800,90,'uas',NULL,NULL,NULL,'yes',500,NULL,120,NULL,NULL,0,'',0,'','yes','yes',NULL,NULL,'no','4',2),(35,'def-555','555','udp','dynamic','internal-def',NULL,NULL,NULL,NULL,'yes','friend',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'all','ulaw;alaw;gsm','sip:def-555@212.178.12.16:56899^3Brinstance=80e486399111af1e^3Btransport=UDP','212.178.12.16',56899,'def-555','',NULL,NULL,NULL,NULL,NULL,'allowed_not_screened',NULL,NULL,'yes',NULL,'yes','yes','yes','no','no',NULL,'yes','accept',1800,90,'uas',NULL,NULL,NULL,'yes',500,NULL,120,NULL,NULL,0,'',1515034459,'Z 3.3.25608 r25552','yes','yes',NULL,NULL,'no','101',1),(14,'2','2','udp','dynamic','default',NULL,NULL,NULL,NULL,'yes','peer',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'all','ulaw;alaw;gsm','','',0,'','',NULL,NULL,NULL,NULL,NULL,'allowed_not_screened',NULL,NULL,'yes',NULL,'yes','yes','yes','no','no',NULL,'yes','accept',1800,90,'uas',NULL,NULL,NULL,'yes',500,NULL,120,NULL,NULL,0,'',0,'','yes','yes',NULL,NULL,'no','`2',NULL),(13,'22','22','udp','dynamic','default',NULL,NULL,NULL,NULL,'yes','peer',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'all','ulaw;alaw;gsm','','',0,'','',NULL,NULL,NULL,NULL,NULL,'allowed_not_screened',NULL,NULL,'yes',NULL,'yes','yes','yes','no','no',NULL,'yes','accept',1800,90,'uas',NULL,NULL,NULL,'yes',500,NULL,120,NULL,NULL,0,'',0,'','yes','yes',NULL,NULL,'no','`22',NULL),(15,'44','44','udp','dynamic','default',NULL,NULL,NULL,NULL,'yes','friend',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'all','ulaw;alaw;gsm','','',0,'','',NULL,NULL,NULL,NULL,NULL,'allowed_not_screened',NULL,NULL,'yes',NULL,'yes','yes','yes','no','no',NULL,'yes','accept',1800,90,'uas',NULL,NULL,NULL,'yes',500,NULL,120,NULL,NULL,0,'',0,'','yes','yes',NULL,NULL,'no','`44',NULL),(36,'def-666','666','udp','dynamic','internal-def',NULL,NULL,NULL,NULL,'yes','friend',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'all','ulaw;alaw;gsm','','',0,'','',NULL,NULL,NULL,NULL,NULL,'allowed_not_screened',NULL,NULL,'yes',NULL,'yes','yes','yes','no','no',NULL,'yes','accept',1800,90,'uas',NULL,NULL,NULL,'yes',500,NULL,120,NULL,NULL,0,'',0,'','yes','yes',NULL,NULL,'no','102',1),(18,'5','5','udp','dynamic','default',NULL,NULL,NULL,NULL,'yes','friend',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'all','ulaw;alaw;gsm','','',0,'','',NULL,NULL,NULL,NULL,NULL,'allowed_not_screened',NULL,NULL,'yes',NULL,'yes','yes','yes','no','no',NULL,'yes','accept',1800,90,'uas',NULL,NULL,NULL,'yes',500,NULL,120,NULL,NULL,0,'',0,'','yes','yes',NULL,NULL,'no','`55',5),(19,'55','55','udp','dynamic','default',NULL,NULL,NULL,NULL,'yes','friend',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'all','ulaw;alaw;gsm','','',0,'','',NULL,NULL,NULL,NULL,NULL,'allowed_not_screened',NULL,NULL,'yes',NULL,'yes','yes','yes','no','no',NULL,'yes','accept',1800,90,'uas',NULL,NULL,NULL,'yes',500,NULL,120,NULL,NULL,0,'',0,'','yes','yes',NULL,NULL,'no','`55',5),(26,'55','55','udp','dynamic','default',NULL,NULL,NULL,NULL,'yes','friend',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'all','ulaw;alaw;gsm','','',0,'','',NULL,NULL,NULL,NULL,NULL,'allowed_not_screened',NULL,NULL,'yes',NULL,'yes','yes','yes','no','no',NULL,'yes','accept',1800,90,'uas',NULL,NULL,NULL,'yes',500,NULL,120,NULL,NULL,0,'',0,'','yes','yes',NULL,NULL,'no','`55',20),(27,'66','66','udp','dynamic','default',NULL,NULL,NULL,NULL,'yes','peer',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'all','ulaw;alaw;gsm','','',0,'','',NULL,NULL,NULL,NULL,NULL,'allowed_not_screened',NULL,NULL,'yes',NULL,'yes','yes','yes','no','no',NULL,'yes','accept',1800,90,'uas',NULL,NULL,NULL,'yes',500,NULL,120,NULL,NULL,0,'',0,'','yes','yes',NULL,NULL,'no','`66',20);
+/*!40000 ALTER TABLE `t_sip_users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tenants`
+--
+
+DROP TABLE IF EXISTS `tenants`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tenants` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Record ID',
+  `title` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ref_id` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `max_extensions` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tenants`
+--
+
+LOCK TABLES `tenants` WRITE;
+/*!40000 ALTER TABLE `tenants` DISABLE KEYS */;
+INSERT INTO `tenants` VALUES (1,'The Default1','def',10),(2,'second','scnd',112);
+/*!40000 ALTER TABLE `tenants` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-01-03 21:03:47

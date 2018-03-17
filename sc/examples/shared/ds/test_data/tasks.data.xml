@@ -1,0 +1,200 @@
+<List>
+    <task>
+        <taskId>1</taskId>
+        <startDate>2016-07-03 00:00:00</startDate>
+        <endDate>2016-07-09 23:59:59</endDate>
+        <name>Add new Timeline view</name>
+        <description>Add a new calendar Timeline component</description>
+        <lane>darcyFeeney</lane>
+    </task>
+    <task>
+        <taskId>2</taskId>
+        <startDate>2016-07-01 00:00:00</startDate>
+        <endDate>2016-07-01 23:59:59</endDate>
+        <name>ListGrid field autoSize</name>
+        <description>Complex field-autosizing in ListGrid</description>
+        <lane>kaiKong</lane>
+    </task>
+    <task>
+        <taskId>3</taskId>
+        <startDate>2016-07-02 00:00:00</startDate>
+        <endDate>2016-07-07 23:59:59</endDate>
+        <name>PDF Import/Export</name>
+        <description>Implement native PDF import/export</description>
+        <lane>garretMonroe</lane>
+    </task>
+    <task>
+        <taskId>4</taskId>
+        <startDate>2016-07-01 00:00:00</startDate>
+        <endDate>2016-07-05 23:59:59</endDate>
+        <name>Calculated Fields</name>
+        <description>Formula and Summary fields for ListGrid</description>
+        <lane>charlesMadigen</lane>
+    </task>
+    <task>
+        <taskId>5</taskId>
+        <startDate>2016-07-08 00:00:00</startDate>
+        <endDate>2016-07-15 23:59:59</endDate>
+        <name>ListGrid cell-level selection</name>
+        <description>Implement spreadsheet-like selection in ListGrid</description>
+        <lane>charlesMadigen</lane>
+    </task>
+    <task>
+        <taskId>6</taskId>
+        <startDate>2016-07-17 00:00:00</startDate>
+        <endDate>2016-07-21 23:59:59</endDate>
+        <name>Text import</name>
+        <description>Server text-import</description>
+        <lane>charlesMadigen</lane>
+    </task>
+    <task>
+        <taskId>7</taskId>
+        <startDate>2016-07-10 00:00:00</startDate>
+        <endDate>2016-07-12 23:59:59</endDate>
+        <name>TabIndex enhancements</name>
+        <description>Enhance formItem tabindex handling</description>
+        <lane>kaiKong</lane>
+    </task>
+    <task>
+        <taskId>8</taskId>
+        <startDate>2016-07-01 00:00:00</startDate>
+        <endDate>2016-07-04 23:59:59</endDate>
+        <name>Visual Builder skin</name>
+        <description>Skinning changes</description>
+        <lane>shellyFewel</lane>
+    </task>
+    <task>
+        <taskId>9</taskId>
+        <startDate>2016-07-01 00:00:00</startDate>
+        <endDate>2016-07-03 23:59:59</endDate>
+        <name>DataSource Transaction-handling</name>
+        <description>New transaction features</description>
+        <lane>tamaraKane</lane>
+    </task>
+    <task>
+        <taskId>10</taskId>
+        <startDate>2016-07-05 00:00:00</startDate>
+        <endDate>2016-07-21 23:59:59</endDate>
+        <name>New Samples</name>
+        <description>Add 20 samples for the following new features: ...</description>
+        <lane>tamaraKane</lane>
+    </task>
+    <task>
+        <taskId>11</taskId>
+        <startDate>2016-07-10 00:00:00</startDate>
+        <endDate>2016-07-15 23:59:59</endDate>
+        <name>Localization</name>
+        <description>Extend i18n support</description>
+        <lane>darcyFeeney</lane>
+    </task>
+    <task>
+        <taskId>12</taskId>
+        <startDate>2016-07-17 00:00:00</startDate>
+        <endDate>2016-07-19 23:59:59</endDate>
+        <name>New Language Packs</name>
+        <description>Add these 4 new language packs: ...</description>
+        <lane>darcyFeeney</lane>
+    </task>
+    <task>
+        <taskId>13</taskId>
+        <startDate>2016-07-06 00:00:00</startDate>
+        <endDate>2016-07-12 23:59:59</endDate>
+        <name>ComponentXML</name>
+        <description>Add the following features and update documentation: ...</description>
+        <lane>shellyFewel</lane>
+    </task>
+    <task>
+        <taskId>14</taskId>
+        <startDate>2016-07-15 00:00:00</startDate>
+        <endDate>2016-07-20 23:59:59</endDate>
+        <name>TileGrid</name>
+        <description>Change styling on builtin tiles as follows: ...</description>
+        <lane>shellyFewel</lane>
+    </task>
+    <task>
+        <taskId>15</taskId>
+        <startDate>2016-07-02 00:00:00</startDate>
+        <endDate>2016-07-02 23:59:59</endDate>
+        <name>Dev Meeting</name>
+        <description>Weekly dev meeting</description>
+        <lane>charlesMadigen</lane>
+        <canEdit>false</canEdit>
+        <eventWindowStyle>testStyle</eventWindowStyle>
+    </task>
+    <task>
+        <taskId>16</taskId>
+        <startDate>2016-07-09 00:00:00</startDate>
+        <endDate>2016-07-09 23:59:59</endDate>
+        <name>Dev Meeting</name>
+        <description>Weekly dev meeting</description>
+        <lane>charlesMadigen</lane>
+        <canEdit>false</canEdit>
+        <eventWindowStyle>testStyle</eventWindowStyle>
+    </task>
+    <task>
+        <taskId>17</taskId>
+        <startDate>2016-07-16 00:00:00</startDate>
+        <endDate>2016-07-16 23:59:59</endDate>
+        <name>Dev Meeting</name>
+        <description>Weekly dev meeting</description>
+        <lane>charlesMadigen</lane>
+        <canEdit>false</canEdit>
+        <eventWindowStyle>testStyle</eventWindowStyle>
+    </task>
+    <task>
+        <taskId>18</taskId>
+        <startDate>2016-07-08 00:00:00</startDate>
+        <endDate>2016-07-10 23:59:59</endDate>
+        <name>Oracle enhancements</name>
+        <description>Add the following 11g-specific enhancements: ...</description>
+        <lane>garretMonroe</lane>
+    </task>
+    <task>
+        <taskId>19</taskId>
+        <startDate>2016-07-12 00:00:00</startDate>
+        <endDate>2016-07-15 23:59:59</endDate>
+        <name>Client export</name>
+        <description>Excel export alterations</description>
+        <lane>garretMonroe</lane>
+    </task>
+    <task>
+        <taskId>20</taskId>
+        <startDate>2016-07-17 00:00:00</startDate>
+        <endDate>2016-07-21 23:59:59</endDate>
+        <name>Record Components</name>
+        <description>New ListGrid recordComponent modes: ...</description>
+        <lane>garretMonroe</lane>
+    </task>
+    <task>
+        <taskId>21</taskId>
+        <startDate>2016-07-03 00:00:00</startDate>
+        <endDate>2016-07-05 23:59:59</endDate>
+        <name>SQLDataSource</name>
+        <description>Enhancements to customSQL support</description>
+        <lane>kaiKong</lane>
+    </task>
+    <task>
+        <taskId>22</taskId>
+        <startDate>2016-07-07 00:00:00</startDate>
+        <endDate>2016-07-09 23:59:59</endDate>
+        <name>includeFrom</name>
+        <description>Update support via includeFrom</description>
+        <lane>kaiKong</lane>
+    </task>
+    <task>
+        <taskId>23</taskId>
+        <startDate>2016-07-15 00:00:00</startDate>
+        <endDate>2016-07-17 23:59:59</endDate>
+        <name>FileItem</name>
+        <description>Add milti-file upload support</description>
+        <lane>kaiKong</lane>
+    </task>
+    <task>
+        <taskId>24</taskId>
+        <startDate>2016-07-19 00:00:00</startDate>
+        <endDate>2016-07-20 23:59:59</endDate>
+        <name>Doc viewer</name>
+        <description>Enhance documentation viewer with these additional syntax-hilites: ...</description>
+        <lane>kaiKong</lane>
+    </task>
+</List>

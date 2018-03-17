@@ -1,0 +1,42 @@
+<HTML><HEAD>
+	<SCRIPT>var isomorphicDir = "../../../isomorphic/";</SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Core.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Foundation.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Containers.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Grids.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Forms.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_DataBinding.js></SCRIPT>
+	<SCRIPT SRC=../../../isomorphic/skins/standard/load_skin.js></SCRIPT>
+	<SCRIPT SRC=SimpleHeader.js></SCRIPT>
+</HEAD><BODY>
+
+
+<STYLE>
+.myHeaderTitle {
+	font-family:Tahoma,Verdana,Helvetica,sans-serif;
+	font-size:18px;
+	font-weight:bold;
+	color:white;
+}
+</STYLE>
+
+
+<SCRIPT>
+
+
+Page.setAppImgDir(""); // default "images", but the logo gif is in the same dir in this example
+
+SimpleHeader.create({
+	height:80,
+	imageSrc:"iso_logo_bw.gif",
+	imageWidth:200,
+	titleText:"SimpleHeader example",
+	titleStyle:"myHeaderTitle",
+	backgroundColor:"black",
+	layoutMargin:1
+});
+
+
+</SCRIPT>
+</BODY>
+</HTML>

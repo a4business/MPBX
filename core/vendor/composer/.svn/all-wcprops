@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/itenant/!svn/ver/10/core/vendor/composer
+END
+autoload_classmap.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/itenant/!svn/ver/10/core/vendor/composer/autoload_classmap.php
+END
+autoload_real.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/10/core/vendor/composer/autoload_real.php
+END
+ClassLoader.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/10/core/vendor/composer/ClassLoader.php
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/itenant/!svn/ver/10/core/vendor/composer/LICENSE
+END
+autoload_static.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/10/core/vendor/composer/autoload_static.php
+END
+autoload_psr4.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/10/core/vendor/composer/autoload_psr4.php
+END
+installed.json
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/10/core/vendor/composer/installed.json
+END
+autoload_namespaces.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/itenant/!svn/ver/10/core/vendor/composer/autoload_namespaces.php
+END

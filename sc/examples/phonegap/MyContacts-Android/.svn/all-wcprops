@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/examples/phonegap/MyContacts-Android
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/itenant/!svn/ver/1/sc/examples/phonegap/MyContacts-Android/.classpath
+END
+project.properties
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/itenant/!svn/ver/1/sc/examples/phonegap/MyContacts-Android/project.properties
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/itenant/!svn/ver/1/sc/examples/phonegap/MyContacts-Android/.project
+END
+proguard-project.txt
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/itenant/!svn/ver/1/sc/examples/phonegap/MyContacts-Android/proguard-project.txt
+END
+AndroidManifest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/itenant/!svn/ver/1/sc/examples/phonegap/MyContacts-Android/AndroidManifest.xml
+END

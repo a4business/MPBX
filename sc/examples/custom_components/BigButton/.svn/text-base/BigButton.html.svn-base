@@ -1,0 +1,51 @@
+<HTML><HEAD>
+	<SCRIPT>var isomorphicDir="../../../isomorphic/";</SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Core.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Foundation.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Containers.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Grids.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Forms.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_DataBinding.js></SCRIPT>
+	<SCRIPT SRC=../../../isomorphic/skins/standard/load_skin.js></SCRIPT>
+</HEAD><BODY BGCOLOR='silver'>
+
+
+<!-- load a stylesheet with customized styles (bigger text, bigger border) for BigButtons -->
+<LINK REL=STYLESHEET TYPE="text/css" HREF="bigButton.css">
+<SCRIPT>
+
+
+// create a standard button for comparison
+Button.create({
+	left:50, top:50,
+	title:"standard button title"
+});
+
+
+// define a BigButton class (subclass of Button)
+ClassFactory.defineClass("BigButton", Button);
+
+
+// change the settings of various Button properties, for BigButton instances
+BigButton.addProperties({
+	height:50,
+	overflow:"visible",
+	baseStyle:"bigButton",
+	wrap:true
+});
+
+
+// create a couple of BigButton instances
+BigButton.create({
+	left:50, top:100,
+	title:"big button title"
+});
+BigButton.create({
+	left:200, top:100,
+	title:"big button with a very very very long title"
+});
+
+
+</SCRIPT>
+</BODY>
+</HTML>

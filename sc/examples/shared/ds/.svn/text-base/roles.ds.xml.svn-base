@@ -1,0 +1,68 @@
+<DataSource ID="roles" tableName="roles" serverType="sql"
+    testFileName="/examples/shared/ds/test_data/roles.data.xml"
+    requiresAuthentication="true"
+    dataURL="/examples/secureApp/authenticatedOperations.jsp">
+<fields>
+    <field name="pk" hidden="true" type="sequence" length="10" title="Record ID" primaryKey="true"/>
+    <field name="id" type="integer" length="10" title="User ID" foreignKey="user.id">
+        <validators>
+            <validator type="hasRelatedRecord"/>
+        </validators>
+    </field>
+    <field name="username" type="text" customSQL="true" tableName="user" />
+    <field name="role" type="text" foreignKey="allowedRoles.role" length="16" title="Role">
+        <validators>
+            <validator type="hasRelatedRecord"/>
+        </validators>
+    </field>
+</fields>
+<operationBindings>
+    <!-- anybody can read; only admin can modify -->
+    <operationBinding operationType="update" requiresRole="admin" requiresAuthentication="true">
+        <!-- Note: admin is expected to modify username rather than id; here the -->
+        <!-- id is regenerated from the username. If the id may also be modified, consider -->
+        <!-- adding a new operationBinding for that situation. -->
+        <valuesClause>
+        #if($values.role)
+            role=$values.role
+            #set($c=true)
+        #end
+        #if($values.username)
+            #if($c) , #end
+            id=$dataSources.user.fetchSingle("username", $values.username).id
+        #end
+        </valuesClause>
+    </operationBinding>
+    <operationBinding operationType="remove" requiresRole="admin" requiresAuthentication="true"/>
+    <operationBinding operationType="add" requiresRole="admin" requiresAuthentication="true">
+        <valuesClause>
+        (
+        #if($values.role)
+            role
+            #set( $c = true )
+        #end
+        #if($values.username)
+            #if($c) , #end
+            id
+        #end
+        )
+        #set($c=false)
+        VALUES(
+        #if($values.role)
+            $values.role
+            #set($c=true)
+        #end
+        #if($values.username)
+            #if($c) , #end
+            $dataSources.user.fetchSingle("username", $values.username).id
+        #end
+        )
+        </valuesClause>
+    </operationBinding>
+    <operationBinding operationType="fetch" customValueFields="username" customCriteriaFields="username">
+        <!-- set username field on return by fetching user table -->
+        <tableClause>roles, user</tableClause>
+        <whereClause>roles.id = user.id AND ($defaultWhereClause)</whereClause>
+    </operationBinding>
+</operationBindings>
+</DataSource>

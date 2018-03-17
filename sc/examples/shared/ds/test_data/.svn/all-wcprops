@@ -1,0 +1,191 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data
+END
+hugeTree.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/hugeTree.data.xml
+END
+teams.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/teams.data.xml
+END
+supplyItem.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/supplyItem.data.xml
+END
+employeesOpenNodes.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/employeesOpenNodes.data.xml
+END
+user.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/user.data.xml
+END
+animals.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/animals.data.xml
+END
+tasks.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/tasks.data.xml
+END
+supplyItemLarge.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/supplyItemLarge.data.xml
+END
+productRevenue.data.js
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/productRevenue.data.js
+END
+citySQL.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/citySQL.data.xml
+END
+supplyCategory.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/supplyCategory.data.xml
+END
+currency.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/currency.data.xml
+END
+moneyTransfer.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/moneyTransfer.data.xml
+END
+teamMembers2_dataFromTeamMembers_data.xslt
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/teamMembers2_dataFromTeamMembers_data.xslt
+END
+dynamicDSFields.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/dynamicDSFields.data.xml
+END
+country.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/country.data.xml
+END
+dashboards.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/dashboards.data.xml
+END
+continentSQL.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/continentSQL.data.xml
+END
+teamMembers2.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/teamMembers2.data.xml
+END
+countrySQL.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/countrySQL.data.xml
+END
+stockQuotes.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/stockQuotes.data.xml
+END
+roles.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/roles.data.xml
+END
+world.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/world.data.xml
+END
+allowedRoles.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/allowedRoles.data.xml
+END
+supplyItemUnits.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/supplyItemUnits.data.xml
+END
+supplyItemAbbreviatedData.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/supplyItemAbbreviatedData.data.xml
+END
+employees_data-addUserOrder.xslt
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/employees_data-addUserOrder.xslt
+END
+teamMembers.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/teamMembers.data.xml
+END
+StockItem.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/StockItem.data.xml
+END
+employees.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/employees.data.xml
+END
+supplyItemCustom.data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/itenant/!svn/ver/1/sc/examples/shared/ds/test_data/supplyItemCustom.data.xml
+END

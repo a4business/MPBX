@@ -1,0 +1,18 @@
+<DataSource ID="GmailMessageDS"
+            serverConstructor="com.isomorphic.mail.GmailMessageDataSource"
+            progressiveLoading="true"
+>
+	<fields>
+		<field name="userId" type="text" primaryKey="true"/>
+		<field name="messageId" type="text" primaryKey="true"/>
+		<field name="to" type="text"/>
+		<field name="from" type="text"/>
+		<field name="date" type="text"/>
+		<field name="subject" type="text"/>
+		<field name="snippet" type="text"/>
+		<field name="body" type="text"/>
+		<field name="mimeType" type="text"/>
+		<field name="hasAttachments" type="boolean"/>
+		<field name="q" type="text"/>
+	</fields>
+</DataSource>

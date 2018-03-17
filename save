@@ -1,0 +1,6 @@
+#!/bin/bash
+
+find ./ -name '*~' -exec mv {} /tmp/ \;
+
+mysqldump etor_pbx -uroot -ppassw0rd > ./etorPBX.sql
+svn commit -m 'Next Update'

@@ -1,0 +1,67 @@
+
+
+[macro-dialconference]
+exten = >s, 1, Answer
+exten => s,n,Wait(1)
+exten => s,n,Set(TIMEOUT(digit)=4)
+exten => s,n,Set(TIMEOUT(response)=10)
+exten => s,n,Set(CALLERID(name)=${ARG3}${CALLERID(name)})
+exten => s,n,Set(confno=${ARG1})
+exten => s,n,Set(HASH(C)=${GET_CONF(${confno})})
+
+exten => s,n,ExecIf($["${HASH(C,announcement_file)}" != "none"]?Playback(${ARG5}/${HASH(C,announcement_file)})
+
+exten => s,n,GotoIf($["${HASH(C,status)}" = "1"]?pregetpin)
+exten => s,n,Playback(conf-invalid)
+exten => s,n,Goto(endconf)
+
+exten => s,n(pregetpin),Set(attempts=0) ; reset the counter for pin prompt, always ask for pin so admin could enter his or empty pin could be entered if not required
+exten => s,n(getpin),Read(pin,conf-getpin)
+exten => s,n,NoOp(pin = ${pin})
+exten => s,n,GotoIf($["${pin}" = "${HASH(C,userpin)}"]?user) ; user pin matched
+exten => s,n,GotoIf($["${pin}" = ""]?pininvalid) ;  no empty admin pins
+exten => s,n,GotoIf($["${pin}" = "${HASH(C,adminpin)}"]?admin) ; admin pin matched
+exten => s,n(pininvalid),Playback(conf-invalidpin)
+exten => s,n,Set(attempts=$[${attempts} + 1])
+exten => s,n,GotoIf($[${attempts} = 3]?endconf) ; bail out after 3 attempts
+exten => s,n,Goto(getpin)
+
+exten => s,n(admin),NoOp(Admin) ; options for admin
+exten => s,n,Set(CONFBRIDGE(user,admin)=yes)
+exten => s,n,Set(CONFBRIDGE(user,marked)=yes)
+exten => s,n,ExecIf($["${HASH(C,present_menu)}" = "yes"]?Set(MENU=admin_menu))
+exten => s,n,Goto(common)
+
+exten => s,n(user),NoOp(User) ; options for user
+exten => s,n,Set(CONFBRIDGE(user,admin)=no)
+exten => s,n,Set(CONFBRIDGE(user,marked)=no)
+exten => s,n,ExecIf($["${HASH(C,present_menu)}" = "yes"]?Set(MENU=user_menu))
+exten => s,n,Goto(common)
+
+exten => s,n(common),NoOp(Common) ; common options
+exten => s,n,GotoIf($["${HASH(C,max_members)}" = ""]?cont1)
+exten => s,n,Set(CONFBRIDGE(bridge,max_members)=${HASH(C,max_members)})
+exten => s,n(cont1),Set(CONFBRIDGE(user,announce_join_leave)=${HASH(C,announce_join_leave)})
+exten => s,n,Set(CONFBRIDGE(user,announce_user_count)=${HASH(C,announce_user_count)})
+exten => s,n,Set(CONFBRIDGE(user,wait_marked)=${HASH(C,wait_marked)})
+exten => s,n,Set(CONFBRIDGE(user,end_marked)=${HASH(C,end_marked)})
+exten => s,n,Set(CONFBRIDGE(user,music_on_hold_when_empty)=${HASH(C,music_on_hold_when_empty)})
+exten => s,n,Set(CONFBRIDGE(user,music_on_hold_class)=${HASH(C,music_on_hold_class)})
+exten => s,n,Set(CONFBRIDGE(user,talk_detection_events)=${HASH(C,talk_detection_events)})
+exten => s,n,Set(CONFBRIDGE(bridge,record_conference)=${HASH(C,record_conference)})
+
+exten => s,n,GotoIf($["${HASH(C,record_conference)}" != "yes"]?startconf)
+exten => s,n,Set(RECORDING_PATH=/var/spool/asterisk/meetme) ; default
+exten => s,n,GotoIf($["${ARG4}" = ""]?setfile)
+exten => s,n,Set(RECORDING_PATH=${ARG4}) ; supplied in the argument
+exten => s,n(setfile),Set(RECORDINGFILE=${RECORDING_PATH}/conf-${confno}-${STRFTIME(,,%F-%H-%M-%S)}-${confno}${TL_DASH}${tenant})
+exten => s,n,Set(RECORDINGFORMAT=${RECORDING_FORMAT})
+exten => s,n,Set(CONFBRIDGE(bridge,record_file)=${RECORDINGFILE}.${RECORDINGFORMAT})
+;; do not set - recordings is accessed via conf room, not CDR
+;;exten => s,n,Set(CDR(recording)=${RECORDINGFILE}.${RECORDINGFORMAT})
+
+exten => s,n(startconf),ConfBridge(${confno},,,${MENU})
+
+exten => s,n(endconf)`,Wait(2)
+exten => s,n,Hangup
+

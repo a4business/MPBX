@@ -1,0 +1,31 @@
+<List>
+  <continentSQL>
+    <continentId>1</continentId>
+    <continentName>Europe</continentName>
+  </continentSQL>
+  <continentSQL>
+    <continentId>2</continentId>
+    <continentName>Asia</continentName>
+  </continentSQL>
+  <continentSQL>
+    <continentId>3</continentId>
+    <continentName>North America</continentName>
+  </continentSQL>
+  <continentSQL>
+    <continentId>4</continentId>
+    <continentName>Australia/Oceania</continentName>
+  </continentSQL>
+  <continentSQL>
+    <continentId>5</continentId>
+    <continentName>South America</continentName>
+  </continentSQL>
+  <continentSQL>
+    <continentId>6</continentId>
+    <continentName>Africa</continentName>
+  </continentSQL>
+  <continentSQL>
+    <continentId>7</continentId>
+    <continentName>Antarctica</continentName>
+  </continentSQL>
+</List>
+

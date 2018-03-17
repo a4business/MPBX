@@ -1,0 +1,23 @@
+<DataSource ID="hugeTree"
+            serverType="sql"
+            tableName="hugeTreeOpenNodesTable"
+            titleField="name">
+    <fields>
+        <field name="id"
+               title="ID"
+               type="integer"
+               primaryKey="true"
+               ignoreTextMatchStyle="true" />
+
+        <field name="parent"
+               title="Parent ID"
+               type="integer"
+               foreignKey="hugeTree.id"
+               ignoreTextMatchStyle="true" />
+
+        <field name="name"
+               title="Name"
+               type="text"
+               length="40" />
+    </fields>
+</DataSource>

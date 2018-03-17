@@ -1,0 +1,26 @@
+<DataSource ID="dynamicDSFields" serverType="sql"
+     tableName="dynamicDSFields" titleField="name"
+     dbImportFileName="/examples/shared/ds/test_data/dynamicDSFields.data.xml">
+    <fields>
+        <field name="pk" type="sequence" hidden="true" primaryKey="true" />
+        <field name="name" title="Name" type="text" required="true" />
+        <field name="title" title="Title" type="text"/>
+        <field name="type" title="Type" type="text" required="true">
+            <valueMap>
+                <value>text</value>
+                <value>boolean</value>
+                <value>integer</value>
+                <value>float</value>
+                <value>date</value>
+                <value>time</value>
+                <value>datetime</value>
+                <value>sequence</value>
+            </valueMap>
+        </field>
+        <field name="primaryKey" title="Primary Key" type="boolean" />
+        <field name="required" title="Required" type="boolean" />
+        <field name="hidden" title="Hidden" type="boolean" />
+        <field name="width" title="Width" type="integer" />
+        <field name="length" title="Length" type="integer" />
+    </fields>
+</DataSource>

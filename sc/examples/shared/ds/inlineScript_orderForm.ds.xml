@@ -1,0 +1,22 @@
+<DataSource ID="inlineScript_orderForm" serverType="sql">
+    <fields>
+        <field name="orderItem" type="sequence" primaryKey="true"/>
+        <field name="itemId" foreignKey="StockItem.id"/>
+        <field name="quantity" type="integer">
+            <validators>
+                <validator type="serverCustom">
+                    <serverCondition language="groovy"><![CDATA[
+                        value < dataSources.StockItem.fetchById(record.itemId).quantity
+                    ]]></serverCondition>
+                    
+	<!-- ~~~~~~~~~~~~~~~~ Example of alternative implementation in Javascript ~~~~~~~~~~~~~ -->
+                    <!-- serverCondition language="javascript"><![CDATA[
+                        value < dataSources.get("StockItem").fetchById(record.get("itemId")).get("quantity")
+                    ]]></serverCondition -->
+                    <errorMessage>Not enough in stock</errorMessage>
+                </validator>
+            </validators>
+        </field>
+        <field name="instructions" type="text"/>
+     </fields>
+</DataSource>

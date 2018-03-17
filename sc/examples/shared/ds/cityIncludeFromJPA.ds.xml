@@ -1,0 +1,13 @@
+<DataSource
+    ID="cityIncludeFromJPA"
+    serverType="jpa"
+    schemaBean="com.isomorphic.examples.server.jpa.relations.CityManyToOneSimple"
+    autoDeriveSchema="true"
+>
+    <fields>
+        <field name="country" foreignKey="countryIncludeFromJPA.countryId" displayField="countryName" title="Country" editorType="ComboBoxItem" />
+        <field includeFrom="countryIncludeFromJPA.countryName"  hidden="true"   />
+        <field includeFrom="continentIncludeFromJPA.continentName" />
+    </fields>
+</DataSource>
+

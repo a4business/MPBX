@@ -1,0 +1,41 @@
+<DataSource
+    ID="Order"
+>
+    <fields>
+        <field name="orderId"       title="Order ID"        type="integer" 
+            javaClass="java.lang.Integer" primaryKey="true"/>
+        <field name="orderDate"     title="Order Date"      type="date"/>
+        <field name="items"         title="Order Items"     type="OrderItem" />
+        <field name="currentStatus" title="Current Status"  type="enum" />
+        <!-- "statusHistory" is a collection, but it is held in a map rather than a list.  Therefore,
+             we have to mark it multiple="true" to get proper iterating behavior out of the server -->
+        <field name="statusHistory" title="Status History"  type="OrderHistory" multiple="true" />
+         <field name="linkedOrders"  title="Linked Orders"   type="integer"
+               javaCollectionClass="java.util.LinkedList" valueXPath="linkedOrders" />
+     </fields>
+      <operationBindings>
+           <binding operationType="fetch" serverMethod="fetch">
+               <serverObject  
+                    lookupStyle="new" 
+                    className="com.isomorphic.test.TestGenerics" />
+           </binding>
+           <binding operationType="update" serverMethod="update">
+               <serverObject  
+                    lookupStyle="new" 
+                    className="com.isomorphic.test.TestGenerics" />
+           </binding>
+           <binding operationType="add" operationId="addWithAutoAdapt" 
+                    serverMethod="addWithAutoAdapt">
+               <serverObject  
+                    lookupStyle="new" 
+                    className="com.isomorphic.test.TestGenerics" />
+           </binding>
+           <binding operationType="add" operationId="addWithManualAdapt"
+                    serverMethod="addWithManualAdapt">
+               <serverObject  
+                    lookupStyle="new" 
+                    className="com.isomorphic.test.TestGenerics" />
+           </binding>
+       </operationBindings>
+</DataSource>
+ 

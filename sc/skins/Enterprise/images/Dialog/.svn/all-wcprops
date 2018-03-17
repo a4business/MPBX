@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/skins/Enterprise/images/Dialog
+END
+say.png
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/skins/Enterprise/images/Dialog/say.png
+END
+confirm.png
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/itenant/!svn/ver/1/sc/skins/Enterprise/images/Dialog/confirm.png
+END
+ask.png
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/skins/Enterprise/images/Dialog/ask.png
+END
+warn copy.png
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/itenant/!svn/ver/1/sc/skins/Enterprise/images/Dialog/warn%20copy.png
+END
+stop.png
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/itenant/!svn/ver/1/sc/skins/Enterprise/images/Dialog/stop.png
+END
+warn.png
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/itenant/!svn/ver/1/sc/skins/Enterprise/images/Dialog/warn.png
+END
+notify.png
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/itenant/!svn/ver/1/sc/skins/Enterprise/images/Dialog/notify.png
+END
+error.png
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/itenant/!svn/ver/1/sc/skins/Enterprise/images/Dialog/error.png
+END

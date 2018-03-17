@@ -1,0 +1,25 @@
+<DataSource
+    ID="googleSearchResponse"
+    dataURL="http://ajax.googleapis.com/ajax/services/search/web"
+    dataFormat="json"
+    recordXPath="responseData/results"
+    
+>
+    <fields>
+        <field name="url"  type="link"/>
+        <field name="title"  />
+        <field name="content" />
+        <field name="GsearchResultClass" detail="true" />
+        <field name="unescapedUrl" detail="true" />
+        <field name="visibleUrl" detail="true" />
+        <field name="cacheUrl" detail="true" />
+        <field name="titleNoFormattting" detail="true" />
+        <transformRequest>
+            if (dsRequest.data["search"]) {
+                dsRequest.data.q = dsRequest.data["search"];
+                dsRequest.data.v = "1.0";
+            }
+            return dsRequest.data;
+        </transformRequest>
+    </fields>
+</DataSource>

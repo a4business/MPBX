@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/itenant/!svn/ver/1/sc/examples/phonegap/MyContacts-iOS/cordova
+END
+log
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/itenant/!svn/ver/1/sc/examples/phonegap/MyContacts-iOS/cordova/log
+END
+debug
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/itenant/!svn/ver/1/sc/examples/phonegap/MyContacts-iOS/cordova/debug
+END
+emulate
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/itenant/!svn/ver/1/sc/examples/phonegap/MyContacts-iOS/cordova/emulate
+END

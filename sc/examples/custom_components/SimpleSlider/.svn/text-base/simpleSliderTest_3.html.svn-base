@@ -1,0 +1,69 @@
+<HTML><HEAD>
+	<SCRIPT>var isomorphicDir = "../../../isomorphic/";</SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Core.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Foundation.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Containers.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Grids.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Forms.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_DataBinding.js></SCRIPT>
+	<SCRIPT SRC=../../../isomorphic/skins/standard/load_skin.js></SCRIPT>
+	<SCRIPT SRC=SimpleSlider_3.js></SCRIPT>
+</HEAD><BODY BGCOLOR='powderblue'>
+<SCRIPT>
+
+
+//--------------------------------------------------
+//	display area for targeted sliderMove events
+//--------------------------------------------------
+
+Label.create({
+	ID:"display",
+	left:150,
+	top:50,
+	height:20,
+	sliderMove:function(event,slider){
+		this.setContents("sliderMove event<br>" +
+                         slider.getID() + ": " + slider.value);
+	}
+});
+
+
+//--------------------------------------------------
+//	global handler for sliderMove events
+//--------------------------------------------------
+
+Label.create({
+    ID:"globalDisplay",
+    left:300,
+    top:50,
+    height:20
+});
+Page.setEvent(
+    "sliderMove", 
+    "globalDisplay.setContents('Global handler<br>' + eventInfo.ID + ': ' + eventInfo.value);"
+);
+
+
+//--------------------------------------------------
+//	sliders
+//--------------------------------------------------
+
+SimpleSlider.create({
+	ID:"vSlider",
+	left:100,
+	top:100,
+	sliderTarget:display
+});
+
+SimpleSlider.create({
+	ID:"hSlider",
+	left:300,
+	top:180,
+	vertical:false,
+	sliderTarget:display
+});
+
+
+</SCRIPT>
+</BODY>
+</HTML>

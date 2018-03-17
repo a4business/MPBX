@@ -1,0 +1,11 @@
+<DataSource
+    ID="supplyItemUnits"
+    serverType="sql"
+    tableName="supplyItemUnits"
+    testFileName="/examples/shared/ds/test_data/supplyItemUnits.data.xml"
+>
+    <fields>
+        <field name="id"          type="integer" hidden="true"       primaryKey="true"/>
+        <field name="description" type="text"     title="Units"      length="50"       required="true"/>
+    </fields>
+</DataSource>

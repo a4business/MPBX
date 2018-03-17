@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width;initial-scale=1.0;maximum-scale=1.0;user-scalable=0;"/>
+    <script>var isomorphicDir="./";</script>
+    <script SRC=ISC_Core.js></script>
+    <script SRC=ISC_Foundation.js></script>
+    <script SRC=ISC_Containers.js></script>
+    <script SRC=ISC_Grids.js></script>
+    <script SRC=ISC_Forms.js></script>
+    <script SRC=ISC_DataBinding.js></script>
+    <script SRC=skins/Mobile/load_skin.js></script>
+  </HEAD>
+<body>
+<script>
+Titanium.App.addEventListener('contacts_info', function(ev)
+{                       
+    try {
+        var testData = [];
+        ev.data && ev.data.forEach(function(person) {
+            var phonenumbers = "", phone = [], phoneobj, number;
+            if(person.phone) {
+                phoneobj = JSON.parse(person.phone); 
+                for(number in phoneobj) {
+                  if(phoneobj.hasOwnProperty(number)) {
+                      phone.push(phoneobj[number]);
+                  }
+                }
+                phonenumbers = phone.join(',');
+            }
+            var addresses = "", addrs = [], addressobj, address;
+            if(person.address) {
+                addressobj = JSON.parse(person.address); 
+                for(address in addressobj) {
+                  if(addressobj.hasOwnProperty(address)) {
+                      switch(address) {
+                          case 'work':
+                              if(addressobj[address].length) {
+                                  var firstAddress = addressobj[address][0];
+                                  var firstAddressValue = [];
+                                  if(firstAddress.Street) { 
+                                      firstAddressValue.push(firstAddress.Street);
+                                  }
+                                  if(firstAddress.City) { 
+                                      firstAddressValue.push(firstAddress.City);
+                                  }
+                                  if(firstAddress.State) { 
+                                      firstAddressValue.push(firstAddress.State);
+                                  }
+                                  if(firstAddress.ZIP) { 
+                                      firstAddressValue[firstAddress.length-1] += ' ' + firstAddress.ZIP;
+                                  }
+                                  addrs.push(firstAddressValue.join(', '));
+                              }
+                              break;
+                          default:
+                              break;
+                      }
+                  }
+                }
+                addresses = addrs.join(' ');
+            }
+            testData.push({fullName:person.fullName,phone:phonenumbers,address:addresses});
+        }, this);
+        isc.DataSource.create({
+            ID:"contactsDS",
+            clientOnly:true,
+            testData:testData,
+            fields:[
+                {name:"fullName", type:"text", title:"Full Name"},
+                {name:"phone", type:"text", title:"Phone #"},
+                {name:"address", type:"text", title:"Address"}
+            ]
+        });
+        isc.ListGrid.create({
+            ID: "contactsGrid",
+            width:isc.Page.getScreenWidth(),
+            height:isc.Page.getScreenHeight()-110,
+            alternateRecordStyles:true,
+            autoFetchData:true,
+            dataSource:contactsDS,
+            showAllRecords:true,
+            leaveScrollbarGap:false,
+            fields:[
+                {name:"fullName", title:"Name"},
+                {name:"phone", title:"Phone #"},
+                {name:"address", title:"Address"}
+            ],
+            canEdit: false
+        });
+    } catch(e) {
+        alert(e.message);
+    }
+});
+
+</script>
+</body>
+</html>

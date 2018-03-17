@@ -1,0 +1,1109 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc
+END
+PAMI-Message-Event-NewstateEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-NewstateEvent.md
+END
+PAMI-Message-Action-EventsAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-EventsAction.md
+END
+PAMI-Message-Action-DongleSendSMSAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DongleSendSMSAction.md
+END
+PAMI-Message-Action-SIPShowPeerAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-SIPShowPeerAction.md
+END
+PAMI-Client-IClient.md
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Client-IClient.md
+END
+PAMI-Message-Action-LogoffAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-LogoffAction.md
+END
+PAMI-Message-Event-VarSetEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-VarSetEvent.md
+END
+PAMI-Message-Event-DongleShowDevicesCompleteEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-DongleShowDevicesCompleteEvent.md
+END
+PAMI-Message-Event-UnParkedCallEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-UnParkedCallEvent.md
+END
+PAMI-Client-Impl-ClientImpl.md
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Client-Impl-ClientImpl.md
+END
+PAMI-Message-Action-ListCategoriesAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-ListCategoriesAction.md
+END
+PAMI-Message-Event-ChannelUpdateEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-ChannelUpdateEvent.md
+END
+PAMI-Message-Action-ModuleCheckAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-ModuleCheckAction.md
+END
+PAMI-Message-Event-DongleStatusEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-DongleStatusEvent.md
+END
+PAMI-Message-Action-ShowDialPlanAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-ShowDialPlanAction.md
+END
+PAMI-Message-Event-QueueMemberPausedEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-QueueMemberPausedEvent.md
+END
+PAMI-Message-Response-ResponseMessage.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Response-ResponseMessage.md
+END
+PAMI-Message-Action-QueueResetAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-QueueResetAction.md
+END
+PAMI-Message-Action-QueueStatusAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-QueueStatusAction.md
+END
+PAMI-Message-Action-DAHDIDNDOffAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DAHDIDNDOffAction.md
+END
+PAMI-Message-Action-LocalOptimizeAwayAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-LocalOptimizeAwayAction.md
+END
+PAMI-Message-Action-SendTextAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-SendTextAction.md
+END
+PAMI-Message-Event-BridgeEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-BridgeEvent.md
+END
+PAMI-Message-Action-CoreShowChannelsAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-CoreShowChannelsAction.md
+END
+PAMI-Message-Action-GetConfigAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-GetConfigAction.md
+END
+PAMI-Message-Event-LinkEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-LinkEvent.md
+END
+PAMI-Message-Event-QueueMemberAddedEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-QueueMemberAddedEvent.md
+END
+PAMI-Message-Event-VgsmMeStateEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-VgsmMeStateEvent.md
+END
+PAMI-Message-Action-DBDelAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DBDelAction.md
+END
+PAMI-Message-Event-RTCPSentEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-RTCPSentEvent.md
+END
+PAMI-Message-Event-RTPSenderStatEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-RTPSenderStatEvent.md
+END
+PAMI-Message-Message.md
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Message.md
+END
+PAMI-Message-Event-AgentsCompleteEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-AgentsCompleteEvent.md
+END
+PAMI-Message-Action-QueuePauseAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-QueuePauseAction.md
+END
+PAMI-Message-Event-StatusCompleteEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-StatusCompleteEvent.md
+END
+PAMI-Message-Event-PeerEntryEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-PeerEntryEvent.md
+END
+PAMI-Message-Action-QueueLogAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-QueueLogAction.md
+END
+PAMI-Message-Event-ShowDialPlanCompleteEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-ShowDialPlanCompleteEvent.md
+END
+PAMI-Message-Event-ExtensionStatusEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-ExtensionStatusEvent.md
+END
+PAMI-Message-Event-UserEventEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-UserEventEvent.md
+END
+PAMI-Message-Action-SIPPeersAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-SIPPeersAction.md
+END
+PAMI-Message-Action-DAHDIDNDOnAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DAHDIDNDOnAction.md
+END
+PAMI-Message-Action-ListCommandsAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-ListCommandsAction.md
+END
+PAMI-Message-Event-FullyBootedEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-FullyBootedEvent.md
+END
+PAMI-Message-Event-NewCalleridEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-NewCalleridEvent.md
+END
+PAMI-Message-Action-SIPQualifyPeerAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-SIPQualifyPeerAction.md
+END
+PAMI-Message-Action-MixMonitorAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-MixMonitorAction.md
+END
+PAMI-Message-Event-CoreShowChannelsCompleteEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-CoreShowChannelsCompleteEvent.md
+END
+PAMI-Message-Action-ReloadAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-ReloadAction.md
+END
+PAMI-Message-Action-QueuesAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-QueuesAction.md
+END
+PAMI-Message-Event-JoinEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-JoinEvent.md
+END
+PAMI-Message-Action-MeetmeListAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-MeetmeListAction.md
+END
+PAMI-Message-Event-NewAccountCodeEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-NewAccountCodeEvent.md
+END
+PAMI-Message-Action-DongleShowDevicesAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DongleShowDevicesAction.md
+END
+PAMI-Message-Action-DongleRestartAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DongleRestartAction.md
+END
+PAMI-Message-Action-DongleStopAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DongleStopAction.md
+END
+PAMI-Message-Action-PlayDTMFAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-PlayDTMFAction.md
+END
+PAMI-Message-Action-SIPShowRegistryAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-SIPShowRegistryAction.md
+END
+PAMI-Message-Action-DBGetAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DBGetAction.md
+END
+PAMI-Message-Action-ModuleLoadAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-ModuleLoadAction.md
+END
+PAMI-Message-Action-MonitorAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-MonitorAction.md
+END
+PAMI-Listener-IEventListener.md
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Listener-IEventListener.md
+END
+PAMI-Message-Action-GetVarAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-GetVarAction.md
+END
+PAMI-Message-Event-PeerlistCompleteEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-PeerlistCompleteEvent.md
+END
+PAMI-Message-Event-QueueMemberStatusEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-QueueMemberStatusEvent.md
+END
+PAMI-Message-Action-CreateConfigAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-CreateConfigAction.md
+END
+PAMI-Message-Event-QueueStatusCompleteEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-QueueStatusCompleteEvent.md
+END
+PAMI-Message-Event-CoreShowChannelEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-CoreShowChannelEvent.md
+END
+PAMI-Message-Action-DBDelTreeAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DBDelTreeAction.md
+END
+PAMI-Message-Action-BridgeAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-BridgeAction.md
+END
+PAMI-Message-Event-MusicOnHoldEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-MusicOnHoldEvent.md
+END
+PAMI-Message-Action-ConfbridgeUnmuteAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-ConfbridgeUnmuteAction.md
+END
+PAMI-Message-Event-RTCPReceiverStatEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-RTCPReceiverStatEvent.md
+END
+PAMI-Message-Event-VoicemailUserEntryEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-VoicemailUserEntryEvent.md
+END
+PAMI-Message-Event-DTMFEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-DTMFEvent.md
+END
+PAMI-Message-Event-AgentlogoffEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-AgentlogoffEvent.md
+END
+PAMI-Message-Event-QueueSummaryCompleteEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-QueueSummaryCompleteEvent.md
+END
+PAMI-Message-Action-SetVarAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-SetVarAction.md
+END
+PAMI-Message-Event-NewextenEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-NewextenEvent.md
+END
+PAMI-Message-Event-AsyncAGIEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-AsyncAGIEvent.md
+END
+PAMI-Message-Action-UpdateConfigAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-UpdateConfigAction.md
+END
+PAMI-Message-Action-LoginAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-LoginAction.md
+END
+PAMI-Message-Event-OriginateResponseEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-OriginateResponseEvent.md
+END
+PAMI-Message-Event-UnlinkEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-UnlinkEvent.md
+END
+PAMI-Message-Action-DAHDIHangupAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DAHDIHangupAction.md
+END
+PAMI-Message-Event-AGIExecEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-AGIExecEvent.md
+END
+PAMI-Message-Event-DialEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-DialEvent.md
+END
+PAMI-Message-Action-QueuePenaltyAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-QueuePenaltyAction.md
+END
+PAMI-Message-Event-QueueMemberEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-QueueMemberEvent.md
+END
+PAMI-Message-Action-QueueUnpauseAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-QueueUnpauseAction.md
+END
+PAMI-Message-Action-AbsoluteTimeoutAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-AbsoluteTimeoutAction.md
+END
+PAMI-Message-Action-VoicemailUsersListAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-VoicemailUsersListAction.md
+END
+PAMI-Message-Action-DAHDIShowChannelsAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DAHDIShowChannelsAction.md
+END
+PAMI-Message-Action-DongleStartAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DongleStartAction.md
+END
+PAMI-Message-Action-ModuleUnloadAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-ModuleUnloadAction.md
+END
+PAMI-Message-Event-VgsmNetStateEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-VgsmNetStateEvent.md
+END
+PAMI-Message-Action-StopMonitorAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-StopMonitorAction.md
+END
+PAMI-Message-Action-ParkAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-ParkAction.md
+END
+PAMI-Message-Event-DAHDIShowChannelsEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-DAHDIShowChannelsEvent.md
+END
+PAMI-Message-Action-GetConfigJSONAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-GetConfigJSONAction.md
+END
+PAMI-Message-Action-RedirectAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-RedirectAction.md
+END
+PAMI-Message-Action-QueueRemoveAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-QueueRemoveAction.md
+END
+PAMI-Message-Action-MailboxCountAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-MailboxCountAction.md
+END
+PAMI-Message-Event-LeaveEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-LeaveEvent.md
+END
+PAMI-Message-Action-CoreSettingsAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-CoreSettingsAction.md
+END
+PAMI-Client-Exception-ClientException.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Client-Exception-ClientException.md
+END
+PAMI-Message-Action-MeetmeUnmuteAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-MeetmeUnmuteAction.md
+END
+PAMI-Message-Action-QueueReloadAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-QueueReloadAction.md
+END
+PAMI-Message-Action-ModuleReloadAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-ModuleReloadAction.md
+END
+PAMI-Message-Action-DAHDIRestartAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DAHDIRestartAction.md
+END
+PAMI-Message-Action-DAHDIDialOffHookAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DAHDIDialOffHookAction.md
+END
+PAMI-Message-Event-RenameEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-RenameEvent.md
+END
+PAMI-Message-Event-AgentConnectEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-AgentConnectEvent.md
+END
+PAMI-Message-Action-OriginateAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-OriginateAction.md
+END
+PAMI-Message-Action-AgentsAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-AgentsAction.md
+END
+PAMI-Message-Event-DongleUSSDStatusEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-DongleUSSDStatusEvent.md
+END
+PAMI-Message-Action-ActionMessage.md
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-ActionMessage.md
+END
+PAMI-Message-Event-ParkedCallsCompleteEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-ParkedCallsCompleteEvent.md
+END
+PAMI-Message-Action-UnpauseMonitorAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-UnpauseMonitorAction.md
+END
+PAMI-Message-Action-AGIAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-AGIAction.md
+END
+PAMI-Message-Event-Factory-Impl-EventFactoryImpl.md
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-Factory-Impl-EventFactoryImpl.md
+END
+PAMI-Message-Action-MeetmeMuteAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-MeetmeMuteAction.md
+END
+PAMI-Message-Event-PeerStatusEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-PeerStatusEvent.md
+END
+PAMI-Message-Event-DongleNewCUSDEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-DongleNewCUSDEvent.md
+END
+PAMI-Message-Event-ParkedCallEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-ParkedCallEvent.md
+END
+PAMI-Message-Event-CELEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-CELEvent.md
+END
+PAMI-Message-Action-StopMixMonitorAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-StopMixMonitorAction.md
+END
+PAMI-Message-Event-DBGetResponseEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-DBGetResponseEvent.md
+END
+PAMI-Message-Action-ExtensionStateAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-ExtensionStateAction.md
+END
+PAMI-Message-Action-CommandAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-CommandAction.md
+END
+PAMI-Message-Event-RegistryEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-RegistryEvent.md
+END
+PAMI-Message-Event-VgsmSmsRxEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-VgsmSmsRxEvent.md
+END
+PAMI-Message-Event-DongleDeviceEntryEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-DongleDeviceEntryEvent.md
+END
+PAMI-Message-Event-AgentsEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-AgentsEvent.md
+END
+PAMI-Message-Event-StatusEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-StatusEvent.md
+END
+PAMI-Message-Event-TransferEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-TransferEvent.md
+END
+PAMI-Message-Action-DongleReloadAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DongleReloadAction.md
+END
+PAMI-Message-Action-MailboxStatusAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-MailboxStatusAction.md
+END
+PAMI-Exception-PAMIException.md
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Exception-PAMIException.md
+END
+PAMI-Message-Event-UnknownEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-UnknownEvent.md
+END
+PAMI-Message-Action-DongleResetAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DongleResetAction.md
+END
+PAMI-Message-Action-QueueRuleAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-QueueRuleAction.md
+END
+PAMI-Message-Action-DBPutAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DBPutAction.md
+END
+PAMI-Message-Event-MessageWaitingEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-MessageWaitingEvent.md
+END
+ApiIndex.md
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/ApiIndex.md
+END
+PAMI-Message-Action-HangupAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-HangupAction.md
+END
+PAMI-Message-Action-StatusAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-StatusAction.md
+END
+PAMI-Message-Event-ListDialPlanEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-ListDialPlanEvent.md
+END
+PAMI-Message-Event-HangupEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-HangupEvent.md
+END
+PAMI-Message-Event-NewchannelEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-NewchannelEvent.md
+END
+PAMI-Message-Event-VoicemailUserEntryCompleteEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-VoicemailUserEntryCompleteEvent.md
+END
+PAMI-Message-Action-AgentLogoffAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-AgentLogoffAction.md
+END
+PAMI-Message-Action-DongleSendPDUAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DongleSendPDUAction.md
+END
+PAMI-Message-Action-CoreStatusAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-CoreStatusAction.md
+END
+PAMI-Message-Action-QueueAddAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-QueueAddAction.md
+END
+PAMI-Message-Event-HoldEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-HoldEvent.md
+END
+PAMI-Message-Event-RTPReceiverStatEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-RTPReceiverStatEvent.md
+END
+PAMI-Message-Event-RegistrationsCompleteEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-RegistrationsCompleteEvent.md
+END
+PAMI-Message-Event-AgentloginEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-AgentloginEvent.md
+END
+PAMI-AsyncAgi-AsyncClientImpl.md
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-AsyncAgi-AsyncClientImpl.md
+END
+PAMI-Message-Event-JabberEventEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-JabberEventEvent.md
+END
+PAMI-Message-Action-QueueSummaryAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-QueueSummaryAction.md
+END
+PAMI-Message-Event-QueueMemberRemovedEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-QueueMemberRemovedEvent.md
+END
+PAMI-Message-Event-DongleSMSStatusEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-DongleSMSStatusEvent.md
+END
+PAMI-Message-Event-QueueSummaryEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-QueueSummaryEvent.md
+END
+PAMI-Message-Action-VGSMSMSTxAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-VGSMSMSTxAction.md
+END
+PAMI-Message-Action-DongleSendUSSDAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-DongleSendUSSDAction.md
+END
+PAMI-Message-Action-SIPNotifyAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-SIPNotifyAction.md
+END
+PAMI-Message-Action-PauseMonitorAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-PauseMonitorAction.md
+END
+PAMI-Message-Action-ParkedCallsAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-ParkedCallsAction.md
+END
+PAMI-Message-Event-DAHDIShowChannelsCompleteEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-DAHDIShowChannelsCompleteEvent.md
+END
+PAMI-Message-Event-RTCPReceivedEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-RTCPReceivedEvent.md
+END
+PAMI-Message-OutgoingMessage.md
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-OutgoingMessage.md
+END
+PAMI-Message-Event-DongleNewUSSDEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-DongleNewUSSDEvent.md
+END
+PAMI-Message-Event-EventMessage.md
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-EventMessage.md
+END
+PAMI-Message-Action-PingAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-PingAction.md
+END
+PAMI-Message-Action-ConfbridgeMuteAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-ConfbridgeMuteAction.md
+END
+PAMI-Message-Action-AttendedTransferAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-AttendedTransferAction.md
+END
+PAMI-Message-Action-ChangeMonitorAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-ChangeMonitorAction.md
+END
+PAMI-Message-Event-DongleNewUSSDBase64Event.md
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-DongleNewUSSDBase64Event.md
+END
+PAMI-Message-Action-JabberSendAction.md
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Action-JabberSendAction.md
+END
+PAMI-Message-Event-MasqueradeEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-MasqueradeEvent.md
+END
+PAMI-Message-IncomingMessage.md
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-IncomingMessage.md
+END
+PAMI-Message-Event-QueueParamsEvent.md
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/doc/PAMI-Message-Event-QueueParamsEvent.md
+END

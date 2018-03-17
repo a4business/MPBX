@@ -1,0 +1,13 @@
+<DataSource
+    ID="googleFeedRequest"
+   
+>
+    <fields>
+        <field name="v" title="version" />
+        <field name="q" title="query" />
+        <field name="key" title="google key" detail="true" />
+        <field name="hl" title="host language" detail="true" />
+        <field name="num" title="max entries" detail="true" />
+        <field name="scoring" title="feed scoring" detail="true" />
+    </fields>
+</DataSource>

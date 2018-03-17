@@ -1,0 +1,216 @@
+<!--===========================================================================
+    SmartClient portal example -- portlet animation
+        creates interactive portlet list, and drag-and-drop portlet content area
+===========================================================================-->
+
+
+<!--===========================================================================
+// INITIALIZATION
+===========================================================================-->
+
+<HTML><HEAD><TITLE>SmartClient portal animation example</TITLE>
+    <SCRIPT>var isomorphicDir = "../../isomorphic/"</SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_Core.js></SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_Foundation.js></SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_Containers.js></SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_Grids.js></SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_Forms.js></SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_DataBinding.js></SCRIPT>
+	<SCRIPT SRC=../../isomorphic/skins/BlackOps/load_skin.js></SCRIPT>
+</HEAD><BODY CLASS="pageBackground">
+
+
+<SCRIPT>
+// global for convenient single setting of multiple animation times in this example
+var gAnimatePortletTime = 750; // milliseconds
+
+// fake portlet list for self-contained example
+// The real list could be included inline, or loaded on the fly from the server.
+// This data can include whatever attributes you want to use for these portlet,
+// e.g. feed URLs, icons, update frequency...
+var gPortletData = [
+        {portletName:"Portlet 1"},
+        {portletName:"Portlet 2"},
+        {portletName:"Portlet 3"},
+        {portletName:"Portlet 4"},
+        {portletName:"Portlet 5"},
+        {portletName:"Portlet 6"},
+        {portletName:"Portlet 7"},
+        {portletName:"Portlet 8"},
+        {portletName:"Portlet 9"},
+        {portletName:"Portlet 10"}
+    ];
+
+var gViewIconHTML = Canvas.imgHTML("[SKIN]actions/view.png");
+
+var gAddToColumn = 0;
+</SCRIPT>
+
+
+<!-- load customized components for this example -->
+<SCRIPT SRC=portalComponents.js></SCRIPT>
+
+
+<SCRIPT>
+
+
+//===========================================================================
+// PORTLET LIST
+//===========================================================================
+
+isc.ListGrid.create({
+    ID: "portletList",
+    autoDraw: false,
+    height: 20,
+    width: 120,
+    
+    // autosize to fit the list, instead of scrolling
+    overflow: "visible",
+    bodyOverflow: "visible",
+    leaveScrollbarGap: false,
+    
+    // hide the column headers
+    showHeader:false,
+    
+    // disable normal row selection behaviors
+    selectionType: "none",
+    
+    fields: [ {name:"portletName", formatCellValue:"return gViewIconHTML + ' ' + value"} ],
+    // see above for fake data used by this self-contained example
+    data: gPortletData,
+
+    
+    //------------------------------------------------------------
+    // OPEN PORTLET logic -
+    //  Called whenever you click on an enabled row in this list.
+    //------------------------------------------------------------
+    rowClick: function (record, rowNum) {
+        // disable the row -- this will prevent subsequent clicks, and will also change the
+        //  row style, to indicate that this portlet is already in the viewing area
+        record.enabled = false;
+        this.refreshRow(rowNum);
+        
+        // create a new portlet
+        var newPortlet = isc.Portlet.create({
+            title: record.portletName,
+            items:[
+                // simple fake portlet contents - could put anything here
+                isc.Label.create({
+                    autoDraw:false, align:"center", layoutAlign:"center",
+                    contents: record.portletName+" contents"
+                })
+            ],
+            portletRecord: record,
+            portletList: this,
+            // callback to the portletList when this portlet is closed (see closePortlet below)
+            closeClick: function () {this.portletList.closePortlet(this, this.portletRecord)}
+        });
+
+        // insert the portlet in the content area, but keep it hidden for now
+        newPortlet.hide();
+        var column = portalContentArea.addPortlet(newPortlet, true); // add to top
+
+        // also insert a blank spacer element, which will trigger the built-in
+        //  animateMembers layout animation
+        var placeHolder = isc.LayoutSpacer.create();
+        placeHolder.setRect(newPortlet.getRect());
+        column.addMember(placeHolder,0); // add to top
+
+        // create an outline around the clicked row
+        var outline = isc.Canvas.create({
+            left:this.getPageLeft(), top:this.getRowPageTop(rowNum),
+            width:this.getVisibleWidth(), height:this.getRowSize(rowNum),
+            border:"2px solid #8289A6"
+        });
+
+        // animate the outline from the clicked row, to the desired position of the new portlet
+        // (this will execute in parallel with the placeHolder animation)
+        outline.animateRect(
+            newPortlet.getPageLeft(), newPortlet.getPageTop(),
+            newPortlet.getVisibleWidth(), newPortlet.getVisibleHeight(),
+            function () {
+            // callback at end of animation - destroy placeholder and outline; show the new portlet 
+                placeHolder.destroy();
+                outline.destroy();
+                newPortlet.body.hPolicy = "fill";
+                newPortlet.show();
+            },
+            gAnimatePortletTime
+        );
+    },
+    
+    
+    //------------------------------------------------------------
+    // CLOSE PORTLET logic -
+    //  Called when you click the close control in the top-right
+    //  corner of a portlet (see closeClick above).
+    //------------------------------------------------------------
+    closePortlet: function (portlet, portletRecord) {
+        var rowNum = portletList.data.indexOf(portletRecord);
+
+        // create an outline around the portlet
+        var outline = isc.Canvas.create({autoDraw:false, border:"2px solid #8289A6"});
+        outline.setRect(portlet.getPageRect());
+
+
+        // swap the portlet with a blank spacer element
+        // (disabling relayout temporarily to prevent animation during the swap)
+        var portalColumn = portlet.parentElement;
+        portlet.hide();
+        var spacer = isc.LayoutSpacer.create();
+        spacer.setRect(portlet.getRect());
+        portalColumn.addMember(spacer, portalColumn.getMemberNumber(portlet), true);
+
+        // animateHide (shrink) the spacer to collapse this space in the content area
+        spacer.animateHideTime = gAnimatePortletTime;
+        spacer.animateHide();
+
+        // simultaneously animate the portlet outline down to the row in this portletList
+        outline.draw();
+        outline.animateRect(
+            this.getPageLeft(),
+            this.getRowPageTop(rowNum),
+            this.getVisibleWidth(),
+            this.getRowSize(rowNum),
+            function () {
+            // callback at end of animation - destroy outline, portlet, and spacer;
+            // also enable and refresh the row in the portletList so it does not show the special
+            // style (and so it can be clicked again)
+                outline.destroy();
+                spacer.destroy();
+                portlet.destroy();
+                portletRecord.enabled = true;
+                portletList.refreshRow(rowNum);
+            },
+            gAnimatePortletTime
+        );
+    }
+});
+
+
+
+
+
+//===========================================================================
+// PAGE LAYOUT
+//===========================================================================
+
+isc.HLayout.create({ 
+    ID: "portalExamplePage",
+    width: "100%",
+    height: "100%",
+    layoutMargin: 10,
+    membersMargin: 10,
+    members: [
+        portletList,
+        isc.PortalLayout.create({ 
+            ID: "portalContentArea", 
+            autoDraw: false,
+            numColumns: 3
+        })
+    ]
+});
+
+
+
+</SCRIPT></BODY></HTML>

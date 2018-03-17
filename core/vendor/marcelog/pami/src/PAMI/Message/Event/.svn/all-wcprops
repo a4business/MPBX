@@ -1,0 +1,623 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event
+END
+AgentloginEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/AgentloginEvent.php
+END
+QueueCallerJoinEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/QueueCallerJoinEvent.php
+END
+NewCalleridEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/NewCalleridEvent.php
+END
+RTCPReceiverStatEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/RTCPReceiverStatEvent.php
+END
+QueueCallerAbandonEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/QueueCallerAbandonEvent.php
+END
+NewextenEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/NewextenEvent.php
+END
+CoreShowChannelsCompleteEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/CoreShowChannelsCompleteEvent.php
+END
+DBGetResponseEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DBGetResponseEvent.php
+END
+DongleShowDevicesCompleteEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DongleShowDevicesCompleteEvent.php
+END
+AgentConnectEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/AgentConnectEvent.php
+END
+DialEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DialEvent.php
+END
+DongleStatusEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DongleStatusEvent.php
+END
+QueueMemberEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/QueueMemberEvent.php
+END
+DialBeginEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DialBeginEvent.php
+END
+UserEventEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/UserEventEvent.php
+END
+AgentsEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/AgentsEvent.php
+END
+QueueStatusCompleteEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/QueueStatusCompleteEvent.php
+END
+EventMessage.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/EventMessage.php
+END
+HoldEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/HoldEvent.php
+END
+DAHDIShowChannelsEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DAHDIShowChannelsEvent.php
+END
+MasqueradeEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/MasqueradeEvent.php
+END
+QueueParamsEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/QueueParamsEvent.php
+END
+BridgeEnterEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/BridgeEnterEvent.php
+END
+DTMFEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DTMFEvent.php
+END
+AsyncAGIEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/AsyncAGIEvent.php
+END
+JoinEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/JoinEvent.php
+END
+VgsmMeStateEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/VgsmMeStateEvent.php
+END
+UnlinkEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/UnlinkEvent.php
+END
+NewAccountCodeEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/NewAccountCodeEvent.php
+END
+DongleNewCUSDEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DongleNewCUSDEvent.php
+END
+ParkedCallEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/ParkedCallEvent.php
+END
+QueueSummaryEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/QueueSummaryEvent.php
+END
+CELEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/CELEvent.php
+END
+AGIExecEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/AGIExecEvent.php
+END
+UnParkedCallEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/UnParkedCallEvent.php
+END
+RenameEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/RenameEvent.php
+END
+RegistryEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/RegistryEvent.php
+END
+VgsmSmsRxEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/VgsmSmsRxEvent.php
+END
+AgentsCompleteEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/AgentsCompleteEvent.php
+END
+PeerEntryEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/PeerEntryEvent.php
+END
+QueueMemberPausedEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/QueueMemberPausedEvent.php
+END
+DAHDIShowChannelsCompleteEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DAHDIShowChannelsCompleteEvent.php
+END
+QueueMemberStatusEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/QueueMemberStatusEvent.php
+END
+DTMFEndEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DTMFEndEvent.php
+END
+CoreShowChannelEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/CoreShowChannelEvent.php
+END
+ParkedCallGiveUpEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/ParkedCallGiveUpEvent.php
+END
+AGIExecStartEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/AGIExecStartEvent.php
+END
+QueueCallerLeaveEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/QueueCallerLeaveEvent.php
+END
+TransferEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/TransferEvent.php
+END
+AsyncAGIEndEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/AsyncAGIEndEvent.php
+END
+RTPReceiverStatEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/RTPReceiverStatEvent.php
+END
+VoicemailUserEntryEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/VoicemailUserEntryEvent.php
+END
+NewstateEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/NewstateEvent.php
+END
+QueueSummaryCompleteEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/QueueSummaryCompleteEvent.php
+END
+LinkEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/LinkEvent.php
+END
+BlindTransferEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/BlindTransferEvent.php
+END
+AttendedTransferEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/AttendedTransferEvent.php
+END
+DTMFBeginEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DTMFBeginEvent.php
+END
+PeerStatusEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/PeerStatusEvent.php
+END
+UnknownEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/UnknownEvent.php
+END
+OriginateResponseEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/OriginateResponseEvent.php
+END
+DialEndEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DialEndEvent.php
+END
+RTPSenderStatEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/RTPSenderStatEvent.php
+END
+AsyncAGIExecEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/AsyncAGIExecEvent.php
+END
+VarSetEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/VarSetEvent.php
+END
+ParkedCallTimeOutEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/ParkedCallTimeOutEvent.php
+END
+DongleDeviceEntryEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DongleDeviceEntryEvent.php
+END
+ChannelUpdateEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/ChannelUpdateEvent.php
+END
+AsyncAGIStartEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/AsyncAGIStartEvent.php
+END
+RTCPReceivedEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/RTCPReceivedEvent.php
+END
+ExtensionStatusEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/ExtensionStatusEvent.php
+END
+PeerlistCompleteEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/PeerlistCompleteEvent.php
+END
+NewchannelEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/NewchannelEvent.php
+END
+HangupEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/HangupEvent.php
+END
+VoicemailUserEntryCompleteEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/VoicemailUserEntryCompleteEvent.php
+END
+StatusEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/StatusEvent.php
+END
+DongleNewUSSDBase64Event.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DongleNewUSSDBase64Event.php
+END
+JabberEventEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/JabberEventEvent.php
+END
+FullyBootedEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/FullyBootedEvent.php
+END
+MusicOnHoldStopEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/MusicOnHoldStopEvent.php
+END
+AgentlogoffEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/AgentlogoffEvent.php
+END
+LeaveEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/LeaveEvent.php
+END
+AGIExecEndEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/AGIExecEndEvent.php
+END
+BridgeEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/BridgeEvent.php
+END
+QueueMemberAddedEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/QueueMemberAddedEvent.php
+END
+QueueMemberRemovedEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/QueueMemberRemovedEvent.php
+END
+DongleSMSStatusEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DongleSMSStatusEvent.php
+END
+MusicOnHoldStartEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/MusicOnHoldStartEvent.php
+END
+RTCPSentEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/RTCPSentEvent.php
+END
+BridgeDestroyEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/BridgeDestroyEvent.php
+END
+DNDStateEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DNDStateEvent.php
+END
+MessageWaitingEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/MessageWaitingEvent.php
+END
+BridgeLeaveEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/BridgeLeaveEvent.php
+END
+DongleUSSDStatusEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DongleUSSDStatusEvent.php
+END
+StatusCompleteEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/StatusCompleteEvent.php
+END
+ParkedCallsCompleteEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/ParkedCallsCompleteEvent.php
+END
+ShowDialPlanCompleteEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/ShowDialPlanCompleteEvent.php
+END
+ListDialplanEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/ListDialplanEvent.php
+END
+BridgeCreateEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/BridgeCreateEvent.php
+END
+DongleNewUSSDEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/DongleNewUSSDEvent.php
+END
+MusicOnHoldEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/MusicOnHoldEvent.php
+END
+VgsmNetStateEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/VgsmNetStateEvent.php
+END
+RegistrationsCompleteEvent.php
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/src/PAMI/Message/Event/RegistrationsCompleteEvent.php
+END

@@ -1,0 +1,14 @@
+<DataSource
+    ID="cityManyToOneSimpleHB"
+    serverType="hibernate"
+    beanClassName="com.isomorphic.examples.server.hibernate.relations.CityManyToOneSimple"
+    schemaBean="com.isomorphic.examples.server.hibernate.relations.CityManyToOneSimple"
+>
+    <fields>
+        <field name="countryName"   type="text"     hidden="true"   valueXPath="country/countryName"/>
+        <field name="country"       title="Country" canEdit="true"  displayField="countryName"
+                foreignKey="countryManyToOneSimpleHB.countryId"
+        />
+    </fields>
+</DataSource>
+

@@ -1,0 +1,491 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/itenant/!svn/ver/1/sc/examples/shared/ds
+END
+supplyItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/examples/shared/ds/supplyItem.ds.xml
+END
+googleSearchRequest.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/itenant/!svn/ver/1/sc/examples/shared/ds/googleSearchRequest.ds.xml
+END
+user.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/examples/shared/ds/user.ds.xml
+END
+worldDSExport.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/itenant/!svn/ver/1/sc/examples/shared/ds/worldDSExport.ds.xml
+END
+customBinaryField.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/itenant/!svn/ver/1/sc/examples/shared/ds/customBinaryField.ds.xml
+END
+continentIncludeFromJPA.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/itenant/!svn/ver/1/sc/examples/shared/ds/continentIncludeFromJPA.ds.xml
+END
+uploadTest.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/examples/shared/ds/uploadTest.ds.xml
+END
+cityManyToOneSimpleHB.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/itenant/!svn/ver/1/sc/examples/shared/ds/cityManyToOneSimpleHB.ds.xml
+END
+complaint.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/examples/shared/ds/complaint.ds.xml
+END
+citySQL.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/examples/shared/ds/citySQL.ds.xml
+END
+supplyItemSpringDMI.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/itenant/!svn/ver/1/sc/examples/shared/ds/supplyItemSpringDMI.ds.xml
+END
+OrderHistory.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/examples/shared/ds/OrderHistory.ds.xml
+END
+dynamicDSFields.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/itenant/!svn/ver/1/sc/examples/shared/ds/dynamicDSFields.ds.xml
+END
+continentIncludeFromHB.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/itenant/!svn/ver/1/sc/examples/shared/ds/continentIncludeFromHB.ds.xml
+END
+validationDMI_orderForm.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/itenant/!svn/ver/1/sc/examples/shared/ds/validationDMI_orderForm.ds.xml
+END
+contactsDS.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/examples/shared/ds/contactsDS.ds.xml
+END
+countryIncludeFromHB.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/itenant/!svn/ver/1/sc/examples/shared/ds/countryIncludeFromHB.ds.xml
+END
+supplyItemAudited.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/itenant/!svn/ver/1/sc/examples/shared/ds/supplyItemAudited.ds.xml
+END
+countryIncludeFromSQL.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/itenant/!svn/ver/1/sc/examples/shared/ds/countryIncludeFromSQL.ds.xml
+END
+cityOneToManyHB.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/itenant/!svn/ver/1/sc/examples/shared/ds/cityOneToManyHB.ds.xml
+END
+editNodes.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/examples/shared/ds/editNodes.ds.xml
+END
+cityIncludeFromSQL.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/itenant/!svn/ver/1/sc/examples/shared/ds/cityIncludeFromSQL.ds.xml
+END
+uploadedFiles.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/itenant/!svn/ver/1/sc/examples/shared/ds/uploadedFiles.ds.xml
+END
+countryManyToOneSimpleHB.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/itenant/!svn/ver/1/sc/examples/shared/ds/countryManyToOneSimpleHB.ds.xml
+END
+roles.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/examples/shared/ds/roles.ds.xml
+END
+batchUpload.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/examples/shared/ds/batchUpload.ds.xml
+END
+searchItemListingsDS.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/itenant/!svn/ver/1/sc/examples/shared/ds/searchItemListingsDS.ds.xml
+END
+allowedRoles.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/examples/shared/ds/allowedRoles.ds.xml
+END
+cityOneToManyJPA.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/itenant/!svn/ver/1/sc/examples/shared/ds/cityOneToManyJPA.ds.xml
+END
+supplyItemUnits.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/itenant/!svn/ver/1/sc/examples/shared/ds/supplyItemUnits.ds.xml
+END
+StockItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/examples/shared/ds/StockItem.ds.xml
+END
+supplyItemDownload.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/itenant/!svn/ver/1/sc/examples/shared/ds/supplyItemDownload.ds.xml
+END
+supplyItemDMI.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/itenant/!svn/ver/1/sc/examples/shared/ds/supplyItemDMI.ds.xml
+END
+OrderItemNoGenerics.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/itenant/!svn/ver/1/sc/examples/shared/ds/OrderItemNoGenerics.ds.xml
+END
+hugeTree.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/examples/shared/ds/hugeTree.ds.xml
+END
+worldDSExportWithFormats.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/itenant/!svn/ver/1/sc/examples/shared/ds/worldDSExportWithFormats.ds.xml
+END
+productRevenue.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/itenant/!svn/ver/1/sc/examples/shared/ds/productRevenue.ds.xml
+END
+Order.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/examples/shared/ds/Order.ds.xml
+END
+worldDSExportCustom.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/itenant/!svn/ver/1/sc/examples/shared/ds/worldDSExportCustom.ds.xml
+END
+employeesOpenNodes.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/itenant/!svn/ver/1/sc/examples/shared/ds/employeesOpenNodes.ds.xml
+END
+velocity_orderForm.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/itenant/!svn/ver/1/sc/examples/shared/ds/velocity_orderForm.ds.xml
+END
+googleSearchResponse.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/itenant/!svn/ver/1/sc/examples/shared/ds/googleSearchResponse.ds.xml
+END
+inlineScript_orderForm.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/itenant/!svn/ver/1/sc/examples/shared/ds/inlineScript_orderForm.ds.xml
+END
+hugeTreeOpenNodes.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/itenant/!svn/ver/1/sc/examples/shared/ds/hugeTreeOpenNodes.ds.xml
+END
+animals.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/examples/shared/ds/animals.ds.xml
+END
+ReportChooserDS.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/itenant/!svn/ver/1/sc/examples/shared/ds/ReportChooserDS.ds.xml
+END
+supplyItemHB.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/examples/shared/ds/supplyItemHB.ds.xml
+END
+tasks.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/examples/shared/ds/tasks.ds.xml
+END
+supplyItemCurrency.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/itenant/!svn/ver/1/sc/examples/shared/ds/supplyItemCurrency.ds.xml
+END
+countryIncludeFromJPA.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/itenant/!svn/ver/1/sc/examples/shared/ds/countryIncludeFromJPA.ds.xml
+END
+OrderNoGenerics.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/itenant/!svn/ver/1/sc/examples/shared/ds/OrderNoGenerics.ds.xml
+END
+supplyCategory.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/itenant/!svn/ver/1/sc/examples/shared/ds/supplyCategory.ds.xml
+END
+currency.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/examples/shared/ds/currency.ds.xml
+END
+countryDS.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/examples/shared/ds/countryDS.ds.xml
+END
+itemCategoriesDS.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/itenant/!svn/ver/1/sc/examples/shared/ds/itemCategoriesDS.ds.xml
+END
+cityIncludeFromJPA.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/itenant/!svn/ver/1/sc/examples/shared/ds/cityIncludeFromJPA.ds.xml
+END
+moneyTransfer.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/itenant/!svn/ver/1/sc/examples/shared/ds/moneyTransfer.ds.xml
+END
+countryManyToOneSimpleJPA.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/itenant/!svn/ver/1/sc/examples/shared/ds/countryManyToOneSimpleJPA.ds.xml
+END
+employeesByTeam.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/itenant/!svn/ver/1/sc/examples/shared/ds/employeesByTeam.ds.xml
+END
+cityManyToOneSimpleJPA.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/itenant/!svn/ver/1/sc/examples/shared/ds/cityManyToOneSimpleJPA.ds.xml
+END
+googleFeedRequest.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/itenant/!svn/ver/1/sc/examples/shared/ds/googleFeedRequest.ds.xml
+END
+continentIncludeFromSQL.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/itenant/!svn/ver/1/sc/examples/shared/ds/continentIncludeFromSQL.ds.xml
+END
+dashboards.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/examples/shared/ds/dashboards.ds.xml
+END
+supplyItemExport.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/itenant/!svn/ver/1/sc/examples/shared/ds/supplyItemExport.ds.xml
+END
+worldDS.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/examples/shared/ds/worldDS.ds.xml
+END
+googleFeedResponse.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/itenant/!svn/ver/1/sc/examples/shared/ds/googleFeedResponse.ds.xml
+END
+continentSQL.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/examples/shared/ds/continentSQL.ds.xml
+END
+countrySQL.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/examples/shared/ds/countrySQL.ds.xml
+END
+teamMembers2.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/examples/shared/ds/teamMembers2.ds.xml
+END
+stockQuotes.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/examples/shared/ds/stockQuotes.ds.xml
+END
+countryOneToManyJPA.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/itenant/!svn/ver/1/sc/examples/shared/ds/countryOneToManyJPA.ds.xml
+END
+OrderItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/examples/shared/ds/OrderItem.ds.xml
+END
+supplyItemAbbreviatedData.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/itenant/!svn/ver/1/sc/examples/shared/ds/supplyItemAbbreviatedData.ds.xml
+END
+itemCategoryListingsDS.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/itenant/!svn/ver/1/sc/examples/shared/ds/itemCategoryListingsDS.ds.xml
+END
+employees.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/examples/shared/ds/employees.ds.xml
+END
+SimpleHeader.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/examples/shared/ds/SimpleHeader.ds.xml
+END
+mediaLibrary.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/examples/shared/ds/mediaLibrary.ds.xml
+END
+supplyItemCustom.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/itenant/!svn/ver/1/sc/examples/shared/ds/supplyItemCustom.ds.xml
+END
+countryOneToManyHB.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/itenant/!svn/ver/1/sc/examples/shared/ds/countryOneToManyHB.ds.xml
+END
+teams.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/examples/shared/ds/teams.ds.xml
+END
+cityIncludeFromHB.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/itenant/!svn/ver/1/sc/examples/shared/ds/cityIncludeFromHB.ds.xml
+END

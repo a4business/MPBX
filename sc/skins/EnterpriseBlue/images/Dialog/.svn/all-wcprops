@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/skins/EnterpriseBlue/images/Dialog
+END
+say.png
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/itenant/!svn/ver/1/sc/skins/EnterpriseBlue/images/Dialog/say.png
+END
+confirm.png
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/itenant/!svn/ver/1/sc/skins/EnterpriseBlue/images/Dialog/confirm.png
+END
+ask.png
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/itenant/!svn/ver/1/sc/skins/EnterpriseBlue/images/Dialog/ask.png
+END
+stop.png
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/itenant/!svn/ver/1/sc/skins/EnterpriseBlue/images/Dialog/stop.png
+END
+warn.png
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/itenant/!svn/ver/1/sc/skins/EnterpriseBlue/images/Dialog/warn.png
+END
+notify.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/itenant/!svn/ver/1/sc/skins/EnterpriseBlue/images/Dialog/notify.png
+END
+error.png
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/itenant/!svn/ver/1/sc/skins/EnterpriseBlue/images/Dialog/error.png
+END

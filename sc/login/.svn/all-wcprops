@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 28
+/itenant/!svn/ver/1/sc/login
+END
+reloginFlow.js
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/itenant/!svn/ver/1/sc/login/reloginFlow.js
+END
+loginSuccessMarker.html
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/login/loginSuccessMarker.html
+END
+maxLoginAttemptsExceededMarker.html
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/itenant/!svn/ver/1/sc/login/maxLoginAttemptsExceededMarker.html
+END
+loginRequiredMarker.html
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/login/loginRequiredMarker.html
+END

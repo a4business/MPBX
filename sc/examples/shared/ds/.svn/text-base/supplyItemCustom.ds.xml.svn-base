@@ -1,0 +1,45 @@
+<DataSource
+    ID="supplyItemCustom"
+    serverType="sql"
+    tableName="supplyItemCustom"
+    useAnsiJoins="true"
+>
+    <fields>
+        <field name="itemID"      type="sequence" hidden="true"       primaryKey="true"/>
+        <field name="itemName"    type="text"     title="Item"        length="128"       required="true"/>
+        <field name="SKU"         type="text"     title="SKU"         length="10"        required="true">
+            <validators>
+        	    <validator type="serverCustom">
+        	        <errorMessage>Custom Velocity validation: minimum length is 6</errorMessage>
+        	        <!-- This is just demonstrating a serverCustom validator implemented in 
+        	    	     Velocity.  It is not a good example of a real custom validator, because
+        	    	     there is a built-in validator that does the same job -->
+                    <serverCondition><![CDATA[
+                        $value.length() >= 6
+                    ]]>
+                    </serverCondition>
+                </validator>
+        	</validators>
+        </field>
+        <field name="description" type="text"     title="Description" length="2000"/>
+        <field name="category"    type="text"     title="Category"    length="128"       required="true"/>
+        <!-- This has to be an outer join because the field is not required, and there is no row in 
+             the target dataSource (supplyItemUnits) with a key of NULL -->
+        <field name="units"       type="integer"  title="Units"       foreignKey="supplyItemUnits.id"    
+               displayField="unitName"            joinType="outer">
+            <validators>
+                <validator type="hasRelatedRecord" errorMessage="Unknown unit of measure"/>
+            </validators>
+        </field>
+        <field name="unitName"    type="text"     title="Units"       length="50"        
+               includeFrom="supplyItemUnits.description"              hidden="true"/>
+        <field name="unitCost"    type="float"    title="Unit Cost"   required="true">
+            <validators>
+                <validator type="floatRange" min="0" errorMessage="Please enter a valid (positive) cost"/>
+                <validator type="floatPrecision" precision="2" errorMessage="The maximum allowed precision is 2"/>
+            </validators>
+        </field>
+        <field name="inStock"   type="boolean"  title="In Stock"/>
+        <field name="nextShipment"  type="date" title="Next Shipment"/>
+    </fields>
+</DataSource>

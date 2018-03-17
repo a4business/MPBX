@@ -1,0 +1,13 @@
+<DataSource
+    ID="cityIncludeFromHB"
+    serverType="hibernate"
+    schemaBean="com.isomorphic.examples.server.hibernate.relations.CityManyToOneSimple"
+    autoDeriveSchema="true"
+>
+    <fields>
+        <field name="country" foreignKey="countryIncludeFromHB.countryId" displayField="countryName" title="Country" editorType="ComboBoxItem" />
+        <field includeFrom="countryIncludeFromHB.countryName" hidden="true" />
+        <field includeFrom="continentIncludeFromHB.continentName"   />
+    </fields>
+</DataSource>
+

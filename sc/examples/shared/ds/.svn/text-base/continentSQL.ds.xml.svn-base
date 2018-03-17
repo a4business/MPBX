@@ -1,0 +1,12 @@
+<DataSource
+    ID="continentSQL"
+    serverType="sql"
+    tableName="continent"
+    testFileName="/examples/shared/ds/test_data/continentSQL.data.xml"
+>
+    <fields>
+        <field name="continentId"        type="sequence" hidden="true"   primaryKey="true" />
+        <field name="continentName"      type="text"     title="Continent"    required="true"   />
+    </fields>
+</DataSource>
+

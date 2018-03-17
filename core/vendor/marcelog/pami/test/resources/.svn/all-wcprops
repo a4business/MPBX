@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/test/resources
+END
+bootstrap.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/test/resources/bootstrap.php
+END
+php.ini
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/test/resources/php.ini
+END
+phpunit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/itenant/!svn/ver/10/core/vendor/marcelog/pami/test/resources/phpunit.xml
+END

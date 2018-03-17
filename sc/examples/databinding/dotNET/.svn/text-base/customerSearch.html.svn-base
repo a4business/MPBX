@@ -1,0 +1,74 @@
+<HTML><HEAD><TITLE>Integrating with a .NET web service using a WSDL schema</TITLE>
+    <SCRIPT>var isomorphicDir="/isomorphic/";</SCRIPT>
+    <SCRIPT SRC=/isomorphic/system/modules/ISC_Core.js></SCRIPT>
+    <SCRIPT SRC=/isomorphic/system/modules/ISC_Foundation.js></SCRIPT>
+    <SCRIPT SRC=/isomorphic/system/modules/ISC_Containers.js></SCRIPT>
+    <SCRIPT SRC=/isomorphic/system/modules/ISC_Grids.js></SCRIPT>
+    <SCRIPT SRC=/isomorphic/system/modules/ISC_Forms.js></SCRIPT>
+    <SCRIPT SRC=/isomorphic/system/modules/ISC_DataBinding.js></SCRIPT>
+	<SCRIPT SRC=/isomorphic/skins/SmartClient/load_skin.js></SCRIPT>
+</HEAD>
+<BODY>
+
+<SCRIPT>
+// This is an example of a SmartClient application integrating with an ASP.NET XML web service
+// that automatically imports a WSDL schema.  To run it, you will need to follow this tutorial:
+//
+// http://www.west-wind.com/presentations/dotnetwebservices/DotNetWebServices.asp
+
+isc.Label.create({
+    left:10, top:10, width:150, height:20,
+    contents:"Search for Customer:"
+});
+
+isc.DynamicForm.create({
+    ID:"inputForm",
+    left:10, top:40,
+    items:[
+        {name:"lcName", showTitle:false, required:true}
+    ],
+    doSearch : function() {
+        if (!this.validate()) return;
+
+        if (!this.service) {
+            isc.say("Please try again in a moment  - still loading web service descriptor");
+            return;
+        }
+        
+        this.service.callOperation("GetCustomerByName", 
+                                   this.getValues(),
+                                   "Customer",
+                                   "results.showResults(data)");
+    }
+});
+
+isc.IButton.create({
+    left:250, top:40,
+    title:"Get Customer",
+    click:"inputForm.doSearch()"
+});
+
+isc.ListGrid.create({
+    ID:"results",
+    left:10, top:95, width:400,
+    showResults : function(data) {
+        if (!data || data.length == 0) {
+            this.setData([]);
+            return;
+        }
+        this.setData(data);
+    }
+});
+
+function loadWSDLCallback(service) {
+    inputForm.service = service;
+    results.setDataSource(
+        service.getFetchDS("GetCustomerByName", "Customer"));
+}
+
+isc.XMLTools.loadWSDL("http://localhost/CustomerSearch/Service.asmx?WSDL",
+                      "loadWSDLCallback(service)");
+</SCRIPT>
+
+</BODY>
+</HTML>

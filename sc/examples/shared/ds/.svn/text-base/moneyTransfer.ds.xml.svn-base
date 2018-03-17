@@ -1,0 +1,15 @@
+<DataSource
+    ID="moneyTransfer"
+    serverType="sql"
+    tableName="moneyTransfer"
+    >
+    <fields>
+        <field name="id" type="integer" primaryKey="true" />
+        <field name="name" type="text" />
+        <field name="sourceCurrencyId" foreignKey="currency.id" relatedTableAlias="source"/>
+        <field name="sourceCurrencySymbol" includeFrom="currency.symbol" includeVia="sourceCurrencyId" />
+        <field name="paymentAmount" type="float" />
+        <field name="paymentCurrencyId" foreignKey="currency.id" relatedTableAlias="payment" />
+        <field name="paymentCurrencySymbol" includeFrom="currency.symbol" includeVia="paymentCurrencyId" />
+    </fields>
+</DataSource>

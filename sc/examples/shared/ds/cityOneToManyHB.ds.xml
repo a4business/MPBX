@@ -1,0 +1,11 @@
+<DataSource
+    ID="cityOneToManyHB"
+    serverType="hibernate"
+    beanClassName="com.isomorphic.examples.server.hibernate.relations.CityOneToMany"
+    schemaBean="com.isomorphic.examples.server.hibernate.relations.CityOneToMany"
+>
+    <fields>
+        <field name="cityId" hidden="true" primaryKey="true" />
+    </fields>
+</DataSource>
+

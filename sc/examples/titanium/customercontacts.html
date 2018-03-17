@@ -1,0 +1,122 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width;initial-scale=1.0;maximum-scale=1.0;user-scalable=0;"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <script>var isomorphicDir="./";</script>
+    <script SRC=ISC_Core.js></script>
+    <script SRC=ISC_Foundation.js></script>
+    <script SRC=ISC_Containers.js></script>
+    <script SRC=ISC_Forms.js></script>
+    <script SRC=ISC_Grids.js></script>
+    <script SRC=ISC_DataBinding.js></script>
+    <script SRC=skins/Mobile/load_skin.js></script>
+    <style type="text/css">
+        .show_contact {
+            font: normal 28px/28px Verdana;
+            color: #808080;
+            display: block;
+            float: right;
+            height: 24px,
+            margin-top: -2px;
+            margin-bottom: -20px;
+            margin-left: -10px;
+        }
+        .add_contact {
+            font: normal 18px/11px Verdana;
+            font-weight: bold;
+            background-color: #6292e6;
+            background-image:
+                -webkit-gradient(linear, left top, left bottom,
+                    color-stop(0, rgba(0,0,0,.05)),
+                    color-stop(.5, rgba(0,0,0,.05)),
+                    color-stop(.5, rgba(0,0,0,.2)),
+                    color-stop(1, rgba(0,0,0,.2)));
+            color: #fff;
+            display: block;
+            -webkit-border-radius: 12px;
+            border-radius: 12px;
+            border: solid 3px #fff;
+            -webkit-box-shadow: 0 1px 3px #666;
+            float: right;
+            -webkit-box-sizing: border-box;
+        }
+    </style>
+  </HEAD>
+<body>
+<script>
+Titanium.App.addEventListener('customer', function(ev) {
+    try {
+        var testData = JSON.parse(ev.contacts);
+        isc.DataSource.create({
+            ID:"customerContactsDS",
+            clientOnly:true,
+            testData:testData,
+            fields:[
+                {name:"fullName", type:"text"},
+                {name:"phone", type:"text"},
+                {name:"address", type:"text"},
+                {name:"contact", type:"boolean"}
+            ]
+        });
+        isc.ListGrid.create({
+            ID: "customerContacts",
+            width:isc.Page.getScreenWidth(),
+            height:isc.Page.getScreenHeight()-110,
+            alternateRecordStyles:true,
+            autoFetchData:true,
+            dataSource:customerContactsDS,
+            canEdit: true,
+            editEvent: 'click',
+            modalEditing: true,
+            leaveScrollbarGap:false,
+            fields:[
+                {name:"fullName", title:"Name", canEdit: false,width:'25%'},
+                {name:"phone", title:"Phone #", canEdit: false,width:'25%'},
+                {name:"address", title:"Address", canEdit: false, width:'40%'},
+                {name:"contact", showIf: "false"},
+                {name:"contact_op", title:" ", canEdit: false, width: '26px'}
+            ],
+            getCellStyle: function (record, rowNum, colNum) {
+                if (this.getFieldName(colNum) === "contact_op") {
+                    if(record.contact === true) {
+                        record.contact_op = '>';
+                        return "show_contact";
+                    } else {
+                        record.contact_op = '+';
+                        return "add_contact";
+                    }
+                } else {
+                    return this.baseStyle;
+                }
+            },
+            cellClick: function (record, rowNum, colNum) {
+                if(colNum === 2) {
+                    Titanium.App.fireEvent('address_selected',{address:record[this.getFieldName(colNum)]});
+                }
+                if(colNum === 0 || colNum === 3) {
+                    if(!record.contact) {
+                        Titanium.App.fireEvent('contact_selected',{
+                            fullName:record.fullName,
+                            phone:record.phone,
+                            address:record.address,
+                            add:true
+                        });
+                    } else {
+                        Titanium.App.fireEvent('contact_selected',{
+                            fullName:record.fullName,
+                            phone:record.phone,
+                            address:record.address,
+                            show:true
+                        });
+                    }
+                }
+            }
+        });
+    } catch(e) {
+        alert(e.message);
+    }
+});
+
+</script>
+</body>
+</html>

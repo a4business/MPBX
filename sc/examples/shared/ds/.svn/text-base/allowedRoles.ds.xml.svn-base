@@ -1,0 +1,11 @@
+<DataSource ID="allowedRoles" tableName="allowedRoles" serverType="sql">
+<fields>
+    <field name="role" type="text" required="true" length="16" title="role" primaryKey="true"/>
+</fields>
+<operationBindings>
+    <!-- anybody can read; only admin can modify -->
+    <operationBinding operationType="update" requiresRole="admin"/>
+    <operationBinding operationType="remove" requiresRole="admin"/>
+    <operationBinding operationType="add" requiresRole="admin"/>
+</operationBindings>
+</DataSource>

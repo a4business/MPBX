@@ -1,0 +1,2474 @@
+/*============================================================
+	"SilverWave" theme CSS styles
+	Copyright 2001 and beyond, Isomorphic Software
+
+	:: Contents ::
+	
+	1) General
+			default text
+            default border
+			drop indicator
+            hover canvas
+	2) Buttons
+			Button
+			ImgButton
+			StretchImgButton
+	3) Menu
+			MenuButton
+	4) Window
+			Dialog
+    5) Layout
+			drop line
+			drag placeholder
+			splitbar (resizebar)
+	6) TabSet
+			tab titles
+	7) SectionStack
+			image SectionHeaders
+			CSS SectionHeaders
+	8) Forms
+			general
+			headerItem
+			text items
+			selectItem
+			checkbox & radioButton
+			ColorChooser
+			DateChooser
+	9) Slider & Rangebar		
+	10) DetailViewer
+	11) ListGrid
+			parts
+			headers
+			cells
+    12) ToolStrip
+    12a) ToolStripGroup and IconButton
+    13) Tools
+    14) TileGrid
+	------------
+	internal/unused styles
+============================================================*/
+
+/*
+
+*/
+
+
+
+/*============================================================
+	1) General
+============================================================*/
+
+ol,
+ul {
+    -webkit-text-size-adjust: 100%;
+}
+
+.pageBackground {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:#CCCCCC;
+    background:#B8CFDC url(./images/Backgrounds/bkgd_blue_arc.jpg) no-repeat scroll;
+}
+
+/* default text */
+.normal,
+.normalFocused {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:#333333;
+}
+
+.defaultBorder {
+    border:1px solid #6AA0BB;
+}
+
+/* drag outline */
+.dragOutline {
+    border:1px dashed #009999;
+}
+
+/* drop indicator */
+.dropBorder {
+    background-color:#808080;
+}
+
+
+/* hover canvas  */
+.canvasHover,
+.gridHover,
+.formHover {
+    font-family:Arial,sans-serif; font-size:11px; color:black;
+    background-color:#FFFFD0; border:1px solid #808080; padding:5px;
+}
+
+/* group label */
+.groupLabel {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:#333333;
+    padding-left:5px; padding-right:5px;
+}
+
+.richTextEditor p {
+   margin-top:0px; margin-bottom:0px;
+}
+
+/*============================================================
+    2) Button
+		button.baseStyle
+		buttonStrip.baseStyle
+		buttonTable.baseButtonStyle
+		listBar.labelStyle
+		listGrid.headerBaseStyle (not in this skin)
+============================================================*/
+.button,
+.buttonOver,
+.buttonFocused,
+.buttonFocusedOver,
+.buttonDown,
+.buttonFocusedDown,
+.buttonSelected,
+.buttonSelectedFocused,
+.buttonSelectedDown,
+.buttonSelectedFocusedDown,
+.buttonSelectedOver,
+.buttonSelectedFocusedOver,
+.buttonSelectedDisabled {
+    padding:2px;
+    font-weight:bold;
+    font-family:Arial,Bitstream Vera Sans,sans-serif; font-size:11px;
+    background:#98BDCD url(./images/cssButton/button_stretch.png) repeat-x;
+    border:1px solid #6DA2BD;
+}
+.buttonDisabled {
+    padding:2px;
+    font-family:Arial,sans-serif; font-size:11px; 
+    border:1px solid #78A9C2;
+    background-color:#97BDCF;
+    color:#808080;
+}
+
+.buttonFocused,
+.buttonFocusedOver {
+    background:#5E8EA7 url(./images/cssButton/button_Focused_stretch.png) repeat-x;
+}
+
+.buttonOver,
+.buttonFocusedOver,
+.buttonSelectedFocused,
+.buttonSelectedFocusedOver {
+    border:1px solid #E4D63A;
+}
+
+.buttonDown,
+.buttonFocusedDown {
+    background:#488AAD url(./images/cssButton/button_Focused_Down_stretch.png) repeat-x;
+}
+
+.buttonSelected,
+.buttonSelectedDown,
+.buttonSelectedFocused,
+.buttonSelectedOver,
+.buttonSelectedFocusedOver,
+.buttonSelectedFocusedDown {
+    background:#FFFFFF url(./images/cssButton/button_Selected_stretch.png) repeat-x;
+}
+
+.buttonSelectedDisabled {
+    padding:2px;
+    font-family:Arial,sans-serif; font-size:11px; 
+    border:1px solid #808080;
+    background-color:#FFFFFF;
+    color:#808080;
+}
+/* ImgButton */
+.imgButton,
+.imgButtonOver,
+.imgButtonSelected,
+.imgButtonSelectedDisabled,
+.imgButtonSelectedOver,
+.imgButtonDown,
+.imgButtonSelectedDown,
+.imgButtonDisabled {
+    font-family:Arial,sans-serif; font-size:10px;
+}
+.imgButtonDisabled {
+    color:#666666;
+}
+
+/* StretchImgButton */
+.stretchImgButton,
+.stretchImgButtonSelected,
+.stretchImgButtonSelectedOver,
+.stretchImgButtonOver,
+.stretchImgButtonDown,
+.stretchImgButtonSelectedDown,
+.stretchImgButtonSelectedDisabled,
+.stretchImgButtonDisabled {
+    font-family:Arial,sans-serif; font-size:10px;
+}
+.stretchImgButtonOver {
+    font-weight:bold;
+}
+.stretchImgButtonSelectedDisabled,
+.stretchImgButtonDisabled {
+    color:#666666;
+}
+
+/* Button Title */
+.buttonTitle,
+.buttonTitleOver,
+.buttonTitleDown,
+.buttonTitleSelected,
+.buttonTitleFocused,
+.buttonTitleSelectedFocused,
+.buttonTitleSelectedOver,
+.buttonTitleFocusedOver,
+.buttonTitleSelectedFocusedOver,
+.buttonTitleSelectedDown,
+.buttonTitleFocusedDown,
+.buttonTitleSelectedFocusedDown,
+.buttonTitleDisabled,
+.buttonTitleSelectedDisabled {
+    font-family:Arial,Bitstream Vera Sans,sans-serif; font-size:11px; color: #414141;
+    font-weight:bold;
+}
+.buttonTitleDown,
+.buttonTitleSelectedDown,
+.buttonTitleFocusedDown,
+.buttonTitleSelectedFocusedDown {
+    color: #000000;
+}
+
+.buttonTitleOver,
+.buttonTitleFocusedOver,
+.buttonTitleSelected,
+.buttonTitleSelectedOver,
+.buttonTitleSelectedFocusedOver {
+    color: #000000;
+}
+
+.buttonTitleDisabled,
+.buttonTitleSelectedDisabled {
+    color: #666666;
+}
+
+
+/*============================================================
+    3) Menus 
+============================================================ 
+  */
+
+.menuBorder {
+    border: 1px solid #6AA0BB;
+}
+.menuMain {
+    background:#FFFFFF url(./images/shared/background.gif) repeat-x bottom left scroll;
+}
+.menu,
+.menuSelected,
+.menuOver,
+.menuSelectedOver,
+.menuDisabled,
+.treeMenuSelected,
+.treeMenuSelectedOver {
+    font-family:Arial,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:#333333;
+    padding-top:2px; padding-bottom:2px;
+}
+.menu,
+.menuSelected {
+}
+.menuOver,
+.menuSelectedOver {
+    background-color:rgb(65,160,210);
+    color:#FFFFFF;
+}
+
+.menuIconField,
+.menuIconFieldDark,
+.menuIconFieldOver,
+.menuIconFieldOverDark,
+.menuIconFieldSelected,
+.menuIconFieldSelectedDark,
+.menuIconFieldSelectedOver,
+.menuIconFieldSelectedOverDark,
+.menuIconFieldDisabled,
+.menuIconFieldDisabledDark {
+    color:#D9D9D9;
+    background-color:#DDDDDD;
+}
+.treeMenuSelected {
+}
+.treeMenuSelectedOver {
+}
+.menuDisabled {
+    color:#777777;
+}
+
+/* menu header buttons */
+.menuButton,
+.menuButtonOver,
+.menuButtonDown,
+.menuButtonDisabled,
+.menuButtonSelected,
+.menuButtonSelectedDown,
+.menuButtonSelectedOver,
+.menuButtonSelectedDisabled {
+    font-family:Arial,sans-serif; font-size:11px; 
+    font-weight:bold;
+    color: #333333;
+    background:#DBE7ED url(./images/ListGrid/header_Selected.png) repeat-x scroll;
+    padding-left:4px; padding-right:4px;
+    border:1px solid #6AA0BB;
+}
+.menuButtonOver {
+    border:1px solid rgb(40,85,180);
+}
+.menuButtonDown,
+.menuButtonSelected,
+.menuButtonSelectedDown,
+.menuButtonSelectedOver {
+    background-color:#A9B6B9;
+    border:1px solid rgb(40,85,180);
+}
+.menuButtonDisabled,
+.menuButtonSelectedDisabled {
+    color: #909EA0;
+    border:1px solid #000000;
+}
+
+
+
+/*============================================================
+    4) Window
+		window.styleName - windowBackground
+		window.bodyStyle - windowBody
+		window.headerStyle - windowHeader
+		window.hiliteHeaderStyle - windowHeaderHilite
+		window.headerLabelDefaults.styleName - windowHeaderText
+		window.statusBarDefaults.styleName - windowStatusBar
+
+	Dialog
+		dialog.styleName - dialogBackground
+		dialog.bodyStyle - dialogBody
+		dialog.headerStyle - dialogHeader
+		dialog.hiliteHeaderStyle - dialogHeaderHilite
+		dialog.headerLabelDefaults.styleName - dialogHeaderText
+============================================================*/
+
+.windowBackground,
+.dialogBackground {}
+
+.windowBody,
+.dialogBody {
+    background:#FFFFFF url(./images/shared/background.gif) repeat-x bottom left scroll;
+}
+.promptBody {
+}
+
+.windowHeader,
+.dialogHeader {
+}
+
+.windowHeaderHilite,
+.dialogHeaderHilite {
+}
+
+.windowHeaderText,
+.dialogHeaderText {
+    font-family:Arial,sans-serif; font-size:11px; color:#333333;
+    font-weight:bold;
+    padding-left:2px; padding-right:2px;
+}
+.windowStatusBar {
+    font-family:Arial,sans-serif; font-size:11px; color:black;
+    border-top: 1px solid #999999; border-left: 1px solid #999999;
+    border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+}
+.dialogHeaderText {
+    color:#EEEEEE;
+}
+.modalMask {
+    background-color:black;
+}
+
+/*============================================================
+    5) Layout
+============================================================*/
+
+.layoutDropLine {
+    background-color:#3366FF;
+
+}
+.layoutPlaceHolder {
+    border:1px solid black;
+}
+.splitbar {
+	
+}
+.splitbarDown {
+    border:1px solid rgb(50,135,185);
+}
+
+.vSnapBar,
+.vSnapBarOver {
+}
+.hSnapBar,
+.hSnapBarOver {
+}
+
+/*============================================================
+    6) TabSet and tab titles
+============================================================*/
+
+.tabSetContainer {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:#D9D9D9;
+    border: 1px solid #6AA0BB;
+    background:#FFFFFF url(./images/shared/background.gif) repeat-x scroll;
+    background-position:bottom left;
+}
+
+.tabBar {
+}
+
+.tabBaseline {
+    border: 1px solid #6AA0BB;
+}
+
+.tab,
+.tabOver,
+.tabSelected,
+.tabSelectedOver,
+.tabDown,
+.tabSelectedDown,
+.tabSelectedDisabled,
+.tabDisabled {
+    font-family:Arial,sans-serif; font-size:11px;
+}
+
+.tabTitle,
+.tabTitleDown,
+.tabTitleOver,
+.tabTitleDisabled,
+.tabTitleSelected,
+.tabTitleSelectedDown,
+.tabTitleSelectedOver,
+.tabTitleSelectedDisabled,
+.vtabTitle,
+.vtabTitleSelected,
+.vtabTitleOver,
+.vtabTitleDown,
+.vtabTitleSelectedOver,
+.vtabTitleSelectedDown,
+.vtabTitleDisabled,
+.vtabTitleSelectedDisabled {
+    color: #333333;
+    font-family:Arial,sans-serif; font-size:11px; 
+}
+
+.tabTitleSelected, 
+.tabTitleSelectedOver,
+.tabTitleSelectedDown,
+.vtabTitleSelected,
+.vtabTitleSelectedOver,
+.vtabTitleSelectedDown {
+    color: #333333;
+    font-weight:bold;
+}
+.tabTitleOver,
+.tabTitleDown,
+.tabTitleSelectedOver,
+.tabTitleSelectedDown,
+.vtabTitleOver,
+.vtabTitleDown,
+.vtabTitleSelectedOver,
+.vtabTitleSelectedDown {
+    color: #333333;
+}
+
+.tabTitleDisabled,
+.tabTitleSelectedDisabled,
+.vtabTitleDisabled,
+.vtabTitleSelectedDisabled {
+    color: #666666;
+}
+
+
+
+/*============================================================
+    7) SectionStack
+============================================================*/
+
+.sectionStack {
+    background:#FFFFFF url(./images/shared/background.gif) repeat-x scroll;
+    background-position:bottom left;
+}
+
+/* SectionStack headers - image based */
+.imgSectionHeaderclosed,
+.imgSectionHeaderopened,
+.imgSectionHeaderDisabledclosed,
+.imgSectionHeaderDisabledopened {
+}
+.imgSectionHeaderTitleclosed,
+.imgSectionHeaderTitleopened,
+.imgSectionHeaderTitleOverclosed,
+.imgSectionHeaderTitleOveropened {
+    font-family:Arial,sans-serif; font-size:11px; font-weight:bold;
+    color:#414141;
+    border-left:5px;
+}
+.imgSectionHeaderTitleDisabledopened,
+.imgSectionHeaderTitleDisabledclosed {
+font-family:Arial,sans-serif; font-size:11px; font-weight:bold;
+color:grey;
+border-left:5px;
+}
+
+/* 
+
+*/
+.sectionHeaderTitleopened, 
+.sectionHeaderTitleclosed {
+    font-family:Arial,sans-serif; font-size:11px; color:white;
+}
+.sectionHeaderTitleDisabledopened, 
+.sectionHeaderTitleDisabledclosed {
+    font-family:Arial,sans-serif; font-size:11px; color:#808080;
+}
+/* SectionStack headers - css based */
+.sectionHeaderopened, 
+.sectionHeaderclosed {
+    font-family:Arial,sans-serif; font-size:11px; color:#414141;
+    padding:3px;
+}
+
+.sectionHeaderopened {
+    background:#404040 url(./images/SectionHeader/header_opened_stretch.png) repeat-x scroll;
+}
+.sectionHeaderclosed {
+    background:#404040 url(./images/SectionHeader/header_closed_stretch.png) repeat-x scroll;
+}
+
+
+.cellopened {
+    background-color:red;
+}
+.cellclosed {
+    background-color:pink;
+}
+
+/*============================================================
+    8) Forms
+============================================================*/
+
+/* general form styles */
+.formRow {}
+.formCell,
+.formCellFocused,
+.formCellDisabled {
+    font-family:Arial,sans-serif; font-size:11px;
+}
+.formTitle,
+.formTitleFocused,
+.formTitleDisabled,
+.formCellError,
+.formTitleError,
+.formHint,
+.formHintDisabled,
+.headerItem,
+.headerItemDisabled,
+.headerItemError,
+.nativeSelectItem,
+.nativeSelectItemDisabled,
+.nativeSelectItemError,
+.staticTextItem,
+.staticTextItemDisabled,
+.staticTextItemError,
+.textItem,
+.textItemFocused,
+.textItemDisabled,
+.textItemDisabledHint,
+.textItemError,
+.textItemHint,
+.uploadItem,
+.uploadItemFocused,
+.uploadItemDisabled,
+.uploadItemDisabledHint,
+.uploadItemError,
+.uploadItemHint,
+.selectItemControl,
+.selectItemControlError,
+.selectItemControlFocused,
+.selectItemText,
+.selectItemTextError,
+.selectItemTextDisabled,
+.selectItemTextFocused,
+.selectItemTextHint,
+.selectItemTextDisabledHint,
+.comboBoxItemPendingText,
+.selectItemTextHint,
+.pickListCell,
+.pickListCellSelected,
+.pickListCellDisabled,
+.labelAnchor,
+.labelAnchorDisabled,
+.labelAnchorError,
+.labelAnchorFocused {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:#333333;
+}
+.formCellError,
+.formTitleError { 
+    font-weight:bold; color:#204268; 
+    background-color:#CFD9F2
+}
+.formHint,
+.formHintDisabled {
+    color:#204268; padding:3px;
+}
+
+/* headerItem */
+.headerItem,
+.headerItemDisabled,
+.headerItemError {
+    font-size:14px; font-weight:bold;
+    color:#333333;
+}	
+
+/* text-based items common props */
+.textItem,
+.textItemFocused,
+.textItemDisabled,
+.textItemDisabledHint,
+.textItemError,
+.textItemHint,
+.selectItemText,
+.selectItemTextError,
+.selectItemTextFocused,
+.selectItemTextDisabled,
+.selectItemTextHint,
+.selectItemTextDisabledHint,
+.comboBoxItemPendingText {
+    padding:2px; 
+    border:1px solid #6AA0BB;
+    background:rgb(230,241,247) url(./images/controls/text_input.gif) repeat-x scroll;
+    color:#333333;
+}
+.uploadItem,
+.uploadItemFocused,
+.uploadItemDisabled,
+.uploadItemDisabledHint,
+.uploadItemError,
+.uploadItemHint {
+    margin:0;
+    border:0;
+    padding:0;
+    background:rgb(230,241,247);
+}
+.selectItemText,
+.selectItemTextError,
+.selectItemTextFocused,
+.selectItemTextDisabled,
+.selectItemTextHint,
+.selectItemTextDisabledHint {
+    border-right: 0;
+}
+
+.textItemDisabled,
+.textItemDisabledHint,
+.selectItemTextDisabled,
+.selectItemTextDisabledHint {
+    color:#666666;
+    background-color:#FFFFFF;
+    border:1px solid #6AA0BB;
+}
+.uploadItemDisabled,
+.uploadItemDisabledHint,
+.nativeSelectItemDisabled,
+.staticTextItemDisabled {
+    color:#666666;
+}
+
+.textItemHint,
+.uploadItemHint,
+.selectItemTextHint {
+    color:darkGray;
+}
+
+.comboBoxItemPendingText {
+    color:#0066CC;
+}
+
+/* selectItem */
+
+.selectItemText,
+.selectItemTextError,
+.selectItemTextFocused,
+.selectItemTextDisabled,
+.selectItemTextHint,
+.selectItemTextDisabledHint {
+    border-right:0px none;
+}
+
+.textItemFocused,
+.selectItemTextFocused {
+    background-color:rgb(170,195,210);
+    color:#333333;
+    -moz-outline-offset:-1;
+}
+
+.selectItemPickerIcon,
+.selectItemPickerIconFocused,
+.selectItemPickerIconDisabled,
+.selectItemPickerIconError {
+    padding:0px;
+}
+
+.pickListMenuBody {
+    border:1px solid #6AA0BB; 
+    background:#FFFFFF url(./images/shared/background.gif) repeat-x bottom left scroll;
+}
+
+.pickListCell {
+	color:#333333;
+}
+.pickListCellSelected {
+    background-color:rgb(159,200,232);
+    color:rgb(52,47,44);
+}
+.pickListCellDisabled {
+	color:#595959;
+	background-color:#C0C0C0;
+}
+
+.pickListCellOver,
+.pickListCellSelectedOver,
+.pickListCellOverDark,
+.pickListCellSelectedOverDark,
+.tallPickListCellOver,
+.tallPickListCellSelectedOver,
+.tallPickListCellOverDark,
+.tallPickListCellSelectedOverDark {
+  background-color: #41A0D2;
+  color: black;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 11px;
+}
+
+/* checkbox and radioButton */
+.labelAnchor,
+.labelAnchorDisabled,
+.labelAnchorError,
+.labelAnchorFocused  { 
+    color:#333333; text-decoration:none;
+}
+
+/* ColorChooser */
+.colorChooserCell,
+.colorChooserCellOver {
+    background-color:#EFEFEF;
+    border-left:1px solid #EFEFEF; border-top:1px solid #EFEFEF;
+    border-right:1px solid #EFEFEF; border-bottom:1px solid #EFEFEF;
+}
+.colorChooserCellOver {
+    border-left:1px solid black; border-top:1px solid black;
+    border-right:1px solid black; border-bottom:1px solid black;
+}
+
+/* FilterBuilder */
+.bracketBorders {
+    border-left: 1px solid rgb(50,135,185);
+    border-top: 1px solid rgb(50,135,185);
+    border-bottom: 1px solid rgb(50,135,185);    
+}
+/*============================================================
+     DateChooser
+============================================================*/
+
+/* Defaults for all days and controls */
+.dateChooserButton,
+.dateChooserButtonOver,
+.dateChooserButtonDown,
+.dateChooserButtonDisabled,
+.dateChooserButtonSelected,
+.dateChooserButtonSelectedDown,
+.dateChooserButtonSelectedOver,
+.dateChooserButtonSelectedDisabled,
+.dateChooserWeekendButton,
+.dateChooserWeekendButtonOver,
+.dateChooserWeekendButtonDown,
+.dateChooserWeekendButtonDisabled,
+.dateChooserWeekendButtonSelected,
+.dateChooserWeekendButtonSelectedDown,
+.dateChooserWeekendButtonSelectedOver,
+.dateChooserWeekendButtonSelectedDisabled,
+.dateChooserBottomButton,
+.dateChooserBottomButtonOver,
+.dateChooserBottomButtonDown,
+.dateChooserBottomButtonSelected,
+.dateChooserBottomButtonSelectedOver,
+.dateChooserBottomButtonSelectedDown,
+.dateChooserNavButton,
+.dateChooserNavButtonOver,
+.dateChooserNavButtonDown,
+.dateChooserNavButtonSelected,
+.dateChooserNavButtonSelectedOver,
+.dateChooserNavButtonSelectedDown,
+.dateChooserWeekday,
+.dateChooserWeekdayOver,
+.dateChooserWeekdayDown,
+.dateChooserWeekdaySelected,
+.dateChooserWeekdaySelectedOver,
+.dateChooserWeekdaySelectedDown,
+.dateChooserWeekdayDisabled,
+.dateChooserWeekend,
+.dateChooserWeekendOver,
+.dateChooserWeekendDown,
+.dateChooserWeekendSelected,
+.dateChooserWeekendSelectedOver,
+.dateChooserWeekendSelectedDown,
+.dateChooserWeekendDisabled,
+.dateChooserFiscalYearCell,
+.dateChooserFiscalYearCellOver,
+.dateChooserFiscalYearCellDown,
+.dateChooserFiscalYearCellDisabled,
+.dateChooserFiscalYearCellSelected,
+.dateChooserFiscalYearCellSelectedDown,
+.dateChooserFiscalYearCellSelectedOver,
+.dateChooserFiscalYearCellSelectedDisabled,
+.dateChooserWeekCell,
+.dateChooserWeekCellOver,
+.dateChooserWeekCellDown,
+.dateChooserWeekCellDisabled,
+.dateChooserWeekCellSelected,
+.dateChooserWeekCellSelectedDown,
+.dateChooserWeekCellSelectedOver,
+.dateChooserWeekCellSelectedDisabled,
+.dateChooserDisabledWeekday,
+.dateChooserDisabledWeekdayOver,
+.dateChooserDisabledWeekdayDown,
+.dateChooserDisabledWeekdaySelected,
+.dateChooserDisabledWeekdaySelectedDown,
+.dateChooserDisabledWeekdaySelectedOver,
+.dateChooserDisabledWeekend,
+.dateChooserDisabledWeekendOver,
+.dateChooserDisabledWeekendDown,
+.dateChooserDisabledWeekendSelected,
+.dateChooserDisabledWeekendSelectedDown,
+.dateChooserDisabledWeekendSelectedOver,
+.dateChooserSelectedWeek,
+.dateChooserSelectedWeekOver,
+.dateChooserSelectedWeekDown,
+.dateChooserSelectedWeekDisabled,
+.dateChooserSelectedWeekSelected,
+.dateChooserSelectedWeekSelectedDown,
+.dateChooserSelectedWeekSelectedOver,
+.dateChooserSelectedWeekSelectedDisabled {
+    font-family:Arial,sans-serif; font-size:11px; 
+    background-color:transparent;
+    border: 1px solid transparent;
+    color:#494949;
+}
+
+/* year/month buttons */
+.dateChooserNavButton,
+.dateChooserNavButtonOver,
+.dateChooserNavButtonDown,
+.dateChooserNavButtonSelected,
+.dateChooserNavButtonSelectedOver,
+.dateChooserNavButtonSelectedDown {
+    padding:0px;
+    border-top:0px none;
+    border-bottom:0px none;
+}
+
+/* for all buttons, plus weekday headers (dateChooserButton) */
+.dateChooserButton,
+.dateChooserButtonOver,
+.dateChooserButtonDown,
+.dateChooserButtonDisabled,
+.dateChooserButtonSelected,
+.dateChooserButtonSelectedOver,
+.dateChooserButtonSelectedDown,
+.dateChooserWeekendButton,
+.dateChooserWeekendButtonOver,
+.dateChooserWeekendButtonDown,
+.dateChooserWeekendButtonSelected,
+.dateChooserWeekendButtonSelectedOver,
+.dateChooserWeekendButtonSelectedDown,
+.dateChooserNavButton,
+.dateChooserNavButtonOver,
+.dateChooserNavButtonDown,
+.dateChooserNavButtonSelected,
+.dateChooserNavButtonSelectedOver,
+.dateChooserNavButtonSelectedDown,
+.dateChooserDisabledWeekday,
+.dateChooserDisabledWeekdayOver,
+.dateChooserDisabledWeekdayDown,
+.dateChooserDisabledWeekdaySelected,
+.dateChooserDisabledWeekdaySelectedDown,
+.dateChooserDisabledWeekdaySelectedOver,
+.dateChooserDisabledWeekend,
+.dateChooserDisabledWeekendOver,
+.dateChooserDisabledWeekendDown,
+.dateChooserDisabledWeekendSelected,
+.dateChooserDisabledWeekendSelectedDown,
+.dateChooserDisabledWeekendSelectedOver,
+.dateChooserSelectedWeek,
+.dateChooserSelectedWeekOver,
+.dateChooserSelectedWeekDown,
+.dateChooserSelectedWeekDisabled,
+.dateChooserSelectedWeekSelected,
+.dateChooserSelectedWeekSelectedDown,
+.dateChooserSelectedWeekSelectedOver,
+.dateChooserSelectedWeekSelectedDisabled,
+.dateChooserFiscalYearCell,
+.dateChooserFiscalYearCellOver,
+.dateChooserFiscalYearCellDown,
+.dateChooserFiscalYearCellDisabled,
+.dateChooserFiscalYearCellSelected,
+.dateChooserFiscalYearCellSelectedDown,
+.dateChooserFiscalYearCellSelectedOver,
+.dateChooserFiscalYearCellSelectedDisabled
+.dateChooserWeekCell,
+.dateChooserWeekCellOver,
+.dateChooserWeekCellDown,
+.dateChooserWeekCellDisabled,
+.dateChooserWeekCellSelected,
+.dateChooserWeekCellSelectedDown,
+.dateChooserWeekCellSelectedOver,
+.dateChooserWeekCellSelectedDisabled {
+    font-weight:bold;
+}
+
+.dateChooserButtonDisabled {
+    border: 1px solid #ffffff;
+    background-color: #ffffff;
+}
+
+.dateChooserButtonOver,
+.dateChooserButtonDown {
+    cursor:pointer;
+    color:#333333;
+}
+
+.dateChooserWeekendButton,
+.dateChooserWeekendButtonOver,
+.dateChooserWeekendButtonDown,
+.dateChooserWeekendButtonDisabled,
+.dateChooserWeekendButtonSelected,
+.dateChooserWeekendButtonSelectedOver,
+.dateChooserWeekendButtonSelectedDown,
+.dateChooserDisabledWeekend,
+.dateChooserDisabledWeekendOver,
+.dateChooserDisabledWeekendDown,
+.dateChooserDisabledWeekendSelected,
+.dateChooserDisabledWeekendSelectedDown,
+.dateChooserDisabledWeekendSelectedOver {
+    background-color:#B7D1DE;
+    /* border:1px solid #B7D1DE; */
+}
+
+
+.dateChooserNavButtonOver,
+.dateChooserNavButtonDown {
+    cursor:pointer;
+    color:#000000;
+}
+
+/* Today, Cancel buttons */
+.dateChooserBottomButton,
+.dateChooserBottomButtonOver,
+.dateChooserBottomButtonDown {
+    cursor:pointer;
+    font-weight:bold;
+    border-right:0px; border-bottom:0px;
+    border-left:0px;
+    border-top:0px;
+    padding-left:0px;padding-right:0px;
+}
+.dateChooserBottomButtonOver {
+    color:#000000;
+}
+
+.dateChooserDisabledWeekday,
+.dateChooserDisabledWeekdayOver,
+.dateChooserDisabledWeekdayDown,
+.dateChooserDisabledWeekdaySelected,
+.dateChooserDisabledWeekdaySelectedDown,
+.dateChooserDisabledWeekdaySelectedOver {
+  color: #eeeeee;
+}
+
+.dateChooserDisabledWeekend,
+.dateChooserDisabledWeekendOver,
+.dateChooserDisabledWeekendDown,
+.dateChooserDisabledWeekendSelected,
+.dateChooserDisabledWeekendSelectedDown,
+.dateChooserDisabledWeekendSelectedOver {
+  color: #eeeeee;
+  /* border: 2px solid #d6e8ff; */
+}
+
+/* weekday and weekend cells */
+
+.dateChooserWeekday,
+.dateChooserWeekdayOver,
+.dateChooserWeekdayDown,
+.dateChooserWeekdaySelected,
+.dateChooserWeekdaySelectedOver,
+.dateChooserWeekdaySelectedDown,
+.dateChooserWeekdayDisabled,
+.dateChooserWeekend,
+.dateChooserWeekendOver,
+.dateChooserWeekendDown,
+.dateChooserWeekendSelected,
+.dateChooserWeekendSelectedOver,
+.dateChooserWeekendSelectedDown,
+.dateChooserWeekendDisabled {
+    color:#4B8CAC;
+    border:2px solid white;
+    background-color:white;
+}
+
+.dateChooserWeekend,
+.dateChooserWeekendSelected,
+.dateChooserWeekendDisabled {
+    cursor:pointer;
+    border:2px solid #B7D1DE;
+    background-color:#B7D1DE;
+}
+.dateChooserWeekdayOver,
+.dateChooserWeekendOver,
+.dateChooserWeekdaySelectedOver,
+.dateChooserWeekendSelectedOver {
+    cursor:pointer;
+    border:2px solid #B7D1DE;
+    background-color:#B7D1DE;
+    color:#000000;
+}
+.dateChooserWeekendOver,
+.dateChooserWeekendSelectedOver {
+    border:2px solid #D1F1FF;
+    background-color:#D1F1FF;
+}
+
+/* selected/over date-cell styling */
+.dateChooserWeekdaySelected,
+.dateChooserWeekdaySelectedOver,
+.dateChooserWeekdayDown,
+.dateChooserWeekdaySelectedDown,
+.dateChooserWeekendSelected,
+.dateChooserWeekendSelectedOver,
+.dateChooserWeekendDown,
+.dateChooserWeekendSelectedDown ,
+/* disabled selected/over date-cells */
+.dateChooserDisabledWeekdayDown,
+.dateChooserDisabledWeekdaySelected,
+.dateChooserDisabledWeekdaySelectedDown,
+.dateChooserDisabledWeekdaySelectedOver,
+.dateChooserDisabledWeekendDown,
+.dateChooserDisabledWeekendSelected,
+.dateChooserDisabledWeekendSelectedOver,
+.dateChooserDisabledWeekendSelectedDown {
+    cursor:pointer;
+    border:2px solid #FBDD0D;
+    color:#000000;
+}
+
+/* year and month pop-up menus */
+.dateChooserYearMenu,
+.dateChooserMonthMenu,
+.dateChooserWeekMenu {
+    border: 2px solid #4C4C4C;
+    background-color:#FFFFFF;
+}
+
+.dateChooserDisabledWeekday {
+    color: #cccccc;
+    background-color: #FFFFFF;
+    border: 2px solid transparent;
+}
+
+.dateChooserDisabledWeekend {
+    color: #4B8CAC;
+    border:2px solid #B7D1DE;
+    background-color:#B7D1DE;
+}
+
+.dateChooserButton,
+.dateChooserButtonDisabled {
+    background-color: #ffffff;
+    border: none;
+    padding: 1px;
+}
+.dateChooserWeekendButton,
+.dateChooserWeekendButtonDisabled {
+    background-color: #B7D1DE;
+    border:2px solid #B7D1DE;
+}
+
+						
+/*============================================================
+	9) Slider & Rangebar
+============================================================*/
+
+/* slider and rangebar labels */
+.sliderTitle,
+.sliderRange,
+.sliderRangeDisabled,
+.sliderValue,
+.sliderValueDisabled,
+.rangebarTitle,
+.rangebarRange,
+.rangebarValue {
+    color:#333333;
+    font-family:Arial,sans-serif; font-size:10px;
+}
+.sliderTitle,
+.rangebarTitle {
+    color:#333333;
+    font-weight:bold;
+}
+.sliderRange,
+.rangebarRange {
+    color:#333333;
+}
+.sliderRangeDisabled,
+.sliderValueDisabled {
+    color:#666666;
+}
+
+
+
+/*============================================================
+	10) DetailViewer
+============================================================*/
+
+.detailBlock {
+    border-left:1px solid #6AA0BB;
+    border-top:1px solid #6AA0BB;
+}
+
+.detail,
+.detailLabel,
+.detailHeader {
+    font-family:Arial,sans-serif; font-size:11px; background-color:white;
+    color:#333333;
+    border-right:1px solid #6AA0BB;
+    border-bottom:1px solid #6AA0BB;
+}
+
+.detailLabel {
+    font-weight:bold;
+	background-color:#D7E6EC;
+    text-align:right;
+}
+
+.detailHeader {
+    font-size:14px; font-weight:bold;
+    background-color:#BBDAFA;
+}
+
+
+
+/*============================================================
+	11) ListGrid
+============================================================*/
+
+/*============================================================
+	ListGrid parts
+		styleName - listGrid
+		headerBarStyle - headerBar
+		bodyStyleName - gridBody
+============================================================*/
+
+.listGrid {
+    border: 1px solid #6AA0BB;
+}
+.headerBar {
+    background:rgb(230,241,247) url(./images/ListGrid/header_background.gif) repeat-x scroll;
+}
+.gridBody {
+    background:#FFFFFF url(./images/shared/background.gif) repeat-x bottom left scroll;
+}
+.alternateGridBody {
+    background-color:#FFFFFF;
+}
+.loadingDataMessage,
+.offlineMessage,
+.emptyMessage {
+    font-family:Arial,sans-serif; font-size:11px; padding:10px;
+    color:#333333;
+}
+.gridDragTracker {
+	font-family:Arial,sans-serif; font-size:11px;
+	color:#FFFFFF;
+    background-color:rgb(65,160,210);
+    padding:1px;
+    border:1px dotted white;
+}
+
+.dragLine,
+.dragLineVertical {
+    background-color:#FADD0C;
+    pointer-events: none;
+}
+
+.listTable {
+}
+/* for filterEditor */
+.recordEditorCell {
+    font-family:Arial,sans-serif; font-size:11px; color:black; background-color:#d0d0d0;
+}
+
+
+
+/*============================================================
+	ListGrid headers
+		listGrid.headerBaseStyle - headerButton (in skin)
+		listGrid.headerDefaults.titleStyle - headerTitle (in skin)
+		listGrid.sorterDefaults.titleStyle - headerTitle (in skin)
+
+============================================================*/
+
+/* ListGrid column header buttons */
+.headerButton,
+.headerButtonSelected,
+.headerButtonDisabled,
+.headerButtonSelectedDisabled,
+.headerButtonOver,
+.headerButtonDown,
+.headerButtonSelectedOver,
+.headerButtonSelectedDown {
+    background-color:#FFFFFF;
+    
+    border-left:1px solid rgb(107,161,189);
+    border-right:1px solid rgb(51,125,164);
+}
+.headerButtonOver,
+.headerButtonDown,
+.headerButtonSelectedOver,
+.headerButtonSelectedDown {
+    border-left:1px solid rgb(107,161,189);
+    border-right:1px solid rgb(51,125,164);
+}
+
+.sorterButton,
+.sorterButtonSelected,
+.sorterButtonDisabled,
+.sorterButtonSelectedDisabled,
+.sorterButtonOver,
+.sorterButtonDown,
+.sorterButtonSelectedOver,
+.sorterButtonSelectedDown {
+    background-color:#FFFFFF;
+    border-left:1px solid rgb(107,161,189);
+}
+.sorterButtonOver,
+.sorterButtonDown,
+.sorterButtonSelectedOver,
+.sorterButtonSelectedDown {
+    border-left:1px solid rgb(107,161,189);
+}
+
+/* ListGrid column header titles */
+.headerTitle,
+.headerTitleOver,
+.headerTitleDown,
+.headerTitleSelected,
+.headerTitleSelectedOver,
+.headerTitleSelectedDown,
+.headerTitleDisabled,
+.headerTitleSelectedDisabled {
+    font-family:Arial, sans-serif; font-size:11px; font-weight:bold;
+    padding-left:4px; padding-right:4px;
+    color: #E0EFF9; 
+}
+.headerTitleDown,
+.headerTitleSelected,
+.headerTitleSelectedOver,
+.headerTitleSelectedDown,
+.headerTitleSelectedDisabled {
+    color:#FFFFFF;
+}
+.headerTitleDisabled,
+.headerTitleSelectedDisabled {
+    color: #666666;
+}
+
+
+/*============================================================
+	ListGrid cells
+		listGrid.baseStyle
+============================================================*/
+
+/*------------------------------------------------------------
+		listGrid.baseStyle
+------------------------------------------------------------*/
+.cell,
+.cellDark,
+.cellOver,
+.cellOverDark,
+.cellSelected,
+.cellSelectedDark,
+.cellSelectedOver,
+.cellSelectedOverDark,
+.cellDisabled,
+.cellDisabledDark,
+.groupSummaryCell,
+.groupSummaryCellDisabled,
+.gridSummaryCell,
+.gridSummaryCellDisabled,
+.recordSummaryCell,
+.recordSummaryCellDark,
+.recordSummaryCellOver,
+.recordSummaryCellOverDark,
+.recordSummaryCellSelected,
+.recordSummaryCellSelectedDark,
+.recordSummaryCellSelectedOver,
+.recordSummaryCellSelectedOverDark,
+.recordSummaryCellDisabled,
+.recordSummaryCellDisabledDark,
+.specialCol,
+.specialColOver,
+.specialColSelected,
+.specialColSelectedOver,
+.specialColDisabled,
+.groupNode {
+    border-top:1px solid transparent;
+    border-bottom:1px solid transparent;
+	font-family:Arial,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:#333333;
+}
+
+.specialCol {
+    color:#333333;
+	background-color:#D7E6EC;
+}
+
+.cellDark,
+.recordSummaryCellDark {
+    color:#333333;
+	background-color:#D7E6EC;
+    border-top:1px solid #D7E6EC;
+    border-bottom:1px solid #D7E6EC;
+
+}
+.groupSummaryCell,
+.gridSummaryCell {
+    color:#333333;
+	background-color:#D7E6EC;
+    border-top: 1px solid #C0C0C0;
+}
+.gridSummaryCell {
+    border-top: 1px solid #D7E6EC;
+}
+.summaryRowBody {
+    background-color:#D7E6EC;
+}
+
+.cellOver,
+.specialColOver,
+.recordSummaryCellOver {
+    color:#333333;
+    /*background-color:rgb(190,215,225);*/
+    background-color:rgb(159,200,232);
+}
+.cellOverDark,
+.recordSummaryCellOverDark {
+    color:#222222;
+    /*background-color:rgb(170,195,210);*/
+    background-color:rgb(159,200,232);
+}
+.cellSelected,
+.cellSelectedDark,
+.cellSelectedOver,
+.cellSelectedOverDark,
+.specialColSelected,
+.specialColSelectedOver,
+.recordSummaryCellSelected,
+.recordSummaryCellSelectedDark,
+.recordSummaryCellSelectedOver,
+.recordSummaryCellSelectedOverDark {
+	color:#FFFFFF;
+    background-color:rgb(65,160,210);
+}
+.cellDisabled,
+.cellDisabledDark,
+.specialColDisabled,
+.recordSummaryCellDisabled,
+.recordSummaryCellDisabledDark {
+	color:#A7C4D3;
+	background-color:#FFFFFF;
+}
+.groupSummaryCell,
+.groupSummaryCellDisabled,
+.gridSummaryCell,
+.gridSummaryCellDisabled,
+.recordSummaryCell,
+.recordSummaryCellDark,
+.recordSummaryCellOver,
+.recordSummaryCellOverDark,
+.recordSummaryCellSelected,
+.recordSummaryCellSelectedDark,
+.recordSummaryCellSelectedOver,
+.recordSummaryCellSelectedOverDark,
+.recordSummaryCellDisabled,
+.recordSummaryCellDisabledDark {
+    font-weight:bold;
+}
+
+/* for grouping */
+.groupNode {
+    font-weight:bold;
+    border-bottom: 1px solid #C0C0C0;
+}
+
+/* Field builders (Formula/Summary) */
+.sampleOutput {
+    border: 2px solid #D9D9D9;
+    padding: 3px; 
+}
+
+/* Multi-sort - sort-index appearing next to sort-arrows in field headers */
+.sortNumeral {
+    font-size:7px
+}
+
+/*============================================================
+	12) ToolStrip
+============================================================*/
+.toolStrip {
+    border-left:1px solid #6AA0BB;
+    border-right:1px solid #6AA0BB;
+	background:#D7E6EC url(./images/shared/shadows/ds2_B.png) repeat-x scroll;
+}
+
+/*============================================================
+   12a) ToolStripGroup and IconButton
+==============================================================*/
+.toolStripGroup,
+.toolStripGroupOver,
+.toolStripGroupSelected,
+.toolStripGroupSelectedDisabled,
+.toolStripGroupSelectedOver,
+.toolStripGroupDown,
+.toolStripGroupSelectedDown,
+.toolStripGroupDisabled {
+    background:#000000 url(./images/shared/background.gif) repeat-x bottom left scroll;
+    border: 1px solid #6DA2BD;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    padding: 2px;
+}
+
+.toolStripGroupTitle,
+.toolStripGroupTitleOver,
+.toolStripGroupTitleSelected,
+.toolStripGroupTitleSelectedDisabled,
+.toolStripGroupTitleSelectedOver,
+.toolStripGroupTitleDown,
+.toolStripGroupTitleSelectedDown,
+.toolStripGroupTitleDisabled {
+    background: #C5D9E4;
+    border: 0;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    color: #333333;
+    font-family: Arial, Verdana, Bitstream Vera Sans, sans-serif; 
+    font-size: 11px; 
+    font-weight: bold;
+    padding: 3px;
+}
+
+.iconButton,
+.iconButtonOver,
+.iconButtonFocused,
+.iconButtonFocusedOver,
+.iconButtonDown,
+.iconButtonFocusedDown,
+.iconButtonSelected,
+.iconButtonSelectedFocused,
+.iconButtonSelectedDown,
+.iconButtonSelectedFocusedDown,
+.iconButtonSelectedOver,
+.iconButtonSelectedFocusedOver,
+.iconButtonDisabled,
+.iconButtonSelectedDisabled {
+    background: transparent;
+    border: 1px solid transparent;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+	color:#333333;
+    font-family: Arial, Verdana, Bitstream Vera Sans, sans-serif; 
+    font-size:11px;
+    padding: 4px;
+}
+
+.iconButtonOver,
+.iconButtonDown,
+.iconButtonSelected,
+.iconButtonSelectedOver,
+.iconButtonFocusedOver,
+.iconButtonSelectedFocusedOver {
+    background: url("./images/controls/text_input.gif") repeat-x scroll 0 0 #E6F1F7;
+    border: 1px solid #6DA2BD;
+    color: #333333;
+}
+
+.iconButtonSelected,
+.iconButtonSelectedFocused,
+.iconButtonSelectedDown,
+.iconButtonSelectedFocusedDown,
+.iconButtonSelectedFocusedOver {
+    background-color: #e5e5e5;
+}
+
+.iconButtonDisabled {
+    color: #AAAAAA;
+}
+
+/* IconButton icon and menuIcon styles - used for spacing top and bottom of the title in v-buttons */
+.iconButtonHIcon {
+    vertical-align:middle;
+}
+.iconButtonHMenuIcon {
+    vertical-align:middle; 
+    border:1px solid transparent; 
+    -moz-border-radius: 3px; 
+    -webkit-border-radius: 3px; 
+    -khtml-border-radius: 3px; 
+    border-radius: 3px;
+}
+
+.iconButtonVIcon {
+    vertical-align:middle;
+    margin-bottom: 5px;
+}
+.iconButtonVMenuIcon {
+    vertical-align:middle; 
+    border:1px solid transparent; 
+    -moz-border-radius: 3px; 
+    -webkit-border-radius: 3px; 
+    -khtml-border-radius: 3px; 
+    border-radius: 3px;
+    margin-top: 4px;
+}
+
+/*============================================================
+	13) Tools
+============================================================*/
+.resizeThumb {
+    background-color:#009999;
+}
+
+/*============================================================
+   14) TileGrid
+==============================================================*/
+
+.tileGrid {
+    border:1px solid #808080;
+    
+}
+
+.tileValue,
+.tileValueDown,
+.tileValueSelected,
+.tileValueOver,
+.tileValueSelectedOver,
+.tileValueSelectedDown {
+   color: white;
+    font-size: 8pt; 
+    text-overflow:ellipsis;   
+}
+
+.tileValueOver {
+    color:#333333; 
+}
+
+.tileValueSelected {
+    color: #00B2FA;  
+}
+
+.tileValueSelectedOver {
+    color: #333333;  
+}
+
+.simpleTile, 
+.simpleTileOver,
+.simpleTileSelected,
+.simpleTileSelectedOver {
+    font-size: 8pt;
+    padding:3px    
+}
+
+.simpleTile {
+    border:1px solid transparent;
+    
+}
+.simpleTileOver {
+     background-color:rgb(142,187,226);
+      border:1px solid black;
+}
+
+.simpleTileSelected {
+      border:1px solid #00B2FA;    
+}
+
+.simpleTileSelectedOver {
+      background-color:rgb(142,187,226);
+      border:1px solid #00B2FA;
+}
+
+/*============================================================
+    Unused? Review & Remove
+============================================================*/
+.selectedText {
+    background-color:darkblue; color:white;
+}
+.disabled {
+    font-family:Arial,sans-serif; font-size:11px; color:#CCCCCC;
+}
+.pageHeader {
+    font-family:Arial,sans-serif; font-size:12px; font-weight:bold; color:darkblue
+}
+.printPageHeader {
+    font-family:Arial,sans-serif; font-size:14px; font-weight:bold; color:darkblue
+}
+.printCell {
+    font-family:Arial,sans-serif; font-size:10px;
+}
+
+.cssdialogHeader {
+    border-left: 1px solid #FFFF52; border-top: 1px solid #FFFF52;
+    border-right: 1px solid #AD7B00; border-bottom: 1px solid #AD7B00;
+    filter:"progid:dximagetransform.microsoft.gradient(gradientType=1, startColorStr=#FFCE00, endColorStr=#FFF790)";
+}
+.cssdialogHeaderHilite {
+    border-left: 1px solid #FFFF52; border-top: 1px solid #FFFF52;
+    border-right: 1px solid #AD7B00; border-bottom: 1px solid #AD7B00;
+    filter:"progid:dximagetransform.microsoft.gradient(gradientType=1, startColorStr=#FFE67F, endColorStr=#FFFBC6)";
+}
+.dialogStatusBar {
+    border-top: 1px solid #999999; border-left: 1px solid #999999;
+    border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+}
+.dialogStatusBarText {
+    font-family:Arial,sans-serif; font-size:11px; color:black; font-weight:bold;
+}
+
+
+
+
+
+
+/*IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
+	Styles below this comment are not used by default in this skin
+
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII*/
+
+
+
+/*============================================================
+    TabSet CSS tabs
+		tabSet.simpleTabBaseStyle
+============================================================*/
+/* styles for simple css-styled tabs*/
+/* left */
+.tabButtonLeft {
+    font-family:Arial,sans-serif; font-size:11px; background-color:#CCCCCC;
+    border-left:1px solid white; border-top:1px solid white; border-bottom:1px solid #808080;
+}
+.tabButtonLeftOver,
+.tabButtonLeftSelected,
+.tabButtonLeftSelectedOver {
+    font-family:Arial,sans-serif; font-size:11px; background-color:#D6D6D6; 
+    border-left:1px solid white; border-top:1px solid white; border-bottom:1px solid #808080;
+}
+.tabButtonLeftDown,
+.tabButtonLeftSelectedDown {
+    font-family:Arial,sans-serif; font-size:11px; background-color: #D6D6D6; 
+    border-left:1px solid #808080; border-top:1px solid #808080; border-bottom:1px solid white;
+}
+.tabButtonLeftSelectedDisabled,
+.tabButtonLeftDisabled {
+    font-family:Arial,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC; 
+    border-left:1px solid #CCCCCC; border-top:1px solid #CCCCCC; border-bottom:1px solid #CCCCCC;
+}
+/* right */                        
+.tabButtonRight {
+    font-family:Arial,sans-serif; font-size:11px; background-color:#CCCCCC;
+    border-top:1px solid white; border-bottom:1px solid #808080; border-right:1px solid #808080;
+}
+.tabButtonRightOver,
+.tabButtonRightSelected,
+.tabButtonRightSelectedOver {
+    font-family:Arial,sans-serif; font-size:11px; background-color:#D6D6D6; 
+    border-top:1px solid white; border-bottom:1px solid #808080; border-right:1px solid #808080;
+}
+.tabButtonRightDown,
+.tabButtonRightSelectedDown {
+    font-family:Arial,sans-serif; font-size:11px; background-color: #D6D6D6; 
+    border-top:1px solid #808080; border-bottom:1px solid white; border-right:1px solid white;
+}
+
+.tabButtonRightSelectedDisabled,
+.tabButtonRightDisabled {
+    font-family:Arial,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC; 
+    border-top:1px solid #CCCCCC; border-bottom:1px solid #CCCCCC; border-right:1px solid #CCCCCC;
+}
+
+/* top */                        
+.tabButtonTop {
+    font-family:Arial,sans-serif; font-size:11px; background-color:#CCCCCC;
+    border-left:1px solid white; border-top:1px solid white; border-right:1px solid #808080;
+}
+.tabButtonTopOver,
+.tabButtonTopSelected,
+.tabButtonTopSelectedOver {
+    font-family:Arial,sans-serif; font-size:11px; background-color:#D6D6D6; 
+    border-left:1px solid white; border-top:1px solid white; border-right:1px solid #808080;
+}
+.tabButtonTopDown,
+.tabButtonTopSelectedDown {
+    font-family:Arial,sans-serif; font-size:11px; background-color: #D6D6D6; 
+    border-left:1px solid #808080; border-top:1px solid #808080; border-right:1px solid white;
+}
+.tabButtonTopSelectedDisabled,
+.tabButtonTopDisabled {
+    font-family:Arial,sans-serif; font-size:11px; color:#666666; 
+    background-color:#CCCCCC; 
+    border-left:1px solid #CCCCCC; border-top:1px solid #CCCCCC; border-right:1px solid #CCCCCC;
+}
+
+/* bottom */                        
+.tabButtonBottom {
+    font-family:Arial,sans-serif; font-size:11px; background-color:#CCCCCC;
+    border-left:1px solid white; border-bottom:1px solid #808080; border-right:1px solid #808080;
+}
+.tabButtonBottomOver,
+.tabButtonBottomSelected,
+.tabButtonBottomSelectedOver {
+    font-family:Arial,sans-serif; font-size:11px; background-color:#D6D6D6; 
+    border-left:1px solid white; border-bottom:1px solid #808080; border-right:1px solid #808080;
+}
+.tabButtonBottomDown,
+.tabButtonBottomSelectedDown {
+    font-family:Arial,sans-serif; font-size:11px; background-color: #D6D6D6; 
+    border-left:1px solid #808080; border-bottom:1px solid white; border-right:1px solid white;
+}
+.tabButtonBottomSelectedDisabled,
+.tabButtonBottomDisabled {
+    font-family:Arial,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC; 
+    border-left:1px solid #CCCCCC; border-bottom:1px solid #CCCCCC; border-right:1px solid #CCCCCC;
+}
+						
+
+
+
+
+/*IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
+	Styles below this comment are used by optional modules only
+
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII*/
+
+
+
+/*============================================================
+	CubeGrid - Analytics Module only
+		cubeGrid.baseStyle - cubeCell
+		headerGrid.baseStyle - rowHeader
+		reportHeaderBar.button.baseStyle - rowHeader
+		reportHeaderBar.button.baseStyle - innerHeader/colHeader
+		reportHeaderBar.button.baseStyle - rowHeaderLabel
+		reportHeaderBar.button.baseStyle - colHeaderLabel
+============================================================*/
+.cubeGridBody {
+    background:#FFFFFF url(./images/shared/background.gif) repeat-x bottom left scroll;
+}
+.alternateCubeGridBody {
+    background-color:#FFFFFF;
+}
+
+.cubeCell,
+.cubeCellDark,
+.cubeCellOver,
+.cubeCellOverDark,
+.cubeCellSelected,
+.cubeCellSelectedDark,
+.cubeCellSelectedOver,
+.cubeCellSelectedOverDark,
+.cubeCellDisabled,
+.cubeCellDisabledDark,
+.groupNode {
+	font-family:Arial,sans-serif; font-size:11px; text-overflow:ellipsis;
+	color:#333333;
+    border-top:1px solid transparent;
+    border-left:1px solid transparent;
+    border-bottom:1px solid rgb(159,200,232);
+    border-right:1px solid rgb(159,200,232);
+}
+.cubeCellDark {
+    color:#333333;
+	background-color:#D7E6EC;
+}
+.cubeCellOver,
+.cubeCellSelectedOver {
+    color:#333333;
+    background-color:rgb(159,200,232);
+}
+.cubeCellOverDark,
+.cubeCellSelectedOverDark {
+    color:#222222;
+    background-color:rgb(159,200,232);
+}
+.cubeCellSelected,
+.cubeCellSelectedDark {
+	background-color:rgb(65,160,210);
+}
+.cubeCellSelected,
+.cubeCellSelectedDark,
+.cubeCellSelectedOver,
+.cubeCellSelectedOverDark {
+    color:#FFFFFF;
+}
+
+.cubeCellDisabled,
+.cubeCellDisabledDark {
+	color:#A7C4D3;
+	background-color:#FFFFFF;
+}
+
+/* row headers */
+
+.rowHeader,
+.rowHeaderOver,
+.rowHeaderDown,
+.rowHeaderDisabled,
+.rowHeaderSelected,
+.rowHeaderSelectedOver,
+.rowHeaderSelectedDown,
+.rowHeaderDisabled,
+.rowHeaderSelectedDisabled {
+    font-weight:bold;
+    font-family:Arial,Bitstream Vera Sans,sans-serif; font-size:11px; color:white;
+    background:rgb(55,127,165) url(./images/CubeGrid/rowHeader.gif) repeat-x;
+    border-top:1px solid rgb(178,206,219);
+    border-left:1px solid rgb(178,206,219);
+    border-bottom:1px solid rgb(28,111,153);
+    border-right:1px solid rgb(28,111,153);
+}
+
+.rowHeaderOver,
+.rowHeaderDown {
+    border-top:1px solid rgb(108,155,181);
+    border-left:1px solid rgb(108,155,181);
+    background:rgb(39,104,144) url(./images/CubeGrid/rowHeaderOver.gif) repeat-x;
+}
+
+.rowHeaderSelected,
+.rowHeaderSelectedDown,
+.rowHeaderSelectedOver,
+.rowHeaderSelectedDisabled {
+    border-top:1px solid rgb(178,206,219);
+    border-left:1px solid rgb(178,206,219);
+    border-bottom:1px solid rgb(82,145,177);
+    border-right:1px solid rgb(82,145,177);
+    background:rgb(115,165,192) url(./images/CubeGrid/rowHeaderSelected.gif) repeat-x;
+}
+.rowHeaderSelectedOver {
+    border-top:1px solid rgb(108,155,181);
+    border-left:1px solid rgb(108,155,181);
+    background:rgb(29,104,144) url(./images/CubeGrid/rowHeaderSelectedOver.gif) repeat-x;
+}						
+.rowHeaderDisabled,
+.rowHeaderSelectedDisabled {
+    color:#BBBBBB;
+}
+
+.rowHeaderDisabled {    
+    background:rgb(55,127,165) url(./images/CubeGrid/rowHeaderDisabled.gif) repeat-x;
+}
+
+/* row label */
+.rowHeaderLabel {
+    font-family:Arial,sans-serif; font-size:11px; font-weight:bold; color:white;
+    background-color:#204B7A;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000B3A; border-bottom:1px solid #000B3A;
+    background-image:url("images/CubeGrid/rowHeaderLabel.gif");
+}
+.rowHeaderLabelOver {
+    font-family:Arial,sans-serif; font-size:11px; font-weight:bold; color:white;
+    background-color:#204B7A;
+    border-left:1px solid #000B3A; border-top:1px solid #000B3A;
+    border-right:1px solid #FFFFFF; border-bottom:1px solid #FFFFFF;
+    background-image:url("images/CubeGrid/rowHeaderLabel.gif");
+}
+.rowHeaderLabelDown {
+    font-family:Arial,sans-serif; font-size:11px; font-weight:bold; color:white;
+    background-color:#204B7A;
+    border-left:1px solid #000B3A; border-top:1px solid #000B3A;
+    border-right:1px solid #FFFFFF; border-bottom:1px solid #FFFFFF;
+    background-image:url("images/CubeGrid/rowHeaderLabelDown.gif");
+}
+.rowHeaderLabelDisabled {
+    font-family:Arial,sans-serif; font-size:11px; font-weight:bold; color:#808080;
+    background-color:#7D7D7D;
+    border-left:1px solid #808080; border-top:1px solid #808080;
+    border-right:1px solid #808080; border-bottom:1px solid #808080;
+}
+.rowHeaderLabelSelected,
+.rowHeaderLabelSelectedDown {
+    font-family:Arial,sans-serif; font-size:11px; font-weight:bold; color:white;
+    background-color:#3E74B3;
+    border-left:1px solid black; border-top:1px solid black;
+    border-right:1px solid #555555; border-bottom:1px solid #555555;
+    background-image:url("images/CubeGrid/rowHeaderDown.gif");
+}
+.rowHeaderLabelSelectedOver {
+    font-family:Arial,sans-serif; font-size:11px; font-weight:bold; color:white;
+    background-color:#3E74B3;
+    border-top:1px solid white; border-bottom:1px solid white; 
+    border-left:1px solid white; border-right:1px solid white;
+    background-image:url("images/CubeGrid/rowHeaderDown.gif");
+}						
+.rowHeaderLabelSelectedDisabled	{
+    font-family:Arial,sans-serif; font-size:11px; font-weight:bold; color:#808080;
+    background-color:#7D7D7D;
+    border-left:1px solid #808080; border-top:1px solid #808080;
+    border-right:1px solid #808080; border-bottom:1px solid #808080;
+}
+						
+/* column headers */
+.colHeader,
+.colHeaderOver,
+.colHeaderDown,
+.colHeaderDisabled,
+.colHeaderSelected,
+.colHeaderSelectedOver,
+.colHeaderSelectedDown,
+.colHeaderDisabled,
+.colHeaderSelectedDisabled {
+    font-weight:bold;
+    font-family:Arial,Bitstream Vera Sans,sans-serif; font-size:11px; color:white;
+    background:rgb(55,127,165) url(./images/CubeGrid/colHeader.gif) repeat-x;
+    border-top:1px solid rgb(178,206,219);
+    border-left:1px solid rgb(178,206,219);
+    border-bottom:1px solid rgb(28,111,153);
+    border-right:1px solid rgb(28,111,153);
+}
+
+.colHeaderOver,
+.colHeaderDown {
+    border-top:1px solid rgb(108,155,181);
+    border-left:1px solid rgb(108,155,181);
+    background:rgb(39,104,144) url(./images/CubeGrid/colHeaderOver.gif) repeat-x;
+}
+
+.colHeaderSelected,
+.colHeaderSelectedDown,
+.colHeaderSelectedOver,
+.colHeaderSelectedDisabled {
+    border-top:1px solid rgb(178,206,219);
+    border-left:1px solid rgb(178,206,219);
+    border-bottom:1px solid rgb(82,145,177);
+    border-right:1px solid rgb(82,145,177);
+    background:rgb(115,165,192) url(./images/CubeGrid/colHeaderSelected.gif) repeat-x;
+}
+.colHeaderSelectedOver {
+    border-top:1px solid rgb(108,155,181);
+    border-left:1px solid rgb(108,155,181);
+    background:rgb(29,104,144) url(./images/CubeGrid/colHeaderSelectedOver.gif) repeat-x;
+}						
+.colHeaderDisabled,
+.colHeaderSelectedDisabled {
+    color:#BBBBBB;
+}
+
+.colHeaderDisabled {    
+    background:rgb(55,127,165) url(./images/CubeGrid/colHeaderDisabled.gif) repeat-x;
+}
+/* column label */
+.colHeaderLabel {
+    font-family:Arial,sans-serif; font-size:11px; font-weight:bold; color:white;
+    background-color:#204B7A;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #555555; border-bottom:1px solid #555555;
+    background-image:url("images/CubeGrid/colHeaderLabel.gif");
+}
+.colHeaderLabelOver,
+.colHeaderLabelDown {
+    font-family:Arial,sans-serif; font-size:11px; font-weight:bold; color:white;
+    background-color:#204B7A;
+    border-left:1px solid #000B3A; border-top:1px solid #000B3A;
+    border-right:1px solid #555555; border-bottom:1px solid #555555;
+    background-image:url("images/CubeGrid/colHeaderLabelDown.gif");
+}
+.colHeaderLabelDisabled {
+    font-family:Arial,sans-serif; font-size:11px; font-weight:bold; color:#808080;
+    background-color:#7D7D7D;
+    border-left:1px solid #808080; border-top:1px solid #808080;
+    border-right:1px solid #808080; border-bottom:1px solid #808080;
+}
+.colHeaderLabelSelected,
+.colHeaderLabelSelectedDown {
+    font-family:Arial,sans-serif; font-size:11px; font-weight:bold; color:white;
+    background-color:#3E74B3;
+    border-left:1px solid black; border-top:1px solid black;
+    border-right:1px solid #555555; border-bottom:1px solid #555555;
+    background-image:url("images/CubeGrid/colHeaderLabelDown.gif");
+}
+.colHeaderLabelSelectedOver {
+    font-family:Arial,sans-serif; font-size:11px; font-weight:bold; color:white;
+    background-color:#3E74B3;
+    border-top:1px solid white; border-bottom:1px solid white; 
+    border-right:1px solid #555555; border-bottom:1px solid #555555;
+    background-image:url("images/CubeGrid/colHeaderDown.gif");
+}						
+.colHeaderLabelSelectedDisabled {
+    font-family:Arial,sans-serif; font-size:11px; font-weight:bold; color:#808080;
+    background-color:#7D7D7D;
+    border-left:1px solid #808080; border-top:1px solid #808080;
+    border-right:1px solid #808080; border-bottom:1px solid #808080;
+}
+
+/* inner header */
+
+.innerHeader,
+.innerHeaderOver,
+.innerHeaderDown,
+.innerHeaderSelected,
+.innerHeaderSelectedDown,
+.innerHeaderSelectedOver,
+.innerHeaderSelectedDisabled {
+    padding:2px;
+    font-weight:bold;
+    font-family:Arial,Bitstream Vera Sans,sans-serif; font-size:11px;
+    background:#98BDCD url(./images/CubeGrid/innerHeader.gif) repeat-x;
+    border-top:1px solid white;
+    border-left:1px solid white;
+    border-bottom:1px solid #6DA2BD;
+    border-right:1px solid #6DA2BD;
+}
+.innerHeaderDisabled {
+    padding:2px;
+    font-family:Arial,sans-serif; font-size:11px; 
+    border:1px solid #78A9C2;
+    background-color:#97BDCF;
+    color:#808080;
+}
+
+.innerHeaderOver,
+.innerHeaderDown,
+.innerHeaderSelectedOver {
+    background:#488AAD url(./images/CubeGrid/innerHeaderDown.gif) repeat-x;
+}
+
+.innerHeaderSelected,
+.innerHeaderSelectedDown {
+    background:rgb(172,209,225) url(./images/CubeGrid/innerHeaderSelected.gif) repeat-x;
+}
+
+.innerHeaderSelectedDisabled {
+    color:#808080;
+}
+
+
+
+/*============================================================
+	BarChart
+	internal, charting/visualization module only
+		styleName - chart
+		barStyle - chartBar
+		others are currently fixed
+============================================================*/
+
+.chart { 
+    background-color:#CCCCCC;
+}
+.chartTitle {
+    color:black;
+    font-family: Arial,sans-serif;;
+    font-size:14px;
+    font-weight: bold;
+    text-align:center
+}
+.chartAxisTitle {
+    color:green;
+    font-family: Arial,sans-serif;;
+    font-weight: bold;
+    font-size:12px;
+}
+.chartValueTitle {
+    color:black;
+    font-family: Arial,sans-serif;;
+    font-size:10px;
+}
+.chartTotal {
+    color:black;
+    font-family:Arial,sans-serif;; 
+    font-size:12px;
+    background-color:linen;
+}
+.chartBody {
+    border-left:1px solid black;
+    border-top:1px dashed blue;
+    border-right:1px solid black;
+    background-color:#DDDDDD
+}   
+.chartBar1 {
+    background-color:red;
+    filter:"progid:dximagetransform.microsoft.gradient(gradientType=1, startColorStr=#990000, endColorStr=#FF0000)";
+}
+.chartBar2 {
+    background-color:blue;
+    filter:"progid:dximagetransform.microsoft.gradient(gradientType=1, startColorStr=#000099, endColorStr=#0000FF)";
+}
+.chartBar3 {
+    background-color:green;
+    filter:"progid:dximagetransform.microsoft.gradient(gradientType=1, startColorStr=#009900, endColorStr=#00FF00)";
+}
+
+
+/*============================================================
+	Printing
+        printHeader - general print style for header elements including:
+        - ListGrid header cells
+        - SectionStack headers
+============================================================*/
+.printHeader {
+    font-family:Arial,sans-serif; font-size:11px;    
+    border:1px solid black;
+    font-weight:bold;
+}
+
+/*============================================================
+	Calendar
+    
+============================================================*/
+.calendar,
+.calendarDisabled,
+.calendarDisabledDark,
+.calendarDisabledOver,
+.calendarDisabledOverDark,
+.calendarWorkday,
+.calendarWorkdayDisabled,
+.calendarDark {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#ffffff;
+}
+
+.calendarWorkdayDisabled,
+.calendarDark,
+.calendarDisabled,
+.calendarDisabledDark,
+.calendarDisabledOver,
+.calendarDisabledOverDark {
+    background-color:gainsboro;    
+}
+
+.calendarWorkday {
+    background-color:#f2f2f2; 
+}
+
+.calendarOver,
+.calendarOverDark {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#c0ffc0;
+}
+.calendarWorkdaySelected,
+.calendarCellSelected {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#CCCCCC; 
+}
+.labelColumn,
+.labelColumnDark,
+.labelColumnOver,
+.labelColumnOverDark {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:gainsboro;
+}
+
+.labelColumnOver,
+.labelColumnOverDark, 
+.calendarDisabledOver,
+.calendarDisabledOverDark {
+  background-color: #a4bbdb;
+}
+
+/* ----month---- */
+/* calMonthDayHeader and Body */
+
+.calMonthDayHeader,
+.calMonthDayHeaderDark {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color: gainsboro;
+}
+.calMonthDayHeaderOver,
+.calMonthDayHeaderOverDark {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color: #c0ffc0;
+}
+.calMonthDayHeaderDisabled,
+.calMonthDayHeaderDisabledOver {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#E6E6E6;
+}
+
+.calMonthDayBody,
+.calMonthDayBodyDark {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#ffffff;
+}
+.calMonthDayBodyOver,
+.calMonthDayBodyOverDark {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#c0ffc0;
+}
+.calMonthDayBodyDisabled,
+.calMonthDayBodyDisabledOver {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#E6E6E6;
+}
+/* calMonthOtherDayHeader and Body */
+
+.calMonthOtherDayHeader,
+.calMonthOtherDayHeaderDark {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:#444444;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color: #aaaaaa;
+}
+.calMonthOtherDayHeaderOver,
+.calMonthOtherDayHeaderOverDark {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:#444444;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color: #c0ffc0;
+}
+.calMonthOtherDayBody,
+.calMonthOtherDayBodyDark, 
+.calMonthOtherDayBodyDisabled, 
+.calMonthOtherDayBodyDisabledOver{
+    font-family:Arial,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#E6E6E6;
+}
+.calMonthOtherDayBodyOver,
+.calMonthOtherDayBodyOverDark {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#c0ffc0;
+}
+/* calMonthOtherDayBlank */
+
+.calMonthOtherDayBlank,
+.calMonthOtherDayBlankDark, 
+.calMonthOtherDayBlankOver,
+.calMonthOtherDayBlankOverDark {
+    font-family:Arial,sans-serif; font-size:11px;
+    color:#444444;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color: #E6E6E6;
+}
+
+/* calMonthEventLink */
+
+a.calMonthEventLink:link {color:blue; text-decoration:none}
+a.calMonthEventLink:visited {color:blue; text-decoration:none}
+a.calMonthEventLink:hover {color:blue; text-decoration:underline}
+a.calMonthEventLink:active {color:blue; text-decoration:none}
+
+/* ----event window---- */
+
+.eventWindow {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size: 9px;
+    background-color:#649ED8;
+    border: 1px solid #004D99;
+    padding: 0px;
+    margin: 0px;
+}
+
+.eventWindowHeader,
+.eventWindowGripper,
+.eventWindowLabel {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size: 9px;
+    color: white;
+    background-color:#004D99;
+    margin:0px;
+}
+
+.eventWindowBody {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size: 9px;
+    color:black;
+    background-color: #649ED8;
+    padding: 3px;
+}
+
+.eventWindowResizer {
+    border-top:1px solid white;
+    border-bottom: 1px solid white;
+}
+
+/* --- ZoneCanvas --- */
+
+.zoneCanvas {
+  background-color: rgba(150, 150, 150, 0.5);
+}
+
+.zoneCanvasHeader,
+.zoneCanvasGripper,
+.zoneCanvasLabel {
+  display: inline-block;
+  color: white;
+  background-color: grey;
+  left: 0;
+  bottom: 0;
+}
+
+/* --- IndicatorCanvas --- */
+
+.indicatorCanvas {
+  background-color: #AA0000;
+}
+
+.indicatorCanvasHeader,
+.indicatorCanvasGripper,
+.indicatorCanvasLabel {
+  display: inline-block;
+  color: white;
+  background-color: #AA0000;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 11px;
+}
+
+/* make all grippers rounded */
+.eventWindowGripper,
+.indicatorCanvasGripper,
+.zoneCanvasGripper {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  padding: 0px;
+  margin: 0px;
+}
+
+/* show a border around floating labels */
+.eventWindowLabel,
+.zoneCanvasLabel,
+.indicatorCanvasLabel {
+  border: 1px solid black;
+}
+
+/*============================================================
+	PropertySheet
+	internal, used by Visual SmartClient tools
+        propertySheet.autoChildDefaults.cellStyle - propSheetValue
+        propertySheet.autoChildDefaults.titleStyle - propSheetTitle
+        propertySheet.TextItemDefaults.textBoxStyle - propSheetField
+        propertySheet.SelectItemDefaults.controlStyle - propSheetSelectControl
+        propertySheet.ColorItemDefaults.textBoxStyle - propSheetField
+        propertySheet.HeaderItemDefaults.textBoxStyle - propSheetHeading
+        propertySheet.SectionHeaderItemDefaults.cellStyle - propSheetSectionItemCell
+============================================================*/
+
+.propSheetValue,
+.propSheetValueFocused,
+.propSheetValueDisabled {
+    font-family:Arial,sans-serif;
+    font-size:11px;
+    border-bottom:1px solid #AAAAAA;
+    border-right:1px solid #AAAAAA;
+    padding:0px;
+    margin:0px;
+}
+.propSheetTitle,
+.propSheetTitleFocused,
+.propSheetTitleDisabled {
+    font-family:Arial,sans-serif;
+    font-size:11px;
+    border-bottom:1px solid #AAAAAA;
+    border-right:1px solid #AAAAAA;
+    background-color:#DDDDDD;
+    padding-left:4px;
+    padding-right:4px;
+}
+.propSheetTitleError,
+.propSheetValueError {
+    font-family:Arial,sans-serif; 
+    font-size:11px; color:#204268; 
+    background-color:#CFD9F2
+}
+.propSheetField,
+.propSheetFieldDisabled {
+    font-family:Arial,sans-serif;
+    font-size:11px;
+    background-color:#FFFFFF;
+    border:0px;
+    padding:0px;
+    padding-left:4px;
+    padding-right:4px;
+    margin-top:3px;
+}
+.propSheetHeading,
+.propSheetHeadingDisabled {
+    font-family:Arial,sans-serif;
+    font-size:11px;
+    font-weight:bold;
+    color:black;
+    background-color:#CCCCCC;
+    padding:4px;
+    border-bottom:1px solid #AAAAAA;
+}
+.propSheetSelectControl,
+.propSheetSelectControlFocused,
+.propSheetSelectControlDisabled {
+    padding-left:3px;
+    padding-right:3px;
+}
+
+.propSheetSectionItemCell,
+.propSheetSectionItemDisabled {
+}

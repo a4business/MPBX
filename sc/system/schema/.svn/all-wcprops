@@ -1,0 +1,1913 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/itenant/!svn/ver/1/sc/system/schema
+END
+Canvas.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Canvas.ds.xml
+END
+hibernateTranslator.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/system/schema/hibernateTranslator.xsl
+END
+MasterDetail.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/MasterDetail.ds.xml
+END
+DoesntContainValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/itenant/!svn/ver/1/sc/system/schema/DoesntContainValidator.ds.xml
+END
+ListGridRecord.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/ListGridRecord.ds.xml
+END
+WindowHeaderLabel.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/WindowHeaderLabel.ds.xml
+END
+Rangebar.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/Rangebar.ds.xml
+END
+PopulateRule.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/PopulateRule.ds.xml
+END
+WSOperationHeader.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/WSOperationHeader.ds.xml
+END
+ComboBoxItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/ComboBoxItem.ds.xml
+END
+ExampleFolder.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/ExampleFolder.ds.xml
+END
+AdvancedCriteria.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/system/schema/AdvancedCriteria.ds.xml
+END
+ColorPickerItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/system/schema/ColorPickerItem.ds.xml
+END
+VStack.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/VStack.ds.xml
+END
+Criterion.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/Criterion.ds.xml
+END
+ToolStrip.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/ToolStrip.ds.xml
+END
+Tree.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/itenant/!svn/ver/1/sc/system/schema/Tree.ds.xml
+END
+WSDataSource.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/WSDataSource.ds.xml
+END
+CheckboxItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/CheckboxItem.ds.xml
+END
+FlowLayout.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/FlowLayout.ds.xml
+END
+Object.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Object.ds.xml
+END
+DBListDS.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/DBListDS.ds.xml
+END
+GroupItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/GroupItem.ds.xml
+END
+Spacer.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Spacer.ds.xml
+END
+DrawShapeCommand.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/system/schema/DrawShapeCommand.ds.xml
+END
+ImgSplitbar.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/ImgSplitbar.ds.xml
+END
+DrawShape.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/DrawShape.ds.xml
+END
+Hilite.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Hilite.ds.xml
+END
+IDAOperation.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/IDAOperation.ds.xml
+END
+ListGrid.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/ListGrid.ds.xml
+END
+BlurbItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/BlurbItem.ds.xml
+END
+ColorItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/ColorItem.ds.xml
+END
+Task.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/itenant/!svn/ver/1/sc/system/schema/Task.ds.xml
+END
+Tab.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/itenant/!svn/ver/1/sc/system/schema/Tab.ds.xml
+END
+PickListMenu.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/PickListMenu.ds.xml
+END
+IsFloatValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/system/schema/IsFloatValidator.ds.xml
+END
+RadialGradient.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/RadialGradient.ds.xml
+END
+VisualBuilder.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/VisualBuilder.ds.xml
+END
+MessageRule.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/MessageRule.ds.xml
+END
+Img.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/itenant/!svn/ver/1/sc/system/schema/Img.ds.xml
+END
+Action.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Action.ds.xml
+END
+Record.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Record.ds.xml
+END
+WSDLMessage.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/WSDLMessage.ds.xml
+END
+ScrollingMenu.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/ScrollingMenu.ds.xml
+END
+Mail.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/itenant/!svn/ver/1/sc/system/schema/Mail.ds.xml
+END
+FloatRangeValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/itenant/!svn/ver/1/sc/system/schema/FloatRangeValidator.ds.xml
+END
+Point.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/itenant/!svn/ver/1/sc/system/schema/Point.ds.xml
+END
+ParamsDeclaration.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/ParamsDeclaration.ds.xml
+END
+WindowCloseButton.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/WindowCloseButton.ds.xml
+END
+ReportViewer.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/ReportViewer.ds.xml
+END
+ToolStripSpacer.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/system/schema/ToolStripSpacer.ds.xml
+END
+IDAUserType.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/IDAUserType.ds.xml
+END
+SVG.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/itenant/!svn/ver/1/sc/system/schema/SVG.ds.xml
+END
+Toolbar.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/system/schema/Toolbar.ds.xml
+END
+Application.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/Application.ds.xml
+END
+UploadItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/UploadItem.ds.xml
+END
+LengthRangeValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/itenant/!svn/ver/1/sc/system/schema/LengthRangeValidator.ds.xml
+END
+DrawPolygon.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/DrawPolygon.ds.xml
+END
+TreeNode.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/TreeNode.ds.xml
+END
+Finder.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Finder.ds.xml
+END
+Window.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Window.ds.xml
+END
+StretchImg.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/StretchImg.ds.xml
+END
+FloatLimitValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/itenant/!svn/ver/1/sc/system/schema/FloatLimitValidator.ds.xml
+END
+WindowResizer.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/WindowResizer.ds.xml
+END
+ListBarGroup.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/ListBarGroup.ds.xml
+END
+Layout.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Layout.ds.xml
+END
+PortalColumn.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/PortalColumn.ds.xml
+END
+WebServiceOperation.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/itenant/!svn/ver/1/sc/system/schema/WebServiceOperation.ds.xml
+END
+MethodDeclaration.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/MethodDeclaration.ds.xml
+END
+FloatPrecisionValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/itenant/!svn/ver/1/sc/system/schema/FloatPrecisionValidator.ds.xml
+END
+Progressbar.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/Progressbar.ds.xml
+END
+SelectItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/SelectItem.ds.xml
+END
+ScreenTree.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/ScreenTree.ds.xml
+END
+IsIntegerValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/itenant/!svn/ver/1/sc/system/schema/IsIntegerValidator.ds.xml
+END
+Dialog.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Dialog.ds.xml
+END
+RegExpValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/system/schema/RegExpValidator.ds.xml
+END
+ContainerItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/ContainerItem.ds.xml
+END
+VLayout.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/system/schema/VLayout.ds.xml
+END
+DrawPath.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/DrawPath.ds.xml
+END
+ImgSectionHeader.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/system/schema/ImgSectionHeader.ds.xml
+END
+DrawItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/DrawItem.ds.xml
+END
+IntegerRangeValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/itenant/!svn/ver/1/sc/system/schema/IntegerRangeValidator.ds.xml
+END
+InlineFormItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/InlineFormItem.ds.xml
+END
+DrawLinePath.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/DrawLinePath.ds.xml
+END
+StatefulCanvas.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/StatefulCanvas.ds.xml
+END
+ScreenNode.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/ScreenNode.ds.xml
+END
+JSExpression.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/JSExpression.ds.xml
+END
+DateItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/DateItem.ds.xml
+END
+MatchesFieldValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/itenant/!svn/ver/1/sc/system/schema/MatchesFieldValidator.ds.xml
+END
+BooleanItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/BooleanItem.ds.xml
+END
+MenuButton.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/MenuButton.ds.xml
+END
+MaskValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/MaskValidator.ds.xml
+END
+NavPanel.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/NavPanel.ds.xml
+END
+Deck.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/itenant/!svn/ver/1/sc/system/schema/Deck.ds.xml
+END
+DataSourceStore.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/system/schema/DataSourceStore.ds.xml
+END
+IsOneOfValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/system/schema/IsOneOfValidator.ds.xml
+END
+HTMLPane.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/HTMLPane.ds.xml
+END
+DrawGroup.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/DrawGroup.ds.xml
+END
+HeaderSpan.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/HeaderSpan.ds.xml
+END
+CycleItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/CycleItem.ds.xml
+END
+DecisionGateway.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/system/schema/DecisionGateway.ds.xml
+END
+RulesEngine.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/RulesEngine.ds.xml
+END
+ServiceOperation.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/system/schema/ServiceOperation.ds.xml
+END
+Scrollbar.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/Scrollbar.ds.xml
+END
+Shadow.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Shadow.ds.xml
+END
+DOMGrid.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/system/schema/DOMGrid.ds.xml
+END
+EditPane.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/EditPane.ds.xml
+END
+ButtonItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/ButtonItem.ds.xml
+END
+IDAPage.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/system/schema/IDAPage.ds.xml
+END
+XORGateway.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/XORGateway.ds.xml
+END
+DataSourceField.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/system/schema/DataSourceField.ds.xml
+END
+FormLayout.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/FormLayout.ds.xml
+END
+Flashlet.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/Flashlet.ds.xml
+END
+ProcessSequence.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/system/schema/ProcessSequence.ds.xml
+END
+schemaTranslator.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/schemaTranslator.xsl
+END
+PropertySheet.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/PropertySheet.ds.xml
+END
+Splitbar.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/Splitbar.ds.xml
+END
+ToolStripMenuButton.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/itenant/!svn/ver/1/sc/system/schema/ToolStripMenuButton.ds.xml
+END
+TreeViewer.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/TreeViewer.ds.xml
+END
+SetRequiredRule.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/system/schema/SetRequiredRule.ds.xml
+END
+PaneContainer.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/PaneContainer.ds.xml
+END
+Log4jLoggingEvent.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/Log4jLoggingEvent.ds.xml
+END
+PortalRow.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/PortalRow.ds.xml
+END
+DrawDiamond.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/DrawDiamond.ds.xml
+END
+Example.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/system/schema/Example.ds.xml
+END
+SpacerItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/SpacerItem.ds.xml
+END
+ListViewer.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/ListViewer.ds.xml
+END
+ResultTree.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/ResultTree.ds.xml
+END
+LineEditor.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/LineEditor.ds.xml
+END
+WebService.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/WebService.ds.xml
+END
+SelectOtherItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/system/schema/SelectOtherItem.ds.xml
+END
+EdgedCanvas.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/EdgedCanvas.ds.xml
+END
+NativeCheckboxItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/itenant/!svn/ver/1/sc/system/schema/NativeCheckboxItem.ds.xml
+END
+LinkItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/LinkItem.ds.xml
+END
+Array.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/itenant/!svn/ver/1/sc/system/schema/Array.ds.xml
+END
+SectionStackSection.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/itenant/!svn/ver/1/sc/system/schema/SectionStackSection.ds.xml
+END
+ToolStripSeparator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/itenant/!svn/ver/1/sc/system/schema/ToolStripSeparator.ds.xml
+END
+IsBooleanValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/itenant/!svn/ver/1/sc/system/schema/IsBooleanValidator.ds.xml
+END
+EdgeSizes.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/EdgeSizes.ds.xml
+END
+FormItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/FormItem.ds.xml
+END
+Snapbar.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/system/schema/Snapbar.ds.xml
+END
+MessageValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/system/schema/MessageValidator.ds.xml
+END
+TabBar.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/TabBar.ds.xml
+END
+ExplorerList.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/ExplorerList.ds.xml
+END
+SliderItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/SliderItem.ds.xml
+END
+RichTextEditor.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/RichTextEditor.ds.xml
+END
+TileGrid.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/TileGrid.ds.xml
+END
+StretchImgButton.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/system/schema/StretchImgButton.ds.xml
+END
+Project.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/system/schema/Project.ds.xml
+END
+HiddenItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/HiddenItem.ds.xml
+END
+Button.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Button.ds.xml
+END
+DrawRect.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/DrawRect.ds.xml
+END
+ExampleTree.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/ExampleTree.ds.xml
+END
+SectionHeader.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/SectionHeader.ds.xml
+END
+HStack.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/HStack.ds.xml
+END
+FileAssembly.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/FileAssembly.ds.xml
+END
+SubmitItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/SubmitItem.ds.xml
+END
+DrawBlockConnector.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/itenant/!svn/ver/1/sc/system/schema/DrawBlockConnector.ds.xml
+END
+XSComplexType.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/XSComplexType.ds.xml
+END
+PickTreeItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/PickTreeItem.ds.xml
+END
+RestDataSource.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/RestDataSource.ds.xml
+END
+Portlet.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/system/schema/Portlet.ds.xml
+END
+JVMClassTreeDS.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/JVMClassTreeDS.ds.xml
+END
+ValueMapItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/ValueMapItem.ds.xml
+END
+FileItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/FileItem.ds.xml
+END
+SplitPane.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/SplitPane.ds.xml
+END
+ToolStripResizer.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/system/schema/ToolStripResizer.ds.xml
+END
+MockDataSource.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/MockDataSource.ds.xml
+END
+CancelItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/CancelItem.ds.xml
+END
+ReadOnlyRule.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/ReadOnlyRule.ds.xml
+END
+TreeGrid.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/TreeGrid.ds.xml
+END
+DBSchema.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/DBSchema.ds.xml
+END
+ImgButton.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/ImgButton.ds.xml
+END
+List.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/itenant/!svn/ver/1/sc/system/schema/List.ds.xml
+END
+LayoutSpacer.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/LayoutSpacer.ds.xml
+END
+DateTimeItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/DateTimeItem.ds.xml
+END
+JS.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/itenant/!svn/ver/1/sc/system/schema/JS.ds.xml
+END
+DrawSector.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/DrawSector.ds.xml
+END
+TimeItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/TimeItem.ds.xml
+END
+Method.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Method.ds.xml
+END
+Facet.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/itenant/!svn/ver/1/sc/system/schema/Facet.ds.xml
+END
+FloatItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/FloatItem.ds.xml
+END
+ToolStripButton.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/system/schema/ToolStripButton.ds.xml
+END
+RelationItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/RelationItem.ds.xml
+END
+SpinnerItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/SpinnerItem.ds.xml
+END
+ServerObject.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/ServerObject.ds.xml
+END
+PortalColumnBody.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/system/schema/PortalColumnBody.ds.xml
+END
+Explorer.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/Explorer.ds.xml
+END
+NavItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/system/schema/NavItem.ds.xml
+END
+WindowMaximizeButton.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/itenant/!svn/ver/1/sc/system/schema/WindowMaximizeButton.ds.xml
+END
+IsUniqueValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/IsUniqueValidator.ds.xml
+END
+DynamicForm.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/DynamicForm.ds.xml
+END
+Label.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/itenant/!svn/ver/1/sc/system/schema/Label.ds.xml
+END
+PageHeader.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/PageHeader.ds.xml
+END
+MultiView.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/MultiView.ds.xml
+END
+DetailViewerField.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/DetailViewerField.ds.xml
+END
+DataSource.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/DataSource.ds.xml
+END
+HTMLFlow.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/HTMLFlow.ds.xml
+END
+isomorphicXML.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/isomorphicXML.ds.xml
+END
+DateChooser.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/DateChooser.ds.xml
+END
+StateTask.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/StateTask.ds.xml
+END
+ServerCustomValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/itenant/!svn/ver/1/sc/system/schema/ServerCustomValidator.ds.xml
+END
+AutoFitButton.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/AutoFitButton.ds.xml
+END
+TreeGridField.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/TreeGridField.ds.xml
+END
+IntegerItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/IntegerItem.ds.xml
+END
+Process.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/system/schema/Process.ds.xml
+END
+DrawOval.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/DrawOval.ds.xml
+END
+FacetValue.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/FacetValue.ds.xml
+END
+ReadOnlyValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/ReadOnlyValidator.ds.xml
+END
+ActionDeclaration.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/ActionDeclaration.ds.xml
+END
+RowSpacerItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/RowSpacerItem.ds.xml
+END
+ColorStop.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/ColorStop.ds.xml
+END
+SearchForm.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/SearchForm.ds.xml
+END
+ValuesManager.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/ValuesManager.ds.xml
+END
+OperationBinding.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/system/schema/OperationBinding.ds.xml
+END
+FacetValueGroup.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/system/schema/FacetValueGroup.ds.xml
+END
+UserSummary.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/UserSummary.ds.xml
+END
+PortalLayout.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/PortalLayout.ds.xml
+END
+ImgTab.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/ImgTab.ds.xml
+END
+IsStringValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/IsStringValidator.ds.xml
+END
+Calendar.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/Calendar.ds.xml
+END
+InstantDataApp.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/InstantDataApp.ds.xml
+END
+XJSONDataSource.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/system/schema/XJSONDataSource.ds.xml
+END
+ToolbarItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/ToolbarItem.ds.xml
+END
+DSRegistryListDS.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/system/schema/DSRegistryListDS.ds.xml
+END
+Filesystem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/Filesystem.ds.xml
+END
+Validator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/Validator.ds.xml
+END
+builtinTypes.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/builtinTypes.xml
+END
+IsFunctionValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/itenant/!svn/ver/1/sc/system/schema/IsFunctionValidator.ds.xml
+END
+LoginDialog.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/LoginDialog.ds.xml
+END
+LinearGradient.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/LinearGradient.ds.xml
+END
+SectionStack.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/SectionStack.ds.xml
+END
+RadioGroupItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/RadioGroupItem.ds.xml
+END
+SubstringCountValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/itenant/!svn/ver/1/sc/system/schema/SubstringCountValidator.ds.xml
+END
+DrawImage.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/DrawImage.ds.xml
+END
+DrawCurve.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/DrawCurve.ds.xml
+END
+UserFormula.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/UserFormula.ds.xml
+END
+MultiFileItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/MultiFileItem.ds.xml
+END
+StaticTextItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/StaticTextItem.ds.xml
+END
+RadioItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/RadioItem.ds.xml
+END
+Border.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Border.ds.xml
+END
+CellRecord.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/CellRecord.ds.xml
+END
+HasRelatedRecordValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/itenant/!svn/ver/1/sc/system/schema/HasRelatedRecordValidator.ds.xml
+END
+ServiceTask.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/ServiceTask.ds.xml
+END
+DetailViewer.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/DetailViewer.ds.xml
+END
+CubeGrid.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/CubeGrid.ds.xml
+END
+GridHilite.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/GridHilite.ds.xml
+END
+HLayout.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/system/schema/HLayout.ds.xml
+END
+ProcessElement.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/ProcessElement.ds.xml
+END
+SCUploadSaveFile.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/system/schema/SCUploadSaveFile.ds.xml
+END
+MenuBar.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/system/schema/MenuBar.ds.xml
+END
+ImgProperties.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/ImgProperties.ds.xml
+END
+CanvasItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/CanvasItem.ds.xml
+END
+TextAreaItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/TextAreaItem.ds.xml
+END
+SmartClientOperations.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/itenant/!svn/ver/1/sc/system/schema/SmartClientOperations.wsdl
+END
+DSRequestModifier.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/DSRequestModifier.ds.xml
+END
+ListBar.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/system/schema/ListBar.ds.xml
+END
+DateRangeValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/itenant/!svn/ver/1/sc/system/schema/DateRangeValidator.ds.xml
+END
+UserTask.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/UserTask.ds.xml
+END
+SummaryFunction.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/system/schema/SummaryFunction.ds.xml
+END
+Menu.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/itenant/!svn/ver/1/sc/system/schema/Menu.ds.xml
+END
+DataView.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/DataView.ds.xml
+END
+FacetChart.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/FacetChart.ds.xml
+END
+WindowMinimizeButton.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/itenant/!svn/ver/1/sc/system/schema/WindowMinimizeButton.ds.xml
+END
+HeaderItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/HeaderItem.ds.xml
+END
+SimpleTabButton.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/system/schema/SimpleTabButton.ds.xml
+END
+SchemaSet.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/SchemaSet.ds.xml
+END
+DefineClass.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/DefineClass.ds.xml
+END
+PasswordItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/PasswordItem.ds.xml
+END
+Slider.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Slider.ds.xml
+END
+indent.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/itenant/!svn/ver/1/sc/system/schema/indent.xsl
+END
+SectionItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/SectionItem.ds.xml
+END
+DetailViewerRecord.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/itenant/!svn/ver/1/sc/system/schema/DetailViewerRecord.ds.xml
+END
+ButtonTable.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/ButtonTable.ds.xml
+END
+ContainsValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/ContainsValidator.ds.xml
+END
+Applet.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Applet.ds.xml
+END
+GmailMessageDS.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/GmailMessageDS.ds.xml
+END
+GmailAttachmentDS.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/GmailAttachmentDS.ds.xml
+END
+ResultSet.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/ResultSet.ds.xml
+END
+DrawShapeCommandArgs.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/itenant/!svn/ver/1/sc/system/schema/DrawShapeCommandArgs.ds.xml
+END
+CompoundEditor.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/CompoundEditor.ds.xml
+END
+FormItemIcon.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/FormItemIcon.ds.xml
+END
+TileRecord.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/TileRecord.ds.xml
+END
+PopulateValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/PopulateValidator.ds.xml
+END
+MockupContainer.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/itenant/!svn/ver/1/sc/system/schema/MockupContainer.ds.xml
+END
+DrawPane.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/DrawPane.ds.xml
+END
+FileAssemblyEntry.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/FileAssemblyEntry.ds.xml
+END
+WorkflowLoader.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/WorkflowLoader.ds.xml
+END
+BrowserPlugin.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/BrowserPlugin.ds.xml
+END
+TextItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/TextItem.ds.xml
+END
+DrawLine.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/DrawLine.ds.xml
+END
+SimpleGradient.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/SimpleGradient.ds.xml
+END
+MockupElement.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/MockupElement.ds.xml
+END
+ValueMap.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/ValueMap.ds.xml
+END
+TabSet.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/TabSet.ds.xml
+END
+MenuItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/MenuItem.ds.xml
+END
+DrawTriangle.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/DrawTriangle.ds.xml
+END
+IButton.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/itenant/!svn/ver/1/sc/system/schema/IButton.ds.xml
+END
+WindowFooterSpacer.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/itenant/!svn/ver/1/sc/system/schema/WindowFooterSpacer.ds.xml
+END
+ListGridField.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/ListGridField.ds.xml
+END
+Filter.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/itenant/!svn/ver/1/sc/system/schema/Filter.ds.xml
+END
+RequiredValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/itenant/!svn/ver/1/sc/system/schema/RequiredValidator.ds.xml
+END
+ScriptTask.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/ScriptTask.ds.xml
+END
+WindowHeaderIcon.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/itenant/!svn/ver/1/sc/system/schema/WindowHeaderIcon.ds.xml
+END
+SimpleType.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/SimpleType.ds.xml
+END
+TileLayout.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/TileLayout.ds.xml
+END
+DrawLabel.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/DrawLabel.ds.xml
+END
+Gradient.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/itenant/!svn/ver/1/sc/system/schema/Gradient.ds.xml
+END
+ResetItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/ResetItem.ds.xml
+END
+ViewLoader.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/itenant/!svn/ver/1/sc/system/schema/ViewLoader.ds.xml
+END
+ActiveXControl.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/itenant/!svn/ver/1/sc/system/schema/ActiveXControl.ds.xml
+END
+XSElement.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/itenant/!svn/ver/1/sc/system/schema/XSElement.ds.xml
+END
+RequiredIfValidator.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/itenant/!svn/ver/1/sc/system/schema/RequiredIfValidator.ds.xml
+END
+ProjectFile.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/ProjectFile.ds.xml
+END
+Rule.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/itenant/!svn/ver/1/sc/system/schema/Rule.ds.xml
+END
+TileGridField.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/itenant/!svn/ver/1/sc/system/schema/TileGridField.ds.xml
+END
+RichTextItem.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/itenant/!svn/ver/1/sc/system/schema/RichTextItem.ds.xml
+END
+IMenuButton.ds.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/itenant/!svn/ver/1/sc/system/schema/IMenuButton.ds.xml
+END
