@@ -1,0 +1,37 @@
+<DataSource ID="hugeTreeOpenNodes"
+            serverType="sql"
+            tableName="hugeTreeOpenNodesTable"
+            recordName="node"
+            testFileName="/examples/shared/ds/test_data/hugeTree.data.xml"
+            titleField="name">
+    <fields>
+        <field name="id"
+               title="ID"
+               type="integer"
+               primaryKey="true"
+               ignoreTextMatchStyle="true" />
+
+        <field name="parent"
+               title="Parent ID"
+               type="integer"
+               foreignKey="hugeTreeOpenNodes.id"
+               ignoreTextMatchStyle="true" />
+
+        <field name="name"
+               title="Name"
+               type="text"
+               length="40" />
+
+        <field name="isOpen"
+               title="Open"
+               type="boolean"
+               detail="true" />
+
+        <field name="children"
+               title="Children"
+               type="any"
+               multiple="true" />
+    </fields>
+
+    <serverObject lookupStyle="new" className="com.isomorphic.examples.HugeTreeOpenNodesDMI" methodName="execute"/>
+</DataSource>

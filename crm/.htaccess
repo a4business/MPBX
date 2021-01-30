@@ -1,0 +1,32 @@
+DirectoryIndex site.php
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)\?*$ site.php?__route__=/$1 [L,QSA]
+
+
+
+Redirect /entrance.php /pbx
+
+
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RedirectMatch 401 ^.*\.(ini|sql|tpl|zip|tgz|tar|exe|sh|sample)$
+
+<Files .htaccess >
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<Files *.ini >
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+
+
+
+
+
+php_flag display_errors on

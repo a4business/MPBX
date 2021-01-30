@@ -1,0 +1,10 @@
+<DataSource
+    ID="customBinaryField"
+    serverConstructor="com.isomorphic.examples.server.customBinaryField.CustomBinaryFieldDataSource" 
+ >
+    <fields>
+        <field name="id"	      type="sequence" title="ID"       primaryKey="true"/>
+        <field name="file"	      type="binary"   title="File"/>
+    </fields>
+    	
+</DataSource>

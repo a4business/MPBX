@@ -1,0 +1,41 @@
+<DataSource
+    ID="OrderNoGenerics"
+>
+    <fields>
+        <field name="orderId"       title="Order ID"        type="integer" 
+            javaClass="java.lang.Integer" primaryKey="true"/>
+        <field name="orderDate"     title="Order Date"      type="date"/>
+        <field name="itemsJSON"     title="Order Items (JSONFilter)"     type="OrderItemNoGenerics"  
+                javaClass="com.isomorphic.test.TestOverrideJavaClass$OrderItem" />
+        <field name="items"         title="Order Items"     type="OrderItemNoGenerics" 
+                javaClass="com.isomorphic.test.TestOverrideJavaClass$OrderItem" />
+         <field name="linkedOrders"  title="Linked Orders"   type="integer"
+               javaCollectionClass="java.util.LinkedList" javaClass="java.lang.Integer" 
+               valueXPath="linkedOrders" />
+     </fields>
+      <operationBindings>
+           <binding operationType="fetch" serverMethod="fetch">
+               <serverObject  
+                    lookupStyle="new" 
+                    className="com.isomorphic.test.TestOverrideJavaClass" />
+           </binding>
+           <binding operationType="update" serverMethod="update">
+               <serverObject  
+                    lookupStyle="new" 
+                    className="com.isomorphic.test.TestGenerics" />
+           </binding>
+           <binding operationType="add" operationId="addWithAutoAdapt" 
+                    serverMethod="addWithAutoAdapt">
+               <serverObject  
+                    lookupStyle="new" 
+                    className="com.isomorphic.test.TestOverrideJavaClass" />
+           </binding>
+           <binding operationType="add" operationId="addWithManualAdapt" 
+                    serverMethod="addWithManualAdapt">
+               <serverObject  
+                    lookupStyle="new" 
+                    className="com.isomorphic.test.TestOverrideJavaClass" />
+           </binding>
+       </operationBindings>
+</DataSource>
+ 

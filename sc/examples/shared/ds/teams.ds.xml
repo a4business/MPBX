@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataSource
+    ID="teams"
+    serverType="sql"
+    tableName="teams"
+    recordName="team"
+    testFileName="/examples/shared/ds/test_data/teams.data.xml"
+    titleField="TeamName"
+>
+    <fields>
+        <field name="TeamId"          hidden="true"           type="integer"  primaryKey="true"
+               required="true"/>
+        <field name="TeamName"        title="Name"            type="text"     length="128"/>
+    </fields>
+</DataSource>

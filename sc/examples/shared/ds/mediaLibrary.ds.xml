@@ -1,0 +1,8 @@
+
+<DataSource ID="mediaLibrary" serverType="sql" tableName="mediaLibrary">
+    <fields>
+        <field name="pk" type="sequence" hidden="true" primaryKey="true"/>
+        <field name="title"/>
+        <field name="image" type="imageFile"/>
+    </fields>
+</DataSource>

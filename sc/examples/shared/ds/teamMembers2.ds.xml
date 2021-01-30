@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Many-to-many pivot table mapping Teams ↔ Employees -->
+<DataSource
+    ID="teamMembers2"
+    serverType="sql"
+    tableName="teamMembers2"
+    recordName="teamMember2"
+    testFileName="/examples/shared/ds/test_data/teamMembers2.data.xml"
+>
+    <fields>
+        <field name="RowId"             hidden="true"             type="sequence"    primaryKey="true"/>
+        <field name="TeamId"            hidden="true"             type="integer"
+               foreignKey="teams.TeamId"/>
+        <field name="TeamName"          includeFrom="teams.TeamName"/>
+        <field name="EmployeeId"        hidden="true"             type="integer"
+               foreignKey="employees.EmployeeId"/>
+        <field name="EmployeeName"      includeFrom="employees.Name"/>
+
+        <field name="EmployeeUserOrder" includeFrom="employees.userOrder"            hidden="true"/>
+        <field name="EmployeeReportsTo" includeFrom="employees.ReportsTo"            hidden="true"/>
+        <field name="EmployeeJob"       includeFrom="employees.Job"                  hidden="true"/>
+        <field name="EmployeeEmail"     includeFrom="employees.Email"                hidden="true"/>
+        <field name="EmployeeType"      includeFrom="employees.EmployeeType"         hidden="true"/>
+        <field name="EmployeeStatus"    includeFrom="employees.EmployeeStatus"       hidden="true"/>
+        <field name="EmployeeSalary"    includeFrom="employees.Salary"               hidden="true"/>
+        <field name="EmployeeOrgUnit"   includeFrom="employees.OrgUnit"              hidden="true"/>
+        <field name="EmployeeGender"    includeFrom="employees.Gender"               hidden="true"/>
+        <field name="EmployeeMaritalStatus" includeFrom="employees.MaritalStatus"    hidden="true"/>
+    </fields>
+</DataSource>

@@ -1,0 +1,2035 @@
+/*============================================================
+	"Cupertino" theme CSS styles
+	SmartClient v5.5
+	Copyright 2001-2007, Isomorphic Software
+
+	:: Contents ::
+	
+	1) General
+			default text
+			partial borders
+			drop indicator
+            hover canvas
+	2) Buttons
+			Button
+			ImgButton
+			StretchImgButton
+	3) Menu
+			MenuButton
+	4) Window
+			Dialog
+    5) Layout
+	6) TabSet
+			tab titles
+	7) SectionStack
+			image SectionHeaders
+			CSS SectionHeaders
+	8) Forms
+			general
+			headerItem
+			text items
+			selectItem
+			checkbox & radioButton
+			ColorChooser
+			DateChooser
+	9) Slider & Rangebar		
+	10) DetailViewer
+	11) ListGrid
+			parts
+			headers
+			cells
+    12) ToolStrip
+    12a) ToolStripGroup and IconButton
+    13) TileGrid
+	------------
+	internal/unused styles
+============================================================*/
+
+
+
+/*============================================================
+	1) General
+============================================================*/
+
+ol,
+ul {
+    -webkit-text-size-adjust: 100%;
+}
+
+/* default text */
+.normal,
+.normalFocused {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+}
+
+/* drag outline */
+.dragOutline {
+    border:1px dashed #6600FF;
+}
+
+.defaultBorder {
+    border: 1px solid #606060;
+}
+
+/* drop indicator */
+.dropBorder {
+    background-color:#98A1DA;
+}
+
+
+/* hover canvas  */
+.canvasHover,
+.gridHover,
+.formHover {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; color:black;
+    background-color:#FFFFD0; border:1px solid #808080; padding:5px;
+}
+
+/* group label */
+.groupLabel {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+    padding-left:5px; padding-right:5px;
+}
+/*============================================================
+    2) Button
+		button.baseStyle
+		buttonStrip.baseStyle
+		buttonTable.baseButtonStyle
+		listBar.labelStyle
+		listGrid.headerBaseStyle (not in this skin)
+============================================================*/
+
+/* NOTE: Netscape does not recognize the border attributes in these styles. */
+/*		If you change the border attributes here, be sure to update the borderSize, */
+/*		tlBorderColor, and brBorderColor defaults in Button.js also. */
+.button {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+    padding:2px;        
+}
+.buttonOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#DCDCDC;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+    padding:2px;        
+}
+.buttonDown {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#888888; 
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #FFFFFF; border-bottom:1px solid #FFFFFF;
+    padding:2px;        
+}
+.buttonDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+    padding:2px;        
+}
+.buttonSelected,
+.buttonSelectedDown,
+.buttonSelectedOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#888888; 
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+    padding:2px;        
+}
+.buttonSelectedDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+    padding:2px;        
+}
+                
+/* ImgButton */
+.imgButton,
+.imgButtonOver,
+.imgButtonSelected,
+.imgButtonSelectedDisabled,
+.imgButtonSelectedOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+}
+.imgButtonDown,
+.imgButtonSelectedDown {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+}
+.imgButtonDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+}
+
+/* StretchImgButton */
+.stretchImgButton,
+.stretchImgButtonOver,
+.stretchImgButtonSelected,
+.stretchImgButtonSelectedOver {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:10px;
+}
+.stretchImgButtonDown,
+.stretchImgButtonSelectedDown {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:10px;
+}
+.stretchImgButtonSelectedDisabled,
+.stretchImgButtonDisabled {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:10px; color:#666666;
+}
+
+
+
+/*============================================================
+    3) Menus 
+============================================================*/
+
+.menuBorder {
+    border-top:2px outset white; border-bottom:2px outset white;
+    border-left:2px outset white; border-right:2px outset white;
+}
+.menu,
+.menuSelected {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold;
+    background-color:#CCCCCC;
+    border-top:1px solid #CCCCCC;
+    border-bottom:1px solid #CCCCCC;
+}
+.menuOver,
+.menuSelectedOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:white; font-weight:bold;
+    background-color:black;
+    border-top:1px solid lightBlue;
+    border-bottom:1px solid darkBlue;
+}
+.menuDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#999999; font-weight:bold;
+    background-color:#CCCCCC;
+    border-top:1px solid #CCCCCC;
+    border-bottom:1px solid #CCCCCC;
+}
+
+/* menu header buttons */
+.menuButtonText {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold;    
+}
+.menuButton,
+.menuButtonOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+    padding-left:4px; padding-right:4px;    
+}
+.menuButtonDown {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#888888; 
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #FFFFFF; border-bottom:1px solid #FFFFFF;
+    padding-left:4px; padding-right:4px;    
+}
+.menuButtonDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+    padding-left:4px; padding-right:4px;        
+}
+.menuButtonSelected,
+.menuButtonSelectedDown,
+.menuButtonSelectedOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#888888; 
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+    padding-left:4px; padding-right:4px;    
+}
+.menuButtonSelectedDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+    padding-left:4px; padding-right:4px;    
+}
+.treeMenuSelected {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; color:black; background-color:#A9B2CA; 
+    border-top:1px solid #A9B2CA;
+    border-bottom:1px solid #A9B2CA;
+}
+.treeMenuSelectedOver {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; color:white; background-color:#0A246A;
+    border-top:1px solid #0A246A;
+    border-bottom:1px solid #0A246A;
+}
+
+
+
+/*============================================================
+    4) Window
+		window.styleName - windowBackground
+		window.bodyStyle - windowBody
+		window.headerStyle - windowHeader
+		window.hiliteHeaderStyle - windowHeaderHilite
+		window.headerLabelDefaults.styleName - windowHeaderText
+		window.statusBarDefaults.styleName - windowStatusBar
+
+	Dialog
+		dialog.styleName - dialogBackground
+		dialog.bodyStyle - dialogBody
+		dialog.headerStyle - dialogHeader
+		dialog.hiliteHeaderStyle - dialogHeaderHilite
+		dialog.headerLabelDefaults.styleName - dialogHeaderText
+============================================================*/
+
+/* Window */
+.windowBackground {
+    border-top:1px solid black; border-bottom:1px solid black; 
+    border-left:1px solid black; border-right:1px solid black;
+}
+.windowBody {
+    border-top:2px inset #666666; border-bottom:2px inset #666666;
+    border-left:2px inset #666666; border-right:2px inset #666666;
+}
+.windowHeader {}
+.windowHeaderHilite {}
+.windowHeaderText {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; 
+    color:black; font-weight:bold;
+    background-color:#DEDEDE; 
+    padding-top:1px;
+    padding-left:4px; padding-right:4px;
+}
+.windowStatusBar {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+    border: 1px solid black;
+}
+.windowShadow {
+    background-color:#AAAAAA;
+    filter: alpha(opacity=35, style=0);
+    -moz-opacity: 10%;
+}
+.modalMask {
+    background-color:black;
+}
+
+/* Dialog */
+.dialogBackground {
+    border-top:1px solid black; border-bottom:1px solid black; 
+    border-left:1px solid black; border-right:1px solid black;
+}
+.dialogBody,
+.promptBody {}
+.dialogHeader {}
+.dialogHeaderHilite {}
+.dialogHeaderText {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; 
+    color:black; font-weight:bold;
+    background-color:#DEDEDE;
+    padding-left:4px; padding-right:4px;
+}
+.dialogStatusBar {
+    border-left: 1px solid black; border-right: 1px solid black; 
+    border-bottom: 1px solid black;
+}
+.dialogStatusBarText {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+}
+.dialogShadow {
+    background-color:#AAAAAA;
+    filter: alpha(opacity=35, style=0);
+    -moz-opacity: 10%;
+}
+
+/*============================================================
+    5) Layout
+============================================================*/
+
+.layoutDropLine {
+    background-color:#DDDDFF;
+}
+.layoutPlaceHolder {
+    border:1px solid black;
+}
+
+/*============================================================
+    6) TabSet and tab titles
+============================================================*/
+
+.tabSetContainer {
+    background-color: #EEEEEE;
+    border-left:1px solid black; border-top:1px solid black;
+    border-right:1px solid black; border-bottom:1px solid black;
+}
+.tab,
+.tabOver,
+.tabSelected,
+.tabSelectedOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold;
+}
+.tabDown,
+.tabSelectedDown {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold;
+}
+.tabSelectedDisabled,
+.tabDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666; font-weight:bold;
+}
+
+
+
+/*============================================================
+    7) SectionStack
+============================================================*/
+
+/* SectionStack headers - css based */
+.sectionHeaderopened, 
+.sectionHeaderclosed {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}
+.sectionHeaderDisabledopened,
+.sectionHeaderDisabledclosed	 {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}
+
+
+
+/*============================================================
+    8) Forms
+============================================================*/
+
+/* general form styles */
+.formRow {}
+.formCell,
+.formCellFocused,
+.formCellDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+}
+.formTitle,
+.formTitleFocused,
+.formTitleDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+}
+.formCellError,
+.formTitleError {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold; color:darkred;
+    background-color:#FAFAD2
+}
+.formHint,
+.formHintDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666; padding:3px;
+}
+
+/* headerItem */
+.headerItem,
+.headerItemDisabled,
+.headerItemError {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold; color:darkblue;
+}
+
+/* text items */
+.nativeSelectItem,
+.nativeSelectItemDisabled,
+.nativeSelectItemError,
+.staticTextItem,
+.staticTextItemDisabled,
+.staticTextItemError {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+}
+
+.textItem,
+.textItemFocused,
+.textItemDisabled,
+.textItemDisabledHint,
+.textItemError,
+.textItemHint {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+    padding:1px; border:2px inset #D4D0C8;
+    background-color:#FFFFFF;
+}
+.uploadItem,
+.uploadItemFocused,
+.uploadItemDisabled,
+.uploadItemDisabledHint,
+.uploadItemError,
+.uploadItemHint {
+    margin:0;
+    border:0;
+    padding:0;
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+    background:#FFFFFF;
+}
+
+/*
+Cupertino relies on the browser's user-agent stylesheet to apply a disabled text color to
+disabled TextItems. The GrayText CSS2 system color keyword should refer to this disabled text
+color, but some browsers (e.g. Firefox 31.0, Chrome 36) actually use a different color. So,
+we apply color:GrayText ourselves.
+*/
+.textItemDisabled,
+.textItemDisabledHint,
+.uploadItemDisabled,
+.uploadItemDisabledHint {
+    color: GrayText;
+}
+
+.textItemHint,
+.uploadItemHint {
+    color:darkGray;
+}
+
+/* selectItem */
+
+.selectItemText,
+.selectItemTextError,
+.selectItemTextItemHint {
+    font-family:Verdana,Bitstream Vera Sans,Helvetica,sans-serif; font-size:11px; margin:2px;
+}
+.selectItemTextFocused {
+    font-family:Verdana,Bitstream Vera Sans,Helvetica,sans-serif; font-size:11px; margin:2px;
+    background-color:#316AC5; color:white;
+}
+
+.selectItemTextDisabled,
+.selectItemTextDisabledHint {
+    font-family:Verdana,Bitstream Vera Sans,Helvetica,sans-serif; font-size:11px; margin:2px;
+    color:GrayText;
+}
+
+.selectItemTextItemHint {
+    color:#666666;
+}
+
+.selectItemControl,
+.selectItemControlError,
+.selectItemControlFocused {
+    background-color:white; border:1px solid #808080;
+}
+
+.selectItemControlDisabled {
+    background-color:white; border:1px solid #A0A0A0;
+}
+
+.selectItemPickerIcon,
+.selectItemPickerIconFocused,
+.selectItemPickerIconDisabled,
+.selectItemPickerIconError {
+    padding:1px;
+}
+
+/*
+Cupertino relies on the browser's user-agent stylesheet to apply a disabled text color to
+disabled TextItems. Use the CSS2 system color keyword 'GrayText'.
+*/
+.nativeSelectItemDisabled,
+.staticTextItemDisabled {
+    color: GrayText;
+}
+
+.pickListMenuBody {
+    border:1px solid #808080;
+}
+
+.pickListCell {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; color:black;
+    background-color:#FFFFFF;
+}
+.pickListCellSelected {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; color:white;
+    background-color:#316AC5;
+}
+.pickListCellDisabled {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; color:#666666; 
+    background-color:#FFFFFF;
+}
+
+.pickListCellOver,
+.pickListCellSelectedOver,
+.pickListCellOverDark,
+.pickListCellSelectedOverDark,
+.tallPickListCellOver,
+.tallPickListCellSelectedOver,
+.tallPickListCellOverDark,
+.tallPickListCellSelectedOverDark {
+  background-color: #98A1DA;
+  color: #ffffff;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 11px;
+}
+
+/* comboBoxItem */
+.comboBoxItemPendingText {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+    padding:1px; border:2px inset #D4D0C8;
+    background-color:#FFFFFF;
+    color:#0066CC;
+}
+						
+/* checkbox and radioButton */
+.labelAnchor,
+.labelAnchorDisabled,
+.labelAnchorError,
+.labelAnchorFocused  {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; text-decoration:none; color:black
+}
+
+/* ColorChooser */
+.colorChooserCell {
+    background-color:#EFEFEF;
+    border-left:1px solid #EFEFEF;
+    border-top:1px solid #EFEFEF;
+    border-right:1px solid #EFEFEF;
+    border-bottom:1px solid #EFEFEF;
+}
+.colorChooserCellOver {
+    background-color:#EFEFEF; 
+    border-left:1px solid black;
+    border-top:1px solid black;
+    border-right:1px solid black;
+    border-bottom:1px solid black;
+}
+
+/* FilterBuilder */
+.bracketBorders {
+    border-left: 1px solid #808080;
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #808080;    
+}
+
+/* DateChooser */
+.dateChooserButton,
+.dateChooserButtonOver,
+.dateChooserButtonDown,
+.dateChooserButtonDisabled,
+.dateChooserButtonSelected,
+.dateChooserButtonSelectedDown,
+.dateChooserButtonSelectedOver,
+.dateChooserButtonSelectedDisabled,
+.dateChooserWeekendButton,
+.dateChooserWeekendButtonOver,
+.dateChooserWeekendButtonDown,
+.dateChooserWeekendButtonDisabled,
+.dateChooserWeekendButtonSelected,
+.dateChooserWeekendButtonSelectedDown,
+.dateChooserWeekendButtonSelectedOver,
+.dateChooserWeekendButtonSelectedDisabled,
+.dateChooserBottomButton,
+.dateChooserBottomButtonOver,
+.dateChooserBottomButtonDown,
+.dateChooserBottomButtonSelected,
+.dateChooserBottomButtonSelectedOver,
+.dateChooserBottomButtonSelectedDown,
+.dateChooserNavButton,
+.dateChooserNavButtonOver,
+.dateChooserNavButtonDown,
+.dateChooserNavButtonSelected,
+.dateChooserNavButtonSelectedOver,
+.dateChooserNavButtonSelectedDown,
+.dateChooserWeekday,
+.dateChooserWeekdayOver,
+.dateChooserWeekdayDown,
+.dateChooserWeekdaySelected,
+.dateChooserWeekdaySelectedOver,
+.dateChooserWeekdaySelectedDown,
+.dateChooserWeekdayDisabled,
+.dateChooserWeekend,
+.dateChooserWeekendOver,
+.dateChooserWeekendDown,
+.dateChooserWeekendSelected,
+.dateChooserWeekendSelectedOver,
+.dateChooserWeekendSelectedDown,
+.dateChooserWeekendDisabled,
+.dateChooserFiscalYearCell,
+.dateChooserFiscalYearCellOver,
+.dateChooserFiscalYearCellDown,
+.dateChooserFiscalYearCellDisabled,
+.dateChooserFiscalYearCellSelected,
+.dateChooserFiscalYearCellSelectedDown,
+.dateChooserFiscalYearCellSelectedOver,
+.dateChooserFiscalYearCellSelectedDisabled,
+.dateChooserWeekCell,
+.dateChooserWeekCellOver,
+.dateChooserWeekCellDown,
+.dateChooserWeekCellDisabled,
+.dateChooserWeekCellSelected,
+.dateChooserWeekCellSelectedDown,
+.dateChooserWeekCellSelectedOver,
+.dateChooserWeekCellSelectedDisabled,
+.dateChooserWeekendDisabled,
+.dateChooserDisabledWeekday,
+.dateChooserDisabledWeekdayOver,
+.dateChooserDisabledWeekdayDown,
+.dateChooserDisabledWeekdaySelected,
+.dateChooserDisabledWeekdaySelectedDown,
+.dateChooserDisabledWeekdaySelectedOver,
+.dateChooserDisabledWeekend,
+.dateChooserDisabledWeekendOver,
+.dateChooserDisabledWeekendDown,
+.dateChooserDisabledWeekendSelected,
+.dateChooserDisabledWeekendSelectedDown,
+.dateChooserDisabledWeekendSelectedOver,
+.dateChooserSelectedWeek,
+.dateChooserSelectedWeekOver,
+.dateChooserSelectedWeekDown,
+.dateChooserSelectedWeekDisabled,
+.dateChooserSelectedWeekSelected,
+.dateChooserSelectedWeekSelectedDown,
+.dateChooserSelectedWeekSelectedOver,
+.dateChooserSelectedWeekSelectedDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:10px; 
+    background-color:#FFFFFF;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}
+
+.dateChooserWeekendButtonOver,
+.dateChooserWeekdayOver,
+.dateChooserWeekendOver,
+.dateChooserButtonOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:10px; background-color:#CCCCCC;
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #FFFFFF; border-bottom:1px solid #FFFFFF;
+}
+
+.dateChooserWeekendButtonDown,
+.dateChooserWeekdayDown,
+.dateChooserWeekendDown,
+.dateChooserButtonDown {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:10px; color:#FFFFFF;
+    background-color:#000000;
+    border-top:1px solid #000000; border-bottom:1px solid #000000;
+    border-left:1px solid #000000; border-right:1px solid #000000;
+}
+
+.dateChooserWeekendDisabled,
+.dateChooserWeekCellDisabled,
+.dateChooserDisabledWeekday,
+.dateChooserDisabledWeekend,
+.dateChooserSelectedWeekDisabled,
+.dateChooserButtonDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:10px; color:#666666;
+    background-color:#CCCCCC; 
+    border-left:1px solid #CCCCCC; border-top:1px solid #CCCCCC;	
+    border-right:1px solid #CCCCCC; border-bottom:1px solid #CCCCCC;
+}
+
+.dateChooserWeekendButtonSelected,
+.dateChooserWeekendButtonSelectedDown,
+.dateChooserWeekdaySelected,
+.dateChooserWeekdaySelectedDown,
+.dateChooserWeekendSelected,
+.dateChooserWeekendSelectedDown,
+.dateChooserButtonSelected,
+.dateChooserButtonSelectedDown {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:10px; color:#FFFFFF;
+    background-color:#000000; 
+    border-top:1px solid #000000; border-bottom:1px solid #000000;
+    border-left:1px solid #000000; border-right:1px solid #000000;
+}
+
+.dateChooserWeekendButtonSelectedOver,
+.dateChooserWeekdaySelectedOver,
+.dateChooserWeekendSelectedOver,
+.dateChooserFiscalYearCellSelectedOver,
+.dateChooserWeekCellSelectedOver,
+.dateChooserDisabledWeekdaySelectedOver,
+.dateChooserDisabledWeekendSelectedOver,
+.dateChooserSelectedWeekSelectedOver,
+.dateChooserButtonSelectedOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:10px; color:#FFFFFF;
+    background-color:#000000;  
+    border-top:1px solid #000000; border-bottom:1px solid #000000;
+    border-left:1px solid #000000; border-right:1px solid #000000;
+}
+
+.dateChooserButtonDisabled,
+.dateChooserWeekendButtonDisabled,
+.dateChooserWeekendButtonSelectedDisabled,
+.dateChooserWeekdayDisabled,
+.dateChooserWeekendDisabled,
+.dateChooserFiscalYearCellDisabled,
+.dateChooserFiscalYearCellSelectedDisabled,
+.dateChooserWeekCellDisabled,
+.dateChooserWeekCellSelectedDisabled,
+.dateChooserWeekendDisabled,
+.dateChooserSelectedWeekDisabled,
+.dateChooserSelectedWeekSelectedDisabled,
+.dateChooserButtonSelectedDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:10px; color:#666666;
+    background-color:#CCCCCC; 
+    border-left:1px solid #CCCCCC; border-top:1px solid #CCCCCC;	
+    border-right:1px solid #CCCCCC; border-bottom:1px solid #CCCCCC;
+}
+
+/* year and month pop-up menus */
+.dateChooserYearMenu,
+.dateChooserMonthMenu,
+.dateChooserWeekMenu {
+  /*background-color: white;
+  border: 2px solid #4d4d4d;*/
+}
+						
+/*============================================================
+	9) Slider & Rangebar
+============================================================*/
+
+/* slider labels */
+.sliderTitle {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:10px; font-weight:bold;
+}
+.sliderRange,
+.sliderRangeDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:10px; color:gray
+}
+.sliderValue,
+.sliderValueDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:10px;
+}
+
+/* rangebar labels */
+.rangebarTitle {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:10px; font-weight:bold;
+}
+.rangebarRange {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:10px; color:gray
+}
+.rangebarValue {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:10px;
+}
+
+
+
+/*============================================================
+	10) DetailViewer
+============================================================*/
+.detailBlock {
+    border-left:1px solid gray;
+    border-top:1px solid gray;
+}
+
+.detail,
+.detailLabel,
+.detailHeader {
+    border-right:1px solid gray;
+    border-bottom:1px solid gray;
+}
+
+.detailLabel {
+    font-family:Bitstream Vera Sans, sans-serif; font-size:11px; font-weight:bold;
+    background-color:#EEEEEE; text-align:right;
+}
+.detail {
+    font-family:Bitstream Vera Sans, sans-serif; font-size:11px; background-color:white;
+}
+.detailHeader {
+    font-family:Bitstream Vera Sans, sans-serif; font-size:14px; font-weight:bold;
+    background-color:#BBDAFA;
+}
+
+
+
+/*============================================================
+	11) ListGrid
+============================================================*/
+
+/*============================================================
+	ListGrid parts
+		styleName - listGrid
+		headerBarStyle - headerBar
+		bodyStyleName - gridBody
+============================================================*/
+
+.listGrid {
+    background-color:#EFEFEF;
+    border-top:2px solid #000000; border-bottom:2px solid #000000; 
+    border-left:2px solid #000000; border-right:2px solid #000000;
+}
+.loadingDataMessage,
+.offlineMessage,
+.emptyMessage {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; padding:10px
+}
+.gridDragTracker {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+    background-color:white;
+    padding:1px;
+    border:1px dotted blue;
+}
+.dragLine,
+.dragLineVertical {
+    background-color:#98A1DA;
+    pointer-events: none;
+}
+.listTable			{}
+/* for filterEditor */
+.recordEditorCell {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; color:black; background-color:#d0d0d0;
+}
+
+
+/*============================================================
+	ListGrid cells
+		listGrid.baseStyle
+============================================================*/
+
+/*------------------------------------------------------------
+		listGrid.baseStyle
+------------------------------------------------------------*/
+.cell,
+.cellDark,
+.gridSummaryCell,
+.specialCol,
+.recordSummaryCell,
+.recordSummaryCellDark {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:black; background-color:#EFEFEF;
+    text-overflow:ellipsis;
+    border-left:1px solid #EFEFEF;
+    border-top:1px solid #EFEFEF;
+    border-right:1px solid white;
+    border-bottom:1px solid white;
+}
+
+.specialCol {
+    background-color:#CCCCCC;
+}
+
+.cellOver,
+.cellOverDark,
+.recordSummaryCellOver,
+.specialColOver,
+.recordSummaryCellOverDark {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:black; background-color:#98A1DA;
+    text-overflow:ellipsis;
+    border-left:1px solid #98A1DA;
+    border-top:1px solid #98A1DA;;
+    border-right:1px solid #98A1DA;
+    border-bottom:1px solid #98A1DA;
+}						
+.cellSelected,
+.cellSelectedDark,
+.specialColSelected,
+.recordSummaryCellSelected,
+.recordSummaryCellSelectedDark {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#FFFFFF;
+    background-color:#000000; text-overflow:ellipsis;
+    border-left:1px solid #000000;
+    border-right:1px solid #000000;
+    border-top:1px solid #000000;
+    border-bottom:1px solid #000000;
+}
+.cellSelectedOver,
+.cellSelectedOverDark,
+.specialColSelectedOver,
+.recordSummaryCellSelectedOver,
+.recordSummaryCellSelectedOverDark {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#FFFFFF;
+    background-color:#4C516D; text-overflow:ellipsis;
+    border-left:1px solid #4C516D;
+    border-right:1px solid #4C516D;
+    border-top:1px solid #4C516D;                            
+    border-bottom:1px solid #4C516D;
+}
+.cellDisabled,
+.cellDisabledDark,
+.specialColDisabled,
+.gridSummaryCellDisabled,
+.recordSummaryCellDisabled,
+.recordSummaryCellDisabledDark {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#EFEFEF; text-overflow:ellipsis;
+    border-left:1px solid #EFEFEF;
+    border-top:1px solid #EFEFEF;
+    border-right:1px solid white;
+    border-bottom:1px solid white;
+}
+.gridSummaryCell,
+.gridSummaryCellDisabled,
+.recordSummaryCell,
+.recordSummaryCellDark,
+.recordSummaryCellOver,
+.recordSummaryCellOverDark,
+.recordSummaryCellSelected,
+.recordSummaryCellSelectedDark,
+.recordSummaryCellSelectedOver,
+.recordSummaryCellSelectedOverDark,
+.recordSummaryCellDisabled,
+.recordSummaryCellDisabledDark {
+    font-weight:bold;
+}
+
+
+/* for grouping */
+.groupNode {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold; color:black;background-color:#EFEFEF;
+    text-overflow:ellipsis;
+    border-bottom: 2px solid #548EE0; 
+}
+
+/* Field builders (Formula/Summary) */
+.sampleOutput {
+    border: 2px solid #D9D9D9;
+    padding: 3px; 
+}
+
+/* Multi-sort - sort-index appearing next to sort-arrows in field headers */
+.sortNumeral {
+    font-size:7px
+}
+
+/*============================================================
+	12) ToolStrip
+============================================================*/
+.toolStrip {
+    background-color:#CCCCCC;
+}
+.toolStripLayoutDropLine {
+    background-color:#404040;
+}
+
+/*============================================================
+   12a) ToolStripGroup and IconButton
+==============================================================*/
+.toolStripGroup,
+.toolStripGroupOver,
+.toolStripGroupSelected,
+.toolStripGroupSelectedDisabled,
+.toolStripGroupSelectedOver,
+.toolStripGroupDown,
+.toolStripGroupSelectedDown,
+.toolStripGroupDisabled {
+    background: #DDDDDD;
+    border: 1px solid #000000;
+}
+
+.toolStripGroupTitle,
+.toolStripGroupTitleOver,
+.toolStripGroupTitleSelected,
+.toolStripGroupTitleSelectedDisabled,
+.toolStripGroupTitleSelectedOver,
+.toolStripGroupTitleDown,
+.toolStripGroupTitleSelectedDown,
+.toolStripGroupTitleDisabled {
+    background: #CCCCCC;
+    border: 0;
+    color: #000000;
+    font-family: Arial, Verdana, Bitstream Vera Sans, sans-serif; 
+    font-size: 11px; 
+    font-weight: bold;
+    padding: 3px;
+}
+ 
+.iconButton {
+    background: #DCDCDC;
+    border-bottom: 1px solid #000000;
+    border-left: 1px solid #FFFFFF;
+    border-right: 1px solid #000000;
+    border-top: 1px solid #FFFFFF;
+	color:#000000;
+    font-family: Arial, Verdana, Bitstream Vera Sans, sans-serif; 
+    font-size:11px;
+    padding: 4px;
+}
+ 
+.iconButtonFocused,
+.iconButtonFocusedOver,
+.iconButtonDown,
+.iconButtonFocusedDown
+.iconButtonSelected,
+.iconButtonSelectedFocused,
+.iconButtonSelectedDown,
+.iconButtonSelectedFocusedDown,
+.iconButtonSelectedOver,
+.iconButtonSelectedFocusedOver,
+.iconButtonDisabled,
+.iconButtonSelectedDisabled {
+    background: #888888;
+    border-bottom: 1px solid #FFFFFF;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #FFFFFF;
+    border-top: 1px solid #000000;
+	color:#000000;
+    font-family: Arial, Verdana, Bitstream Vera Sans, sans-serif; 
+    font-size:11px;
+    padding: 4px;
+}
+
+
+.iconButtonOver,
+.iconButtonDown,
+.iconButtonSelected,
+.iconButtonSelectedOver,
+.iconButtonFocusedOver,
+.iconButtonSelectedFocusedOver {
+    background: #CCCCCC;
+    border-bottom: 1px solid #000000;
+    border-left: 1px solid #FFFFFF;
+    border-right: 1px solid #000000;
+    border-top: 1px solid #FFFFFF;
+	color:#000000;
+    font-family: Arial, Verdana, Bitstream Vera Sans, sans-serif; 
+    font-size:11px;
+    padding: 4px;
+}
+
+.iconButtonSelected,
+.iconButtonSelectedFocused,
+.iconButtonSelectedDown,
+.iconButtonSelectedFocusedDown,
+.iconButtonSelectedFocusedOver {
+    background-color: #e5e5e5;
+}
+
+.iconButtonDisabled {
+    color: #AAAAAA;
+}
+
+/* IconButton icon and menuIcon styles - used for spacing top and bottom of the title in v-buttons */
+.iconButtonHIcon {
+    vertical-align:middle;
+}
+.iconButtonHMenuIcon {
+    vertical-align:middle; 
+    border:1px solid transparent; 
+    -moz-border-radius: 3px; 
+    -webkit-border-radius: 3px; 
+    -khtml-border-radius: 3px; 
+    border-radius: 3px;
+}
+
+.iconButtonVIcon {
+    vertical-align:middle;
+    margin-bottom: 5px;
+}
+.iconButtonVMenuIcon {
+    vertical-align:middle; 
+    border:1px solid transparent; 
+    -moz-border-radius: 3px; 
+    -webkit-border-radius: 3px; 
+    -khtml-border-radius: 3px; 
+    border-radius: 3px;
+    margin-top: 4px;
+}
+
+/*============================================================
+   13) TileGrid
+==============================================================*/
+
+.tileGrid {
+    border:1px solid #808080;
+   
+}
+.tileValue,
+.tileValueDown,
+.tileValueSelected,
+.tileValueOver,
+.tileValueSelectedOver,
+.tileValueSelectedDown {
+    font-size: 8pt; 
+    text-overflow:ellipsis;   
+}
+
+.tileValueSelected {
+    color: #404B68 
+}
+
+.tileValueSelectedOver {
+    color: #333C53
+}
+
+.simpleTile, 
+.simpleTileOver,
+.simpleTileSelected,
+.simpleTileSelectedOver {
+    padding:3px    
+}
+
+.simpleTile {
+    border:1px solid transparent;
+}
+.simpleTileOver {
+      background-color:#EFEFEF;
+      border:1px solid #C2C2C2;
+}
+
+.simpleTileSelected {
+      background-color:#A9B2CA;
+      border:1px solid #5F709B;
+}
+
+.simpleTileSelectedOver {
+      background-color:#99A2BA;
+      border:1px solid #545F7C;
+}
+
+/*============================================================
+    Unused? Review & Remove
+============================================================*/
+.selectedText {
+    background-color:darkblue; color:white;
+}
+.disabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#CCCCCC;
+}
+.pageHeader {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:12px; color:darkblue; font-weight:bold;
+}
+.printPageHeader {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:14px; color:darkblue; font-weight:bold;
+}
+.printCell {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+}
+
+
+
+
+
+
+
+/*IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
+	Styles below this comment are not used by default in this skin
+
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII*/
+
+
+
+/*============================================================
+    TabSet CSS tabs
+		tabSet.simpleTabBaseStyle
+============================================================*/
+/* Styles for simple css-styled tabs */
+/* left */
+.tabButtonLeft,
+.tabButtonLeftOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-bottom:1px solid #000000;
+}
+.tabButtonLeftDown {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#888888; 
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-bottom:1px solid #FFFFFF;
+}
+.tabButtonLeftDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-bottom:1px solid #000000;
+}
+.tabButtonLeftSelected,
+.tabButtonLeftSelectedDown,
+.tabButtonLeftSelectedOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#EEEEEE; 
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-bottom:1px solid #000000;
+}
+.tabButtonLeftSelectedDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-bottom:1px solid #000000;
+}
+
+/* right */
+.tabButtonRight,
+.tabButtonRightOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#CCCCCC;
+    border-top:1px solid #FFFFFF;
+    border-bottom:1px solid #000000; border-right:1px solid #000000;
+}
+.tabButtonRightDown {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#888888; 
+    border-top:1px solid #000000;
+    border-bottom:1px solid #FFFFFF; border-right:1px solid #FFFFFF;
+}
+.tabButtonRightDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC;
+    border-top:1px solid #FFFFFF;
+    border-bottom:1px solid #000000; border-right:1px solid #000000;
+}
+.tabButtonRightSelected,
+.tabButtonRightSelectedDown,
+.tabButtonRightSelectedOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#EEEEEE; 
+    border-top:1px solid #000000;
+    border-bottom:1px solid #000000; border-right:1px solid #000000;
+}
+.tabButtonRightSelectedDisabled	{
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC;
+    border-top:1px solid #FFFFFF;
+    border-bottom:1px solid #000000; border-right:1px solid #000000;
+}
+/* top */
+
+.tabButtonTop,
+.tabButtonTopOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000;
+}
+.tabButtonTopDown {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#888888; 
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #FFFFFF;
+}
+.tabButtonTopDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000;
+}
+.tabButtonTopSelected,
+.tabButtonTopSelectedDown,
+.tabButtonTopSelectedOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#EEEEEE; 
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #000000;
+}
+.tabButtonTopSelectedDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000;
+}
+/* bottom */                        
+.tabButtonBottom,
+.tabButtonBottomOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF;
+    border-bottom:1px solid #000000; border-right:1px solid #000000;
+}
+.tabButtonBottomDown {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#888888; 
+    border-left:1px solid #000000;
+    border-bottom:1px solid #FFFFFF; border-right:1px solid #FFFFFF;
+}
+.tabButtonBottomDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF;
+    border-bottom:1px solid #000000; border-right:1px solid #000000;
+}
+.tabButtonBottomSelected,
+.tabButtonBottomSelectedDown,
+.tabButtonBottomSelectedOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#EEEEEE; 
+    border-left:1px solid #000000;
+    border-bottom:1px solid #000000; border-right:1px solid #000000;
+}
+.tabButtonBottomSelectedDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF;
+    border-bottom:1px solid #000000; border-right:1px solid #000000;
+}
+						
+
+
+
+
+/*IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
+	Styles below this comment are used by optional modules only
+
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII*/
+
+
+
+/*============================================================
+	CubeGrid - Analytics Module only
+		cubeGrid.baseStyle - cubeCell
+		headerGrid.baseStyle - rowHeader
+		reportHeaderBar.button.baseStyle - rowHeader
+		reportHeaderBar.button.baseStyle - innerHeader/colHeader
+		reportHeaderBar.button.baseStyle - rowHeaderLabel
+		reportHeaderBar.button.baseStyle - colHeaderLabel
+============================================================*/
+.cubeGridBody {}
+
+.cubeCell,
+.cubeCellDark {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:black; background-color:#EFEFEF;
+    text-overflow:ellipsis;
+    border-left:1px solid #EFEFEF;
+    border-top:1px solid #EFEFEF;
+    border-right:1px solid white;
+    border-bottom:1px solid white;
+}
+.cubeCellDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666; text-overflow:ellipsis;
+    background-color:#EFEFEF; 
+    border-left:1px solid #EFEFEF; border-top: 1px solid #EFEFEF;
+    border-right:1px solid white; border-bottom:1px solid white;
+}
+
+/* partial styles */ 
+.cubeCellSelected {
+    color:#FFFFFF;
+    background-color:#000000;
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}
+
+.cubeCellOver {
+    border-left:1px solid #98A1DA; border-top:1px solid #98A1DA;
+    border-right:1px solid #98A1DA; border-bottom:1px solid #98A1DA;
+}
+						
+.cubeCellSelectedOver {
+    color:#FFFFFF;
+    background-color:#000000;
+    border-left:1px solid #4C516D; border-top:1px solid #4C516D; 
+    border-right:1px solid #4C516D; border-bottom:1px solid #4C516D;
+}
+
+/* row headers */
+.rowHeader,
+.rowHeaderOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:black;
+    background-color:#AAAAAA;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}
+.rowHeaderDown {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:black;
+    background-color:#666666; 
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #FFFFFF; border-bottom:1px solid #FFFFFF;
+}
+.rowHeaderDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC; 
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000; font-weight:bold;
+}
+.rowHeaderSelected,
+.rowHeaderSelectedDown,
+.rowHeaderSelectedOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:black; 
+    background-color:#888888; 
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}						
+.rowHeaderSelectedDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC; 
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000; font-weight:bold;
+}
+
+/* row label */
+.rowHeaderLabel,
+.rowHeaderLabelOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold; color:black; 
+    background-color:#888888; 
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}
+.rowHeaderLabelDown {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold; color:black; 
+    background-color:#444444;
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #FFFFFF; border-bottom:1px solid #FFFFFF;
+}
+.rowHeaderLabelDisabled	{
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold; color:#666666; 
+    background-color:#CCCCCC; 
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}
+.rowHeaderLabelSelected,
+.rowHeaderLabelSelectedDown,
+.rowHeaderLabelSelectedOver	{
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold; color:black;
+    background-color:#888888;
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}						
+.rowHeaderLabelSelectedDisabled	{
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold; color:#666666; 
+    background-color:#CCCCCC; 
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000; 
+}
+						
+/* column headers */
+.colHeader,
+.colHeaderOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;  color:black;
+    background-color:#AAAAAA;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}
+.colHeaderDown {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:black;
+    background-color:#666666; 
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #FFFFFF; border-bottom:1px solid #FFFFFF;
+}
+.colHeaderDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC; 
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000; font-weight:bold;
+}
+.colHeaderSelected,
+.colHeaderSelectedDown,
+.colHeaderSelectedOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:black; 
+    background-color:#888888; 
+	border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}						
+.colHeaderSelectedDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC; 
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000; font-weight:bold;
+}
+
+/* column label */
+.colHeaderLabel,
+.colHeaderLabelOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold; color:black; 
+    background-color:#888888; 
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}
+.colHeaderLabelDown {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold; color:black; 
+    background-color:#444444; 
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #FFFFFF; border-bottom:1px solid #FFFFFF;
+}
+.colHeaderLabelDisabled	{
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold; color:#666666; 
+    background-color:#CCCCCC; 
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}
+.colHeaderLabelSelected,
+.colHeaderLabelSelectedDown,
+.colHeaderLabelSelectedOver	{
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold; color:black;
+    background-color:#888888;
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}						
+.colHeaderLabelSelectedDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; font-weight:bold; color:#666666; 
+    background-color:#CCCCCC; 
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000; 
+}
+
+/* inner header */
+.innerHeader,
+.innerHeaderOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:black; background-color:#CCCCCC;
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}
+.innerHeaderDown {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:black; background-color:#888888; 
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #FFFFFF; border-bottom:1px solid #FFFFFF;
+}
+.innerHeaderDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC; 
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}
+.innerHeaderSelected,
+.innerHeaderSelectedDown,
+.innerHeaderSelectedOver {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:black; background-color:#888888; 
+    border-left:1px solid #000000; border-top:1px solid #000000;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}						
+.innerHeaderSelectedDisabled {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC; 
+    border-left:1px solid #FFFFFF; border-top:1px solid #FFFFFF;
+    border-right:1px solid #000000; border-bottom:1px solid #000000;
+}
+
+
+
+/*============================================================
+	BarChart
+	internal, charting/visualization module only
+		styleName - chart
+		barStyle - chartBar
+		others are currently fixed
+============================================================*/
+
+.chart { 
+    background-color:#CCCCCC;
+}
+.chartTitle {
+    color:black;
+    font-family: Tahoma,sans-serif;
+    font-size:14px;
+    font-weight: bold;
+    text-align:center
+}
+.chartAxisTitle {
+    color:green;
+    font-family: Tahoma,sans-serif;
+    font-weight: bold;
+    font-size:12px;
+}
+.chartValueTitle {
+    color:black;
+    font-family: Tahoma,sans-serif;
+    font-size:10px;
+}
+.chartTotal {
+    color:black;
+    font-family:Bitstream Vera Sans, sans-serif; 
+    font-size:12px;
+    background-color:linen;
+}
+.chartBody {
+    border-left:1px solid black;
+    border-top:1px dashed blue;
+    border-right:1px solid black;
+    background-color:#DDDDDD
+}   
+.chartBar1 {
+    background-color:red;
+    filter:"progid:dximagetransform.microsoft.gradient(gradientType=1, startColorStr=#990000, endColorStr=#FF0000)";
+}
+.chartBar2 {
+    background-color:blue;
+    filter:"progid:dximagetransform.microsoft.gradient(gradientType=1, startColorStr=#000099, endColorStr=#0000FF)";
+}
+.chartBar3 {
+    background-color:green;
+    filter:"progid:dximagetransform.microsoft.gradient(gradientType=1, startColorStr=#009900, endColorStr=#00FF00)";
+}
+
+/*============================================================
+	Printing
+        printHeader - general print style for header elements including:
+        - ListGrid header cells
+        - SectionStack headers
+============================================================*/
+.printHeader {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+    border:1px solid black;
+    font-weight:bold;
+}
+
+/*============================================================
+	Calendar
+    
+============================================================*/
+.calendar,
+.calendarDisabled,
+.calendarDisabledDark,
+.calendarDisabledOver,
+.calendarDisabledOverDark,
+.calendarWorkdayDisabled,
+.calendarWorkday,
+.calendarDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#ffffff;
+}
+
+.calendarWorkdayDisabled,
+.calendarDark,
+.calendarDisabled,
+.calendarDisabledDark,
+.calendarDisabledOver,
+.calendarDisabledOverDark {
+    background-color:gainsboro;    
+}
+
+.calendarWorkday {
+    background-color:#f2f2f2; 
+}
+
+.calendarOver,
+.calendarOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#c0ffc0;
+}
+.calendarWorkdaySelected,
+.calendarCellSelected {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#CCCCCC; 
+}
+.labelColumn,
+.labelColumnDark,
+.labelColumnOver,
+.labelColumnOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:gainsboro;
+}
+
+.labelColumnOver,
+.labelColumnOverDark, 
+.calendarDisabledOver,
+.calendarDisabledOverDark {
+  background-color: #a4bbdb;
+}
+
+/* ----month---- */
+/* calMonthDayHeader and Body */
+
+.calMonthDayHeader,
+.calMonthDayHeaderDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color: gainsboro;
+}
+
+.calMonthDayHeaderOver,
+.calMonthDayHeaderOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color: #c0ffc0;
+}
+.calMonthDayHeaderDisabled,
+.calMonthDayHeaderDisabledOver {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#E6E6E6;
+}
+
+.calMonthDayBody,
+.calMonthDayBodyDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#ffffff;
+}
+.calMonthDayBodyOver,
+.calMonthDayBodyOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#c0ffc0;
+}
+
+.calMonthDayBodyDisabled,
+.calMonthDayBodyDisabledOver {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#E6E6E6;
+}
+/* calMonthOtherDayHeader and Body */
+
+.calMonthOtherDayHeader,
+.calMonthOtherDayHeaderDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:#444444;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color: #aaaaaa;
+}
+.calMonthOtherDayHeaderOver,
+.calMonthOtherDayHeaderOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:#444444;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color: #c0ffc0;
+}
+.calMonthOtherDayBody,
+.calMonthOtherDayBodyDark, 
+.calMonthOtherDayBodyDisabled, 
+.calMonthOtherDayBodyDisabledOver{
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#E6E6E6;
+}
+.calMonthOtherDayBodyOver,
+.calMonthOtherDayBodyOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#c0ffc0;
+}
+/* calMonthOtherDayBlank */
+
+.calMonthOtherDayBlank,
+.calMonthOtherDayBlankDark, 
+.calMonthOtherDayBlankOver,
+.calMonthOtherDayBlankOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:#444444;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color: #E6E6E6;
+}
+
+/* calMonthEventLink */
+
+a.calMonthEventLink:link {color:blue; text-decoration:none}
+a.calMonthEventLink:visited {color:blue; text-decoration:none}
+a.calMonthEventLink:hover {color:blue; text-decoration:underline}
+a.calMonthEventLink:active {color:blue; text-decoration:none}
+
+/* ----event window---- */
+
+.eventWindow {
+    font-size:9px;
+    background-color:#649ED8;
+    border: 1px solid #004D99;
+    padding: 0px;
+    margin: 0px;
+}
+
+.eventWindowHeader,
+.eventWindowGripper,
+.eventWindowLabel {
+    font-size:9px; color: white;
+    background-color:#004D99;
+    margin: 0px;
+}
+
+.eventWindowBody {
+    font-size: 9px;
+    background-color: #649ED8;
+    padding: 3px;
+}
+
+.eventWindowResizer{
+    border-top:1px solid white;
+    border-bottom: 1px solid white;
+}
+
+/* --- ZoneCanvas --- */
+
+.zoneCanvas {
+  background-color: rgba(150, 150, 150, 0.5);
+}
+
+.zoneCanvasHeader,
+.zoneCanvasGripper,
+.zoneCanvasLabel {
+  display: inline-block;
+  color: white;
+  background-color: grey;
+  left: 0;
+  bottom: 0;
+}
+
+/* --- IndicatorCanvas --- */
+
+.indicatorCanvas {
+  background-color: #AA0000;
+}
+
+.indicatorCanvasHeader,
+.indicatorCanvasGripper,
+.indicatorCanvasLabel {
+  display: inline-block;
+  color: white;
+  background-color: #AA0000;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 11px;
+}
+
+/* make all grippers rounded */
+.eventWindowGripper,
+.indicatorCanvasGripper,
+.zoneCanvasGripper {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  padding: 0px;
+  margin: 0px;
+}
+
+/* show a border around floating labels */
+.eventWindowLabel,
+.zoneCanvasLabel,
+.indicatorCanvasLabel {
+  border: 1px solid black;
+}
+
+/*============================================================
+	PropertySheet
+	internal, used by Visual SmartClient tools
+        propertySheet.autoChildDefaults.cellStyle - propSheetValue
+        propertySheet.autoChildDefaults.titleStyle - propSheetTitle
+        propertySheet.TextItemDefaults.textBoxStyle - propSheetField
+        propertySheet.SelectItemDefaults.controlStyle - propSheetSelectControl
+        propertySheet.ColorItemDefaults.textBoxStyle - propSheetField
+        propertySheet.HeaderItemDefaults.textBoxStyle - propSheetHeading
+        propertySheet.SectionHeaderItemDefaults.cellStyle - propSheetSectionItemCell
+============================================================*/
+
+.propSheetValue,
+.propSheetValueFocused,
+.propSheetValueDisabled {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif;
+    font-size:11px;
+    border-bottom:1px solid #AAAAAA;
+    border-right:1px solid #AAAAAA;
+    padding:0px;
+    margin:0px;
+}
+.propSheetTitle,
+.propSheetTitleFocused,
+.propSheetTitleDisabled {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif;
+    font-size:11px;
+    border-bottom:1px solid #AAAAAA;
+    border-right:1px solid #AAAAAA;
+    background-color:#DDDDDD;
+    padding-left:4px;
+    padding-right:4px;
+}
+.propSheetTitleError,
+.propSheetValueError {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; 
+    font-size:11px; color:#204268; 
+    background-color:#CFD9F2
+}
+.propSheetField,
+.propSheetFieldDisabled {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif;
+    font-size:11px;
+    background-color:#FFFFFF;
+    border:0px;
+    padding:0px;
+    padding-left:4px;
+    padding-right:4px;
+    margin-top:3px;
+}
+.propSheetHeading,
+.propSheetHeadingDisabled {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif;
+    font-size:11px;
+    font-weight:bold;
+    color:black;
+    background-color:#CCCCCC;
+    padding:4px;
+    border-bottom:1px solid #AAAAAA;
+}
+.propSheetSelectControl,
+.propSheetSelectControlFocused,
+.propSheetSelectControlDisabled {
+    padding-left:3px;
+    padding-right:3px;
+}
+
+.propSheetSectionItemCell,
+.propSheetSectionItemDisabled {
+}
+
+
+/* Styles for Finder cells */
+.finder,
+.finderSelected {
+    font-family:Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#F0F0F0;
+    border-bottom:1px solid white;
+}
+.finderSort,
+.finderSelectedSort {
+    font-family:Gadget, Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#DDDDDD;
+    border-bottom:1px solid white;
+}
+.finderDisabled {
+    font-family:Chicago, Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#FFFFFF;
+    border-bottom:1px solid #FFFFFF;
+}
+.finderSelectedText {
+    color:white; background-color:black; margin:5px;
+}
+
+	/* header buttons */
+.finderButton {
+    font-family:Gadget, Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#DDDDDD;
+    border-left:1px solid white; border-top:1px solid white;
+    border-right:1px solid #CCCCCC; border-bottom:1px solid #CCCCCC;
+}
+.finderButtonDown,
+.finderButtonSelectedDown {
+    font-family:Gadget, Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:white;
+    background-color:#999999;
+    border-left:1px solid #666666; border-top:1px solid #666666;
+    border-right:1px solid white; border-bottom:1px solid white;
+}
+.finderButtonSelectedDisabled,
+.finderButtonSelected {
+    font-family:Gadget, Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; background-color:#999999;
+    border-left:1px solid #666666; border-top:1px solid #666666;
+    border-right:1px solid white; border-bottom:1px solid white;
+}
+.finderButtonDisabled {
+    font-family:Gadget, Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#999999;
+    border-left:1px solid #CCCCCC; border-top:1px solid #CCCCCC;	
+    border-right:1px solid #CCCCCC; border-bottom:1px solid #CCCCCC;
+}
+
+
+
+/* Styles for Explorer cells */
+.explorer,
+.explorerOver,
+.explorerSelected,
+.explorerSelectedOver,
+.explorerDark,
+.explorerOverDark,
+.explorerSelectedOverDark,
+.explorerSelectedDark,
+.explorerDisabled {
+    font-family:MS Sans Serif, Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+}
+.explorerSelectedText {
+    color:white; background-color:darkblue; margin:5px;
+}
+.explorerButtonOver,
+.explorerButtonSelected,
+.explorerButtonSelectedOver,
+.explorerButton {
+    font-family:MS Sans Serif, Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+    background-color:#CCCCCC;
+    border-left:2px solid white; border-top:2px solid white;
+    border-right:1px solid #999999; border-bottom:1px solid #999999;
+}
+.explorerButtonSelectedDown,
+.explorerButtonDown {
+    font-family:MS Sans Serif, Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px;
+    background-color:#CCCCCC;  
+    border-left:2px solid #999999; border-top:2px solid #999999;
+    border-right:0px solid white; border-bottom:0px solid white;
+}
+.explorerButtonSelectedDisabled,
+.explorerButtonDisabled {
+    font-family:MS Sans Serif, Bitstream Vera Sans,Helvetica,Verdana,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC; 
+    border-left:1px solid #CCCCCC; border-top:1px solid #CCCCCC;	
+    border-right:1px solid #CCCCCC; border-bottom:1px solid #CCCCCC;
+}
+
+

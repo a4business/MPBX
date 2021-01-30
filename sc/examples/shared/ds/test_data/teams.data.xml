@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<List>
+    <team>
+        <TeamId>1</TeamId>
+        <TeamName>New Costing System</TeamName>
+    </team>
+    <team>
+        <TeamId>2</TeamId>
+        <TeamName>Warehousing Improvements</TeamName>
+    </team>
+    <team>
+        <TeamId>3</TeamId>
+        <TeamName>Evaluate AJAX Frameworks</TeamName>
+    </team>
+    <team>
+        <TeamId>4</TeamId>
+        <TeamName>Upgrade Postgres</TeamName>
+    </team>
+    <team>
+        <TeamId>5</TeamId>
+        <TeamName>Online Billing</TeamName>
+    </team>
+</List>

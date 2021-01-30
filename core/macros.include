@@ -1,0 +1,1011 @@
+
+;; THis OPerator menu, after pressing  '0' or '*' under VoiceMail() application
+;; Asking password to check messages
+[from-voicemail]
+exten => a,1,Goto(o,1)
+exten => o,1,NooP(From VoiceMail ${VM_BOX} ${ARG2} )
+;;exten => o,n,DumpChan()
+exten => o,n,ExecIf($["${VM_BOX}" = ""]?Set(VM_BOX=${ARG2})
+exten => o,n,ExecIf($[ "${HASH(TENANT_OPTIONS,VM_OPER_EXTEN)}" != "" ]?Dial(Local/${HASH(TENANT_OPTIONS,VM_OPER_EXTEN)}@internal-${MYTENANT}))
+exten => o,n,VoiceMailMain(${VM_BOX})
+
+exten => h,1,Verbose( ${CONTEXT} Hangup Handler):w
+                                                                                                                               
+
+
+
+
+[helpers]
+exten => page,1,NooP(test)
+exten => page,n,SIPAddHeader(Alert-Info: <Ring Answer>)
+exten => page,n,Set(_SIP_URI_OPTIONS=intercom=true)
+exten => page,n,SIPAddHeader(Call-Info: <>\;answer-after=0)
+exten => page,n,Verbose(1,    PAGING parked call: park:${PARKEDAT}@parkingspace-${tenant}  DEVICE_STATE=${DEVICE_STATE(park:${PARKEDAT}@parkingspace-${tenant})}  to [ ${PAGE_GROUP} ] )
+exten => page,n,Set(DB(${DB_KEY}/page_parked_at)=${PARKEDAT})
+exten => page,n,GotoIf($["${DEVICE_STATE(park:${PARKEDAT}@parkingspace-${tenant})}" = "INVALID"]?check) ;; When messedup parked at, consider it in USE(when page without park)  
+exten => page,n,GotoIf($["${DEVICE_STATE(park:${PARKEDAT}@parkingspace-${tenant})}" = "INUSE"]?check)   ;; When everything is OK 
+exten => page,n,Verbose(4, WARNING: PARKED CALL IS LOST: ${PARKEDAT}(${DEVICE_STATE(park:${PARKEDAT}@parkingspace-scnd)}), CANCEL Paging )
+exten => page,n,Hangup()
+
+exten => page,n(check),GotoIf($[${GROUP_COUNT(${PAGE_GROUP})} = 0]?now)
+exten => page,n,Verbose(4, Paging group '${PAGE_GROUP}' is BUSY, wait 5s, then retry!) 
+exten => page,n,Wait(5)
+exten => page,n,Goto(check)
+
+exten => page,n(now),Set(GROUP()=${PAGE_GROUP})
+exten => page,n,Set(TIMEOUT(absolute)=30)
+exten => page,n,Page(${PAGE_GROUP}${PAGE_GROUP_OPTS})
+
+
+exten => page,n,Goto(page-${DIALSTATUS},1)
+
+exten => page-BUSY,1,NooP( We are at ${DIALSTATUS} )
+exten => page-BUSY,n,Wait(5)
+exten => page-BUSY,n,Goto(page,1)
+
+exten => h,1,Verbose(1,    PAGING COMPLETED[ ${UNIQUEID} ${DIALSTATUS} ] for [ ${PAGE_GROUP} ] )
+
+
+;; Get Pgaegroup by PageGroup Access Number ;;
+[app-pagegroup-access]
+ exten => s,1,Set(HASH(PAGEGROUP)=${GET_PAGEGROUP(${ARG1:3},${CALLERID(num)})})
+ ;;exten => s,n,DumpChan()
+ exten => s,n,Answer()
+ exten => s,n,Gosub(app-pbx-service,s-pagegroup,1(page,${HASH(PAGEGROUP,PG_EXTEN)},${HASH(PAGEGROUP,PG_TENANT_ID)}));
+
+[test-dnd]
+exten => s,1,GoSub(app-set-opt,s,1(dnd,0))
+
+[app-set-opt]
+;; app-set-opt,s,1(opt,val)
+exten => s,1,Set(OPT=${ARG1})
+exten => s,n,Set(VAL=${ARG2})
+exten => s,n,Gosub(set-variables,s,1(${tenant}))
+;;exten => s,n,DumpChan()
+exten => s,n,Verbose( Setting options ${OPT} to ${VAL} for ${MYEXTENSION} in ${tenant} )
+exten => s,n,NoCDR()
+exten => s,n,Goto(s-${OPT},1)
+
+
+;; QUEUES Manager Options ;;
+
+exten => _X.,1,ExecIf($[ "QUEUE_EXISTS(${EXTEN:2})" != 1 ]?Goto(fail) )
+same => n,Return()
+same => n(fail),Playback()
+
+exten => s-queue_logon,1,GotoIf($[ "${VAL}" == "1"]?set)
+ ;;;same => n,GotoIf($[ "${QUEUE_EXISTS(${VAL})}" != "1" ]?qfail,1) 
+ same => n(set),Set(SET_USEROPT(${tenant},${MYEXTENSION},${OPT})=${VAL})  
+ same => n,Set(SET_USEROPT(${tenant},${MYID},hrlogon)=${MYEXTENSION})
+ same => n,Answer()
+ same => n,ExecIf($[ "${VAL}" != "1" ]?AGI(tts.php,default,'You have been assigned into this queue!',0,auto));
+ same => n,ExecIf($[ "${VAL}" == "1" ]?AGI(tts.php,default,'You have been assigned into all queues!',0,auto));
+ same => n,Hangup
+
+exten => s-queue_logoff,1,GotoIf($[ "${VAL}" == "1"]?set)
+ ;;;same => n,GotoIf($[ "${QUEUE_EXISTS(${VAL})}" != "1" ]?qfail,1)
+ same => n(set),Set(SET_USEROPT(${tenant},${MYEXTENSION},${OPT})=${VAL}) 
+ same => n,Set(SET_USEROPT(${tenant},${MYID},hrlogoff)=${MYEXTENSION})
+ same => n,Answer() 
+ same => n,ExecIf($[ "${VAL}" != "1" ]?AGI(tts.php,default,'You have been removed from this queue!',0,auto));
+ same => n,ExecIf($[ "${VAL}" == "1" ]?AGI(tts.php,default,'You have been removed from all queues!',0,auto));
+ same => n,Hangup
+
+
+
+
+
+exten => s-queue_unpause,1,Set(SET_USEROPT(${tenant},${MYEXTENSION},${OPT})=${VAL}) 
+ same => n,AGI(tts.php,default,'You are paused in this queue!',0,auto);
+ same => n,Hangup
+
+exten => s-queue_pause,1,Set(SET_USEROPT(${tenant},${MYEXTENSION},${OPT})=${VAL})
+ same => n,AGI(tts.php,default,'You have been unpaused in this queue!',0,auto);
+ same => n,Hangup
+
+;; FOR ALL QUEUES, where member is assigned  ;; - Same as agent-pause
+exten => s-queues_unpause,1,Set(SET_USEROPT(${tenant},${MYEXTENSION},${OPT})=${VAL}) 
+ same => n,Set(SET_USEROPT(${tenant},${MYID},hrlogon)=${MYEXTENSION})
+ same => n,AGI(tts.php,default,'You have ben resumed in your queues',0,auto);
+ same => n,Hangup
+
+exten => s-queues_pause,1,Set(SET_USEROPT(${tenant},${MYEXTENSION},${OPT})=${VAL})
+ same => n,Set(SET_USEROPT(${tenant},${MYID},hrlogoff)=${MYEXTENSION})
+ same => n,AGI(tts.php,default,'You have ben paused in your queues',0,auto);
+ same => n,Hangup
+
+exten => qfail,1,AGI(tts.php,default,'Sorry. NO such queue',0,auto);
+ same => n,Hangup
+
+exten => s-dnd,1,Set(SET_USEROPT(${tenant},${MYEXTENSION},${OPT})=${VAL})
+same => n,Playback(en_pbx-dnd${VAL}conf)
+same => n,Hangup()
+same => n,Return
+
+
+
+
+
+[agent-unpause]
+exten => s,1,Gosub(agent-pause,s,1(UNPAUSED))
+
+[agent-pause]
+
+exten => s,1,Answer
+exten => s,n,Gosub(set-variables,s,1)
+exten => s,n,Verbose(4, Tenant: ${tenant} Agent SIP/${MYID} - Exten: ${MYEXTENSION} ${ARG1} FROM ALL QUEUES )
+exten => s,n,Set(HASH(ITEM)=${GET_PBXITEM(hrstatus,${MYID},${tenant})})
+
+exten => s,n,GotoIf($["${ARG1}" = "UNPAUSED"]?UNPAUSED)
+
+exten => s,n(paused),PauseQueueMember(,SIP/${MYID})
+;;; Check Status before  HRLogOFF;;
+exten => s,n,Goto(ifHRstatusP-${HASH(ITEM,PBX_ITEM)})
+
+exten => s,n(ifHRstatusP-),Noop(Default HR  - when No Status )
+exten => s,n(ifHRstatusP-ON),Set(SET_USEROPT(${tenant},${MYID},hrlogoff)=${MYEXTENSION})
+exten => s,n,Set(msg=dictate/paused)
+
+exten => s,n,Goto(log)
+exten => s,n(ifHRstatusP-OFF),Verbose(2, WARNING: Skip HRLOGOFF for ${MYID}, ALL-READY OFF! )
+exten => s,n,Set(msg=already-onpause)
+exten => s,n,Goto(log)
+
+
+
+
+exten => s,n(UNPAUSED),UnpauseQueueMember(,SIP/${MYID})
+;;; Check Status before  HRLogON;;
+exten => s,n,Goto(ifHRstatusU-${HASH(ITEM,PBX_ITEM)})
+
+exten => s,n(ifHRstatusU-),Noop(Default HR  - when No Status )
+exten => s,n(ifHRstatusU-OFF),Set(SET_USEROPT(${tenant},${MYID},hrlogon)=${MYEXTENSION})
+exten => s,n,Set(msg=in-the-queue)
+exten => s,n,Goto(log)
+
+exten => s,n(ifHRstatusU-ON),Verbose(2, WARNING: Skip HRLOGIN for ${MYID}, ALL-READY ON! )
+exten => s,n,Set(msg=already-active)
+exten => s,n,Goto(log)
+
+
+
+exten => s,n(log),System( echo "${EPOCH}|${UNIQUEID}|NONE|${_tenant} Agent/${MYID}|AGENT${ARG1}|-" >> /var/log/asterisk/queue_log )
+exten => s,n,UserEvent(RefreshQueue)
+exten => s,n,Playback(extension)
+exten => s,n,SayDigits(${MYEXTENSION})
+exten => s,n,Playback(${msg})
+exten => s,n,Wait(1)
+exten => s,n,Hangup
+
+
+
+
+[app-pbx-service]
+
+;; Run different MBPX services ;;
+;; exten => s,n,Set(HASH(ITEM)=${GET_PBXITEM('${ACTION}','${ARG2}', '${ARG3}')})
+;;exten=>s,n,Set(ITEM=${HASH(ITEM,PBX_ITEM)})
+
+exten => s,1,Set(ACTION=${ARG1})
+exten => s,n,Set(ITEM=${GET_PBXITEM(${ARG1},${ARG2},${ARG3})})
+exten => s,n,Verbose(1,PBX Service[ Action:${ACTION}, Var:${ARG2} Tenant:${ARG3} DB-PBX-Name:${ITEM} ] )
+exten => s,n,Goto(s-${ACTION},1)
+same => n,Hangup
+
+exten => s-userlogon,1,Verbose(2, User LOGON request from clid:${CALLERID(num)} / ext:${MYEXTENSION} )
+ same => n,Gosub(set-variables,s,1(${tenant}))
+ same => n,BackGround(your&extension)
+ ;;same => n,Playback(extension)
+ same => n,Read(LOGONEXTEN,vm-then-pound)
+ same => n,Hangup
+
+ same => n,Set(HASH(LOGON)=${GET_PBXITEM(userlogonpass,${LOGONEXTEN},${tenant})})
+ same => n,Set(LOGONPASS=${HASH(LOGON,PBX_ITEM)})
+ same => n,GotoIf($[${LEN(${LOGONPASS})} = 0]?s-NOLOGOPASSWORD,1)
+ same => n,Authenticate(${LOGONPASS})
+ same => n,Set(SET_USEROPT(${tenant},${LOGONEXTEN},userlogon)=${MYEXTENSION})
+ same => n,Playback(agent-loginok)
+ same => n,Hangup
+
+exten => s-userlogoff,1,Verbose(2, User logOFF request from clid:${CALLERID(num)} / ext:${MYEXTENSION})
+ same => n,Gosub(set-variables,s,1(${tenant}))
+ same => n,Set(SET_USEROPT(${tenant},all,userlogoff)=${MYEXTENSION})
+ same => n,Playback(agent-loggedoff)
+ same => n,Hangup
+
+exten => s-hrlogon,1,Verbose(2, HR action  : Personal logOFF request from clid:${CALLERID(num)} / ext:${MYEXTENSION})
+ same => n,Gosub(set-variables,s,1(${tenant}))
+ same => n,Set(SET_USEROPT(${tenant},${MYID},hrlogon)=${MYEXTENSION})
+ same => n,Playback(agent-loginok)
+ same => n,Hangup
+
+exten => s-hrlogoff,1,Verbose(2, HR action : Personal logON request from clid:${CALLERID(num)} / ext:${MYEXTENSION})
+ same => n,Gosub(set-variables,s,1(${tenant}))
+ same => n,Set(SET_USEROPT(${tenant},${MYID},hrlogoff)=${MYEXTENSION})
+ same => n,Playback(agent-loggedoff)
+ same => n,Hangup
+
+
+
+exten => s-NOLOGOPASSWORD,1,Playback(an-error-has-occured&the-mailbox&vm-isunavail&vm-goodbye)
+
+
+
+
+
+
+exten => s-voicemail,1,Set(__VM_BOX=${ARG2})
+exten => s-voicemail,n,VoiceMail(${ARG2},u)
+exten => s-voicemail,n,Hangup
+;; s- alread here
+exten => s-,1,Return
+exten => s-unassigned,1,Return
+exten => s-hangup,1,Hangup
+exten => s-extension,1,Dial(Local/${ITEM},30))
+exten => s-ivrmenu,1,Dial(Local/${ITEM},30))
+
+exten => s-directory,1,Directory(${ARG3}-vmdefault,internal-${ARG3},${ARG2})
+
+
+exten => s-pagegroup,1,Set(__PAGE_GROUP=${CUT(ARG2,|,1)})
+exten => s-pagegroup,n,Set(__PAGE_GROUP_OPTS=,${CUT(ARG2,|,2)})
+exten => s-pagegroup,n,Answer()
+exten => s-pagegroup,n,Dial(Local/page@helpers,60)
+;;exten => s-pagegroup,n,Goto(helpers,page,1)
+exten => s-pagegroup,n,NooP(Finished PageGroup on  ${PAGE_GROUP} )
+
+
+exten => s-park_announce_rec,1,Verbose(6, Page&Announce tenant:$_tenant, DBData:${ITEM} arg1:${ARG1} arg2:${ARG2}  )
+exten => s-park_announce_rec,n,Set(DB(${CHANNEL(LinkedID)}/page_template)=${CUT(ARG2,|,1)})
+exten => s-park_announce_rec,n,Set(DB(${CHANNEL(LinkedID)}/page_group)=${CUT(ARG2,|,2)})
+exten => s-park_announce_rec,n,Set(DB(${CHANNEL(LinkedID)}/page_max_retry)=${CUT(ITEM,",",1)})
+exten => s-park_announce_rec,n,Set(DB(${CHANNEL(LinkedID)}/page_retry_time)=${CUT(ITEM,",",2)})
+exten => s-park_announce_rec,n,Set(DB(${CHANNEL(LinkedID)}/page_ivr_ontimeout)=${CUT(ARG2,|,3)})
+exten => s-park_announce_rec,n,Set(DB(${CHANNEL(LinkedID)}/page_current_retry)=1)
+exten => s-park_announce_rec,n,Set(DB(${CHANNEL(LinkedID)}/page_parking_lot)=parkinglot-${ARG3})
+exten => s-park_announce_rec,n,Set(_DB_KEY=${CHANNEL(LinkedID)})
+
+exten => s-park_announce_rec,n(try),Set(_PAGE_GROUP=${DB(${CHANNEL(LinkedID)}/page_group)})
+exten => s-park_announce_rec,n,Verbose(1, Park&Announce call from[ ${CALLERID(all)} ] in parkingLOT[ ${DB(${CHANNEL(LinkedID)}/page_parking_lot)} ] DBKey:${CHANNEL(LinkedID)} tryCount:${DB(${CHANNEL(LinkedID)}/page_current_retry)}  Max:${DB(${CHANNEL(LinkedID)}/page_max_retry)} )
+exten => s-park_announce_rec,n,ParkAndAnnounce(${DB(${CHANNEL(LinkedID)}/page_parking_lot)page_parking_lot},t(${DB(${CHANNEL(LinkedID)}/page_retry_time)})c(app-pbx-service,s-park_announce_rec,retry),${DB(${CHANNEL(LinkedID)}/page_template)},Local/page@helpers/n)
+exten => s-park_announce_rec,n,Goto(done)
+
+exten => s-park_announce_rec,n(retry),Set(DB(${CHANNEL(LinkedID)}/page_current_retry)=$[${DB(${CHANNEL(LinkedID)}/page_current_retry)}+1])
+exten => s-park_announce_rec,n,Set(__PARKINGEXTEN=${DB(${CHANNEL(LinkedID)}/page_parked_at})
+exten => s-park_announce_rec,n,GotoIf($[ 0${DB(${CHANNEL(LinkedID)}/page_current_retry)} <=  0${DB(${CHANNEL(LinkedID)}/page_max_retry)} ]?try)
+
+exten => s-park_announce_rec,n,Verbose(1, MAX-PAGE-RETRY REACHED:${DB(${CHANNEL(LinkedID)}/page_current_retry)}, MAX:${DB(${CHANNEL(LinkedID)}/page_max_retry)} INTERVAL: ${DB(${CHANNEL(LinkedID)}/page_retry_time)} sec )
+exten => s-park_announce_rec,n,Set(IVRID=${DB(${CHANNEL(LinkedID)}/page_ivr_ontimeout)})
+exten => s-park_announce_rec,n,DBdeltree(${CHANNEL(LinkedID)})
+exten => s-park_announce_rec,n,ExecIf($["${IVRID}" != ""]?Dial(Local/s@internal-${tenant}-ivrmenu-${IVRID},60,tT))
+exten => s-park_announce_rec,n,Hangup()
+
+exten => s-park_announce_rec,n(done),NooP(Finished ParkAndAnnounce with ${DIALSTATUS} )
+
+;; Simple RUN MOH ;;
+exten => s-moh,1,Answer()
+exten => s-moh,n,MusicOnHold(${ARG2})
+exten => s-moh,n,NooP(Finished action:${ACTION} )
+
+;; DISA - PIN:CALLERID:CONTEXT ;;
+exten => s-disa,1,Set(PASS=${CUT(ARG2,|,1)})
+exten => s-disa,n,ExecIf($["${PASS}" = ""]?Set(PASS=no-password))
+exten => s-disa,n,DISA(${PASS},${CUT(ARG2,|,3)},${CUT(ARG2,|,2)})
+
+;;exten => s-voicemail,1,VoiceMail(${ITEM},b)
+
+exten => s-conference,1,Gosub(dialconference,${ITEM})
+
+exten => s-number,1,Dial(Local/${ARG2}@internal-{$tenant},,tT)
+
+;; Queue(name,opts,,,timeout) ;;
+;; and welcome message ? huh?
+;;exten => s-queue,1,Queue(${CUT(ITEM,",",1)},ntT,,,${CUT(ITEM,",",2)})
+exten => s-queue,1,Dial(Local/s@internal-${ARG3}-queue-${ARG2},,tT)
+  
+exten => s-play_invalid,1,Playback(invalid)
+exten => s-play_rec,1,Playback(snd_${ARG3}/${ARG2}) 
+exten => s-play_tts,1,Playback(${ARG2})
+exten => s-moh,1,MusicOnHold(${ITEM})
+
+
+
+
+
+;;;Call listen
+[app-call-listen]
+exten => s,1,Verbose(2,CALL LISTEN FOR "${ARG1:4}" BY ${CALLERID(all)})
+same => n,Gosub(set-variables,s,1(${tenant}))
+;;same => n,DumpChan()
+same => n,Answer
+same => n,NoCDR
+same => n,Wait(1)
+same => n,ChanSpy(SIP/${tenant}-${ARG1:4},qX)
+same => n,Hangup
+
+exten => 9,1,Verbose(2,CALL LISTEN SWITCHED TO WHISPER  FOR "${ARG1:4}" BY ${CALLERID(all)})
+same => n,GoSub(app-call-whisper,s,1(${ARG1}))
+
+;;;whisper
+[app-call-whisper]
+exten => s,1,Verbose(2,CALL WHISPER FOR "${ARG1:4}" BY ${CALLERID(all)})
+same => n,Answer
+same => n,NoCDR
+same => n,Wait(1)
+same => n,ChanSpy(SIP/${tenant}-${ARG1:4},qwX)
+same => n,Hangup
+
+
+exten => 9,1,Verbose(2,CALL WHISPER SWITCHED TO BARGE  FOR "${ARG1:4}" BY ${CALLERID(all)})
+same => n,GoSub(app-call-barge,s,1(${ARG1}))
+
+
+;;;barge
+[app-call-barge]
+exten => s,1,Verbose(2,CALL BARGE FOR "${ARG1:4}" BY ${CALLERID(all)})
+same => n,Answer
+same => n,NoCDR
+same => n,Wait(1)
+same => n,ChanSpy(SIP/${tenant}-${ARG1:4},qB)
+same => n,Hangup
+
+
+
+[app-echo]
+exten => s,1,Playback(demo-echotest) ; Let them know what’s going on
+exten => s,n,Echo ; Do the echo test
+exten => s,n,Playback(demo-echodone) ; Let them know it’s over
+
+;;[app-recording]
+;;exten => s,1,Gosub(app-recording,s,1)
+;;exten => s,n(done),Return()
+
+[macto-app-recording]
+include => app-recording
+
+[app-recording]
+exten => s,1,Verbose(2,Check recording options)
+exten => s,n,ExecIf($[ "${MEMBERINTERFACE}" != ""]?Set(FROM=${CUT(MEMBERINTERFACE,/,2)}))
+exten => s,n,ExecIf($[ "${HASH(CALLEE,extension)}" == "" ]?Set(HASH(CALLEE)=${GET_USER(${FROM})}))
+;;exten => s,n,ExecIf($[ "${HASH(CALLER,extension)}" == "" ]?Set(HASH(CALLER)=${GET_USER(${FROM})}))
+exten => s,n,Verbose(2,master: ${QUEUE_REC_ID} )
+exten => s,n,Set(RECORD_CALLER=${HASH(CALLER,RECORD)})
+exten => s,n,Set(RECORD_CALLEE=${HASH(CALLEE,RECORD)})
+exten => s,n,Set(RECORD_TENANT=${HASH(TENANT_OPTIONS,DEF_RECORDING)})
+
+;;;; When Extensions not identified (inbound-did call) - we apply TENANT DEFAULT RECORDING OPTIONS ;;;
+exten => s,n,ExecIf($["${RECORD_CALLEE}" = "" & "${RECORD_CALLER}" = ""]?Set(RECORD_CALLEE=${RECORD_TENANT}))
+
+
+;;;exten => s,n,ResetCDR(wa)
+;;;exten => s,n,DumpChan()
+
+exten => s,n,GotoIf($["${RECORD_CALLEE}" = "2" & "${RECORD_CALLER}" = "2"]?disabled)
+
+exten => s,n(check_callee),GotoIf($["${RECORD_CALLEE}" != "1"]?check_caller)
+exten => s,n,Set(FNAME=in)
+
+exten => s,n(check_caller),GotoIf($["${RECORD_CALLER}" != "1"]?check_onetouch)
+exten => s,n,Set(FNAME=${FNAME}out)
+
+;; on Demand ? allow it now
+exten => s,n(check_onetouch),GotoIf($["${RECORD_CALLEE}" != "3"]?check_caller_onetouch)
+exten => s,n,Set(OPTIONS=${OPTIONS}w)
+exten => s,n,Set(FNAME=in)
+
+;; on Demand ? allow it now
+exten => s,n(check_caller_onetouch),GotoIf($["${RECORD_CALLER}" != "3"]?check_if_onetouch)
+exten => s,n,Set(OPTIONS=${OPTIONS}W)
+exten => s,n,Set(FNAME=${FNAME}out)
+
+exten => s,n(check_if_onetouch),GotoIf($["${FNAME}" = ""]?check_if_record)
+exten => s,n,Set(TOUCH_MONITOR_FORMAT=${RECORDING_FORMAT})
+exten => s,n,Set(TOUCH_MONITOR=${FNAME}-${DIALED_NUMBER}-${STRFTIME(,,%F-%H-%M-%S)}-${CALLERID(num)}-${tenant})
+exten => s,n,Set(CDR(recording)=${TOUCH_MONITOR}.${TOUCH_MONITOR_FORMAT})
+
+
+exten => s,n(check_if_record),GotoIf($["${FNAME}" = ""]?done) 
+exten => s,n,Verbose(2, Recording Format:${RECORDING_FORMAT} Type: ${FNAME} )
+exten => s,n,GotoIf($["${RECORDING_FORMAT}" != ""]?record)
+exten => s,n,Set(RECORDING_FORMAT=wav)
+exten => s,n(record),Set(FULL_FNAME=${UNIQUEID}.${RECORDING_FORMAT})
+exten => s,n,ExecIf($[ "${QUEUE_REC_ID}" != ""]?Set(FULL_FNAME=${QUEUE_REC_ID}.${RECORDING_FORMAT}))
+exten => s,n,Set(CDR(recording)=${FULL_FNAME})
+;;exten => s,n,Playback(tl/beep)
+exten => s,n,Verbose(1,    RECORGIN ENABLED, FILE: ${FULL_FNAME} ) 
+exten => s,n,MixMonitor(${FULL_FNAME},i(RECORDING))
+
+
+exten => s,n(done),NoOp
+exten => s,n,NoOp(  RECORIND For CALLEE/${HASH(CALLEE,name)} enabled=${RECORD_CALLEE})
+exten => s,n,NoOp(  RECORIND For CALLER/${HASH(CALLER,name)} enabled=${RECORD_CALLER})
+exten => s,n,NoOp(  RECORIND For this TENANT(${_tenant})  enabled=${RECORD_TENANT})
+;;exten => s,n,NooP(${MASTER_CHANNEL(name)})
+;;exten => s,n,Set(MASTER_CHANNEL(__RECORD)=${TOUCH_MONITOR})
+exten => s,n,Return()
+
+exten => s,n(disabled),Verbose(1,RECORDING DISABLED FOR BOTH CALLERS!)
+exten => s,n,Return()
+
+
+
+
+;;; https://asterisk-pbx.ru/wiki/asterisk/cf/followme.conf ;;;
+[app-followme]
+exten => s,1,Verbose(Calling to FollowMeID: ${ARG1:3})
+exten => s,n,GotoIf($["${ARG1:3}" = ""]?fail)
+exten => s,n,Followme(${tenant}-${ARG1:3},san)
+exten => s,n,Hangup
+exten => s,n(fail),Dial(Local/s@general-${tenant}-error)
+exten => s,n,Hangup
+
+
+
+
+
+[app-dumpchanvars]
+
+exten => s,1,Set(LEVEL=0)
+exten => s,n,GotoIf($["${ARG1}" != ""]?dump)
+exten => s,n,Set(LEVEL=${ARG1})
+exten => s,n(dump),DumpChan(${LEVEL})
+
+[app-exten-vmail]
+;; Leave VoiceMail to mail box ;;
+exten => s,1,Answer
+exten => s,n,Wait(1)
+;; exten => s,n,DumpChan()
+exten => s,n,ExecIf($[ "${tenant}" = "" ]?Set(tenant=${MYTENANT})
+exten => s,n,Verbose( 2, MacroExtem in app-exten-vmail: ${ARG1} t:${MYTENANT} )
+exten => s,n,GotoIf($["${ARG1:3}" = ""]?channel)
+exten => s,n,Set(__VM_BOX=${ARG1:3}@${tenant}-vmdefault)
+exten => s,n,VoiceMail(${ARG1:3}@${tenant}-vmdefault)
+;;exten => s,n,DumpChan()
+exten => s,n,ExecIf( $[ "${VMSTATUS}" = "FAILED" ]?Playback(the-mailbox&vm-isunavail))
+exten => s,n,Hangup
+
+exten => s,n(channel),Gosub(set-variables,s,1)
+exten => s,n,Set(__VM_BOX=${MYEXTENSION}@${tenant}-vmdefault)
+exten => s,n,VoiceMail(${MYEXTENSION}@${tenant}-vmdefault,s)
+exten => s,n,DumpChan()
+;;exten => s,n,Wait(1)
+exten => s,n,ExecIf( $[ "${VMSTATUS}" = "FAILED" ]?Playback(the-mailbox&vm-isunavail))
+exten => s,n,Hangup
+
+
+[app-check-vmail]
+;; Check Video/Voice Mail ;;
+
+exten => s,1,Answer
+exten => s,n,Wait(1)
+exten => s,n,GotoIf($["${ARG1:3}" = ""]?channel)
+exten => s,n,VoiceMailMain(${ARG1:3}@${tenant}-vmdefault,${ARG2})
+exten => s,n,Wait(1)
+exten => s,n,Hangup
+
+exten => s,n(channel),Gosub(set-variables,s,1)
+;;exten => s,n,Dumpchan()
+exten => s,n,VoiceMailMain(${MYEXTENSION}@${tenant}-vmdefault,${ARG2})
+exten => s,n,Wait(1)
+exten => s,n,Hangup
+
+
+
+[calleridManage]
+
+exten => s,1,Verbose(10,"Starting ${ARG1} calleriManage [ Original:'${CALLERID(all)}' ]")
+exten => s,n,Set(ORIGCLI=${CALLERID(all)})
+exten => s,n,ExecIf($[ "${CALLERID(rdnis)}" != "" ]?Verbose(5,PRESERVE CALLERID: Got X- FORWARDER: [${CALLERID(rdnis)}] ))
+exten => s,n,ExecIf($[ "${CALLERID(rdnis)}" != "" ]?Set(FWD_KEEP_CID=1))
+
+	exten => s,n,GotoIf($["${FWD_KEEP_CID}" = "1"]?skip)	
+	exten => s,n,GotoIf($["${ARG1}" != ""]?${ARG1})
+
+  
+ ;; EXTERNAL-OUT_BOUND
+		exten => s,n(external),Verbose(4, ${ARG1} TENANT-SET[ ${TENANT_FCALLER_NAME} ${TENANT_FCALLER_ID} ] )
+		exten => s,n,Verbose(4, ${ARG1} EXTEN-SET[ ${SET_EXTOUT_CNAME} ${SET_EXTOUT_CID} ] )
+		
+		exten => s,n,ExecIf($["${TENANT_FCALLER_ID}" != ""]?Set(CALLERID(num)=${TENANT_FCALLER_ID}))
+		exten => s,n,ExecIf($["${TENANT_FCALLER_NAME}" != ""]?Set(CALLERID(name)=${TENANT_FCALLER_NAME}))
+		
+		exten => s,n,ExecIf($["${SET_EXTOUT_CID}" != ""]?Set(CALLERID(num)=${SET_EXTOUT_CID}))
+		exten => s,n,ExecIf($["${SET_EXTOUT_CNAME}" != ""]?Set(CALLERID(name)=${SET_EXTOUT_CNAME}))
+
+		exten => s,n,Goto(done)
+
+  ;; INTERNAL-INBOUND
+		exten => s,n(internal),Verbose(4, ${ARG1}  CALLER-SET [ ${HASH(CALLER,first_name)} <${HASH(CALLER,extension)}>] )
+        exten => s,n,Verbose(4, ${ARG1}  EXTEN-SET [${SET_EXTINT_CNAME} <${SET_EXTINT_CID}>] )
+		
+		exten => s,n,ExecIf($["${HASH(CALLER,first_name)}" != ""]?Set(CALLERID(name)=${HASH(CALLER,first_name)} ${HASH(CALLER,last_name)}))
+		exten => s,n,ExecIf($["${HASH(CALLER,extension)}" != ""]?Set(CALLERID(num)=${HASH(CALLER,extension)}))
+		
+		exten => s,n,ExecIf($["${SET_EXTINT_CID}" != ""]?Set(CALLERID(num)=${SET_EXTINT_CID}))
+		exten => s,n,ExecIf($["${SET_EXTINT_CNAME}" != ""]?Set(CALLERID(name)=${SET_EXTINT_CNAME}))
+		exten => s,n,Goto(done)
+
+exten => s,n(skip),Verbose(4, FWD_KEEP_CID=${FWD_KEEP_CID} - SKIPP CallerID change, preserve origianl:[ ${CALLERID(all)} ] ))
+
+exten => s,n(done),Verbose(1,     [ ${tenant} ] Setting ${ARG1} CALLERID[ From: [ ${ORIGCLI} ]  TO: [ ${CALLERID(all)} ] )
+exten => s,n,Return
+
+
+
+;;;exten => s,n,DumpChan()
+
+
+[set-variables]
+
+exten => s,1,Set(MY_CHAN=${CUT(CHANNEL,/,2)})
+
+;;;exten => s,n,Set(MY_CHAN=IFG-TOR-103-2129313)
+
+exten => s,n,Verbose(1,     [ ${tenant} ] SetVars dn: ${DIALED_NUMBER} mychan: ${CHANNEL(name)}  Me: ${CUT(MY_CHAN,-,2)} )
+;;exten => s,n,GotoIf($["${CHANNEL(peername)}" = ""]?next)
+;;exten => s,n,Set(CDR(userfield)=${ARG1}::${MYEXTENSION}::${MYID})
+exten => s,n,Set(HASH(TENANT_OPTIONS)=${GET_TENANT_OPTIONS(${tenant})})
+exten => s,n(next),GotoIf($["${ARG2}" != ""]?${ARG2});
+ 
+exten => s,n,GotoIf($["${BLINDTRANSFER}" != ""]?transfered)
+exten => s,n,NoOp(THECHANNEL=${CHANNEL})
+exten => s,n,Set(dahdi=${REGEX("^DAHDI/" ${CHANNEL})})
+exten => s,n,GotoIf($["${dahdi}" = "0"]?usechannel)
+
+exten => s,n,Set(DAHDICHANNEL=${CUT(MY_CHAN,-,1)})
+exten => s,n,Set(__MYEXTENSION=${TL_CHANNEL_TO_EXTENSION(${DAHDICHANNEL})})
+exten => s,n,Set(__MYID=${tenant}-${MYEXTENSION})
+exten => s,n,Set(__MYTENANT=${tenant})
+exten => s,n,Set(__CALL_ID=${CDR(uniqueid)})
+exten => s,n,Set(CDR(userfield)=${ARG1}::${MYEXTENSION}::${MYID})
+exten => s,n,Return
+
+exten => s,n(transfered),Set(__MYEXTENSION=${CUT(BLINDTRANSFER,-,3)})
+exten => s,n,Set(__tenant=${CUT(BLINDTRANSFER,-,1)})
+exten => s,n,Set(__tenant=${CUT(tenant,/,2)})
+exten => s,n,Set(CDR(userfield)=${ARG1}::${MYEXTENSION}::${MYID})
+exten => s,n,Return
+
+exten => s,n(usechannel),Set(local=${REGEX("^Local/" ${CHANNEL})})
+exten => s,n,GotoIf($["${local}" = "1"]?local)
+exten => s,n,Set(__MYEXTENSION=${CUT(MY_CHAN,-,2)})
+
+;; Make sure we do not have 4th field (when tenant has - in name )
+exten => s,n,Set(PRE_CHECK_FIELD=${CUT(MY_CHAN,-,4)})
+exten => s,n,ExecIf($["${PRE_CHECK_FIELD}" != ""]?Set(__MYEXTENSION=${CUT(MY_CHAN,-,3)}))
+
+exten => s,n,Set(__MYTENANT=${CUT(MY_CHAN,-,1)})
+exten => s,n,Set(__MYID=${tenant}-${MYEXTENSION})
+exten => s,n,Set(__MYTENANT=${tenant})
+exten => s,n,Set(__CALL_ID=${CDR(uniqueid)})
+exten => s,n,Set(CDR(userfield)=${ARG1}::${MYEXTENSION}::${MYID})
+exten => s,n,Return
+
+exten => s,n(local),GoToIf($["${ORIGINATING_USER}" != ""]?have_user)
+exten => s,n,Set(__MYEXTENSION=${CUT(MY_CHAN,@,1)})  ;; TO?
+;; Make sure Local channel is not application ( like: Local/s@internal-Gigg-ivrmenu-1275 )
+;; if so - refer to global variable DIALED_NUMBER, it was set before PBX-inbound ( see IVR Menu dialplan )
+exten => s,n,ExecIf($[ "${MYEXTENSION}" = "s"]?Set(__MYEXTENSION=${DIALED_NUMBER}))
+exten => s,n,Set(__tenant=${ARG1})
+exten => s,n,ExecIf($[ "${tenant}" = "" ]?Set(__tenant=${CUT(MY_CHAN,-,2)}))
+exten => s,n,Set(__MYID=${tenant}-${MYEXTENSION})
+exten => s,n,Set(__MYTENANT=${tenant})
+exten => s,n,Set(__CALL_ID=${CDR(uniqueid)})
+exten => s,n,Set(CDR(userfield)=${ARG1}::${MYEXTENSION}::${MYID})
+exten => s,n,Return
+
+exten => s,n(have_user),Set(__MYEXTENSION=${ORIGINATING_USER})
+exten => s,n,Set(__tenant=${CUT(MY_CHAN,-,2)})
+exten => s,n,Set(__MYID=${tenant}-${MYEXTENSION})
+exten => s,n,Set(__MYTENANT=${tenant})
+exten => s,n,Set(__CALL_ID=${CDR(uniqueid)})
+exten => s,n,Set(CDR(userfield)=${ARG1}::${MYEXTENSION}::${MYID})
+exten => s,n,Return
+
+exten => s,n(inbound-did),Set(__tenant=${ARG1})
+exten => s,n,Verbose(3,Tenant"${tenant}"  Limits[ In:${HASH(TENANT_OPTIONS,IN_CURRENT)} (max:${HASH(TENANT_OPTIONS,IN_LIMIT)})  Out:${HASH(TENANT_OPTIONS,OUT_CURRENT)} (max:${HASH(TENANT_OPTIONS,OUT_LIMIT)}), overlimit:${HASH(TENANT_OPTIONS,IN_OVER_LIMIT)} ] )
+exten => s,n,ExecIf($["${HASH(TENANT_OPTIONS,IN_OVER_LIMIT)}" != "0"]?Goto(general-${tenant}-error,s,1))
+exten => s,n,Return
+exten => s,n,Set(CDR(userfield)=${ARG1}::${MYEXTENSION}::${MYID})
+;;exten => s,n,ExecIf($["${HASH(TENANT_OPTIONS,IN_OVER_LIMIT)}" != "0"]?Verbose(1,OVERLIMIT INBOUND CALLS ON: ${HASH(TENANT_OPTIONS,IN_OVER_LIMIT)}))
+;;exten => s,n,ExecIf($["${HASH(TENANT_OPTIONS,OUT_OVER_LIMIT)}" != "0"]?Verbose(1,OVERLIMIT OUTBOUND CALLS ON: ${HASH(TENANT_OPTIONS,OUT_OVER_LIMIT)}))
+
+
+
+
+
+
+[app-intercom]
+exten => s,1,SIPAddHeader(Alert-Info: <Ring Answer>)
+exten => s,n,Set(_SIP_URI_OPTIONS=intercom=true)
+exten => s,n,SIPAddHeader(Call-Info: <>\;answer-after=0)
+exten => s,n,Dial(SIP/${tenant}-${ARG1:${ARG2}},20,rtTA(tl/beep))
+exten => s,n,Hangup
+
+
+[agent-unpause]
+exten => s,1,Gosub(agent-pause,s,1(UNPAUSED))
+
+;; Unpause/Pause member form the queues, where member is assigned to. it does NOT remove member from QUeue, to remove - see other (set-opt_)
+exten => s,1,Answer
+exten => s,n,Gosub(set-variables,s,1)
+exten => s,n,Verbose(4, Tenant: ${tenant} Agent SIP/${MYID} - Exten: ${MYEXTENSION} ${ARG1} FROM ALL QUEUES )
+exten => s,n,GotoIf($["${ARG1}" = "UNPAUSED"]?UNPAUSED)
+exten => s,n(paused),PauseQueueMember(,SIP/${MYID})
+exten => s,n,Set(msg=agent-loggedoff)
+exten => s,n,Goto(log)
+exten => s,n(UNPAUSED),UnpauseQueueMember(,SIP/${MYID})
+exten => s,n,Set(msg=agent-loginok)
+exten => s,n(log),System( echo "${EPOCH}|${UNIQUEID}|NONE|${_tenant} Agent/${MYID}|AGENT${ARG1}|-" >> /var/log/asterisk/queue_log )
+;;exten => s,n,Dumpchan()
+exten => s,n,UserEvent(RefreshQueue)
+exten => s,n,Playback(extension)
+exten => s,n,SayDigits(${MYEXTENSION})
+exten => s,n,Playback(${msg})
+exten => s,n,Wait(1)
+exten => s,n,Hangup
+
+[app-call-pickup]
+exten => s,1,Verbose(  [ ${tenant} ] Feature code PickUP  _*8 : ${ARG1:2}_${tenant}@${PICKUPMARK}  for DEV: SIP/${tenant}-${ARG1:2} )  
+
+;;exten => s,n,Pickup(${ARG1:2}_${tenant}@PICKUPMARK)
+exten => s,n,PickupChan(SIP/${tenant}-${ARG1:2})
+exten => s,n,Playback(privacy-incorrect)  
+exten => s,n,Hangup
+
+[app-pickupgroup-pickup]
+exten => s,1,Goto(pickup${ARG1:${ARG2}}-${tenant},s,1)
+
+
+
+
+[app-screen]
+
+exten => s,1,Wait(0.5)
+exten => s,n,Playback(tl/you-have-a-call-from)
+exten => s,n,NoOp(${ARG1})
+exten => s,n,Playback(${ARG1})
+exten => s,n,Read(ACCEPT,tl/accept-reject,1)
+exten => s,n,GotoIf($["${ACCEPT}" = "1"] ?done)
+exten => s,n,Set(MACRO_RESULT=GOTO:macro-pbx-inbound^s-NA-VOICEMAIL^1)
+exten => s,n(done),System(/bin/rm ${ARG1})
+exten => s,n(exit),NoOp
+
+[hnd]
+exten => s,1,NooP(Inside Hangup DEFAULT HANDLER  FOR VIRTUAL CHANNELS - to catch recording var, ChanRecID:${RECORDING} )
+same => n,Set(CDR(recording)=${FULL_FNAME})
+same => n,Return()
+
+[hnd-inbound]
+exten => s,1,NooP(Inside Hangup INBOUND HANDLER  FOR VIRTUAL CHANNELS - to catch recording var, ChanRecID:${RECORDING} )
+same => n,Set(CDR(recording)=${FULL_FNAME})
+same => n,Set(CDR(direction)=INBOUND)
+;;same => n,Dumpchan()
+same => n,Return()
+
+;;; This handler setup for all extensions  on t_sip_users.setvar ;;;
+[hnd-outbound]
+exten => s,1,NooP(Inside Hangup OUTBOUND HANDLER  FOR VIRTUAL CHANNELS - to catch recording var)
+same => n,Set(CDR(direction)=OUTBOUND)
+;;same => n,Dumpchan()
+same => n,Return()
+
+
+[pbx-inbound]
+	
+;; We detect ID - t_user_option  key for the user. 	
+	exten => s,1,Gosub(set-variables,s,1(${tenant}))
+
+	exten => s,n,ExecIf($[ "${DIALED_NUMBER}" = "" ]?Set(__DIALED_NUMBER=${ARG1}))
+
+;; exten => s,n,Set(DYNAMIC_FEATURES=nway-start#mix-mon)
+   exten => s,n,Set(__TRANSFER_CONTEXT=internal-${tenant})
+   exten => s,n,Set(__PICKUPMARK=${MYEXTENSION}_${tenant})
+   
+	exten => s,n,Set(CHANNEL(hangup_handler_push)=hnd-inbound,s,1);
+	exten => s,n,Set(__PHONE=${ARG1}) 
+	exten => s,n,Set(__VM_MBOX=${ARG2})
+	;;exten => s,n,Gosub(app-dumpchanvars,10)
+	exten => s,n,GotoIf($["${DIALED_NUMBER}" != "${CALLERID(num)}"]?set_options)
+	exten => s,n,Answer
+	exten => s,n,Verbose(1,Call TO OWN EXTEN f:SIP/${CALLERID(num)} ---> t:${DIALED_NUMBER} , Route to VoiceMailMain APP..., then hangup)
+	exten => s,n,Wait(1)
+	exten => s,n,VoiceMailMain(${ARG2})
+	exten => s,n,Wait(1)
+	exten => s,n,Hangup
+	
+	exten => s,n(set_options),Set(OPTIONS=rtTkK)
+	;;;Get BOTH ENDs INFORMATION:::
+	exten => s,n,Set(HASH(_CALLER)=${GET_USER(${CALLERID(num)})}) 
+	exten => s,n,Set(HASH(_CALLEE)=${GET_USER(${tenant}-${DIALED_NUMBER})})
+	
+        exten => s,n,Verbose(4, ${HASHKEYS(CALLEE)} )
+	exten => s,n,Set(ID=${HASH(CALLEE,user_id)})
+	exten => s,n,ExecIf($["${ID}"=""]?Verbose(5,   NOTICE: CALLED: ${tenant}-${DIALED_NUMBER}, Failed to locate ID of internal user )
+	exten => s,n,ExecIf($["${ID}"=""]?Set(ID=0))
+	exten => s,n,Set(TM=${HASH(CALLEE,VMTIMEOUT)})
+	exten => s,n,Set(CALL_WAITING=${HASH(CALLEE,CALL_WAITING)})
+	exten => s,n,Set(__tenant=${HASH(CALLEE,TENANT)})
+	
+	
+	;;; GET Original PBX Information ;;;
+	exten => s,n,Set(HASH(SCREENING)=${GET_SCREEN(${ID},"${CALLERID(num)}","${CALLERID(name)}")}) 
+	exten => s,n,Set(HASH(BLOCKING)=${GET_BLOCK(${ID},"${CALLERID(num)}")})	
+        exten => s,n,Set(HASH(FORWARDING)=${GET_FORWARD(${ID},"${CALLERID(num)}")})
+        exten => s,n,Set(HASH(FOLLOWME)=${GET_FOLLOWME(${ID},"${CALLERID(num)}")})
+	exten => s,n,NoOp(ID=${ID}, VM:${VM} TIMEOUT=${TIMEOUT} tenant:${tenant})
+	
+	;; Manage CallerID Before PBX Functions ;;
+	exten => s,n,Gosub(calleridManage,s,1(internal))   
+	
+;; CALL BLOCKING ;;
+	exten => s,n(blocking),Verbose(1, ${HASH(BLOCKING,BLOCK_INFO)} )
+	exten => s,n,GotoIf($["${HASH(BLOCKING,BLOCK)}" != "1"]?screening)
+	;; do not block internal calls??
+	;; exten => s,n,GotoIf($["${FROM_INSIDE}" = "1"]?screening)
+	;; unconditional - there is no schedule / time range group
+	exten => s,n(block),GotoIf($["${HASH(BLOCKING,BLOCK_MODE)}" = "1"]?congestion)
+	exten => s,n,GotoIf($["${HASH(BLOCKING,BLOCK_MODE)}" = "2"]?ringing)
+	exten => s,n,GotoIf($["${HASH(BLOCKING,BLOCK_MODE)}" = "3"]?ringing)
+	;; BLOCKDEST method not specified or "0"
+	exten => s,n,Goto(s-NA-VOICEMAIL,1)
+	exten => s,n(congestion),Answer
+	exten => s,n,PlayTones(congestion)
+	exten => s,n,Congestion(10)
+	exten => s,n,Hangup
+	
+	exten => s,n(ringing),Answer
+	exten => s,n,PlayTones(ring)
+	exten => s,n,Ringing
+	exten => s,n,Wait(10)
+	exten => s,n,GotoIf($["${HASH(BLOCKING,BLOCK_MODE)}" = "3"]?s-NA-VOICEMAIL,1)
+	exten => s,n,PlayTones(congestion)
+	exten => s,n,Congestion(10)
+	exten => s,n,Hangup
+
+ 
+;; CALL SCREENING
+	exten => s,n(screening),Verbose(1, Screen:${HASH(SCREENING,SCREENED)}, ${HASH(SCREENING,SCREEN_INFO)} )
+	exten => s,n,GotoIf($["${HASH(SCREENING,SCREENED)}" = "0"]?recording)
+	exten => s,n,GotoIf($["${HASH(SCREENING,SCREENED)}" = ""]?recording)
+	;; do not screen internal calls????
+	exten => s,n,GotoIf($["${FROM_INSIDE}" = "1"]?recording)
+	exten => s,n(screen),GotoIf($["${HASH(SCREENING,SCREEN_ASK_CID)}" = "0"]?screenname)
+	exten => s,n,ExecIf($["${HASH(SCREENING,SCREEN_ASK_CID)}" = "1"]?Set(CALLERID(num)=''))
+	exten => s,n,PrivacyManager
+   exten => s,n,Verbose(4,CallerID After PrivacyManager : ${CALLERID(all)} )
+	exten => s,n,GotoIf($["${PRIVACYMGRSTATUS}" != "FAILED"]?screenname)
+	exten => s,n,Hangup
+	
+	exten => s,n(screenname),GotoIf($["${HASH(SCREENING,SCREEN_ASK_CNAME)}" = "0"]?recording)
+	exten => s,n,Wait(1)
+	exten => s,n,Playback(tl/say-name)
+	exten => s,n,Set(SCREEN_FILE=/tmp/${CALLERID(num)}-${EPOCH})
+	exten => s,n,Record(${SCREEN_FILE}.gsm,3,7)
+	exten => s,n,Set(SCREENOPTIONS=gM(app-screen^${SCREEN_FILE}))
+	;;exten => s,n,GotoIf($["${HASH(SCREENING,SCREENFOLLOW)}" != "1"]?recording)
+	exten => s,n,Set(SCREEN_FORWARD_OPTIONS=${SCREENOPTIONS})        ;; PLAY NAME WHEN ANSWERED !! wow;;
+	
+	
+;; CALL RECORDING
+	exten => s,n(recording),Gosub(app-recording,s,1)
+
+;; CALL FORWARDING HERE
+
+   exten => s,n(check-forwarding),Verbose(4,${HASH(FORWARDING,FORWARD_INFO)}, TIMEOUT=${HASH(FORWARDING,FORWARD_TIMEOUT)} )
+   exten => s,n,Set(TIMEOUT=${HASH(FORWARDING,FORWARD_TIMEOUT)})
+   exten => s,n,GotoIf($["${HASH(FORWARDING,FORWARD_TO)}" = "0"]?check-followme)
+   exten => s,n,GotoIf($["${HASH(FORWARDING,FORWARD_TO)}" = ""]?check-followme)
+   exten => s,n,Set(__IN_FORWARD=$[0${IN_FORWARD}+1])
+   exten => s,n,Verbose(4," Checking if in FORWARD: ${IN_FORWARD} > 4   ?")
+   exten => s,n,ExecIf($[0${IN_FORWARD} > 4]?Set(HASH(FORWARDING)=""))  ;; Prevent Forward loop, skip further Forwarding    
+   exten => s,n,GotoIf($[0${IN_FORWARD} > 4]?check-followme)  ;; Prevent Forward loop, skip further Forwarding
+   exten => s,n,Set(__FWD_KEEP_CID=${HASH(FORWARDING,FWD_KEEP_CID)}) 
+   exten => s,n,Set(FORWARD_NUM=${HASH(FORWARDING,FORWARD_TO)})
+   exten => s,n,Set(FWD_TAG=${HASH(FORWARDING,FWD_TAG)})
+   exten => s,n,ExecIf($["${FWD_TAG}" != ""]?Set(CALLERID(name)=${FWD_TAG} ${CALLERID(name)}))
+   exten => s,n,Gotoif($["${TIMEOUT}" != "0"]?dial-myself-first)   
+   exten => s,n,GotoIf($["${FORWARD_NUM}" = "1"]?s-NA-VOICEMAIL,1)
+   exten => s,n,Set(PHONE=Local/${FORWARD_NUM}@internal-${tenant}/n)
+   exten => s,n,Goto(dial)
+   exten => s,n(dial-myself-first),Set(FWD_NA=${FORWARD_NUM})
+   exten => s,n,Verbose(1,"FWD To MyExt:${PHONE} for ${TIMEOUT}s, then forward -> ${FWD_NA}")  
+   exten => s,n,Goto(dial)
+   
+   
+   
+;; CALL FOLLOWME HERE
+
+   exten => s,n(check-followme),GotoIf($["${HASH(FOLLOWME,FOLLOWME)}" = "0"]?dial)
+   exten => s,n,GotoIf($["${HASH(FOLLOWME,FOLLOWME)}" = ""]?dial)
+   exten => s,n,GotoIf($["${HASH(FOLLOWME,FOLLOWME_ID)}"= ""]?s-FW-NA,1)
+   exten => s,n,GotoIf($["${IN_FOLLOWME}" = "1"]?dial)
+   exten => s,n(check-followme-loop),Verbose(Starting FollowME[${HASH(FOLLOWME,FOLLOWME_ID)}] )
+   exten => s,n,Set(__FWD_KEEP_CID=${HASH(FOLLOWME,FWD_KEEP_CID)})
+   exten => s,n,Set(FWD_TAG=${HASH(FOLLOWME,FWD_TAG)})
+   exten => s,n,ExecIf($["${FWD_TAG}" != ""]?Set(CALLERID(name)=${FWD_TAG} ${CALLERID(name)}))
+   exten => s,n,Set(__IN_FOLLOWME=$[0${IN_FOLLOWME}+1])
+   exten => s,n,Followme(${HASH(FOLLOWME,FOLLOWME_ID)},${HASH(FOLLOWME,FOLLOWME_OPTS)})
+   exten => s,n,Goto(s-follow-${DIALSTATUS},1)
+
+
+   
+   ;; DIALING INBOUND TARGET HERE ;;
+   exten => s,n(dial),Verbose(1, Dialing PBX-Inbound point: ${PHONE} )
+   exten => s,n,ExecIf($["${CALL_WAITING}" != "1"]?Set(GROUP()=${tenant}-${DIALED_NUMBER}))
+   exten => s,n,ExecIf($["${CALL_WAITING}" != "1"]?Set(CALLS=${GROUP_COUNT(${GROUP()})}))
+   exten => s,n,ExecIf($[$["${CALL_WAITING}" != "1"] & $[ "${CALLS}" != "1" ]]?Verbose(1,"CALL WAITING DISABLED, ${tenant}-${DIALED_NUMBER} already in CALL" ))
+   exten => s,n,ExecIf($[$["${CALL_WAITING}" != "1"] & $[ "${CALLS}" != "1" ]]?Set(GROUP()=${tenant}-${DIALED_NUMBER}-busy))
+   exten => s,n,GotoIf($[$["${CALL_WAITING}" != "1"] & $[ "${CALLS}" != "1" ]]?s-orig-BUSY,1)
+
+   exten => s,n,ExecIf($[ "${TIMEOUT}" = "0" ]?Set(TIMEOUT=60))
+   exten => s,n,ExecIf($[ "${TIMEOUT}" = "" ]?Set(TIMEOUT=60))
+
+   ;; HOT-Desking, THIS exten aslo loggen IN devices, or this device is re-used  ;; 
+   
+   exten => s,n,Verbose( Hot Desk: ${HASH(CALLEE,hotDesk)} )
+   exten => s,n,ExecIf($[ "${HASH(CALLEE,hotDesk)}" != "none" ]?Set(PHONE=${PHONE}&${HASH(CALLEE,hotDesk)}))
+
+   exten => s,n,Dial(${PHONE},${TIMEOUT},tT${OPTIONS}${SCREENOPTIONS}${RECORDOPTIONS})   
+   exten => s,n,Goto(s-orig-${DIALSTATUS},1)
+
+   
+	;; HANDLE FOLLOWME CALL STATUS; HANDLE ORIGINAL NON FORWARDED CALL STATUS
+	exten => s-follow-,1,Goto(s-FW-NA,1)
+	exten => s-follow-CHANUNAVAIL,1,Goto(s-FW-NA,1)
+	exten => s-follow-CONGESTION,1,Goto(s-FW-NA,1)
+	exten => s-follow-BUSY,1,Goto(s-FW-NA,1)
+	exten => s-follow-CANCEL,1,Goto(s-done,1)
+	exten => s-follow-NOANSWER,1,Goto(s-FW-NA,1)
+	exten => s-follow-ANSWER,1,NoOp(macroresultinanswer="${MACRO_RESULT}")
+	exten => s-follow-ANSWER,n,Goto(s-done,1)
+	
+	exten => s-FW-NA,1,Verbose(4,"AFTER FOLLOWME-NA/TimeOUT EVENT: ${HASH(FOLLOWME,FOLLOWME_ONTIMEOUT)} [ ${HASH(FOLLOWME,FOLLOWME_ONTIMEOUT_VAR)} ] ")
+	exten => s-FW-NA,n,GotoIf($["${HASH(FOLLOWME,FOLLOWME_ONTIMEOUT)}" = ""]?s-done,1)
+	exten => s-FW-NA,n,GotoIf($["${HASH(FOLLOWME,FOLLOWME_ONTIMEOUT)}" = "repeat"]?check-followme-loop,1)
+	exten => s-FW-NA,n,Gosub(app-pbx-service,${HASH(FOLLOWME,FOLLOWME_ONTIMEOUT)},${HASH(FOLLOWME,FOLLOWME_ONTIMEOUT_VAR)})
+   exten => s-FW-NA,n,Goto(s-done,1)
+   
+   
+	
+	;; HANDLE ORIGINAL CALL STATUS; HANDLE ORIGINAL NON FORWARDED CALL STATUS
+	exten => s-orig-CHANUNAVAIL,1,Goto(s-NA,1)
+	exten => s-orig-CONGESTION,1,Goto(s-NA,1)
+	exten => s-orig-BUSY,1,Goto(s-BUSY,1)
+	exten => s-orig-CANCEL,1,Goto(s-done,1)
+	exten => s-orig-NOANSWER,1,Goto(s-NA,1)
+	exten => s-orig-ANSWER,1,NoOp(macroresultinanswer="${MACRO_RESULT}")
+	exten => s-orig-ANSWER,n,Goto(s-done,1)
+
+   ;; Exten not available - check always forward;;
+   exten => s-NA,1,Gotoif($["${FWD_NA}" = ""]?s-NA-VOICEMAIL,1)
+   exten => s-NA,n,Gotoif($["${FWD_NA}" = "1"]?s-NA-VOICEMAIL,1)
+
+   ;;exten => s-NA,n,Set(VM_MBOX=${FWD_NA}@${tenant}-vmdefault)
+   exten => s-NA,n,Dial(Local/${FWD_NA}@internal-${tenant}/n,${TIMEOUT},${OPTIONS}${SCREENOPTIONS}${RECORDOPTIONS})  
+    
+   exten => s-NA,n,Goto(s-NA-${DIALSTATUS},1)
+	exten => s-NA-CHANUNAVAIL,1,Goto(s-NA-VOICEMAIL,1)
+	exten => s-NA-CONGESTION,1,Goto(s-NA-VOICEMAIL,1)
+	exten => s-NA-BUSY,1,Goto(s-NA-VOICEMAIL,1)
+	exten => s-NA-CANCEL,1,Goto(s-done,1)
+	exten => s-NA-NOANSWER,1,Goto(s-NA-VOICEMAIL,1)
+	exten => s-NA-ANSWER,1,Goto(s-done,1)
+	
+	;; UNAVAIL VMAIL
+	exten => s-NA-VOICEMAIL,1,Answer
+	exten => s-NA-VOICEMAIL,n,Set(GROUP()=${tenant}-${DIALED_NUMBER}-busy)
+	exten => s-NA-VOICEMAIL,n,Wait(1)
+	exten => s-NA-VOICEMAIL,n,GotoIf($["${VM}" = "2"]?ringing)
+	exten => s-NA-VOICEMAIL,n,GotoIf($["${VM_MBOX}" = "none"]?ringing)
+	exten => s-NA-VOICEMAIL,n,VoiceMail(${VM_MBOX},u)
+	exten => s-NA-VOICEMAIL,n,Hangup
+	;;exten => s-NA-VOICEMAIL,n(ringing),Playtones(ring)
+	;;exten => s-NA-VOICEMAIL,n,Ringing()
+	;;exten => s-NA-VOICEMAIL,n,Wait(100)
+	;;exten => s-NA-VOICEMAIL,n,Hangup
+	exten => s-NA-VOICEMAIL,n(ringing),Hangup
+   
+;; HANDLE BUSY STATUS FOR THE YET-NON FORWARDED CALL	
+		
+	;; CALL FORWARD-ALWAYS CHECK(including on BUSY) TO number
+	exten => s-BUSY,1,Verbose(   [ ${tenant}]  ] ON BUSY EVENT for extension ${EXTEN} triggered! )   
+   exten => s-BUSY,n,Set(FORWARD_ONBUSY=${HASH(FORWARDING,FORWARD_ONBUSY)})
+   exten => s-BUSY,n,Verbose(1, HANDLE ON-BUSY Event for ${EXTEN} : FW-ONBUSY-> ${FORWARD_ONBUSY} )
+   exten => s-BUSY,n,GotoIf($["${FORWARD_ONBUSY}" = "1"]?s-BUSY-VOICEMAIL,1)	
+   exten => s-BUSY,n,GotoIf($["${FORWARD_ONBUSY}" = ""]?s-BUSY-VOICEMAIL,1)
+   exten => s-BUSY,n,GotoIf($["${FORWARD_ONBUSY}" = "0"]?s-NA,1)
+
+ ;; Check if we have FWD number set, overwrite it the on_busy (no available - also include Busy???);;    
+ ;;  exten => s-BUSY,n,GotoIf($["${FWD_NA}" = "1"]?s-NA-VOICEMAIL,1)
+ ;;  exten => s-BUSY,n,GotoIf($["${FWD_NA}" != ""]?s-NA,1)  
+ 
+   exten => s-BUSY,n,Set(__IN_FORWARD=$[0${IN_FORWARD}+1])
+	;; CALL FORWARD-ON-BUSY TO NUMBER		
+	exten => s-BUSY,n,Dial(Local/${FORWARD_ONBUSY}@internal-${tenant},${TIMEOUT},${OPTIONS})
+	exten => s-BUSY,n,Verbose(1,"We TRY to leave voicemail on FWD number's  voicemail box VM_BUSY=${FORWARD_ONBUSY}") 	
+	exten => s-BUSY,n,Set(VM_MBOX=${FORWARD_ONBUSY}@${tenant}-vmdefault)   
+	exten => s-BUSY,n,Goto(s-busy-${DIALSTATUS},1)
+ 	
+	;; HANDLE STATUS AFTER DIAL ON-BUSY NUMBER;;
+	exten => s-busy-CHANUNAVAIL,1,Goto(s-BUSY-VOICEMAIL,1)
+	exten => s-busy-CONGESTION,1,Goto(s-BUSY-VOICEMAIL,1)
+	exten => s-busy-BUSY,1,Goto(s-BUSY-VOICEMAIL,1)
+	exten => s-busy-CANCEL,1,Goto(s-done,1)
+	exten => s-busy-NOANSWER,1,Goto(s-BUSY-VOICEMAIL,1)
+	exten => s-busy-ANSWER,1,Goto(s-done,1)
+
+	;; BUSY VM
+	
+	exten => s-BUSY-VOICEMAIL,1,NoOp
+	exten => s-BUSY-VOICEMAIL,n,GotoIf($["${VM}" = "2"]?busy)
+	exten => s-BUSY-VOICEMAIL,n,GotoIf($["${VM_MBOX}" = "none"]?busy)
+	exten => s-BUSY-VOICEMAIL,n,Wait(2)
+	exten => s-BUSY-VOICEMAIL,n,VoiceMail(${VM_MBOX},b)
+	exten => s-BUSY-VOICEMAIL,n,Hangup
+	exten => s-BUSY-VOICEMAIL,n(busy),Progress
+	exten => s-BUSY-VOICEMAIL,n,PlayTones(busy)
+	exten => s-BUSY-VOICEMAIL,n,Busy(5)
+	exten => s-BUSY-VOICEMAIL,n,Hangup
+	
+
+ ;; FINISH
+   exten => s-done,1,NoOp(done)
+	exten => s-done,2,Hangup
+
+
+
+[set-service]
+
+exten => s,1,NoCDR()
+exten => s,n,Set(CDR(service_status)=${ARG1})
+exten => s,n,Verbose( 3, Call Service Status Update : ${ARG1})
+exten => s,n,Return
+
+
+;[development]
+;exten=>_3XX,1,Set(__DYNAMIC_FEATURES=tefe)
+;exten=>_3XX,n,Set(__CHANNEL(language)=ru)
+;exten=>_3XX,n,MYSQL(Connect connid 127.0.0.1 myuser mypassword mybase)
+;exten=>_3XX,n,MYSQL(Query resultid ${connid} SELECT type, dialstr1, dialstr2, dialstr3, dialstr4, vm FROM `forward` WHERE `ext`=${EXTEN})
+;exten=>_3XX,n,MYSQL(Fetch fetchid ${resultid} type dialstr1 dialstr2 dialstr3 dialstr4 vm)
+;exten=>_3XX,n,MYSQL(Clear ${resultid})
+;exten=>_3XX,n,MYSQL(Disconnect ${connid})
+;exten=>_3XX,n,Gosub(fordial,${type},${dialstr1},${dialstr2},${dialstr3},${dialstr4},${vm})
+
+;[development-macro-fordial]
+;exten=>s,1,Goto(s-${ARG1},1)
+
+;exten=>s-0,1,Dial(SIP/${MACRO_EXTEN},120,TthHKkmw)
+;exten=>s-0,n,Hangup()
+
+;exten=>s-1,1,Dial(SIP/${ARG2},120,Tt)
+;exten=>s-1,n,Hangup()
+
+;exten=>s-2,1,Dial(SIP/${MACRO_EXTEN},10,TthHKkmw)
+;exten=>s-2,n,GotoIf($["${DIALSTATUS}"="BUSY"]?:end)
+;exten=>s-2,n,Dial(SIP/${ARG3},120,Tt)
+;exten=>s-2,n(end),Hangup()
+
+;exten=>s-3,1,Dial(SIP/${MACRO_EXTEN},10,TthHKkmw)
+;exten=>s-3,n,GotoIf($["${DIALSTATUS}"="NOANSWER"]?:end)
+;exten=>s-3,n,Dial(SIP/${ARG4},120,Tt)
+;exten=>s-3,n(end),Hangup()
+
+;exten=>s-4,1,Dial(SIP/${MACRO_EXTEN},10,TthHKkmw)
+;exten=>s-4,n,Dial(SIP/${ARG5},120,Tt)
+
+;exten=>s-5,1,Dial(SIP/${MACRO_EXTEN},10,TthHKkmw)
+;exten=>s-5,n,Voicemail(${MACRO_EXTEN},${ARG6})
+
+
+
+
+[app-test]
+exten => s,1,Ringing()
+ same => n,Wait(2)
+ same => n,Answer()
+ same => n,Background(vm-rec-name)
+ same => n,Record(/tmp/rec.wav,,5)
+ same => n,Playback(${RECORDED_FILE})
+ same => n,hangup

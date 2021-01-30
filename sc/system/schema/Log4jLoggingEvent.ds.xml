@@ -1,0 +1,24 @@
+<DataSource ID="Log4jLoggingEvent"
+            defaultMultiUpdatePolicy="never"
+>
+  <fields>
+	<field name="level" type="number" required="true" title="Level">
+      <valueMap>
+        <value ID="2147483647">OFF</value>
+        <value ID="50000">FATAL</value>
+        <value ID="40000">ERROR</value>
+        <value ID="30000">WARN</value>
+        <value ID="20000">INFO</value>
+        <value ID="10000">DEBUG</value>
+        <value ID="-2147483648">ALL</value>
+      </valueMap>
+    </field>
+	<field name="loggerName" type="string" required="true" title="Logger Name"/>
+	<field name="renderedMessage" title="Message" length="100000" type="string"/>
+	<field name="startTime" type="datetime" sqlStorageStrategy="number" sqlDateFormat="epochms"
+           title="App Start Time" hidden="true"/>
+	<field name="threadName" type="string" title="Thread"/>
+	<field name="timeStamp" type="datetime" sqlStorageStrategy="number" sqlDateFormat="epochms"
+           title="Time"/>
+  </fields>    
+</DataSource>

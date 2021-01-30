@@ -1,0 +1,13 @@
+<DataSource
+    ID="citySQL"
+    serverType="sql"
+    tableName="city"
+    testFileName="/examples/shared/ds/test_data/citySQL.data.xml"
+>
+    <fields>
+        <field name="cityId"        type="sequence" hidden="true"   primaryKey="true" />
+        <field name="cityName"      type="text"     title="City"    required="true"   />
+        <field name="countryId"     type="integer" />
+    </fields>
+</DataSource>
+

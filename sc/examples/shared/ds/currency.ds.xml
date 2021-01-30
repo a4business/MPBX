@@ -1,0 +1,11 @@
+<DataSource
+    ID="currency"
+    serverType="sql"
+    tableName="currency"
+    >
+    <fields>
+        <field name="id" type="integer" primaryKey="true" />
+        <field name="code" type="text" />
+        <field name="symbol" type="text" />
+    </fields>
+</DataSource>

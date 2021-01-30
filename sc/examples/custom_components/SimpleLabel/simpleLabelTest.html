@@ -1,0 +1,43 @@
+<HTML><HEAD>
+	<SCRIPT>var isomorphicDir = "../../../isomorphic/";</SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Core.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Foundation.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Containers.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Grids.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_Forms.js></SCRIPT>
+    <SCRIPT SRC=../../../isomorphic/system/modules/ISC_DataBinding.js></SCRIPT>
+	<SCRIPT SRC=../../../isomorphic/skins/standard/load_skin.js></SCRIPT>
+	<SCRIPT SRC=SimpleLabel.js></SCRIPT>
+</HEAD><BODY BGCOLOR='powderblue'>
+<SCRIPT>
+
+
+SimpleLabel.create({
+	ID:"myLabel",
+	left:20,
+	top:20,
+	width:150,
+	align:"center",
+	valign:"top",
+	borderSize:2,
+	contents:"Hello World"
+});
+
+
+Button.create({
+	left:200, top:20, width:150,
+	title:"setContents('goodbye')",
+	click:"myLabel.setContents('goodbye')"
+});
+
+
+Button.create({
+	left:200, top:60, width:150,
+	title:"setAlign('left')",
+	click:"myLabel.setAlign('left')"
+});
+
+
+</SCRIPT>
+</BODY>
+</HTML>

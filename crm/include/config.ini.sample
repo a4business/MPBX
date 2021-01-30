@@ -1,0 +1,31 @@
+[general]
+ default_lang = en
+ log = /var/log/pbx.log
+ domain = app.a4business.com
+ company=Applications 4 Business
+
+[IBM]	    
+   url = 'https://api.eu-gb.language-translator.watson.cloud.ibm.com/v3/translate?version=2018-05-01'
+   apikey = iskCM_MNQbccRmBFwqbl5oqQtf1x9P5gQNwoem7zZbPJ
+
+	 
+[yandex-translate]
+   url=https://translate.yandex.net/api/v1.5/tr.json/translate
+   apikey=trnsl.1.1.20190308T095934Z.95ae5cf4e28588ea.9d108fb6e768af347464925e4e98b91edb0013f5
+   
+
+
+
+[DB]
+	 type = 'mysql'
+	 name = 'mpbx'
+	 user = 'mpbx_web'
+	 password = ''
+	 host = '127.0.0.1'
+	 max_result = 1001
+
+
+[manager]
+     enabled = 0
+
+ 

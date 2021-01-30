@@ -1,0 +1,14 @@
+<DataSource
+    ID="countrySQL"
+    serverType="sql"
+    tableName="country"
+    testFileName="/examples/shared/ds/test_data/countrySQL.data.xml"
+>
+    <fields>
+        <field name="countryId"     type="sequence" hidden="true"   primaryKey="true" />
+        <field name="countryCode"   type="text" />
+        <field name="countryName"   type="text"     title="Country" required="true" />
+        <field name="continentId"   type="integer" />
+    </fields>
+</DataSource>
+

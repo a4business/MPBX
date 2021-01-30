@@ -1,0 +1,11 @@
+{
+    "minimum-stability": "dev",
+    "require": {
+        "mpdf/mpdf": "^6.0",
+        "phpmailer/phpmailer": "^5.2",
+        "geoip2/geoip2": "~2.0",
+        "devristo/phpws": "dev-master",
+        "greenfieldtech-nirs/phpari": "dev-master",
+	"jmathai/epiphany": "*"
+    }
+}

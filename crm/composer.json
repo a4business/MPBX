@@ -1,0 +1,11 @@
+{
+    "autoload": {
+        "classmap": ["src"]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "jmathai/epiphany": "*",
+        "marcelog/pami": "2.*"
+    }
+}

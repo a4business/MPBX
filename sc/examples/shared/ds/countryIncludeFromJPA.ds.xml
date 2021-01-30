@@ -1,0 +1,11 @@
+<DataSource
+    ID="countryIncludeFromJPA"
+    serverType="jpa"
+    schemaBean="com.isomorphic.examples.server.jpa.relations.CountryManyToOneSimple"
+    autoDeriveSchema="true"
+>
+    <fields>
+        <field name="continent" foreignKey="continentIncludeFromJPA.continentId" displayField="continentName" />
+    </fields>
+</DataSource>
+

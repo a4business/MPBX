@@ -1,0 +1,96 @@
+.formHeader{
+	 border:1px solid gray;
+	 background-color: silver;
+	 width:100%;
+	 font-weight: bold;
+	 font-family: Verdana;
+	 color:#003168;
+	
+ }
+ 
+ .red{
+  color:red;
+  
+ }
+
+ .myTreeBorder{
+    border-left: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-right: 1px solid gray;
+ }
+
+
+ .myStaff {
+    background-color: white;
+    padding:2px;
+    margin:-4px;
+ }
+
+
+
+.LoginError{
+    color: brown;
+    margin: auto;
+    width: 90%;
+    text-align: center;
+    background-color: #ffcccc;
+    padding: 3px;    
+    font-size: 13px;
+    
+ }
+ 
+ .LoginOK{
+    color: brown !inportant;
+    margin: auto;
+    width: 90%;
+    text-align: center;
+    background-color: limegreen;
+    font-size: 13px;
+    padding: 3px;
+ }
+ 
+ 
+.REG_ON{
+    color: green;
+    margin: auto;
+    width: 90%;
+    text-align: center;
+    background-color: limegreen;
+     padding: 3px;    
+    font-size: 13px;    
+ }
+ 
+ .REG_OFF{
+    color: brown;
+    margin: auto;
+    width: 90%;
+    
+    text-align: center;    
+    font-size: 13px;
+    padding: 3px;
+ }
+
+ .cell_pointer{
+    cursor:pointer;
+  }  
+
+
+.blink {
+  animation: blink-animation 2s steps(2, start) infinite;
+  -webkit-animation: blink-animation 2s steps(2, start) infinite;
+  color: black;
+  font-size:16px;
+  font-weight: bold;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+

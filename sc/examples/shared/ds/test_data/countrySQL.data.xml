@@ -1,0 +1,26 @@
+<List>
+  <countrySQL>
+    <countryId>1</countryId>
+    <continentId>1</continentId>
+    <countryCode>LT</countryCode>
+    <countryName>Lithuania</countryName>
+  </countrySQL>
+  <countrySQL>
+    <countryId>2</countryId>
+    <continentId>1</continentId>
+    <countryCode>LV</countryCode>
+    <countryName>Latvia</countryName>
+  </countrySQL>
+  <countrySQL>
+    <countryId>3</countryId>
+    <continentId>1</continentId>
+    <countryCode>EE</countryCode>
+    <countryName>Estonia</countryName>
+  </countrySQL>
+  <countrySQL>
+    <countryId>4</countryId>
+    <continentId>3</continentId>
+    <countryCode>US</countryCode>
+    <countryName>United States of America</countryName>
+  </countrySQL>
+</List>

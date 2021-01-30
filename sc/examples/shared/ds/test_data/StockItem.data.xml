@@ -1,0 +1,65 @@
+<List>
+<stockItem>
+    <id>1</id>
+    <stockCode>Roll</stockCode>
+    <description>Adding Machine Roll 57x57mm Standard</description>
+    <quantity>4530</quantity>
+    <price>0.41</price>
+</stockItem>
+<stockItem>
+    <id>2</id>
+    <stockCode>Roll</stockCode>
+    <description>Adding Machine Roll 57x64mm Standard</description>
+    <quantity>9060</quantity>
+    <price>0.47</price>
+</stockItem>
+<stockItem>
+    <id>3</id>
+    <stockCode>Roll</stockCode>
+    <description>Adding Machine Roll 57x76mm Standard</description>
+    <quantity>13590</quantity>
+    <price>0.61</price>
+</stockItem>
+<stockItem>
+    <id>4</id>
+    <stockCode>Roll</stockCode>
+    <description>Adding Machine Roll 44x76mm Standard</description>
+    <quantity>19000</quantity>
+    <price>0.58</price>
+</stockItem>
+<stockItem>
+    <id>5</id>
+    <stockCode>Roll</stockCode>
+    <description>Adding Machine Roll 57x57mm Lint Free</description>
+    <quantity>22650</quantity>
+    <price>0.52</price>
+</stockItem>
+<stockItem>
+    <id>6</id>
+    <quantity>72480</quantity>
+    <stockCode></stockCode>
+    <description>Glue UHU Clear Gum 250ml</description>
+    <price>2.26</price>
+</stockItem>
+<stockItem>
+    <id>7</id>
+    <quantity>86070</quantity>
+    <stockCode></stockCode>
+    <description>Glue UHU Office Paste 250ml</description>
+    <price>1.73</price>
+</stockItem>
+<stockItem>
+    <id>8</id>
+    <stockCode>Ea</stockCode>
+    <description>Spray Adhesive Multipurpose Can No.76 3M</description>
+    <quantity>95130</quantity>
+    <price>12.76</price>
+</stockItem>
+<stockItem>
+    <id>9</id>
+    <quantity>99660</quantity>
+    <stockCode>Ea</stockCode>
+    <description>Glue Pentel 30CC Roll On 30ml</description>
+    <price>1.83</price>
+</stockItem>
+</List>

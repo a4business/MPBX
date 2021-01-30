@@ -1,0 +1,15 @@
+<DataSource
+    ID="complaint">
+    <fields>
+        <field name="pk"             type="sequence"   hidden="true"            primaryKey="true" />
+        <field name="trackingNumber" type="integer"    title="Tracking #"       required="true"   >
+            <validators>
+                <validator type="hasRelatedRecord"
+                           relatedDataSource="masterDetail_orderHB" relatedField="trackingNumber"
+                           errorMessage="Tracking # does not exist" />
+            </validators>
+        </field>
+        <field name="receiptDate"   type="date"       title="Received"          required="true"   />
+        <field name="comment"       type="text"       title="Comment"          />
+    </fields>
+</DataSource>

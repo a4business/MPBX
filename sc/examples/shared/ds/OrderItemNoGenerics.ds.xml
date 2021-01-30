@@ -1,0 +1,14 @@
+<DataSource
+    ID="OrderItemNoGenerics"
+>
+    <fields>
+        <field name="itemDescription" title="Description" type="text" />
+        <field name="totalPrice"      title="Total Price" type="float" javaClass="com.isomorphic.test.TestBigDecimal"/>
+        <field name="stockMap"        title="Stock Items" type="StockItem" multiple="true"
+            javaClass="com.isomorphic.test.TestOverrideJavaClass$StockItem" 
+            javaCollectionClass="java.util.IdentityHashMap"
+            javaKeyClass="java.math.BigDecimal"
+        />
+    </fields>
+</DataSource>
+ 

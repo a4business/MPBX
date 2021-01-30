@@ -1,0 +1,157 @@
+<HTML>
+<HEAD>
+<STYLE>
+.normal				{font-family:Verdana; font-size:12px;}
+.pageHeader			{font-family:Verdana; font-size:24px; font-weight:bold;}
+H2					{font-family:Verdana; font-size:24px; font-weight:bold;}
+H3					{font-family:Verdana; font-size:14px; font-weight:bold;}
+</STYLE>
+<TITLE>SmartClient&trade; SDK - Custom Component Examples</TITLE>
+</HEAD>
+<BODY BGCOLOR='white' CLASS=normal>
+<TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=5 BORDER=0>
+	<TR>
+		<TD HEIGHT=100><a href="http://www.isomorphic.com"><IMG SRC="../../docs/images/logos/Isomorphic_Software_Logo.gif" WIDTH="256" HEIGHT="100" ALT="Isomorphic Software Logo" border="0"></a></TD>
+		<TD VALIGN=MIDDLE ALIGN=RIGHT><SPAN CLASS=pageHeader>SmartClient&trade; SDK<br>Custom Component Examples</SPAN><BR>
+			<SPAN WIDTH=100% CLASS=normal ALIGN=RIGHT>Version v11.1p_2017-12-22/LGPL Deployment (2017-12-22)</SPAN>
+		</TD>
+	</TR>
+</TABLE>
+<BR><TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=0 BORDER=0><TR><TD BGCOLOR=336666><IMG SRC=../../docs/images/blank.gif WIDTH=1 HEIGHT=4></TD></TR></TABLE>
+
+<p>These source code examples demonstrate how to create your own user interface
+components in SmartClient. For more information, please refer to:</p>
+<ul>
+<li>Section 9 (<i>Extending SmartClient</i>) in the
+<a href="../../docs/SmartClient_Quick_Start_Guide.pdf"><i>SmartClient Quick Start Guide</i></a>,
+which discusses the techniques demonstrated in these examples.<br>&nbsp;
+</li>
+<li>The <code>Class</code> and <code>ClassFactory</code> entries in the 
+<a href="../../docs/SmartClient_Reference.html"><i>SmartClient Reference</i></a>,
+for coverage of the SmartClient class system.<br>&nbsp;
+</li>
+<li>Chapters 1-4 of the
+<a href="../../docs/resources/SmartClient_Widgets_Guide.pdf"><i>SmartClient Widgets Guide</i></a>,
+for coverage of drawing, event handling, image handling, and other Virtual Browser Layer
+services that are used in these examples.<br>&nbsp;
+</li>
+</ul>
+
+
+<hr><h3>BigButton</h3>
+The BigButton draws bigger, bolder buttons. This example 
+demonstrates the essential methods of SmartClient class definition:
+
+<pre>	ClassFactory.defineClass()
+	&lt;Class&gt;.addProperties()
+</pre>
+
+<table class="normal" cellPadding=10 border=1><tr>
+<td><a href="BigButton/BigButton.html" target="_blank">view example</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=BigButton/bigButton.css" target="_blank">css source</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=BigButton/BigButton.html" target="_blank">page source</a></td>
+</tr></table>
+<br><br>
+
+<hr><h3>SimpleLabel</h3>
+The SimpleLabel class implements a very simple bordered text label component. 
+
+The SimpleLabel class demonstrates how to render and redraw a raw HTML component, using:
+
+<pre>	getInnerHTML()
+	markForRedraw()
+</pre>
+
+<table class="normal" cellPadding=10 border=1><tr>
+<td><a href="SimpleLabel/simpleLabelTest.html" target="_blank">view example</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleLabel/SimpleLabel.js" target="_blank">component source</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleLabel/simpleLabelTest.html" target="_blank">page source</a></td>
+</tr></table>
+<br><br>
+
+<hr><h3>SimpleSlider</h3>
+The SimpleSlider class implements a graphical slider component with a subset of the SmartClient Slider
+class functionality.<br><br>
+This example is presented in nine steps, each building on the last.
+Each step has an associated source file (SimpleSlider_#.js) and test file (simpleSliderTest_#.html).
+You can use a side-by-side file comparison/diff utility to call out the differences at each step.
+<br><br><br>
+<table class="normal" cellPadding=10 border=1><tr>
+<td>Step 1</td>
+<td>initialization, drawing, children</td>
+<td><a href="SimpleSlider/simpleSliderTest_1.html" target="_blank">view example</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/SimpleSlider_1.js" target="_blank">component source</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/simpleSliderTest_1.html" target="_blank">page source</a></td>
+</tr><tr>
+<td>Step 2</td>
+<td>custom drag &amp; drop behavior</td>
+<td><a href="SimpleSlider/simpleSliderTest_2.html" target="_blank">view example</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/SimpleSlider_2.js" target="_blank">component source</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/simpleSliderTest_2.html" target="_blank">page source</a></td>
+</tr><tr>
+<td>Step 3</td>
+<td>custom event handling</td>
+<td><a href="SimpleSlider/simpleSliderTest_3.html" target="_blank">view example</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/SimpleSlider_3.js" target="_blank">component source</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/simpleSliderTest_3.html" target="_blank">page source</a></td>
+</tr><tr>
+<td>Step 4</td>
+<td>getters &amp; setters</td>
+<td><a href="SimpleSlider/simpleSliderTest_4.html" target="_blank">view example</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/SimpleSlider_4.js" target="_blank">component source</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/simpleSliderTest_4.html" target="_blank">page source</a></td>
+</tr><tr>
+<td>Step 5</td>
+<td>observation</td>
+<td><a href="SimpleSlider/simpleSliderTest_5.html" target="_blank">view example</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/SimpleSlider_5.js" target="_blank">component source</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/simpleSliderTest_5.html" target="_blank">page source</a></td>
+</tr><tr>
+<td>Step 6</td>
+<td>images, skins, cursors</td>
+<td><a href="SimpleSlider/simpleSliderTest_6.html" target="_blank">view example</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/SimpleSlider_6.js" target="_blank">component source</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/simpleSliderTest_6.html" target="_blank">page source</a></td>
+</tr><tr>
+<td>Step 7</td>
+<td>extending superclass methods</td>
+<td><a href="SimpleSlider/simpleSliderTest_7.html" target="_blank">view example</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/SimpleSlider_7.js" target="_blank">component source</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/simpleSliderTest_7.html" target="_blank">page source</a></td>
+</tr><tr>
+<td>Step 8</td>
+<td>cleanup &amp; optimization</td>
+<td><a href="SimpleSlider/simpleSliderTest_8.html" target="_blank">view example</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/SimpleSlider_8.js" target="_blank">component source</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/simpleSliderTest_8.html" target="_blank">page source</a></td>
+</tr><tr>
+<td>Step 9</td>
+<td>safe "isc" namespace</td>
+<td><a href="SimpleSlider/simpleSliderTest_9.html" target="_blank">view example</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/SimpleSlider_9.js" target="_blank">component source</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleSlider/simpleSliderTest_9.html" target="_blank">page source</a></td>
+</tr></table>
+
+
+<hr><h3>SimpleHeader</h3>
+The SimpleHeader class is an example of a simple Layout subclass that generates and manages a set of other components.
+<br><br>
+
+<table class="normal" cellPadding=10 border=1><tr>
+<td><a href="SimpleHeader/simpleHeaderTest.html" target="_blank">view example</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleHeader/SimpleHeader.js" target="_blank">component source</a></td>
+<td><a href="/isomorphic/Source.Viewer?file=SimpleHeader/simpleHeaderTest.html" target="_blank">page source</a></td>
+</tr></table>
+<br><br>
+
+<hr><h3>CustomPicker</h3>
+The CustomPicker example demostrates a custom form control (YesNoMaybeItem) implemented as a "picker" that the user
+can pop up from a picker icon next to a form or grid value.  Check it out in the 
+<a href="/isomorphic/system/reference/SmartClient_Explorer.html#customFormItem" target="_blank">Feature Explorer</a>.
+<br><br>
+<br><br>
+
+<br><br><TABLE WIDTH=100% CELLSPACING=0 CELLPADDING=0 BORDER=0><TR><TD BGCOLOR=336666><IMG SRC=../../docs/images/blank.gif WIDTH=1 HEIGHT=4></TD></TR></TABLE><BR><BR>
+&copy;2005 Isomorphic Software, Inc.&nbsp;&nbsp;All rights reserved.&nbsp;&nbsp;<a href="../../license.html">License agreement.</a>
+</body></html>
+

@@ -1,0 +1,11 @@
+<DataSource
+    ID="countryIncludeFromHB"
+    serverType="hibernate"
+    schemaBean="com.isomorphic.examples.server.hibernate.relations.CountryManyToOneSimple"
+    autoDeriveSchema="true"
+>
+    <fields>
+        <field  name="continent" foreignKey="continentIncludeFromHB.continentId" displayField="continentName" />
+    </fields>
+</DataSource>
+

@@ -1,0 +1,79 @@
+html{
+  background-color: #ebeff2 !important;
+}
+
+
+
+ .footer {
+	color: #98a6ad;
+	background-color: #626f80 !important;
+}
+
+.topbar,.topbar-left,.navbar-default {
+	color: #98a6ad;
+	background-color: #626f80 !important;
+}
+
+
+.btn{
+	color: #98a6ad !important;
+}
+
+
+
+.content-page{
+	color: #98a6ad;;
+    background-color: #626f80 !important;
+
+}
+
+.side-menu{
+	color: #98a6ad;;
+    background-color: #626f80 !important;
+}
+
+
+.form-control{
+	border: 1px solid #697075 !important;
+	color:#b8c0c5 ;	
+}
+
+.form-control:focus{
+	border: 1px solid #697075 !important;
+	color: black;
+}
+
+#phonenumbertxt:focus{
+	color: white !important;
+}
+
+.panel-body table td{
+	border-color: #626f80 !important;
+
+}
+.dial-pad i{
+	color: white;
+}
+
+.dial-pad td.extrabtn:hover{
+  background-color: #626f80 !important;
+}
+
+.dial-pad td:hover{
+  background-color: #697075 !important;
+}
+
+
+
+.card-box{
+   background-color: #626f80;
+}
+
+.card{
+   background-color: #626f80;
+   border: 1px solid #697075;
+
+}
+.btn span{
+	color:white;
+}

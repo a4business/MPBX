@@ -1,0 +1,7 @@
+<DataSource	ID="uploadedFiles" dataSourceType="sql">
+	<fields>
+        <field name="id" type="sequence" primaryKey="true" hidden="true" />
+        <field name="uploadTestId" type="integer" foreignKey="uploadTest.id" hidden="true" />
+		<field name="file" type="binary" />
+    </fields>
+</DataSource>

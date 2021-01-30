@@ -1,0 +1,7 @@
+{
+ "require": {
+    "marcelog/pami": "2.*"
+  }
+
+}
+

@@ -1,0 +1,18 @@
+<DataSource
+    ID="tasks"
+    serverType="sql"
+    tableName="tasks"
+    testFileName="/examples/shared/ds/test_data/tasks.data.xml"
+>
+    <fields>
+        <field name="taskId" type="sequence" hidden="true" primaryKey="true" />
+        <field name="name"      type="text"     title="Name"    required="true"   />
+        <field name="description"      type="text"     title="Description"   />
+        <field name="startDate"      type="datetime"     title="Start Date"    required="true"   />
+        <field name="endDate"      type="datetime"     title="End Date"    required="true"   />
+        <field name="lane"      type="text"     title="Lane"    required="true"   />
+        <field name="eventWindowStyle" type="text" />
+        <field name="canEdit"      type="boolean"     hidden="true" />
+    </fields>
+</DataSource>
+

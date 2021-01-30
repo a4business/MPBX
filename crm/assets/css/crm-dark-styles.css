@@ -1,0 +1,77 @@
+html{
+  background-color: #ebeff2 !important;
+}
+
+
+
+ .footer {
+	color: #98a6ad;
+	background-color: #2f3e47 !important;
+}
+
+.topbar,.topbar-left,.navbar-default {
+	color: #98a6ad;
+	background-color: #2f3e47 !important;
+}
+
+
+
+
+
+.content-page{
+	color: #98a6ad;;
+    background-color: #2f3e47 !important;
+
+}
+
+.side-menu{
+	color: #98a6ad;;
+    background-color: #2f3e47 !important;
+}
+
+
+.form-control{
+	border: 1px solid #697075 !important;
+	
+}
+
+.form-control:focus{
+	border: 1px solid #697075 !important;
+	color: black;
+}
+
+#phonenumbertxt:focus{
+	color: white !important;
+}
+
+.panel-body table td{
+	border-color: #2f3e47 !important;
+
+}
+.dial-pad i{
+	color: white;
+}
+
+.dial-pad td.extrabtn:hover{
+  background-color: #2f3e47 !important;
+}
+
+.dial-pad td:hover{
+  
+  background-color: #116b391a !important;
+}
+
+
+
+.card-box{
+   background-color: #2f3e47;
+}
+
+.card{
+   background-color: #2f3e47;
+   border: 1px solid #697075;
+
+}
+.btn span{
+	color:white;
+}

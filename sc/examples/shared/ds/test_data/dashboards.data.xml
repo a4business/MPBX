@@ -1,0 +1,181 @@
+<List>
+
+<Object>
+    <description>Two-columns</description>
+    <layout><![CDATA[
+<DataSource>
+    <loadID>animals</loadID>
+</DataSource>
+<ListGrid dataSource="animals" autoFetchData="true" ID="ListGrid3" autoDraw="false">
+    <fields>
+        <ListGridField name="commonName" title="Animal"/>
+        <ListGridField name="scientificName" title="Scientific Name"/>
+        <ListGridField name="lifeSpan" title="Life Span"/>
+        <ListGridField name="diet" title="Diet"/>
+        <ListGridField name="status" title="Endangered Status"/>
+        <ListGridField name="information" title="Interesting Facts"/>
+        <ListGridField name="picture" title="Picture">
+            <hidden>true</hidden>
+        </ListGridField>
+    </fields>
+    <showFilterEditor>true</showFilterEditor>
+    <initialSort>
+    	<property>lifeSpan</property>
+    	<direction>ascending</direction>
+    	<normalizer>integer</normalizer>
+    	<primarySort>true</primarySort>
+    </initialSort>
+</ListGrid>
+<Portlet ID="Portlet3" autoDraw="false">
+    <destroyOnClose>true</destroyOnClose>
+    <title>Animals</title>
+    <items><Canvas ref="ListGrid3"/>
+    </items>
+</Portlet>
+<DataSource>
+    <loadID>supplyCategory</loadID>
+</DataSource>
+<ListGrid dataSource="supplyCategory" autoFetchData="true" ID="ListGrid0" autoDraw="false">
+    <initialCriteria>
+        <categoryName>labels</categoryName>
+    </initialCriteria>
+    <showFilterEditor>true</showFilterEditor>
+</ListGrid>
+<Portlet ID="Portlet0" autoDraw="false">
+    <destroyOnClose>true</destroyOnClose>
+    <title>Supply Categories</title>
+    <items><Canvas ref="ListGrid0"/>
+    </items>
+</Portlet>
+<PortalLayout ID="PortalLayout4" width="100%" height="100%" left="0" top="0" autoDraw="false">
+    <portalColumns>
+        <PortalColumn>
+            <portalRows>
+                <PortalRow>
+                    <portlets><Canvas ref="Portlet3"/>
+                    </portlets>
+                    <autoDraw>false</autoDraw>
+                    <ID>PortalRow3</ID>
+                </PortalRow>
+            </portalRows>
+            <autoDraw>false</autoDraw>
+            <ID>PortalColumn0</ID>
+        </PortalColumn>
+        <PortalColumn>
+            <portalRows>
+                <PortalRow>
+                    <portlets><Canvas ref="Portlet0"/>
+                    </portlets>
+                    <autoDraw>false</autoDraw>
+                    <ID>PortalRow0</ID>
+                </PortalRow>
+            </portalRows>
+            <autoDraw>false</autoDraw>
+            <ID>PortalColumn1</ID>
+        </PortalColumn>
+    </portalColumns>
+    <canResizePortlets>true</canResizePortlets>
+    <numColumns>0</numColumns>
+</PortalLayout>
+    ]]></layout>
+
+</Object>
+
+<Object>
+    <description>One-column</description>
+    <layout><![CDATA[
+<DataSource>
+    <loadID>supplyItem</loadID>
+</DataSource>
+<ListGrid dataSource="supplyItem" autoFetchData="true" ID="ListGrid1" autoDraw="false">
+    <fields>
+        <ListGridField name="itemName" title="Item"/>
+        <ListGridField name="SKU" title="SKU" width="70"/>
+        <ListGridField name="description" title="Description">
+            <hidden>true</hidden>
+        </ListGridField>
+        <ListGridField name="category" title="Category"/>
+        <ListGridField name="units" title="Units" width="23">
+            <hidden>true</hidden>
+        </ListGridField>
+        <ListGridField name="unitCost" title="Unit Cost"/>
+        <ListGridField name="inStock" title="In Stock" width="48"/>
+        <ListGridField name="nextShipment" title="Next Shipment" width="80">
+            <hidden>true</hidden>
+        </ListGridField>
+    </fields>
+    <showFilterEditor>true</showFilterEditor>
+</ListGrid>
+<Portlet ID="Portlet1" autoDraw="false">
+    <destroyOnClose>true</destroyOnClose>
+    <title>Supply Items</title>
+    <items><Canvas ref="ListGrid1"/>
+    </items>
+</Portlet>
+<DataSource>
+    <loadID>animals</loadID>
+</DataSource>
+<ListGrid dataSource="animals" autoFetchData="true" ID="ListGrid3" autoDraw="false">
+    <fields>
+        <ListGridField name="commonName" title="Animal"/>
+        <ListGridField name="scientificName" title="Scientific Name"/>
+        <ListGridField name="lifeSpan" title="Life Span"/>
+        <ListGridField name="status" title="Endangered Status"/>
+        <ListGridField name="diet" title="Diet"/>
+        <ListGridField name="information" title="Interesting Facts"/>
+        <ListGridField name="picture" title="Picture"/>
+    </fields>
+    <showFilterEditor>true</showFilterEditor>
+    <hilites>
+        <Hilite>
+            <fieldName>lifeSpan</fieldName>
+            <criteria>
+            	<fieldName>lifeSpan</fieldName>
+            	<operator>greaterThan</operator>
+            	<value>30</value>
+            	<_constructor>AdvancedCriteria</_constructor>
+            </criteria>
+            <icon></icon>
+            <cssText>background-color:#CCFFCC;</cssText>
+            <backgroundColor>#CCFFCC</backgroundColor>
+            <id>0</id>
+        </Hilite>
+    </hilites>
+    <groupByField>status</groupByField>
+</ListGrid>
+<Portlet ID="Portlet3" autoDraw="false">
+    <destroyOnClose>true</destroyOnClose>
+    <title>Animals</title>
+    <items><Canvas ref="ListGrid3"/>
+    </items>
+</Portlet>
+<PortalLayout ID="PortalLayout4" width="100%" height="100%" left="0" top="0" autoDraw="false">
+    <portalColumns>
+        <PortalColumn>
+            <portalRows>
+                <PortalRow>
+                    <portlets><Canvas ref="Portlet1"/>
+                    </portlets>
+                    <autoDraw>false</autoDraw>
+                    <ID>PortalRow1</ID>
+                </PortalRow>
+                <PortalRow>
+                    <portlets><Canvas ref="Portlet3"/>
+                    </portlets>
+                    <autoDraw>false</autoDraw>
+                    <ID>PortalRow3</ID>
+                </PortalRow>
+            </portalRows>
+            <autoDraw>false</autoDraw>
+            <ID>PortalColumn0</ID>
+        </PortalColumn>
+    </portalColumns>
+    <canResizePortlets>true</canResizePortlets>
+    <numColumns>0</numColumns>
+</PortalLayout>
+
+    ]]></layout>
+
+</Object>
+
+</List>

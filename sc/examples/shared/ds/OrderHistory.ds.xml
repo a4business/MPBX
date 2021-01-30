@@ -1,0 +1,9 @@
+<DataSource
+    ID="OrderHistory"
+>
+    <fields>
+        <field name="status"      title="Status"       type="enum" />
+        <field name="changedTime" title="Changed Date" type="date" />
+     </fields>
+</DataSource>
+ 

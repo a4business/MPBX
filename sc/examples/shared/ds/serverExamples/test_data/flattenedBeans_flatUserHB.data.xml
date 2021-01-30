@@ -1,0 +1,112 @@
+<List>
+ <flatUser>
+  <firstName>Kirill</firstName>
+  <surname>Amirov</surname>
+  <email>kamirov@server.com</email >
+  <addressLine1>1 Park Av E</addressLine1>
+  <city>SEATTLE</city>
+  <state>WA</state> 
+  <zip>98102</zip>
+  <country>USA</country>
+ </flatUser>
+ <flatUser>
+  <firstName>John</firstName>
+  <surname>Smith</surname>
+  <email>smith@server.com</email >
+  <addressLine1>421 E DRACHMAN</addressLine1>
+  <city>TUCSON</city>
+  <state>AZ</state> 
+  <zip>85705</zip>
+  <country>USA</country>
+ </flatUser>
+ <flatUser>
+  <firstName>Paul</firstName>
+  <surname>Johnson</surname>
+  <email>pjohnson@server.com</email >
+  <addressLine1>123 Main St</addressLine1>
+  <city>ANYTOWN</city>
+  <state>US</state> 
+  <zip>12345</zip>
+  <country>USA</country>
+ </flatUser>
+ <flatUser>
+  <firstName>Phil</firstName>
+  <surname>Carless</surname>
+  <email>pcarless@server.com</email >
+  <addressLine1>442 E AV</addressLine1>
+  <city>WASHINGTON</city>
+  <state>DC</state> 
+  <zip>55144</zip>
+  <country>USA</country>
+</flatUser>
+ <flatUser>
+  <firstName>Jane</firstName>
+  <surname>Jackson</surname>
+  <email>jjackson@server.com</email >
+  <addressLine1>1 DALLAS</addressLine1>
+  <city>ANGLETON</city>
+  <state>TX</state> 
+  <zip>77515</zip>
+  <country>USA</country>
+ </flatUser>
+ <flatUser>
+  <firstName>Gemma</firstName>
+  <surname>Foreman</surname>
+  <email>gforeman@server.com</email >
+  <addressLine1>PO Box 1</addressLine1>
+  <city>MELVILLE</city>
+  <state>NY</state> 
+  <zip>11775</zip>
+  <country>USA</country>
+ </flatUser>
+ <flatUser>
+  <firstName>Andrew</firstName>
+  <surname>Price</surname>
+  <email>aprice@server.com</email >
+  <addressLine1>123 W AV</addressLine1>
+  <city>PLANT CITY</city>
+  <state>FL</state> 
+  <zip>33564</zip>
+  <country>USA</country>
+ </flatUser>
+ <flatUser>
+  <firstName>Peter</firstName>
+  <surname>Clark</surname>
+  <email>pclark@server.com</email >
+  <addressLine1>1 PANTHER BURN RD</addressLine1>
+  <city>PANTHER BURN</city>
+  <state>MS</state> 
+  <zip>98102</zip>
+  <country>USA</country>
+ </flatUser>
+ <flatUser>
+  <firstName>Mark</firstName>
+  <surname>Morris</surname>
+  <email>mmorris@server.com</email >
+  <addressLine1>1 The Place</addressLine1>
+  <city>PHILADELPHIA</city>
+  <state>PA</state> 
+  <zip>19115</zip>
+  <country>USA</country>
+ </flatUser>
+ <flatUser>
+  <firstName>Carrie</firstName>
+  <surname>Jones</surname>
+  <email>cjones@server.com</email >
+  <addressLine1>311 Some Street</addressLine1>
+  <city>SEATTLE</city>
+  <state>WA</state> 
+  <zip>98102</zip>
+  <country>USA</country>
+ </flatUser>
+ <flatUser>
+  <firstName>Jake</firstName>
+  <surname>Marsden</surname>
+  <email>jmarsden@server.com</email >
+  <addressLine1>123 Johnson</addressLine1>
+  <city>WASHINGTON</city>
+  <state>DC</state> 
+  <zip>55146</zip>
+  <country>USA</country>
+ </flatUser>
+</List>

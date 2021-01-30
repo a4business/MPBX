@@ -1,0 +1,145 @@
+<HTML><HEAD>
+	<SCRIPT>var isomorphicDir="../../isomorphic/";</SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_Core.js></SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_Foundation.js></SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_Containers.js></SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_Grids.js></SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_Forms.js></SCRIPT>
+    <SCRIPT SRC=../../isomorphic/system/modules/ISC_DataBinding.js></SCRIPT>
+	<SCRIPT SRC=../../isomorphic/skins/SmartClient/load_skin.js></SCRIPT>
+</HEAD><BODY BGCOLOR='e0e0e0'><SCRIPT>
+
+
+//===========================================================================
+// SmartClient RSS "portlet" example
+//===========================================================================
+//    This examples extends the simple RSS DataSource binding example
+//    with:
+//        -- more/less buttons
+//        -- windows (drag, minimize, or close the headlines 'portlet')
+//        -- hover on headlines for descriptions
+//        -- click on preview icon to open in new window
+//        -- click on headline to open in another client-side portlet
+//        -- enable/disable the buttons appropriately
+//
+//    Possible next steps for this example:
+//        -- wrap this implementation as a single declarative component
+//        -- create referenceable components under a portal-specified namespace
+//===========================================================================
+
+
+// default delay for hover actions is 1000ms (1s) - let's make it shorter for this example
+isc.Hover.delay = 400;
+Hover.hoverCanvasDefaults.backgroundColor = "#FFFF99";
+
+
+// bind an RSS feed to a dataSource and specify the fields we want to use
+isc.DataSource.create({
+    ID:"newsFeed",
+    dataURL:"http://rss.slashdot.org/Slashdot/slashdot",
+    recordXPath:"//default:item",
+    fields:[
+        {name:"title"},
+        {name:"description"},
+        {name:"link"}
+    ]
+});
+
+
+// create a listGrid to display headlines from the RSS feed
+isc.ListGrid.create({
+    ID: "headlineGrid",
+    autoDraw: false,
+  // connect to the RSS-bound dataSource, but display the 'title' field only
+    dataSource:"newsFeed",
+    fields:[
+        {name:"link", type:"link", linkText:isc.Canvas.imgHTML("[SKIN]/common/view.png", 16, 16), width:22},
+        {name:"title"}
+    ],
+  // border on top, no headers, no scrollbars
+    styleName:"borderT",
+    showHeader:false,
+    bodyOverflow:"hidden",
+    leaveScrollbarGap:false,
+  // when the user hovers over a headline, show the description
+    canHover:true,
+    hoverWidth:300,
+    cellHoverHTML: function (record) {return record.description},
+  // when the user clicks on a headline, follow the link in a separate portlet
+    recordClick:"storyPortlet.setContentsURL(record.link)"
+});
+
+
+// create a toolbar with Less/More buttons
+isc.Toolbar.create({
+    ID:"headlineControls",
+    buttonConstructor:"IButton",
+    height:36,
+    layoutMargin:8,
+    membersMargin:8,
+    autoDraw:false,
+    buttons:[
+        {ID:"lessBtn", title:"Less...", click:"headlineWindow.showLess()" },
+        {ID:"moreBtn", title:"More...", click:"headlineWindow.showMore()" }
+    ]
+});
+
+
+isc.Window.create({
+    ID:"headlineWindow",
+    title:"Headlines",
+    left:50, top:50, width:300, height:300,
+    showCloseButton:false,
+    numHeadlines:5, // to start with
+    items:[headlineControls, headlineGrid],
+    
+    // logic to show more headlines and enable/disable the buttons appropriately
+    showMore: function () {
+        var rssData = headlineGrid.data;
+        this.numHeadlines = this.numHeadlines + 3;
+      // stop when we hit the end of the feed (first check that the feed is valid, to avoid errors)
+        if (isc.isA.ResultSet(rssData) && rssData.lengthIsKnown() && this.numHeadlines >= rssData.getLength()) {
+            this.numHeadlines = rssData.getLength();
+            moreBtn.disable();
+        }
+        this.fitHeadlines();
+        lessBtn.enable();
+    },
+    
+    // logic to show fewer headlines and enable/disable the buttons appropriately
+    showLess: function () {
+        this.numHeadlines = this.numHeadlines - 3;
+        if (this.numHeadlines <= 0) {
+            this.numHeadlines = 0;
+            lessBtn.disable();
+        }
+        this.fitHeadlines();
+        moreBtn.enable();
+    },
+
+    // resize to fit the current number of headlines, plus extra space for the
+    // window header, toolbar, and edges
+    fitHeadlines: function () {
+        this.setHeight(headlineGrid.cellHeight * this.numHeadlines + 75);
+    }
+});
+
+
+isc.Window.create({
+    title:"Full Story",
+    left:400, top:50, width:600, height:500,
+    canDragResize:true,
+    showCloseButton:false,
+    showMinimizeButton:false,
+    items:[Canvas.create({
+        ID:"storyPortlet", contentsType:"page", overflow:"auto"
+    })]
+});
+
+
+headlineGrid.fetchData();
+headlineWindow.fitHeadlines();
+
+</SCRIPT>
+</BODY>
+</HTML>

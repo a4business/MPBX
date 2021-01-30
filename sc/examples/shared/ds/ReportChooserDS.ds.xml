@@ -1,0 +1,22 @@
+<!-- Auto-generated from database table reportChooserDS -->
+
+<DataSource 
+	dbName="Mysql"
+	tableName="ReportChooserDS"
+	ID="ReportChooserDS"
+	dataSourceVersion="1"
+	generatedBy="dev current"
+	serverType="sql"
+>
+	<fields>
+		<field primaryKey="true" name="reportId" type="sequence"></field>
+		<field name="reportName" length="255" type="text"></field>
+		<field name="title" length="255" type="text"></field>
+		<field name="reportDescription" length="255" type="text"></field>
+		<field name="reportCategory" length="255" type="text"></field>
+		<field name="reportCreator" length="255" type="text"></field>
+		<field name="reportIsDefault" length="6" type="text"></field>
+		<field name="reportIsShared" length="6" type="text"></field>
+		<field name="reportViewState" length="65535" type="text"></field>
+	</fields>
+</DataSource>

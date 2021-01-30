@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Twinkle
+Comment=VoIP Softphone
+Exec=/bin/bash -c '/usr/bin/twinkle --immediate --show --call ${0//tel:/}' %u
+Terminal=false
+Icon=twinkle
+Type=Application
+X-GNOME-Autostart-enabled=false
+Categories=Network;Telephony;InstantMessaging;
+Keywords=voip;iax;sip;internet;phone;zoiper
+MimeType=x-scheme-handler/callto;x-scheme-handler/tel;x-scheme-handler/sip;x-scheme-handler/zoiper;
+

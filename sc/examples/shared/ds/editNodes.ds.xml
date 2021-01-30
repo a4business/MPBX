@@ -1,0 +1,7 @@
+<DataSource ID="editNodes" serverType="sql" tableName="editNodes">
+    <fields>
+         <field name="pk" type="sequence" hidden="true" primaryKey="true" />
+         <field name="type" type="text" />
+         <field name="defaults" type="text" length="10000" /> 
+    </fields>
+</DataSource>

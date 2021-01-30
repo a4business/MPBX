@@ -1,0 +1,13 @@
+<DataSource
+    ID="countryOneToManyJPA"
+    serverType="jpa"
+    beanClassName="com.isomorphic.examples.server.jpa.relations.CountryOneToMany"
+    schemaBean="com.isomorphic.examples.server.jpa.relations.CountryOneToMany"
+>
+    <fields>
+        <field name="cities"        hidden="true" multiple="true" type="cityOneToManyJPA"
+            foreignKey="cityOneToManyJPA.cityId"
+        />
+    </fields>
+</DataSource>
+
