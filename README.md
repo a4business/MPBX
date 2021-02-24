@@ -36,7 +36,7 @@ Some more key features:
 Uppong receiving call, manager can activate inbound route with actions:
 
 
-[Demo VIdeo](http://a4business.com/wp-content/uploads/2018/08/PBXDemo-en.ogv?_=1)
+[Demo VIdeo](https://vimeo.com/516227435)
 The video demonstrates following steps:
 
 - Create PBX Cloud
