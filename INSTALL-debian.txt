@@ -1,0 +1,186 @@
+Almost same as INTALL, but for debian:
+
+
+   apt install build-essential libncurses5-dev uuid-dev libxml2-dev libsqlite3-dev libssl-dev libjansson-dev libsrtp2-dev libedit-dev git curl wget libnewt-dev libncurses5-dev subversion  libsqlite3-dev uuid-dev php apache2 unixodbc unixodbc-dev
+
+   ## Get mysql apt-get sources ##
+   wget https://repo.mysql.com//mysql-apt-config_0.8.14-1_all.deb
+   dpkg -i mysql-apt-config_0.8.14-1_all.deb
+   apt-get update
+   apt-get install mysql-community-server mysql-community-client libmysqlclient20 libmysqlclient-dev libmysqld-dev  php5.6-mysqlnd
+
+
+
+## Modify /etc/mysql/my.cnf  :
+[client]
+default-character-set=utf8
+
+[mysql]
+default-character-set=utf8
+
+[mysqld]
+collation-server = utf8_unicode_ci
+character-set-server = utf8
+default_authentication_plugin=mysql_native_password
+
+
+  ### Get php 5.6
+   wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
+   echo "deb https://packages.sury.org/php/ stretch main" | sudo tee /etc/apt/sources.list.d/php.list
+   sudo apt update
+   sudo apt install php5.6
+   sudo apt install php5.6-cli php5.6-common php5.6-curl php5.6-mbstring php5.6-mysql php5.6-xml php-
+
+  ## Switch to php5.6 if not yet:
+  php -v
+  ln -sf /usr/bin/php5.6 /etc/alternatives/php
+  php -v
+
+
+   ## Get ODBC connector ##
+   wget https://cdn.mysql.com//Downloads/Connector-ODBC/8.0/mysql-connector-odbc-8.0.19-linux-debian10-x86-64bit.tar.gz
+
+
+   
+   ## INTSALL Asterisk 16 ## 
+   wget https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-16-current.tar.gz
+   tar zxvf asterisk-16-current.tar.gz && cd  asterisk-16-current
+   ./configure --with-pjproject-bundled --with-crypto --with-ssl=ssl --with-srtp --with-jansson-bundled
+   make menuselect
+   make && make install
+  
+
+   ## Install PBX fike:
+  echo '144.76.4.239   myrepo' >> /etc/hosts 
+  cd /var/www/html/pbx
+  svn co svn co http://myrepo:8181/itenant ./
+
+  for CONF in func_odbc.conf macros.include conferences.include  do ln -sf /var/www/html/pbx/core/${CONF} /etc/asterisk/${CONF}; done
+  cd /etc/asterisk && for CONF in extensions.tenants inbound.include internal.include ivrmenus.include outbound.include queues.include res_parking.include ringgroups.include sip-register.tenants sip.tenants tenants.include; do touch $CONF; chown www-data.www-data $CONF; done
+
+  curl -sS https://getcomposer.org/installer | php
+  mv composer.phar /usr/local/bin/composer 
+  cd /var/www/html/ && composer install
+
+
+
+
+####  Install ODBC:  vi /etc/odbcinst.ini
+
+[MySQL]
+Description = ODBC for MySQL
+Driver=/usr/lib/x86_64-linux-gnu/odbc/libmyodbc8a.so
+Setup=/usr/lib/x86_64-linux-gnu/odbc/libmyodbc8S.so
+FileUsage = 1
+
+### /etc/odbc.ini : 
+[mpbx]
+Description = PBX MySQL ODBC
+Driver = MySQL
+;;Socket = /var/lib/mysql/mysql.sock
+User = mpbx_web
+Password = P@ssw0rd123
+Database = mpbx
+Option = 3
+
+
+### Test ODBC by :   isql mpbx 
+
+
+
+###### cat res_config_mysql.conf 
+[pbxdb]
+dbhost=localhost
+dbname=mpbx
+dbuser=mpbx_web
+dbpass=P@ssw0rd123
+dbport=3306
+dbsock=/run/mysqld/mysqld.sock
+requirements=warn
+
+
+##### res_odbc.conf
+[pbxdb]
+enabled => yes
+dsn => mpbx
+username => mpbx_web
+password => P@ssw0rd123
+pre-connect => yes
+
+
+##### cat cdr_adaptive_odbc.conf 
+[global]
+connection=pbxdb
+username = mpbx_web
+password = P@ssw0rd123
+loguniqueid=yes
+dispositionstring=yes
+table=t_cdrs            ;"cdr" is default table name
+usegmtime=no             ; set to "yes" to log in GMT
+
+
+###### cat extconfig.conf
+
+musiconhold   => mysql,pbxdb,t_moh
+sippeers      => mysql,pbxdb,t_sip_users
+voicemail     => mysql,pbxdb,t_vmusers
+queues        => mysql,pbxdb,t_queues
+queue_members => mysql,pbxdb,t_queue_members
+extensions    => mysql,pbxdb,t_extensions
+followme      => mysql,pbxdb,t_user_options
+followme_numbers => mysql,pbxdb,t_user_followme
+
+
+
+############### setup mamager
+perl -pi -e "s/enabled = no/enabled = yes/" /etc/asterisk/manager.conf
+perl -pi -e "s/bindaddr = 0.0.0.0/bindaddr = 127.0.0.1/" /etc/asterisk/manager.conf
+
+Append:
+
+[pbx-manager-dev]
+writetimeout=200
+displayconnects=no
+secret=92jdf3hfdf
+deny=0.0.0.0/0.0.0.0
+permit=127.0.0.1/255.255.255.0
+permit=192.168.0.0/255.255.0.0 ; RFC 1918 addresses
+permit=10.0.0.0/255.0.0.0      ; Also RFC1918
+permit=172.16.0.0/12           ; Another RFC1918 with CIDR notation
+permit=169.254.0.0/255.255.0.0 ; Zero conf local network
+
+read = system,call,log,verbose,agent,user,dtmf,reporting,cdr,dialplan
+write = system,call,agent,user,command,reporting,originate
+
+
+
+######### setup TLS: #######~A
+##sip.conf
+
+tlsenable=yes
+tlsbindaddr=0.0.0.0:50601
+tlscertfile=/etc/asterisk/keys/TLS.pem
+tlsprivatekey=/etc/asterisk/keys/privkey.pem
+tlscafile=/etc/asterisk/keys/fullchain.pem
+tlsclientmethod=ALL
+tlscipher=ALL
+tlsclientmethod=tlsv1
+tlsdontverifyserver=yes
+
+
+
+
+
+
+
+
+########################################################################
+Install CRM
+###############################################################
+
+mkdir /var/www/html/crm
+cd /var/www/html/crm
+svn co http://myrepo:8181/soho-crm ./
+ composer install
+ a2enmod rewrite && systemctl restart apache2
+## update  vi /etc/apache2/apache2.conf,   allow Override All for crm folder
