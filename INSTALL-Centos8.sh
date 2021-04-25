@@ -87,6 +87,7 @@ fi
 ##  Link Asterisk config files
   for CONF in func_odbc.conf macros.include conferences.include;  do ln -sf /var/www/html/core/${CONF} /etc/asterisk/${CONF}; done
   cd /etc/asterisk && for CONF in extensions.tenants inbound.include internal.include ivrmenus.include outbound.include queues.include res_parking.include ringgroups.include sip-register.tenants sip.tenants tenants.include; do touch $CONF; chown apache.apache $CONF; done
+  echo "#include  res_parking.include" >>  /etc/asterisk/res_parking.conf
 
 
 ### Create Databas ###
