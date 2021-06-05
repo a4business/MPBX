@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.24, for Linux (x86_64)
 --
--- Host: localhost    Database: mpbx
+-- Host: localhost    Database: etor_pbx
 -- ------------------------------------------------------
 -- Server version	5.7.24
 

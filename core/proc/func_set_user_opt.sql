@@ -104,14 +104,17 @@ END IF;
  /*   Host DESKING  */
 
  IF ( in_opt_name = 'userlogon' ) then
-    INSERT INTO t_sip_user_devices(tenant_id,t_sip_user_id,exten)
-     VALUES( IN_TENANT_ID, SIP_ID, in_opt_val );
+   IF ( !EXISTS(SELECT 1 FROM t_sip_user_devices WHERE tenant_id = IN_TENANT_ID AND t_sip_user_id = SIP_ID AND exten = in_opt_val) ) THEN
+    INSERT INTO t_sip_user_devices(tenant_id,t_sip_user_id,exten)  VALUES( IN_TENANT_ID, SIP_ID, in_opt_val );
+   END IF;
  END IF;
 
  IF ( in_opt_name = 'userlogoff' ) then
     DELETE FROM t_sip_user_devices 
       WHERE tenant_id = IN_TENANT_ID  AND
-            exten =  in_opt_val ;   
+            ( exten =  in_opt_val OR 
+	      sip_user_id IN (SELECT id FROM t_sip_users WHERE tenant_id = IN_TENANT_ID AND extension = in_opt_val) ) ;   
+    
  END IF;
 
 

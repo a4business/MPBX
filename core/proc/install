@@ -2,15 +2,15 @@
 
 read -p 'WARNING: All data will be LOST! type: "yes",  [no]:' A
 A=${A:-no}
+## Extract Data only: mysqldump mpbx -u root -p -t --skip-triggers --compact --no-create-info  > mpbx-initial-data.sql
+## Extract Structure only:  mysqldump mpbx -u root -p --no-data > mpbx.sql
 
 if [ "$A" = "yes" ] ; then
    read -p 'Mysql root:' PW
    read -p 'DB name[mpbx]:' DB
    DB=${DB:-mpbx}
    echo " Install DB:" 
-   [ ! -f "${DB}.sql" ] && echo "Error: DB ${DB}.sql NOT FOUND!" && exit || echo "  Install ${DB}.sql ... "
-  ## cat "${DB}.sql" |  mysql -u root -p$PW $DB
-  ## echo -e  "\n\n\t $DB loaded!  \n\n" 
+   echo -e  "\n\n\t $DB loaded!  \n\n" 
 
    for type in func triggers ; do
     echo -e "\n Install $type :"

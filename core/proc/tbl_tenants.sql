@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.33, for Linux (x86_64)
 --
 -- Host: localhost    Database: mpbx
 -- ------------------------------------------------------
--- Server version	5.7.27
+-- Server version	5.7.34
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -55,28 +55,22 @@ CREATE TABLE `tenants` (
   `vm_operator_exten` varchar(100) DEFAULT NULL,
   `shabash` varchar(20) DEFAULT '18:00',
   `intertenant_routing` varchar(100) DEFAULT NULL,
+  `archivate_cdrs_after` int(11) DEFAULT '90',
+  `smtp_port` int(11) DEFAULT NULL,
+  `smtp_host` varchar(200) DEFAULT NULL,
+  `smtp_user` varchar(200) DEFAULT NULL,
+  `smtp_password` varchar(200) DEFAULT NULL,
+  `smtp_from` varchar(200) DEFAULT NULL,
+  `smtp_from_name` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `tenant_title` (`title`)
-) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tenants`
 --
 
-LOCK TABLES `tenants` WRITE;
-/*!40000 ALTER TABLE `tenants` DISABLE KEYS */;
-INSERT INTO `tenants` VALUES (1,'Asistan Telecom','ferit',10,0,'7001','[204]',200,'first',130,'no','def-9a7d',NULL,'sorry. we can not dial this number',NULL,NULL,NULL,'',1,NULL,0,0,0,NULL,NULL,NULL,NULL,1,210,NULL,'18:00','0'),(61,'DEFAULT Tenant','default',20,0,'700','null',10,'next',60,'no','default','en','Sorry, we cannot complete your call','Sorry, that extension number is invalid.','','',NULL,1,'en-US_MichaelVoice',0,20,NULL,5,30,'0',180,0,210,'111','18:00','0'),(66,'metin','metin',20,0,'700','null',10,'next',60,'no','default','en','Sorry, we cannot complete your call','Sorry, that extension number is invalid.','','',NULL,2,'en-US_MichaelVoice',0,20,NULL,5,30,'0',180,0,210,NULL,'18:00','null');
-/*!40000 ALTER TABLE `tenants` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = latin1 */ ;
-/*!50003 SET character_set_results = latin1 */ ;
-/*!50003 SET collation_connection  = latin1_swedish_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trigger_tenants_on_delete` AFTER DELETE ON tenants
  FOR EACH ROW
@@ -103,4 +97,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-11 15:47:42
+-- Dump completed on 2021-05-05 10:51:19
