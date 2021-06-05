@@ -1,5 +1,10 @@
 <?php
  //session_start();
+// Enable on Deploy to fix installation errors://
+ ini_set('display_errors', 'Off');
+ error_reporting(0);
+//
+
 
 
  if ( isset($_SESSION['UID']) ) {
@@ -8,16 +13,16 @@
 
  include_once('include/config.php');
 
- $ip_blocked = mysql_fetch_assoc( mysql_query("SELECT * FROM blacklist WHERE ip = '{$_SERVER['REMOTE_ADDR']}' AND ip != '' LIMIT 1") );
- if( $ip_blocked ){
-   mysql_query("UPDATE blacklist SET hit_count = ifnull(hit_count,0) + 1, last_hit = now() WHERE  ip = '{$_SERVER['REMOTE_ADDR']}' ");
-   if( isset($ip_blocked['block_web_access']) && $ip_blocked['block_web_access']  ){
-     $location = $ip_blocked['redirect_to'] ? $ip_blocked['redirect_to'] : 'http://webkay.robinlinus.com/';
-     session_destroy();
-     header("Location: {$location} ");
-     return;
-   }
- }
+ //$ip_blocked = mysql_fetch_assoc( mysql_query("SELECT * FROM blacklist WHERE ip = '{$_SERVER['REMOTE_ADDR']}' AND ip != '' LIMIT 1") );
+ //if( $ip_blocked ){
+ //  mysql_query("UPDATE blacklist SET hit_count = ifnull(hit_count,0) + 1, last_hit = now() WHERE  ip = '{$_SERVER['REMOTE_ADDR']}' ");
+ //  if( isset($ip_blocked['block_web_access']) && $ip_blocked['block_web_access']  ){
+ //    $location = $ip_blocked['redirect_to'] ? $ip_blocked['redirect_to'] : 'http://webkay.robinlinus.com/';
+ //    session_destroy();
+ //    header("Location: {$location} ");
+ //    return;
+ //  }
+ //}
  
 
 ?>

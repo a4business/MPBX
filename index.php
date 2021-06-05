@@ -1,10 +1,28 @@
 <?php
  session_start();
+// Enable on Deploy to fix installation errors://
+ ini_set('display_errors', 'Off');
+ error_reporting(0);
+//
+
+
  if ( !isset($_SESSION['UID']) ) {
     header("Location: entrance.php");
  }
  
  include_once('include/config.php');
+ 
+/*
+ // session
+ $res = mysql_query("SELECT * FROM etor_users WHERE id = {$_SESSION['UID']} AND 
+                     HOUR(TIMEDIFF(now(), ifnull(last_access,now())) < 1" );
+ $u = mysql_fetch_assoc($res);
+ if ( !$u['id']  ){
+    session_destroy();
+    unset($_SESSION['UID']);    
+    header("Location:entrance.php");
+ }
+ */
  
 ?><html>
 <HEAD>

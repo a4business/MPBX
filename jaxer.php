@@ -1,5 +1,10 @@
 <?php
 
+// Enable on Deploy to fix installation errors://
+ ini_set('display_errors', 'On');
+ error_reporting(1);
+//
+
 include_once('include/config.php');
 require_once __DIR__ . '/include/mailManager.php';
 require_once __DIR__ . '/vendor/autoload.php';
@@ -124,10 +129,11 @@ if(isset($blockIP)){
   if ( $ip_blocked ){
 
     // VERSION UPGRADE //
-      if(!mysql_query("SELECT block_web_access FROM blacklist LIMIT 1")){
+    if(!mysql_query("SELECT block_web_access FROM blacklist LIMIT 1")){
         mysql_query("ALTER TABLE blacklist ADD block_web_access integer DEFAULT 0");
-        $ip_blocked = mysql_fetch_assoc( mysql_query("SELECT * FROM blacklist WHERE ip = '{$_SERVER['REMOTE_ADDR']}' AND ip != ''" ) );
-      }
+    }
+
+    $ip_blocked = mysql_fetch_assoc( mysql_query("SELECT * FROM blacklist WHERE ip = '{$_SERVER['REMOTE_ADDR']}' AND ip != ''" ) );
 
     mysql_query("UPDATE blacklist SET hit_count = ifnull(hit_count,0) + 1, last_hit = now() WHERE  ip = '{$_SERVER['REMOTE_ADDR']}'") ;
     if( isset($ip_blocked['block_web_access']) && $ip_blocked['block_web_access']  ){
@@ -157,10 +163,11 @@ if ( isset($username) && isset($password) ){
 
 // Try to get remote Country by client IP addr FOR LOGED USERS 
   $reader = new Reader('include/GeoLite2-City/GeoLite2-City.mmdb');
+  $blocked_country = false;
  try{
 
     $location = $reader->city($_SERVER['REMOTE_ADDR']);
-    $allowed_countries = '/Canada|India|Ukraine|Turkey/';
+    $allowed_countries = '/Canada|India|Ukraine|Turkey|Italy|Bahrain/';
     $IPINFO  = "  {$location->country->isoCode}/{$location->country->name},{$location->city->name},{$location->mostSpecificSubdivision->name}";
     $blocked_country = !( preg_match( $allowed_countries, $location->country->name ) ) ? true : false;
 
@@ -290,6 +297,7 @@ if ( isset($user['user']) ){
     // 38.142.63 - etor
       $BLOCKED = !preg_match( '/^192\.168\./', $_SERVER['REMOTE_ADDR'] ) &&
 		 !preg_match( '/^38\.142\.63/', $_SERVER['REMOTE_ADDR'] ) &&  
+		 !preg_match( '/^38\.113\.171/', $_SERVER['REMOTE_ADDR'] ) &&
 		 !preg_match( '/^10\./', $_SERVER['REMOTE_ADDR'] ) &&
 		 !preg_match( '/^172\./', $_SERVER['REMOTE_ADDR'] ) ? 1 : 0 ;
 
@@ -309,10 +317,14 @@ if ( isset($user['user']) ){
 				  '{$_SERVER['REMOTE_ADDR']}')") or die('  FAIL to LOG: '. mysql_error() );
     
 
-   // Interval to send EMAILS is 20 seconds //
-    
-    if($send){
-
+    // $res = mysql_query("INSERT INTO blacklist(ip, ip_info, description ) VALUES('{$_SERVER['REMOTE_ADDR']}','${IPINFO}','Blocked after failed Login!')") or die( mysql_error() );     
+ 
+     mysql_query("INSERT INTO admin_user_log(user_id,user_agent,method,request_data,from_ip)
+                   VALUES(0{$failed_user_id},'{$_SERVER['HTTP_USER_AGENT']}', 'FAILED_LOGIN{$send}', '{$username}:{$password}','{$_SERVER['REMOTE_ADDR']}')");
+     
+     if($send){
+       $sip_info = mysql_fetch_assoc(mysql_query("SELECT concat(' <div>There is SIP registration:<br>',name,' [',useragent,'] from the same IP</div>') as txt FROM t_sip_users WHERE ipaddr = '{$_SERVER['REMOTE_ADDR']}' "));
+     
       try{
 	$sip_info = mysql_fetch_assoc(mysql_query("SELECT concat(' <div>There is SIP registration:<br>',name,' [',useragent,'] from the same IP</div>') as txt FROM t_sip_users WHERE ipaddr = '{$_SERVER['REMOTE_ADDR']}' "));
         $reader = new Reader('include/GeoLite2-City/GeoLite2-City.mmdb');  
@@ -342,24 +354,46 @@ if ( isset($user['user']) ){
 
 
 
-// mysql_query("INSERT INTO t_cdrs_archive select * from t_cdrs where datediff(now(),calldate) > 120 ");
-  // mysql_query("DELETE FROM t_cdrs WHERE datediff(now(),calldate) > 120 ");
- 
- if( isset($cleanCDRS) ) {
+if( isset($cleanCDRS) ) {
+  if(  $_SERVER['REMOTE_ADDR'] != '127.0.0.1' && $_SERVER['REMOTE_ADDR'] != '::1' ){
+     echo json_encode( array( 'error' => true, 'message' => "Not Authorized to call this request, IP: {$_SERVER['REMOTE_ADDR']} is logged!" ) );
+     exit; 
+   }
+   // If 0  - disable CDR clean for this Tenant //		
   if( mysql_query("SELECT archivate_cdrs_after FROM tenants WHERE ifnull(archivate_cdrs_after,0) > 0 LIMIT 1") ){
     mysql_query("CREATE TABLE IF NOT EXISTS t_cdrs_archive LIKE t_cdrs"); 
-    $res = mysql_query("SELECT id, ifnull(archivate_cdrs_after,90) FROM tenants WHERE ifnull(archivate_cdrs_after,0) > 0");
+    $res = mysql_query("SELECT id, ifnull(archivate_cdrs_after,90) as archivate_cdrs_after, title FROM tenants WHERE  ifnull(archivate_cdrs_after,0) > 0");
+    $total = 0 ;
+    echo "[ " . date("F j, Y, g:i a") . " ] ============================ Start Archivation =============================\n";
     while($row = mysql_fetch_assoc($res)){
       $tenant_id = $row['id']; 
-      $days = ( $cleanCDRS > 1 ) ? $cleanCDRS : $row['archivates_cdrs_after'];
-      if( mysql_query("INSERT INTO t_cdrs_archive SELECT * FROM t_cdrs WHERE datediff(now(),calldate) > $days ") ){
-	$affected = mysql_affected_rows();
-        echo "[ " . date("F j, Y, g:i a") . " ] Archived {$affected} CDRs, Deleting... ";
-        mysql_query("DELETE FROM t_cdrs WHERE datediff(now(),calldate) > $days ");
+      $days = ( $cleanCDRS > 1 ) ? $cleanCDRS : $row['archivate_cdrs_after'];
+      $start = microtime(true);
+      // Take much time... //
+      $rcount = mysql_query("SELECT count(*) as cnt FROM t_cdrs WHERE tenant_id = {$tenant_id} ") ;
+      $r = mysql_query("UPDATE tenants set cdrs_total = 0{$rcount} WHERE id ={$tenant_id}");
+      $count_total = mysql_fetch_assoc($rcount)['cnt'];
+      $rcount =  mysql_query("SELECT count(*) as cnt FROM t_cdrs WHERE tenant_id = {$tenant_id} AND datediff(now(),calldate) > {$days} ") ;
+      // how to optimize??? //
+      $count_to_clean = mysql_fetch_assoc($rcount)['cnt'];
+      if( ($count_total > 10000 && $count_to_clean < 50000 && $count_to_clean )){
+          $r = mysql_query("INSERT INTO t_cdrs_archive SELECT * FROM t_cdrs WHERE tenant_id = {$tenant_id} AND datediff(now(),calldate) > {$days} ") ;
+  	  $affected = mysql_affected_rows();
+  	  $total = $total + $affected ;
+          $time_elapsed_secs = microtime(true) - $start;
+  	  $start = microtime(true);
+          echo "[ " . date("F j, Y, g:i a") . " ] Tenant:[{$row['id']}] {$row['title']} -> Archived {$affected} CDRs older {$days} days[Exectime: {$time_elapsed_secs}s], Deleting {$affected} ... ";
+          $r = mysql_query("DELETE FROM t_cdrs WHERE tenant_id = {$tenant_id} AND datediff(now(),calldate) > {$days} ");
+	  $time_elapsed_secs = microtime(true) - $start;
+	  echo " ... deleted " . mysql_affected_rows() . ' [ExecTime: ' . $time_elapsed_secs ."sec]\n";
       }else{
-        echo "[ " . date("F j, Y, g:i a") . " ] No CDRs Archivation for Tenant[{$tenant_id}] \n";
+	if( $count > 0 )        
+		echo "[ " . date("F j, Y, g:i a") . " ] WARNING-BIG AMOUNT: Tenant:[{$row['id']}] {$row['title']} has {$count} in Total ( ! 50000 > {$count} > 5000  ), skipp archivation \n";
+	else
+		echo "[ " . date("F j, Y, g:i a") . " ] No CDRs Archivation for Tenant {$row['title']}[{$tenant_id}] older {$days} days \n";	
       }
     }
+   echo " ----------------- Total $total CDRs moved to t_cdrs_archive \n";
   }
  }
 
@@ -1069,9 +1103,10 @@ if( isset($dids_usage) ){
                               LIMIT 1) as served,                             
                               count(*) as TOTAL
                          FROM t_cdrs
-                          WHERE tenant_id = {$tenant_id}  AND dstchannel like '%-ivrmenu-%' AND
+			  WHERE tenant_id = {$tenant_id}  AND
+				dstchannel like '%-ivrmenu-%' AND
                                 {$range} AND  channel not like 'Local%internal%' AND  
-            		     dst IN ( {$selected} ) GROUP BY 1,2"
+            		        dst IN ( {$selected} ) GROUP BY 1,2"
                         ) or die('MySQL error:' . mysql_error()  );
 
 
@@ -1137,13 +1172,13 @@ if( isset($dids_usage) ){
                           WHERE billsec > 5 AND 
                                 tenant_id = {$tenant_id}  AND 
                                 {$range} AND
-				                        dst IN ( {$selected} )                 
-			      ORDER BY calldate DESC
+	                        dst IN ( {$selected} )                 
+     		      ORDER BY calldate DESC
 			";
                    $res = mysql_query( $SQL )  or die('Mysql Error:' . mysql_error() );
                  
                   file_put_contents($tmp, "<h3 style='display:inline;white-space:nowrap;'>Inward dialed numbers {$repo_range} </h3><div>{$repo_filter}</div>\n",FILE_APPEND | LOCK_EX);
-                   file_put_contents($tmp, "<table class='table table-striped table-responsive' style='border: 5px solid #ddd !important;' >\n",FILE_APPEND | LOCK_EX);
+                  file_put_contents($tmp, "<table class='table table-striped table-responsive' style='border: 5px solid #ddd !important;' >\n",FILE_APPEND | LOCK_EX);
 //                   file_put_contents($tmp, "<tr style='background-color:#DFDFDF;border-top:1px solid white;  border-left:1px olid silver;  border-bottom:1px solid gray;  border-right:1px solid gray;'><th>Date</th><th>DID# </th> <th nowrap>Inbound CLID</th>  <th>Duration</th><th>Status</th><th style=''>Connected with</th></tr>\n",FILE_APPEND | LOCK_EX);
 		   $tmp_string = '';
 		   $t_served=0;
@@ -1313,6 +1348,7 @@ if(isset( $delScheduler )){
 
 // Deliver stats to Emails for the finished Shifts ( which not has been sent )
 if (isset($send_stats)){
+
 
   // Check for finished non-sent Today shifts , they sent one time only on shift end!!//
   $res = mysql_query( "SELECT * FROM t_shifts

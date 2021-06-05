@@ -665,7 +665,8 @@ var menuInfo ="<b>User Menu</b>:<br>\
 		                                       // {name:"ring_while_wait"},
 		                                        {name:"allow_dialing_exten",width:200},
 		                                        {name:"allow_dialing_external",width:200},
-		                                        {name:"allow_dialing_featurecode",width:200}                                        
+		                                        {name:"allow_dialing_featurecode",width:200},
+							{name:"digit_timeout",width:200}
 								                //{name: "PlayiconField",    title: "Play", width: 110 }
 								             ]   
 		                       });
@@ -1137,12 +1138,12 @@ var menuInfo ="<b>User Menu</b>:<br>\
 								 				     	]
 								               }), 
 								               isc.HStack.create({width:"100%", members:[
-							                               isc.Label.create({ID:'Ext_DEV_list',width:100,align:"left",valign:"left", contents:"<span style='white-space:nowrap;width:100%;text-align:left;'>Logged into other devices:</span><br><small>(Hot-Desking)</small>"}),
+							                               isc.Label.create({ID:'Ext_DEV_list',width:100,align:"left",valign:"left", contents:"<b>Hot-Desking</b><br><span style='white-space:nowrap;'>Logged on devices:</span><div style='width:100px;text-align:left;'><br><small>Used to extend your office space.<br> Start receiving your calls on the listed devices. Use feature codes to manage HotDesking from phone </small></div>"}),
 											               isc.VStack.create({width:"100%", members:[								               	   
 											                   isc.ToolStrip.create({
-										                           width:200, align: "right", membersAlign: "right",
-										                           members: [	
-										                                isc.ToolStripButton.create({ prompt:'Login into exten...', click: function(){ tblUserDevices.startEditingNew(); }, icon:"[SKIN]actions/add.png"}),
+										                             width:200, align: "right", membersAlign: "right",
+										                             members: [	
+										                                isc.ToolStripButton.create({ prompt:'Login into other  exten...', click: function(){ tblUserDevices.startEditingNew(); }, icon:"[SKIN]actions/add.png"}),
 										                                isc.ToolStripButton.create({ prompt:'Logout from selected', click: function(){ tblUserDevices.removeSelectedData(); },icon:"[SKIN]actions/cancel.png" }),
 										                                isc.ToolStripButton.create({ title: "Logout from all", click: function(){ tblUserDevices.selectAllRecords(); tblUserDevices.removeSelectedData(); },icon:"[SKIN]actions/undo.png" }),
 										                                ]
@@ -1301,7 +1302,23 @@ var menuInfo ="<b>User Menu</b>:<br>\
 								 						     				
 								 						     			 ]
 								 						})
+								         },
+								         { title: "SMTP Setting", 
+								           pane: isc.DynamicForm.create({								           				 
+										        numCols: 4, 
+								                       valuesManager: "VMgrTenants",	
+								                       wrapItemTitles:false,
+								                       autoDraw: false,					                  
+								 						     fields: [ {name:"smtp_port"},
+								 						     		   {name:"smtp_host"},
+								 						     		   {name:"smtp_user"},
+								 						     		   {name:"smtp_password"},
+								 						     		   {name:"smtp_from"},
+								 						     		   {name:"smtp_from_name"}
+								 						     	 	 ]
+								 						})
 								         }
+
 
 								        // { title: "Missed call reports",
 								         // pane: isc.VStack.create({width:"100%",membersAlign: "center", members:[

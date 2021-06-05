@@ -1,21 +1,30 @@
 <?php 
 
 // PBX Main Configuration File //
+ ini_set('display_errors', 0); 
 
-   $config = new PBXConfig();
+
+   $config = new PBXConfig(); 
+   $config->setTimeZone();
    $config->DBConect();
+
  
   
  
  class PBXConfig{ 	
  
  	 public function __construct(){
- 	 	  $this->ini = parse_ini_file(  'config.ini' , true );
+ 	  $this->ini = parse_ini_file(  'config.ini' , true );
           $this->log = new Logger("/var/log/pbx.log");
 
- 	 	  // Default Ini Values:
- 	 	  $this->auto_reload = is_null($this->ini['general']['auto_reload_config']) ? 1 : $this->ini['general']['auto_reload_config'] ;
+	  // Default Ini Values:
+ 	  $this->auto_reload = is_null($this->ini['general']['auto_reload_config']) ? 1 : $this->ini['general']['auto_reload_config'] ;
  	 }
+
+    public function setTimeZone(){
+        $zone = isset($this->ini['general']['timezone']) ? $this->ini['general']['timezone'] : 'America/Toronto'; 
+        date_default_timezone_set( $zone );
+    }
 
     public function isAdmin(){
     	session_start();
@@ -32,30 +41,59 @@
     	return ( isset( $_SESSION['user']['role'] ) && $_SESSION['user']['role'] == 2 ) ? true : false;
     }
 
-    public function getSMTPHost(){
-    	 return isset( $this->ini['SMTP']['host'] ) ?  $this->ini['SMTP']['host'] : 'smtp.mailbox.org';
+ 
+   public function getSMTPHost(){
+	global $tenant_id;
+        if ( isset( $this->ini['SMTP']['host'] ) )
+         return $this->ini['SMTP']['host'] ;
+        else           
+         return  mysql_fetch_assoc( mysql_query("SELECT ifnull(smtp_host,'localhost') as smtp_host FROM tenants WHERE id = 0{$tenant_id} UNION SELECT '' as smtp_host") )['smtp_host'] ; 
     }
-    
-     public function getSMTPPort(){
-    	 return isset( $this->ini['SMTP']['port'] ) ?  $this->ini['SMTP']['port'] : 465;
+
+    public function getSMTPPort(){
+	global $tenant_id;
+        if ( isset( $this->ini['SMTP']['port'] ) )
+         return $this->ini['SMTP']['port'] ;
+        else           
+         return  mysql_fetch_assoc( mysql_query("SELECT ifnull(smtp_port,'587') as smtp_port FROM tenants WHERE id = 0{$tenant_id} UNION SELECT 0 as smtp_port") )['smtp_port'] ;         
     }
-       
-       
+
+
     public function getSMTPUser(){
-    	 return isset( $this->ini['SMTP']['user'] ) ?  $this->ini['SMTP']['user'] : 'asterweb@mailbox.org';
+	global $tenant_id;
+        if ( isset( $this->ini['SMTP']['user'] ) )
+         return $this->ini['SMTP']['user'] ;
+        else           
+         return  mysql_fetch_assoc( mysql_query("SELECT ifnull(smtp_user,'47f31c2189ae3a') as smtp_user FROM tenants WHERE id = 0{$tenant_id} UNION SELECT ''  as smtp_user") )['smtp_user'] ;         
     }
-    
+      
+       
     public function getSMTPPassword(){
-    	 return isset( $this->ini['SMTP']['password'] ) ? $this->ini['SMTP']['password'] : 'IsNotUsed1';
+	global $tenant_id;
+        if ( isset( $this->ini['SMTP']['password'] ) )
+         return $this->ini['SMTP']['password'] ;
+        else           
+         return  mysql_fetch_assoc( mysql_query("SELECT ifnull(smtp_password,'3116e65eed81a5') as smtp_password FROM tenants WHERE id = 0{$tenant_id} UNION SELECT '' as smtp_password ") )['smtp_password'] ;         
     }
-    
+
+        
     public function getSMTPFrom(){
-    	 return isset( $this->ini['SMTP']['from'] ) ? $this->ini['SMTP']['from'] : 'alert@pbx.org';
-    }
-    
-     public function getSMTPFromName(){
-    	 return isset( $this->ini['SMTP']['from_name'] ) ?  $this->ini['SMTP']['from_name'] : gethostname();
-    }
+	global $tenant_id;
+        if ( isset( $this->ini['SMTP']['from'] ) )
+         return $this->ini['SMTP']['from'] ;
+        else           
+         return  mysql_fetch_assoc( mysql_query("SELECT ifnull(smtp_from,'alerts@pbx') as smtp_from FROM tenants WHERE id = 0{$tenant_id} UNION SELECT '' as smtp_from") )['smtp_from'] ;         
+    }    
+
+    public function getSMTPFromName(){
+	global $tenant_id;
+        if ( isset( $this->ini['SMTP']['from_name'] ) )
+         return $this->ini['SMTP']['from_name'] ;
+        else           
+         return  mysql_fetch_assoc( mysql_query("SELECT ifnull(smtp_from_name,'From name') as smtp_from_name FROM tenants WHERE tenant_id = 0{$tenant_id} UNION SELECT '' as smtp_from_name") )['smtp_from_name'] ;         
+    }    
+
+
     
     public function isTenantUser(){
     	session_start();

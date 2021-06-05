@@ -6,7 +6,7 @@
   $interval = $argv[1] ? $argv[1] : 90 ;
   include_once(dirname( __DIR__)  . '/include/config.php');
   // Archive only on overloaded DB: //
-  $rows = mysql_fetch_assoc(mysql_query("SELECT table_rows as cnt FROM information_schema.tables WHERE table_name='t_cdrs' AND table_schema='mpbx'"));
+  $rows = mysql_fetch_assoc(mysql_query("SELECT table_rows as cnt FROM information_schema.tables WHERE table_name='t_cdrs' AND table_schema='etor_pbx'"));
   echo date('m/d/y H:m'). " Total CDRs:" . $rows['cnt'] ;
  if( $rows['cnt'] > 100000 ){
   if(!mysql_query("SELECT 1 FROM t_cdrs_archive LIMIT 1")){

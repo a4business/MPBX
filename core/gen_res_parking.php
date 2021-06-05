@@ -1,5 +1,4 @@
 <?php
-
   include_once(dirname( __DIR__)  . '/include/config.php');
   
   function gen_res_parking() {

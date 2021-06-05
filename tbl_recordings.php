@@ -120,12 +120,12 @@ $(document).ready(function() {
         scrollCollapse: true,
         fixedHeader: true,
         fixedFooter: true,
-        pageLength: 25,
+        pageLength: 20,
         lengthMenu: [ 15, 50, 200, 1000, 10000, 50000, 100000  ],
         AutoWidth: false,       
 	"language": {
       	  'loadingRecords': '&nbsp;',
-          'processing': '<div class="spinner"></div>'
+          'processing': '<div class="spinner"></div> <div class="roboFont"> Processing .</div>'
 	},
         buttons: [ {
                 extend: 'collection',
@@ -199,9 +199,9 @@ $(document).ready(function() {
                     ],
         columns: [
                     {data: "uniqueid" },
-                    {data: "calldate", type: "date",sortable:false},
+                    {data: "calldate", type: "date",sortable:false,width:100},
                     {data: "direction"},
-                    {data: "src",sortable:false},
+                    {data: "src",sortable:false,width:100},
                     {data: "dst",sortable:false},
                     {data: "duration"},
                     {data: "billsec"},

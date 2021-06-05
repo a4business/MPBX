@@ -97,10 +97,10 @@
   $tmp_wav = "/tts/file.wav"; //  TODO: add randomg file name
   if ( file_exists($tmp_mp3))  unlink($tmp_mp3);
   if ( file_exists($tmp_wav))  unlink($tmp_wav);
-  $CMD1 = "$SOX '{$media_file}' -c 1 '{$tmp_wav}' 2>/dev/null";
-  system($CMD1);
-    dbg("   --> Try to create  WAV format [ $CMD1 ] , RESULT: " . (file_exists( $tmp_wav )?'SUCESS':'FAIL') );
-  $CMD2 = "`which ffmpeg` -y  -i '$tmp_wav'  -acodec libmp3lame '$tmp_mp3' 2>/dev/null"; 
+  $CMD1 = "$SOX '{$media_file}' '{$tmp_wav}' 2>/dev/null";
+  //system($CMD1);
+  //dbg("   --> Try to create  WAV format [ $CMD1 ] , RESULT: " . (file_exists( $tmp_wav )?'SUCESS':'FAIL') );
+  $CMD2 = "/usr/bin/ffmpeg -y  -i '$media_file'  -acodec libmp3lame '$tmp_mp3' 2>/dev/null"; 
   system($CMD2);
     dbg("   --> Try to create MP3 format [ $CMD2 ] , RESULT: " . (file_exists( $tmp_mp3 )?'SUCESS':'FAIL') );
 
@@ -125,9 +125,8 @@
    
 // PLAIING  PLAY FILE:
   if ( file_exists($tmp_mp3) ){
-  	 $ID = trim($_GET['uniqueid']) ;
+    $ID = trim($_GET['uniqueid']) ;
     header('Content-Disposition: filename="' . $ID . '.mp3"');
-    header('Content-length: '.filesize($tmp_mp3));
     header('Cache-Control: no-cache');
     header("Content-Transfer-Encoding: chunked"); 
     header("Content-Type: audio/mpeg");

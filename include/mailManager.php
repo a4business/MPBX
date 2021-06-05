@@ -56,14 +56,18 @@ function SendConfirmationEmail($eMailAddr){
    $my_ip = file_get_contents('http://ifconfig.so');
    ini_set('default_socket_timeout', $default_socket_timeout);
 
-      
+   // Send email only if we have snmp enabled //
+     if($config->getSMTPHost()) 
+	try{		
 			$mail = new PHPMailer(true);
-try{		
 			$mail->isSMTP();			
 			$mail->SMTPDebug = 0;
+			$mail->Timeout = 3;
 			$mail->Host = $config->getSMTPHost();			
 			$mail->Port = $config->getSMTPPort();
-			//$mail->SMTPSecure = 'tls';			
+			//$mail->SMTPSecure = true;
+			//$mail->SMTPAutoTLS = true;
+			//$mail->SMTPSecure = 'tls';
 			$mail->SMTPAuth = true;			
 			$mail->Username = $config->getSMTPUser();
 			$mail->Password = $config->getSMTPPassword();
@@ -102,14 +106,12 @@ try{
 			else 
 			   return  "OK";			    
 			
-} catch(phpmailerException $e) {
-   echo json_encode( array( 'success'=> false, 'error' => "Failed to send: " . $e->errorMessage() ) );
-
-
-} catch (Exception $e) {
-    echo json_encode( array( 'success'=> false, 'error' => "Failed to proccess logon: " . $e->getMessage() ) );
-}
-
+	} catch(phpmailerException $e) {
+	   echo json_encode( array( 'success'=> false, 'error' => "Failed to send via {$config->getSMTPHost()}: " . $e->errorMessage() ) );
+	} catch (Exception $e) {
+	    echo json_encode( array( 'success'=> false, 'error' => "Failed to proccess logon: " . $e->getMessage() ) );
+	}
+   
 }			
 
 ?>

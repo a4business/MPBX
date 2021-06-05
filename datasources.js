@@ -772,7 +772,7 @@ var queuesStrategies = {
 			                displayField:"moh_name", 
 			                valueField: "moh_name" },
 //			     {name:"recordings_lang",type:"string", valueMap: [ 'en','tenant' ], defaultValue:'en', title:'Media folder'},
-              {name:"digit_timeout",title:"Digit timeout,ms", type: "integer",defaultValue:1000},
+              {name:"digit_timeout",title:"Digit timeout,ms", type: "integer",defaultValue:5},
               {name:"menu_timeout",title:"How long wait for selection,s", type: "integer",defaultValue:30},
               {name:"delay_before_start",title:"Delay before playing,ms", type: "select", valueMap: [ '0','500','1000'], defaultValue: '0'},
               {name:"ring_while_wait",title:"Ring While Wait",type: "select", valueMap: [ 'yes','no'], defaultValue: 'yes'},
@@ -1128,7 +1128,13 @@ var queuesStrategies = {
 		           {name:'vm_operator_exten', type:'string' },
 			   {name:'shabash', title:'HR Work finish', type:"select",  hidden:true, valueMap: ["06:00","15:00", "16:00","17:00","18:00","19:00","20:00","21:00","22:00" ],  defaultValue:'18:00',hint:'Workers Auto-LogOFF )HR)' },
 		           {name:'cdr_rows',canFilter:false, type:"integer"},
-			   {name:'archivate_cdrs_after', type:"integer", hint:' days',defaultValue:90 ,width:80, validators:[ {type:"integerRange", min:5, max:500} ] }
+			   {name:'archivate_cdrs_after', type:"integer", hint:' days',defaultValue:90 ,width:80, validators:[ {type:"integerRange", min:5, max:500} ] },
+         {name:"smtp_port",hint:"default",showHintInField:true},
+         {name:"smtp_host",hint:"default",showHintInField:true},
+         {name:"smtp_user",hint:"default",showHintInField:true},
+         {name:"smtp_password", type:"password",hint:"default",showHintInField:true},
+         {name:"smtp_from",hint:"default",showHintInField:true},
+         {name:"smtp_from_name",hint:"default",showHintInField:true}
               
 		    ]},
 		    getBindings('tenants'),

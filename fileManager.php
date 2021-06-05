@@ -4,9 +4,14 @@
  //  Used to list, upload and Delete asterisk media files - MOH
  //
 
-ini_set( ‘upload_max_filesize , ’125MB’ );
-ini_set( ‘post_max_size’, ’127MB’);
-ini_set( ‘memory_limit’, ’130MB’ );
+
+
+error_reporting(0);
+
+ini_set('display_errors', 'Off'); 
+ini_set( 'upload_max_filesize' , "150M" ) ;
+ini_set( 'post_max_size', "300M");
+ini_set( 'memory_limit', "500M" );
 
  
  session_start();
@@ -54,7 +59,7 @@ if(!empty($_FILES['upload_file']))
        $F_encoded  = $BASE_DIR . '/' . $directory . '/' . $f_name . '.wav' ;
        $F_original = $BASE_DIR . '/' . $directory . '/' . $dst_file_name ;
        if ( file_exists($F_encoded) ) unlink($F_encoded);  // We rewrite ?    
-       exec("`which ffmpeg` -y  -i '{$tmp_file_name}'  -ar 8000 -ac 1  -acodec pcm_s16le -f wav '{$F_encoded}' 2>/dev/null" );          
+       exec("/usr/bin/ffmpeg -y  -i '{$tmp_file_name}'  -ar 8000 -ac 1  -acodec pcm_s16le -f wav '{$F_encoded}' 2>/dev/null" );          
        //exec("`which sox` {$tmp_file_name} -twav -b16 -r 8000 -c 1 {$F_encoded} 2>/dev/null");
        if ( !file_exists($F_encoded) ) exec("mv '{$tmp_file_name}' '{$F_original}' 2>/dev/null");  // We failed to convert - JUST put the original //
        unlink($tmp_file_name);

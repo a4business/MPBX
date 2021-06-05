@@ -120,10 +120,10 @@ session_start();
 <div style='padding:0 20px'>
 <?php 
  $res = mysql_query("SELECT *, DATE_FORMAT(tstamp,'%H:%i:%s') as tstamp,
-          concat('<span class=text-muted>',DATE_FORMAT(last_sent,'%b %D'),'<br>',TIME(last_sent),'<br>( ', TIMESTAMPDIFF(HOUR, last_sent, now() ),'h ago )</span>') as last_sent  FROM t_scheduler WHERE tenant_id  = {$_SESSION['tenantid']}");
+          concat('<span class=text-muted >',TIME(last_sent),'<br><small>(', TIMESTAMPDIFF(HOUR, last_sent, now() ),'h ago)</small></span>') as last_sent  FROM t_scheduler WHERE tenant_id  = {$_SESSION['tenantid']}");
  $cnt = mysql_num_rows($res);
 ?>
-
+  <div style='float:left;padding-left:12px;font-family:Courier;font-size:12px;' class='text-muted'>Server time: <?php echo date("Y-m-d H:i:s");?></div>
    &nbsp;&nbsp;
     <div class="fa  fa-arrow-circle-o-down text-info" style="
     font-size: 23px; float:right;

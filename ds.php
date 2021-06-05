@@ -1,5 +1,7 @@
 <?php
-error_reporting(E_ALL);
+// Enable on Deploy to fix installation errors://
+error_reporting(0);
+//
 
 session_start();
 include_once('include/config.php');
@@ -135,7 +137,16 @@ function DBSelect($_table, $_filter){
     
  // UPGRADES SECTION
 
-  
+  if( !mysql_query("SELECT smtp_host FROM tenants") ){
+	mysql_query("ALTER TABLE tenants ADD smtp_host varchar(200)");
+        mysql_query("ALTER TABLE tenants ADD smtp_port integer");
+        mysql_query("ALTER TABLE tenants ADD smtp_user varchar(200)");
+        mysql_query("ALTER TABLE tenants ADD smtp_password varchar(200)");
+	mysql_query("ALTER TABLE tenants ADD smtp_from varchar(200)");
+        mysql_query("ALTER TABLE tenants ADD smtp_from_name varchar(200)");
+  } 
+
+ 
   if( !mysql_query("SELECT linkedid FROM t_cdrs limit 1")) {
       mysql_query("ALTER TABLE t_cdrs ADD linkedid varchar(32) after uniqueid");      
    }
@@ -151,10 +162,6 @@ function DBSelect($_table, $_filter){
 	  mysql_query("CREATE TABLE IF NOT EXISTS t_cdrs_archive LIKE t_cdrs");
 	}
    }
-
-     if( !mysql_query("SELECT default_action from t_queues LIMIT 1") ){
-    mysql_query("ALTER TABLE t_queues add default_action    varchar(100) ");
- }
 
   if( !mysql_query("SELECT served FROM t_cdrs limit 1")) {
    mysql_query("ALTER TABLE t_cdrs ADD served varchar(50) after service_status");
@@ -183,7 +190,8 @@ function DBSelect($_table, $_filter){
   
        
     $WHERE_CLAUS = '';      
-    foreach( $_filter as $_f => $_v ){
+    if($_filter)
+     foreach( $_filter as $_f => $_v ){
       	if( isset($_v) && $_f != 'download_filename' && $_f != 'has_recording' && $_f != 'limit') {
           $WHERE_CLAUS = $WHERE_CLAUS ? $WHERE_CLAUS . ' AND ' : '';
           if( $_v[0] != '!' )          
@@ -191,7 +199,7 @@ function DBSelect($_table, $_filter){
           else
             $WHERE_CLAUS .= " `{$_f}` != '".substr($_v,1)."' ";
          }
-    }	 
+     }	 
 
     $WHERE_CLAUS = $WHERE_CLAUS ? "WHERE {$WHERE_CLAUS}":'';
     
@@ -828,7 +836,7 @@ function Validate($_tbl_name, $_row_data){
 
 
    if($_tbl_name == 't_queues'){
-      if(!mysql_query("SELECT default_action FROM t_queues LIMIT 1")){
+      if(!mysql_query("SELECT default_action_data FROM t_queues LIMIT 1")){
        mysql_query("ALTER TABLE t_queues add default_action varchar(100)");
        mysql_query("ALTER TABLE t_queues add default_action_data varchar(100)");
       } 

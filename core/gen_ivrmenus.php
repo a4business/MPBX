@@ -8,7 +8,8 @@
                                  t_ivrmenu.id as ivr_id, 
                                  t_ivrmenu.name as ivr_name,
                                  trim(fc.app) as app,
-                                 tenants.id as tenant_id
+                                 tenants.id as tenant_id,
+				 ifnull(digit_timeout,5) as digit_timeout
 	                      FROM  t_ivrmenu
                                 LEFT JOIN feature_codes as fc ON trim(fc.appdata) =  trim(t_ivrmenu.context_script),
                              tenants
@@ -18,7 +19,7 @@
 	  										  
 	    while ($i = mysql_fetch_assoc($res)){
     	    	$_tenant = $i['ref_id']; 
-    	    	$_timeout = ($i['menu_timeout']) ? $i['menu_timeout'] : 20;
+    	    	$_timeout = isset($i['menu_timeout']) ? $i['menu_timeout'] : 20;
     	    	$_delay = ($i['delay_before_start']) ? $i['delay_before_start'] : 500;
     	    	$_moh =  $i['moh_class'] ? $i['moh_class'] : 'default';
     	    	$_tts_voice =  $i['announcement_lang'] ? $i['announcement_lang'] : 'en-US_AllisonVoice';
@@ -41,6 +42,7 @@
             echo "  same => n,Set(CDR(tenant_id)={$i['tenant_id']})\n";
             echo "  same => n,ExecIf(\$[ \"\${INBOUND_DID}\" != \"\" ]?Set(CDR(INBOUND_DID)=\${INBOUND_DID}))\n";
             echo "  same => n,Set(__IVRMENU={$i['ivr_name']})\n";
+	    echo "  same => n,Set(TIMEOUT(digit)={$i['digit_timeout']})\n";
            	   
     	      
     	     $dialplan = array();
@@ -223,7 +225,9 @@
        echo "\n";
       }  
 
-      echo "  same => n,WaitExten({$_timeout},{$MOH})\n";
+      if($_timeout != 0)
+      	echo "  same => n,WaitExten({$_timeout},{$MOH})\n";
+
       echo "  same => n,Goto(t,1)\n\n";
 
      // Generate Menu entries HERE //            
