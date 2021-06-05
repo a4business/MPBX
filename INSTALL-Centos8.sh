@@ -23,7 +23,7 @@ dnf config-manager --set-enabled powertools
 ### 
 
 yum -y groupinstall core base "Development Tools"
-yum install gcc gcc-c++ unixODBC-devel libiodbc-devel bison mysql-devel mysql-server php php-pear php-mbstring php-xml tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver sox newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel php-process crontabs cronie cronie-anacron wget vim php-xml libtool sqlite-devel unixODBC mysql-connector-odbc libuuid-devel binutils-devel php-ldap xmlstarlet opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel
+yum install gcc gcc-c++ unixODBC-devel libiodbc-devel bison mysql-devel mysql-server php php-pear php-mbstring php-xml tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver sox newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel php-process crontabs cronie cronie-anacron wget vim php-xml libtool sqlite-devel unixODBC mysql-connector-odbc libuuid-devel binutils-devel php-ldap xmlstarlet opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot python2-certbot-apache mod_ssl
 
 
 
@@ -101,13 +101,13 @@ fi
       echo 'create user mpbx_web@`localhost` identified by "p@ssw0rd" ;'| mysql -p
       echo 'grant all privileges on mpbx.* to mpbx_web@`localhost` '| mysql -p 
 
-  ## Create database structure ( Please make a request to share the SQL files, sorry for that :*) 
+  ## Create database structure 
       cat /var/www/html/core/proc/mpbx.sql | mysql mpbx
       cat /var/www/html/core/proc/mpbx-initial-data.sql | mysql mpbx
       cd /var/www/html/core/proc && ./install
 
 ### COnfigure ODBC connection
-## First: make sure the Mysql Driver file mentioned in :  /etc/odbcinst.ini   Is exists.  Correct it for proper version 
+## First: make sure the Mysql Driver name used is mentioned in :  /etc/odbcinst.ini  and Librarry is in place 
 ## For example:   perl -pi -e "s/libmyodbc5.so/libmyodbc8a.so/g" /etc/odbcinst.ini
 
 cat <<EOF >> /etc/odbc.ini
@@ -127,8 +127,9 @@ EOF
 ################ Create  ssl certificates  ( required for webrtc (wss/dtls) and for SIP/tls )
 ### Use your Domain Name there ### 
 
-#Lets encrypt
-cd /opt/ && wget https://dl.eff.org/certbot-auto && chmod a+x certbot-auto &&  ./certbot-auto --apache
+#Lets encrypt ( USE YOUR DOMAIN HERE instead of  mpbx.a4business.com ) 
+# Domain must be resolvable to the current centos server  
+certbot  -d mpbx.a4business.com
 ln -sf /etc/letsencrypt/live/mpbx.a4business.com /etc/asterisk/keys && cd /etc/asterisk/keys && cat privkey.pem fullchain.pem   > TLS.pem
 ##NOTE: after ssl certificate renew (every 90 days), execute the command to update asterisk file:  cd /etc/asterisk/keys && cat privkey.pem fullchain.pem   > TLS.pem
 
@@ -234,6 +235,8 @@ loguniqueid=yes
 dispositionstring=yes
 table=t_cdrs            ;"cdr" is default table name
 usegmtime=no             ; set to "yes" to log in GMT
+alias start => calldate
+
 EOF
 
 cat <<EOF >> /etc/asterisk/res_odbc.conf
@@ -311,7 +314,7 @@ cat <<EOF >> /etc/asterisk/http.conf
 [general]
 servername=Asterisk
 enabled=yes
-bindaddr=0.0.0.0
+bindaddr=127.0.0.1
 bindport=8081
 tlsenable=yes         
 tlsbindaddr=0.0.0.0:8443   
