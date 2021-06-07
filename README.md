@@ -26,6 +26,7 @@ Each client (or separate office, tenant) has a dedicated, isolated cloud PBX , w
 - multiple Music-on-Hold classes on separate storage,
 - Conferences
 - Inbound/Outbound routing logic
+- Email SMTP account to delivery Reports/Notifications/Alerts
 
 All clients/offices share the same server and the same asterisk instance and managemed in one place.
 With a multitenant architecture, a software application is designed to virtually partition its data and configuration, and each client works with a customized virtual application instance. Using the same asterisk instance for all the clients is a real cost and resource saving solution.
