@@ -5,6 +5,9 @@ One server for 100+  offices PBX.
 More details at http://a4business.com/?p=1070 
  
  
+ [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/a4business)
+
+ 
 
 <center>
 <img src='http://a4business.com/wp-content/uploads/2018/08/how-hosted-pbx-works.png'>
@@ -14,6 +17,9 @@ More details at http://a4business.com/?p=1070
  <br>
   <img src='http://a4business.com/wp-content/uploads/2018/08/Selection_344.png'>
 </center>
+
+
+
 
 
 Each client (or separate office, tenant) has a dedicated, isolated cloud PBX , with separate :
