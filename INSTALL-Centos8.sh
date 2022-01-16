@@ -7,7 +7,6 @@
 #speed:
 n=3
 
-f(){
 # Disable Security #
 setenforce 0
 
@@ -352,7 +351,7 @@ tlsprivatekey=/etc/asterisk/keys/privkey.pem
 EOF
 
 
-}
+
 
 ## Create INI files from samples
  read -p " Generate dynamic  configuration [ enter ]" next
