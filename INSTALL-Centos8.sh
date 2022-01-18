@@ -4,16 +4,22 @@
 ##### Centos 8
 ########
 
-#speed:
-n=3
+# Detect External IP:
+IP_=$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
+read -p " Your External IP[${IP_}]" IP
+IP=${IP:-$IP_}
+
+#Domain:
+read -p " Enter resolvable Domain name(TLS/HTTPS/WSS):" DOMAIN
+
 
 # Disable Security #
 setenforce 0
 
 yum groupinstall core base 'Development Tools' -y
 
-if [ `rpm -qa|grep remi-release|wc -l` -eq 0 ];  then
- echo " ###   Install epel-release and remi-release" && sleep $n
+if [ $(rpm -qa|grep remi-release|wc -l) -eq 0 ];  then
+ read -p  " ###   Install epel-release and remi-release [ next ]" next
  rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
  rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-8.rpm 
 fi
@@ -24,14 +30,14 @@ dnf config-manager --set-enabled powertools
 ### 
 
 
-yum install -y gcc gcc-c++ unixODBC-devel libiodbc-devel yum-utils bison mysql-devel mysql-server tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver sox newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel crontabs cronie cronie-anacron wget vim libtool sqlite-devel unixODBC libuuid-devel binutils-devel xmlstarlet opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot mod_ssl iptables tcpdump ngrep
+yum install -y gcc gcc-c++ unixODBC-devel libiodbc-devel yum-utils bison mysql-devel mysql-server tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver sox newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel crontabs cronie cronie-anacron wget vim libtool sqlite-devel unixODBC libuuid-devel binutils-devel xmlstarlet opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot certbot-apache mod_ssl iptables tcpdump ngrep fail2ban net-tools
 
 perl -pi -e "s/enforcing/disabled/g"  /etc/selinux/config
 
 
 ## Install Statically linked ffmpeg:
 if [ ! -f /usr/bin/ffmpeg ]; then
-   echo -n " ### Install ffmpeg static" && read -p '  [enter]' next
+   read -p " ### Install ffmpeg static [enter]" next
    FILE="ffmpeg-release-amd64-static.tar.xz"
    LINK="https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz"
    [ ! -f /usr/bin/ffmpeg ] && wget ${LINK} &&  tar -xJf ${FILE} && cp ./ffmpeg-*-amd64-static/ffmpeg  /usr/bin/ffmpeg
@@ -39,14 +45,14 @@ fi
 
 
 if [ ! -f /usr/bin/sox ]; then
-   echo -n " ### Install SOx from Sources:" && read -p '  [enter]' next
+   read -p " ### Install SOx from Sources: [enter]" next
    wget https://kent.dl.sourceforge.net/project/sox/sox/14.4.2/sox-14.4.2.tar.bz2 && tar -xvjf  sox-14.4.2.tar.bz2 && cd sox-14.4.2 && ./configure && make && make install
 fi
 
 
 if [ ! -f /usr/bin/php ]; then
  echo -n " ### Install PHP ( 5.x ) " && read -p '  [enter]' next
- yum install -y php56 php56-php-curl php56-php-ldap php56-php-fileinfo php56-php-zip php56-php-fileinfo php56-php-xml php56-php-mbstring php56-php-process
+ yum install -y php56 php56-php-curl php56-php-ldap php56-php-fileinfo php56-php-zip php56-php-fileinfo php56-php-xml php56-php-mbstring php56-php-process php56-php-http php56-php-devel php56-php-mysql php56-mod_php
  php56-pear channel-update pear.php.net && php56-pear install db-1.7.14
 fi
 
@@ -66,7 +72,7 @@ fi
 if [ ! -f /usr/sbin/asterisk ]; then
   VER=18 
  #VER=16
-  echo ' ### Install Asterisk From Sources ( recommended to keep sources on the server  for future bug/patches  )' && sleep $n
+   read -p " ### Install Asterisk From Sources ( recommended to keep sources on the server  for future bug/patches  ) [ enter ]" next
    [ ! -f asterisk-${VER}-current.tar.gz ] && wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-${VER}-current.tar.gz
    tar -xvzf asterisk-${VER}-current.tar.gz  && cd asterisk-${VER}.*
    ./configure --with-pjproject-bundled --with-jansson-bundled 
@@ -79,13 +85,14 @@ fi
 
 
 ####### Install WEB files form this Remote:#######################################
- 
+ read -p " Install WEB GUI from repo [ enter ] " next  
  cd /var/www/html
  git clone https://git.a4business.com/george/mpbx.git ./pbx
  git clone https://git.a4business.com/george/crm.git ./crm
  curl -sS https://getcomposer.org/installer | php
  mv composer.phar /usr/local/bin/composer 
- cd /var/www/html/ && composer install
+ cd /var/www/html/pbx && composer install
+ cd /var/www/html/crm && composer install
  
 ## Make forlder for Text2Speech cache:
  mkdir -p /tts && chmod 777 /tts
@@ -117,6 +124,89 @@ fi
       cat /var/www/html/pbx/core/proc/mpbx-initial-data.sql | mysql -u root -p${P} mpbx 2>/dev/null
       cd /var/www/html/pbx/core/proc && ./install ${P} 2>/dev/null
 
+read -p " Generate TLS certificates  for Domain: ${DOMAIN}  [ enter ]" next
+################ Create  ssl certificates  ( required for webrtc (wss/dtls) and for SIP/tls )
+   if [ "${DOMAIN:-no}" != "no" ]; then
+        [ ! -d /etc/letsencrypt/live/${DOMAIN} ] && certbot -d ${DOMAIN} certonly --apache
+        [ ! -L /etc/asterisk/keys ] &&  ln -sf /etc/letsencrypt/live/${DOMAIN} /etc/asterisk/keys
+        [ ! -f /etc/asterisk/keys/TLS.pem ] && cd /etc/asterisk/keys && cat privkey.pem fullchain.pem   > TLS.pem
+   else
+        echo "WARNING: no domain name - SKIPPED SSL generation!"
+   fi
+   ##NOTE: after ssl certificate renew (every 90 days), execute the command to update asterisk file:  cd /etc/asterisk/keys && cat privkey.pem fullchain.pem   > TLS.pem
+   ## Commercial SSL convert into PEM:
+   #    openssl rsa -in domain.com.key -out domain.com.key.pem
+   #    openssl x509 -inform PEM  -in domain.com.crt -out domain.com.crt.pem
+   #    cat domain.com.key.pem domain.com.crt.pem domain.com-bundle  > TLS.pem
+}
+
+read -p " Configure WEB server Apache2 with domain[$DOMAIN] [ enter ] " next
+## Configure WEB Server :
+[ ! -f /etc/httpd/conf.d/ssl.conf.old ] && mv /etc/httpd/conf.d/ssl.conf /etc/httpd/conf.d/ssl.conf.old 
+if [ ! -f /etc/httpd/conf.d/${DOMAIN}.conf ]; then
+cat <<EOF > /etc/httpd/conf.d/${DOMAIN}.conf
+<VirtualHost *:80>
+    ServerName ${DOMAIN}
+    DocumentRoot /var/www/html/crm
+    ServerAlias www.${DOMAIN}
+RewriteEngine on
+RewriteCond %{SERVER_NAME} =${DOMAIN} [OR]
+RewriteCond %{SERVER_NAME} =www.${DOMAIN}
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+</VirtualHost>
+EOF
+fi
+
+if [ ! -f /etc/httpd/conf.d/${DOMAIN}-le-ssl.conf ]; then
+cat <<EOF > /etc/httpd/conf.d/${DOMAIN}-le-ssl.conf
+<IfModule mod_ssl.c>
+ Listen 8081 https
+ Listen 443 https
+ <VirtualHost _default_:443>
+    ServerName ${DOMAIN}
+    DocumentRoot /var/www/html/crm
+    ServerAlias www.${DOMAIN}
+   <Directory /var/www/html/crm >
+     AllowOverride All
+     Options Indexes MultiViews FollowSymLinks
+   </Directory>
+  SSLCertificateFile /etc/letsencrypt/live/${DOMAIN}/fullchain.pem
+  SSLCertificateKeyFile /etc/letsencrypt/live/${DOMAIN}/privkey.pem
+  Include /etc/letsencrypt/options-ssl-apache.conf
+ </VirtualHost>
+ <VirtualHost *:8081>
+    ServerName ${DOMAIN}
+    DocumentRoot /var/www/html/pbx
+    ServerAlias www.${DOMAIN}
+    <Directory /var/www/html/pbx >
+     AllowOverride All
+     Options Indexes MultiViews FollowSymLinks
+    </Directory>
+    SSLCertificateFile /etc/letsencrypt/live/${DOMAIN}/fullchain.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/${DOMAIN}/privkey.pem
+    Include /etc/letsencrypt/options-ssl-apache.conf
+ </VirtualHost>
+</IfModule>
+EOF
+fi
+
+service httpd restart
+
+read -p " Configure MYSQL Server [ enter ]" next
+## Configure Database##
+[ $(cat /etc/my.cnf|grep utf8_unicodecat|wc -l) -eq 0 ] && cat <<EOF > /etc/my.cnf
+[client]
+default-character-set=utf8
+
+[mysql]
+default-character-set=utf8
+
+[mysqld]
+collation-server = utf8_unicode_ci
+character-set-server = utf8
+default_authentication_plugin = mysql_native_password
+EOF
+
 
 ### COnfigure ODBC connection
 ## First: make sure the Mysql Driver name used is mentioned in :  /etc/odbcinst.ini  and Librarry is in place 
@@ -132,29 +222,10 @@ Password = P@ssw0rd123
 Database = mpbx
 Option = 3
 EOF
-
 ##  NOTE: after setting up odbc.ini,  Make sure you can connect by running:   isql mpbx  
-
-
  
-   ################ Create  ssl certificates  ( required for webrtc (wss/dtls) and for SIP/tls ) 
-   ### Use your Domain Name there, domain must be resolvable to the current centos server  
-   read -p ' CERTBOT: Obtaining TLS/SSL certs, type the domain name(type no to skip): ' DOMAIN
-   if [ "${DOMAIN:-no}" != "no" ]; then
-	[ ! -d /etc/letsencrypt/live/${DOMAIN} ] && certbot -d ${DOMAIN} certonly --standalone
-	if [ -d /etc/letsencrypt/live/${DOMAIN} ]; then
-        	ln -sf /etc/letsencrypt/live/${DOMAIN} /etc/asterisk/keys
-		cd /etc/asterisk/keys
-		cat privkey.pem fullchain.pem   > TLS.pem
-	fi
-   fi
-   ##NOTE: after ssl certificate renew (every 90 days), execute the command to update asterisk file:  cd /etc/asterisk/keys && cat privkey.pem fullchain.pem   > TLS.pem
-   ## Commercial SSL convert into PEM:
-   #	openssl rsa -in domain.com.key -out domain.com.key.pem
-   #	openssl x509 -inform PEM  -in domain.com.crt -out domain.com.crt.pem
-   #	cat domain.com.key.pem domain.com.crt.pem domain.com-bundle  > TLS.pem
 
-
+read -p " Configure CoTURN with IP[${IP_}]/Domain: $DOMAIN  [ enter ]" next
 ## Coturn install 
  if [ ! -f /usr/bin/turnserver ]; then
   wget http://turnserver.open-sys.org/downloads/v4.5.1.1/turnserver-4.5.1.1.tar.gz 
@@ -164,11 +235,6 @@ EOF
   make && make install
  fi
 
-  IP_=$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
-  
-  read -p " Configure CoTURN with IP[${IP_}]" IP
-  IP=${IP:-$IP_}
-  
 cat <<EOF > /etc/turnserver.conf
 listening-ip=$IP
 relay-ip=$IP
@@ -191,28 +257,27 @@ EOF
 
 cat <<EOF > /etc/init.d/turnserverd
 #! /bin/sh
-# /etc/init.d/$PROG
+# /etc/init.d/turnserver
 #
 # chkconfig: 2345 90 60
 # description: Stun/ Turnserver  for  telephony 
 # processname: turnserver
-PROG=turnserver
 # Some things that run always
 touch /var/lock/
 # Carry out specific functions when asked to by the system
-case "$1" in
+case "\$1" in
   start)
-    echo "Starting $PROG "
+    echo "Starting  turnserver"
     cat /etc/turnserver.conf 2>/dev/null |grep '^listen'
     /usr/bin/turnserver -c /etc/turnserver.conf >/var/log/turnserver.log 2>&1 &
      
     ;;
   stop)
-    echo "Stopping script $PROG"
-    killall -9 turnserver || echo "Failed to stop ${PROG} "
+    echo "Stopping script turnserver"
+    killall -9 turnserver || echo "Failed to stop turnserver "
     ;;
   *)
-    echo "Usage: /etc/init.d/$PROG {start|stop}"
+    echo "Usage: /etc/init.d/turnserver {start|stop}"
     exit 1
     ;;
 esac
@@ -227,6 +292,11 @@ chkconfig turnserverd on
 ####################### Confiure Asterisk: ###############################
 
 read -p " configure Asterisk server[enter]" next
+
+perl -pi -e "s/^;verbose =/verbose=/" /etc/asterisk/asterisk.conf
+perl -pi -e "s/^;debug =/debug=/" /etc/asterisk/asterisk.conf
+perl -pi -e "s/^;full /full /" /etc/asterisk/logger.conf
+
 cat <<EOF > /etc/asterisk/sip_tls.conf
 tlsenable=yes
 tlsbindaddr=0.0.0.0:5061
@@ -246,9 +316,15 @@ perl -pi -e "s/^;tlscertfile/#include sip_tls.conf\n;;;tlscertfile/" /etc/asteri
   perl -pi -e "s/bindaddr = 0.0.0.0/bindaddr = 127.0.0.1/" /etc/asterisk/manager.conf
   perl -pi -e "s/; retry rules\./; retry rules\.\n#include sip-register.tenants\n"/ /etc/asterisk/sip.conf
   touch /etc/asterisk/sip.tenants && echo "#include sip.tenants" >> /etc/asterisk/sip.conf
-  
-  echo "* * * * * root  /var/www/html/pbx/core/gen_sip_settings.php > /etc/asterisk/sip.include >/dev/null  2>&1 &" > /etc/cron.d/mpbx
-  service crond restart
+
+cat <<EOF > /etc/cron.d/mpbx  
+## Generate additional SIP settings every minute #
+* * * * * root  /var/www/html/pbx/core/gen_sip_settings.php > /etc/asterisk/sip.include >/dev/null  2>&1 &
+## Every Night clean CDRs
+0 3 * * * root curl -k https://localhost:8081/jaxer.php?cleanCDRS=1 >> /var/log/pbx.log 2>&1 &
+EOF
+
+service crond restart
 
 CONF=cdr_adaptive_odbc.conf
 [ $(cat /etc/asterisk/$CONF|grep pbxdb|wc -l) -eq 0 ] && cat <<EOF >> /etc/asterisk/$CONF
@@ -352,11 +428,11 @@ EOF
 
 
 
-
 ## Create INI files from samples
  read -p " Generate dynamic  configuration [ enter ]" next
  for PRJ in pbx crm; do
    [ ! -f /var/www/html/${PRJ}/include/config.ini ] && cp /var/www/html/${PRJ}/include/config.ini.sample /var/www/html/${PRJ}/include/config.ini 2>/dev/null
+   [ "$DOMAIN" != "" ] &&  perl -pi -e "s/app.a4business.com/$DOMAIN/g" /var/www/html/${PRJ}/include/config.ini
  done
  cd /var/www/html/pbx/core && php ./gen_sip_settings.php 
 
@@ -369,3 +445,5 @@ EOF
  chkconfig --level 345 httpd on && service httpd start
  chkconfig --level 345 turnd on && service turnserverd start
  chkconfig --level 345 asterisk on && service asterisk start
+
+
