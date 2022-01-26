@@ -10,11 +10,16 @@ read -p " Your External IP[${IP_}]" IP
 IP=${IP:-$IP_}
 
 #Domain:
-read -p " Enter resolvable Domain name(TLS/HTTPS/WSS):" DOMAIN
+[ -f ./.domain ] && . .domain
+read -p " Enter resolvable Domain name(TLS/HTTPS/WSS):${DOMAIN_}" DOMAIN
+DOMAIN=${DOMAIN:-$DOMAIN_}
+echo "DOMAIN_=$DOMAIN" > ./.domain
 
 
 # Disable Security #
 setenforce 0
+perl -pi -e "s/=enforcing/=disabled/g"  /etc/selinux/config
+
 
 yum groupinstall core base 'Development Tools' -y
 
@@ -32,7 +37,6 @@ dnf config-manager --set-enabled powertools
 
 yum install -y gcc gcc-c++ unixODBC-devel libiodbc-devel yum-utils bison mysql-devel mysql-server tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver sox newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel crontabs cronie cronie-anacron wget vim libtool sqlite-devel unixODBC libuuid-devel binutils-devel xmlstarlet opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot certbot-apache mod_ssl iptables tcpdump ngrep fail2ban net-tools
 
-perl -pi -e "s/enforcing/disabled/g"  /etc/selinux/config
 
 
 ## Install Statically linked ffmpeg:
@@ -54,6 +58,8 @@ if [ ! -f /usr/bin/php ]; then
  echo -n " ### Install PHP ( 5.x ) " && read -p '  [enter]' next
  yum install -y php56 php56-php-curl php56-php-ldap php56-php-fileinfo php56-php-zip php56-php-fileinfo php56-php-xml php56-php-mbstring php56-php-process php56-php-http php56-php-devel php56-php-mysql php56-mod_php
  php56-pear channel-update pear.php.net && php56-pear install db-1.7.14
+ update-alternatives --install /usr/bin/php php /opt/remi/php56/root/bin/php
+ php -v
 fi
 
 
@@ -61,13 +67,16 @@ if [ -f /usr/sbin/mysqld ] ; then
   echo  -n " ### Install mysql-server:" && read -p '  [enter]' next
   yum install mysql-server  mysql-devel  -y 
   yum install php56-php-mysqlnd perl-DBD-MySQL  cyrus-sasl-sql postfix -y
+  
+
   service mysqld start
   /usr/bin/mysql_secure_installation
   wget https://repo.mysql.com//mysql80-community-release-el8-1.noarch.rpm
-  rpm -Uvh mysql80-community-release-el8-1.noarch.rpm && yum install -y mysql-connector-odbc
+  rpm -Uvh mysql80-community-release-el8-1.noarch.rpm
+  perl -pi -e "s/gpgcheck=1/gpgcheck=0/g" /etc/yum.repos.d/mysql-community*
+  yum install -y mysql-connector-odbc
 fi
  
-
 
 if [ ! -f /usr/sbin/asterisk ]; then
   VER=18 
@@ -124,21 +133,52 @@ fi
       cat /var/www/html/pbx/core/proc/mpbx-initial-data.sql | mysql -u root -p${P} mpbx 2>/dev/null
       cd /var/www/html/pbx/core/proc && ./install ${P} 2>/dev/null
 
+
+cat <<EOF > /etc/httpd/conf.d/${DOMAIN}.conf
+<VirtualHost *:80>
+    ServerName ${DOMAIN}
+    DocumentRoot /var/www/html/crm
+    ServerAlias www.${DOMAIN}
+RewriteEngine on
+RewriteCond %{SERVER_NAME} =${DOMAIN} [OR]
+RewriteCond %{SERVER_NAME} =www.${DOMAIN}
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+</VirtualHost>
+EOF
+
+
 read -p " Generate TLS certificates  for Domain: ${DOMAIN}  [ enter ]" next
 ################ Create  ssl certificates  ( required for webrtc (wss/dtls) and for SIP/tls )
+   service httpd restart
+
+   firewall-cmd  --zone public --add-port 80/tcp --permanent
+   firewall-cmd  --zone public --add-port 443/tcp --permanent
+   firewall-cmd --zone public --add-source 127.0.0.1 --permanent
+   firewall-cmd --zone public --add-port 5060/udp --permanent
+   firewall-cmd --zone public --add-port 8081/udp --permanent
+   firewall-cmd --zone public --add-port 8443/udp --permanent
+   firewall-cmd --zone public --add-port 19302/udp --permanent
+   firewall-cmd --zone public --add-port 19303/udp --permanent
+   firewall-cmd --zone public --add-port 8081/tcp --permanent
+   firewall-cmd --zone public --add-port 8443/tcp --permanent
+   firewall-cmd --zone public --add-port 19302/tcp --permanent
+
    if [ "${DOMAIN:-no}" != "no" ]; then
         [ ! -d /etc/letsencrypt/live/${DOMAIN} ] && certbot -d ${DOMAIN} certonly --apache
-        [ ! -L /etc/asterisk/keys ] &&  ln -sf /etc/letsencrypt/live/${DOMAIN} /etc/asterisk/keys
-        [ ! -f /etc/asterisk/keys/TLS.pem ] && cd /etc/asterisk/keys && cat privkey.pem fullchain.pem   > TLS.pem
+        if [ -d /etc/letsencrypt/live/${DOMAIN} ]; then 
+          [ ! -L /etc/asterisk/keys ] &&  ln -sf /etc/letsencrypt/live/${DOMAIN} /etc/asterisk/keys
+          [ ! -f /etc/asterisk/keys/TLS.pem ] && cd /etc/asterisk/keys && cat privkey.pem fullchain.pem   > TLS.pem
+	else
+	  echo 'Warning: SSL certs not created!'
+	fi
    else
         echo "WARNING: no domain name - SKIPPED SSL generation!"
    fi
-   ##NOTE: after ssl certificate renew (every 90 days), execute the command to update asterisk file:  cd /etc/asterisk/keys && cat privkey.pem fullchain.pem   > TLS.pem
    ## Commercial SSL convert into PEM:
    #    openssl rsa -in domain.com.key -out domain.com.key.pem
    #    openssl x509 -inform PEM  -in domain.com.crt -out domain.com.crt.pem
    #    cat domain.com.key.pem domain.com.crt.pem domain.com-bundle  > TLS.pem
-}
+
 
 read -p " Configure WEB server Apache2 with domain[$DOMAIN] [ enter ] " next
 ## Configure WEB Server :
@@ -192,20 +232,23 @@ fi
 
 service httpd restart
 
+
 read -p " Configure MYSQL Server [ enter ]" next
 ## Configure Database##
-[ $(cat /etc/my.cnf|grep utf8_unicodecat|wc -l) -eq 0 ] && cat <<EOF > /etc/my.cnf
+if [ $(cat /etc/my.cnf|grep utf8_unicode|wc -l) -eq 0 ] ; then
+ cat <<EOF > /etc/my.cnf
 [client]
 default-character-set=utf8
-
 [mysql]
 default-character-set=utf8
-
 [mysqld]
 collation-server = utf8_unicode_ci
 character-set-server = utf8
 default_authentication_plugin = mysql_native_password
 EOF
+ service mysqld restart
+
+fi
 
 
 ### COnfigure ODBC connection
@@ -287,15 +330,18 @@ EOF
 chmod +x /etc/init.d/turnserverd
 chkconfig --add turnserverd
 chkconfig turnserverd on
+service turnserverd start
 
 
 ####################### Confiure Asterisk: ###############################
 
 read -p " configure Asterisk server[enter]" next
 
+
 perl -pi -e "s/^;verbose =/verbose=/" /etc/asterisk/asterisk.conf
 perl -pi -e "s/^;debug =/debug=/" /etc/asterisk/asterisk.conf
-perl -pi -e "s/^;full /full /" /etc/asterisk/logger.conf
+perl -pi -e "s/^;full =/full =/" /etc/asterisk/logger.conf
+rasterisk -rx 'logger reload'
 
 cat <<EOF > /etc/asterisk/sip_tls.conf
 tlsenable=yes
@@ -325,6 +371,23 @@ cat <<EOF > /etc/cron.d/mpbx
 EOF
 
 service crond restart
+
+###  Fail2ban:
+read -p '  Configure Fail2ban? [ enter ]'  next
+cat <<EOF > /etc/fail2ban/jail.local
+[asterisk]
+enabled = true
+port = 0:65535
+action_  = %(default/action_)s[name=%(__name__)s-tcp, protocol="tcp"]
+           %(default/action_)s[name=%(__name__)s-udp, protocol="udp"]
+logpath  = /var/log/asterisk/full
+actionban = <iptables> -I f2b-<name> 1 -s <ip> -j <blocktype>
+            curl -k "https://localhost:8081/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT" 2>/dev/null
+maxretry = 3
+bantime  = 3600
+findtime = 300
+EOF
+
 
 CONF=cdr_adaptive_odbc.conf
 [ $(cat /etc/asterisk/$CONF|grep pbxdb|wc -l) -eq 0 ] && cat <<EOF >> /etc/asterisk/$CONF
@@ -413,8 +476,7 @@ EOF
 
 
 CONF=http.conf
-cat <<EOF >> /etc/asterisk/http.conf
-[ $(cat /etc/asterisk/$CONF|grep TLS.pem|wc -l) -eq 0 ] && cat <<EOF >> /etc/asterisk/$CONF
+[ $(cat /etc/asterisk/$CONF|grep TLS.pem|wc -l) -eq 0 ] && cat <<EOF > /etc/asterisk/$CONF
 [general]
 servername=Asterisk
 enabled=yes
@@ -445,5 +507,3 @@ EOF
  chkconfig --level 345 httpd on && service httpd start
  chkconfig --level 345 turnd on && service turnserverd start
  chkconfig --level 345 asterisk on && service asterisk start
-
-
