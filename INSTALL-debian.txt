@@ -1,7 +1,7 @@
 Almost same as INTALL, but for debian:
 
 
-   apt install build-essential libncurses5-dev uuid-dev libxml2-dev libsqlite3-dev libssl-dev libjansson-dev libsrtp2-dev libedit-dev git curl wget libnewt-dev libncurses5-dev subversion  libsqlite3-dev uuid-dev php apache2 unixodbc unixodbc-dev
+   apt install build-essential fail2ban libncurses5-dev uuid-dev libxml2-dev libsqlite3-dev libssl-dev libjansson-dev libsrtp2-dev libedit-dev git curl wget libnewt-dev libncurses5-dev subversion  libsqlite3-dev uuid-dev php apache2 unixodbc unixodbc-dev
 
    ## Get mysql apt-get sources ##
    wget https://repo.mysql.com//mysql-apt-config_0.8.14-1_all.deb
@@ -23,6 +23,12 @@ collation-server = utf8_unicode_ci
 character-set-server = utf8
 default_authentication_plugin=mysql_native_password
 
+### When getting warning:  perl: warning: Setting locale failed.
+## do the steps:  ## enable en_US.UTF-8 UTF-8
+  vi /etc/locale.gen  
+  locale-gen
+
+
 
   ### Get php 5.6
    wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
@@ -36,91 +42,358 @@ default_authentication_plugin=mysql_native_password
   ln -sf /usr/bin/php5.6 /etc/alternatives/php
   php -v
 
-
    ## Get ODBC connector ##
    wget https://cdn.mysql.com//Downloads/Connector-ODBC/8.0/mysql-connector-odbc-8.0.19-linux-debian10-x86-64bit.tar.gz
-
-
+   wget https://cdn.mysql.com//Downloads/Connector-ODBC/8.0/mysql-connector-odbc-8.0.29-linux-glibc2.12-x86-64bit.tar.gz
    
-   ## INTSALL Asterisk 16 ## 
+#### INTSALL Asterisk 16 ## 
    wget https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-16-current.tar.gz
    tar zxvf asterisk-16-current.tar.gz && cd  asterisk-16-current
    ./configure --with-pjproject-bundled --with-crypto --with-ssl=ssl --with-srtp --with-jansson-bundled
    make menuselect
    make && make install
+
+
+########
+## Setup Fail2ban:
+## Append for actionban  in action.d/iptables-multiport.conf , iptables-allports.conf :
+## actionban = <iptables> -I f2b-<name> 1 -s <ip> -j <blocktype>
+##              curl -k "https://localhost:8182/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT" 2>/dev/null
+####
+
+cat <<EOF >  /etc/fail2ban/jail.d/badsip.conf
+[badsip]
+enabled = true
+filter = badsip
+protocol = udp
+port = 5060
+maxretry = 1
+bantime=62000
+logpath = /var/log/messages
+
+[siplimit]
+enabled = true
+filter = siplimit
+protocol = udp
+port = 5060
+maxretry = 1
+bantime=62000
+logpath = /var/log/messages
+EOF
+
+
+cat <<EOF > /etc/fail2ban/jail.d/local.conf
+[DEFAULT]
+ignoreip = 127.0.0.1/8 172.0.0.0/8 192.168.1.1/16 10.0.0.0/8 203.20.110.1/24
+
+[asterisk]
+enabled = true
+port     = 5060,5061
+action   = %(banaction_allports)s[name=%(__name__)s-tcp, protocol="tcp", chain="%(chain)s", actname=%(banaction)s-tcp]
+           %(banaction_allports)s[name=%(__name__)s-udp, protocol="udp", chain="%(chain)s", actname=%(banaction)s-udp]
+logpath  = /var/log/asterisk/full
+maxretry = 3
+findtime = 120
+bantime = 360000
+EOF
   
 
-   ## Install PBX fike:
-  echo '144.76.4.239   myrepo' >> /etc/hosts 
-  cd /var/www/html/pbx
-  svn co svn co http://myrepo:8181/itenant ./
+cat <<EOF > /etc/fail2ban/filter.d/badsip.conf
+[INCLUDES]
+before = common.conf
+[Definition]
+failregex = .*BADSIP .*SRC=<HOST> .*
+[Init]
+maxlines = 20
+EOF
+  
+cat <<EOF > /etc/fail2ban/filter.d/siplimit.conf
+[INCLUDES]
+before = common.conf
+[Definition]
+failregex = .* LIMITSIP .* SRC=<HOST> .*
+[Init]
+maxlines = 20
+EOF
 
-  for CONF in func_odbc.conf macros.include conferences.include  do ln -sf /var/www/html/pbx/core/${CONF} /etc/asterisk/${CONF}; done
-  cd /etc/asterisk && for CONF in extensions.tenants inbound.include internal.include ivrmenus.include outbound.include queues.include res_parking.include ringgroups.include sip-register.tenants sip.tenants tenants.include; do touch $CONF; chown www-data.www-data $CONF; done
 
-  curl -sS https://getcomposer.org/installer | php
-  mv composer.phar /usr/local/bin/composer 
-  cd /var/www/html/ && composer install
+## Upload firewall: pbx-iptables :
+## iptables-restore < pbx-iptables 
 
 
 
 
-####  Install ODBC:  vi /etc/odbcinst.ini
 
-[MySQL]
-Description = ODBC for MySQL
-Driver=/usr/lib/x86_64-linux-gnu/odbc/libmyodbc8a.so
-Setup=/usr/lib/x86_64-linux-gnu/odbc/libmyodbc8S.so
-FileUsage = 1
+##### Install PBX SOFTWARE from REPOT
+###  for custom ssh port use:  export GIT_SSH_COMMAND="ssh -oPort=22022" 
 
-### /etc/odbc.ini : 
+  cd /var/www/html
+  git clone git@git.a4business.com:george/mpbx.git
+  git clone git@git.a4business.com:george/crm.git
+  chown -R  www-data.www-data crm
+  chown -R  www-data.www-data mpbx
+  mv mpbx pbx
+
+
+### Create Database ###
+  cd /var/www/html/pbx/core/proc && ./install
+
+      ######   grep 'temporary password' /var/log/mysqld.log
+      ### or reset root:     sudo mysqld_safe --skip-grant-tables
+      ### alter user 'root'@'localhost' IDENTIFIED BY 'p@ssw0rd';
+      ### /etc/init.d/mysqld restart
+      ##############
+
+############### S S L ##############################
+################ Create  ssl certificates #########
+# ALTERNATIVE: cd /opt/ && wget https://dl.eff.org/certbot-auto && chmod a+x certbot-auto &&  ./certbot-auto --apache
+# Every 90 days - update: cd /etc/asterisk/keys && cat privkey.pem fullchain.pem   > TLS.pem
+
+ apt -y install certbot
+ certbot certonly --webroot -w /var/www/html -d  mpbx.a4business.com
+
+ln -sf /etc/letsencrypt/live/mpbx.a4business.com /etc/asterisk/keys && cd /etc/asterisk/keys && cat privkey.pem fullchain.pem   > TLS.pem
+
+## FOR commercial SSL convert to PEM:
+#  openssl rsa -in domain.com.key -out domain.com.key.pem
+#  openssl x509 -inform PEM  -in domain.com.crt -out domain.com.crt.pem
+#  cat domain.com.key.pem domain.com.crt.pem domain.com-bundle  > TLS.pem
+
+
+
+
+
+
+
+## Coturn install 
+  wget http://turnserver.open-sys.org/downloads/v4.5.1.1/turnserver-4.5.1.1.tar.gz 
+  tar -xvzf turnserver-4.5.1.1.tar.gz 
+  cd turnserver-4.5.1.1 
+  ./configure --prefix=/usr 
+  make && make install
+  
+cat <<EOF > /etc/turnserver.conf
+listening-ip=[YOUR-IPADDRESS]
+relay-ip=[YOUR-IPADDRESS]
+listening-port=19302
+tls-listening-port=19303
+cert=/etc/asterisk/keys/TLS.pem
+pkey=/etc/asterisk/keys/privkey.pem
+fingerprint
+realm=your-domain.com
+server-name=your-domain.com
+lt-cred-mech
+user=turn:secured
+user=stun:secured
+log-file=/var/log/coturn.log
+no-stdout-log
+EOF
+
+  
+#### Install Initd file:   to /etc/init.d/turnserverd
+
+cat <<EOF > /etc/init.d/turnserverd
+#! /bin/sh
+# /etc/init.d/\$PROG
+#
+# chkconfig: 2345 90 60
+# description: Stun/ Turnserver  for  telephony 
+# processname: turnserver
+PROG=turnserver
+# Some things that run always
+touch /var/lock/
+# Carry out specific functions when asked to by the system
+case "\$1" in
+  start)
+    echo "Starting \$PROG "
+    cat /etc/turnserver.conf 2>/dev/null |grep '^listen'
+    /usr/bin/turnserver -c /etc/turnserver.conf >/var/log/turnserver.log 2>&1 &
+     
+    ;;
+  stop)
+    echo "Stopping script \$PROG"
+    killall -9 turnserver || echo "Failed to stop \${PROG} "
+    ;;
+  *)
+    echo "Usage: /etc/init.d/\$PROG {start|stop}"
+    exit 1
+    ;;
+esac
+exit 0
+EOF
+
+
+### COnfigure ODBC connection
+## First: make sure the Mysql Driver file mentioned in :  /etc/odbcinst.ini   Is exists.  Correct it for proper version 
+## For example:   perl -pi -e "s/libmyodbc5.so/libmyodbc8a.so/g" /etc/odbcinst.ini
+
+cat <<EOF >> /etc/odbc.ini
 [mpbx]
 Description = PBX MySQL ODBC
 Driver = MySQL
-;;Socket = /var/lib/mysql/mysql.sock
+Socket = /run/mysqld/mysqld.sock
 User = mpbx_web
-Password = P@ssw0rd123
+Password = p@ssw0rd
 Database = mpbx
 Option = 3
+EOF
+
+cat <<EOF >> /etc/odbcinst.ini
+[MySQL]
+Description=ODBC for MySQL
+Driver64=/usr/lib/libmyodbc8a.so
+Setup64=/usr/lib/libmyodbc8a.so
+FileUsage=1
+EOF
+
+#####  NOTE: after setting up odbc.ini,  Make sure you can connect by running:   isql mpbx  
+#####           #####
+### Apache config ###
+#####           #####
+
+ a2dismod php7.4
+ a2enmod ssl
+ a2enmod http2 
+ a2enmod php5.6
+ a2enmod headers
+ a2enmod rewrite
+ a2dissite 000-default
+ a2dissite default-ssl
 
 
-### Test ODBC by :   isql mpbx 
+cat <<EOF >> /etc/apache2/ports.conf
+<IfModule ssl_module >
+        Listen 8182
+</IfModule>
+EOF
+
+cat <<EOF > /etc/httpd/conf.d/pbx.conf
+LoadModule ssl_module modules/mod_ssl.so
+Listen 443 https
+Listen 8182 https
+
+<VirtualHost *:80>
+ ServerAdmin voip.linux.expert@gmail.com
+ ServerName mpbx.a4business.com
+ DocumentRoot /var/www/html/crm
+ RewriteEngine on
+ RewriteCond %{HTTPS} off
+ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</VirtualHost>
+
+<IfModule mod_ssl.c>
+ <VirtualHost *:443>
+   ServerAdmin voip.linux.expert@gmail.com
+   ServerName mpbx.a4business.com
+   DocumentRoot /var/www/html/crm
+   <Directory /var/www/html/crm >
+     AllowOverride All
+     Options Indexes MultiViews FollowSymLinks
+   </Directory>
+   SSLEngine on
+   SSLCertificateFile /etc/asterisk/keys/cert.pem
+   SSLCertificateKeyFile /etc/asterisk/keys/privkey.pem
+   SSLCertificateChainFile /etc/asterisk/keys/chain.pem
+   Include options-ssl-apache.conf
+ </VirtualHost>
+
+ <VirtualHost *:8181>
+   ServerAdmin voip.linux.expert@gmail.com
+   DocumentRoot /var/www/html/pbx
+ </VirtualHost>
+
+ <VirtualHost *:8182>
+   ServerAdmin voip.linux.expert@gmail.com
+   ServerName pbx015.etorvoice.com
+   DocumentRoot /var/www/html/pbx
+   <Directory /var/www/html/pbx >
+     AllowOverride All
+     Options Indexes MultiViews FollowSymLinks
+   </Directory>
+   SSLEngine on
+   Include options-ssl-apache.conf
+   SSLCertificateFile /etc/asterisk/keys/cert.pem
+   SSLCertificateKeyFile /etc/asterisk/keys/privkey.pem
+   SSLCertificateChainFile /etc/asterisk/keys/chain.pem
+ </VirtualHost>
+
+</IfModule>
+EOF
+
+a2ensite pbx
 
 
 
-###### cat res_config_mysql.conf 
+### Asterisk Configuration ## 
+
+  for CONF in func_odbc.conf macros.include conferences.include; do ln -sf /var/www/html/pbx/core/${CONF} /etc/asterisk/${CONF}; done
+  cd /etc/asterisk && for CONF in extensions.tenants inbound.include internal.include ivrmenus.include outbound.include queues.include res_parking.include ringgroups.include sip-register.tenants sip.tenants tenants.include; do touch $CONF; chown www-data.www-data $CONF; done
+
+  perl -pi -e "s/enabled = no/enabled = yes/" /etc/asterisk/manager.conf
+  perl -pi -e "s/bindaddr = 0.0.0.0/bindaddr = 127.0.0.1/" /etc/asterisk/manager.conf
+  perl -pi -e "s/; retry rules\./; retry rules\.\n#include sip-register.tenants\n"/ /etc/asterisk/sip.conf
+  touch /etc/asterisk/sip.tenants && echo "#include sip.tenants" >> /etc/asterisk/sip.conf
+
+  curl -sS https://getcomposer.org/installer | php
+  mv composer.phar /usr/local/bin/composer 
+  cd /var/www/html/crm && composer install
+  cd /var/www/html/mpbx && composer install
+
+
+cat <<EOF >> /etc/asterisk/res_config_mysql.conf
 [pbxdb]
 dbhost=localhost
 dbname=mpbx
 dbuser=mpbx_web
-dbpass=P@ssw0rd123
+dbpass=p@ssw0rd
 dbport=3306
-dbsock=/run/mysqld/mysqld.sock
+dbsock=/var/lib/mysql/mysql.sock
 requirements=warn
+EOF
 
-
-##### res_odbc.conf
+cat <<EOF >> /etc/asterisk/res_odbc.ini
 [pbxdb]
 enabled => yes
 dsn => mpbx
-username => mpbx_web
-password => P@ssw0rd123
+username => root
+password => passw0rd
 pre-connect => yes
+EOF
 
-
-##### cat cdr_adaptive_odbc.conf 
+cat <<EOF >> /etc/asterisk/cdr_adaptive_odbc.conf
 [global]
 connection=pbxdb
 username = mpbx_web
-password = P@ssw0rd123
+password = p@ssw0rd
 loguniqueid=yes
 dispositionstring=yes
 table=t_cdrs            ;"cdr" is default table name
 usegmtime=no             ; set to "yes" to log in GMT
+EOF
 
 
-###### cat extconfig.conf
+cat <<EOF > /etc/asterisk/extensions.conf
+[general]
+static=yes
+writeprotect=yes
+priorityjumping=no
+autofallthrough=no
+clearglobalvars=yes
 
+[globals]
+RECORDING_FORMAT=WAV
+#include extensions.tenants
+
+[from-pstn]
+include => did-inbound
+exten => i,1,NooP( INVALID INBOUND EXTEN:${EXTEN}  FROM \${CHANNEL(peerip)} )
+same => n,Playback(invalid)
+same => n,Hangup()
+EOF
+
+
+
+cat <<EOF >>  /etc/asterisk/extconfig.conf
 musiconhold   => mysql,pbxdb,t_moh
 sippeers      => mysql,pbxdb,t_sip_users
 voicemail     => mysql,pbxdb,t_vmusers
@@ -129,15 +402,10 @@ queue_members => mysql,pbxdb,t_queue_members
 extensions    => mysql,pbxdb,t_extensions
 followme      => mysql,pbxdb,t_user_options
 followme_numbers => mysql,pbxdb,t_user_followme
+EOF
 
 
-
-############### setup mamager
-perl -pi -e "s/enabled = no/enabled = yes/" /etc/asterisk/manager.conf
-perl -pi -e "s/bindaddr = 0.0.0.0/bindaddr = 127.0.0.1/" /etc/asterisk/manager.conf
-
-Append:
-
+cat <<EOF >>  /etc/asterisk/manager.conf
 [pbx-manager-dev]
 writetimeout=200
 displayconnects=no
@@ -151,7 +419,20 @@ permit=169.254.0.0/255.255.0.0 ; Zero conf local network
 
 read = system,call,log,verbose,agent,user,dtmf,reporting,cdr,dialplan
 write = system,call,agent,user,command,reporting,originate
+EOF
 
+
+cat <<EOF >> /etc/asterisk/httpd.conf
+[general]
+servername=Asterisk
+enabled=yes
+bindaddr=0.0.0.0
+bindport=8081
+tlsenable=yes         
+tlsbindaddr=0.0.0.0:8443   
+tlscertfile=/etc/asterisk/keys/TLS.pem 
+tlsprivatekey=/etc/asterisk/keys/privkey.pem   
+EOF
 
 
 ######### setup TLS: #######~A
@@ -169,18 +450,3 @@ tlsdontverifyserver=yes
 
 
 
-
-
-
-
-
-########################################################################
-Install CRM
-###############################################################
-
-mkdir /var/www/html/crm
-cd /var/www/html/crm
-svn co http://myrepo:8181/soho-crm ./
- composer install
- a2enmod rewrite && systemctl restart apache2
-## update  vi /etc/apache2/apache2.conf,   allow Override All for crm folder
