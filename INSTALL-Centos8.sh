@@ -35,7 +35,7 @@ dnf config-manager --set-enabled powertools
 ### 
 
 
-yum install -y gcc gcc-c++ unixODBC-devel libiodbc-devel yum-utils bison mysql-devel mysql-server tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver sox newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel crontabs cronie cronie-anacron wget vim libtool sqlite-devel unixODBC libuuid-devel binutils-devel xmlstarlet opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot certbot-apache mod_ssl iptables tcpdump ngrep fail2ban net-tools
+yum install -y gcc gcc-c++ unixODBC-devel libiodbc-devel yum-utils bison mysql-devel mysql-server tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver sox newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel crontabs cronie cronie-anacron wget vim libtool sqlite-devel unixODBC libuuid-devel binutils-devel xmlstarlet opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot certbot-apache mod_ssl iptables tcpdump ngrep fail2ban net-tools libsrtp-devel
 
 
 
@@ -58,7 +58,7 @@ if [ ! -f /usr/bin/php ]; then
  echo -n " ### Install PHP ( 5.x ) " && read -p '  [enter]' next
  yum install -y php56 php56-php-curl php56-php-ldap php56-php-fileinfo php56-php-zip php56-php-fileinfo php56-php-xml php56-php-mbstring php56-php-process php56-php-http php56-php-devel php56-php-mysql php56-mod_php
  php56-pear channel-update pear.php.net && php56-pear install db-1.7.14
- update-alternatives --install /usr/bin/php php /opt/remi/php56/root/bin/php
+ update-alternatives --install /usr/bin/php php /opt/remi/php56/root/bin/php 1
  php -v
 fi
 
@@ -162,6 +162,9 @@ read -p " Generate TLS certificates  for Domain: ${DOMAIN}  [ enter ]" next
    firewall-cmd --zone public --add-port 8081/tcp --permanent
    firewall-cmd --zone public --add-port 8443/tcp --permanent
    firewall-cmd --zone public --add-port 19302/tcp --permanent
+   
+   firewall-cmd --reload
+
 
    if [ "${DOMAIN:-no}" != "no" ]; then
         [ ! -d /etc/letsencrypt/live/${DOMAIN} ] && certbot -d ${DOMAIN} certonly --apache
