@@ -503,9 +503,10 @@ EOF
 
 
  
-
+ chmod +x /usr/sbin/asterisk 
  service firewalld stop
  chkconfig firewalld off
+ 
  chkconfig --level 345 mysqld on && service mysqld start 
  chkconfig --level 345 httpd on && service httpd start
  chkconfig --level 345 turnd on && service turnserverd start
