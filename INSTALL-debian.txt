@@ -41,6 +41,10 @@ default_authentication_plugin=mysql_native_password
   php -v
   ln -sf /usr/bin/php5.6 /etc/alternatives/php
   php -v
+  
+  ## Fix tmp file creation permission for firewall generation
+  perl -pi -e "s/PrivateTmp=true/PrivateTmp=false/"  /usr/lib/systemd/system/php56-php-fpm.service
+  systemctl daemon-reload && systemctl daemon-reload
 
    ## Get ODBC connector ##
    wget https://cdn.mysql.com//Downloads/Connector-ODBC/8.0/mysql-connector-odbc-8.0.19-linux-debian10-x86-64bit.tar.gz
