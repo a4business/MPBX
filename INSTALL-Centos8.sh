@@ -26,16 +26,20 @@ yum groupinstall core base 'Development Tools' -y
 if [ $(rpm -qa|grep remi-release|wc -l) -eq 0 ];  then
  read -p  " ###   Install epel-release and remi-release [ next ]" next
  rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
- rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-8.rpm 
+ if [ $(cat /etc/redhat-release|grep "8.5.2"|wc -l) -eq 1 ];then
+    rpm -Uvh https://rpms.remirepo.net/enterprise/8/remi/x86_64/remi-release-8.5-2.el8.remi.noarch.rpm
+ else   
+    rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-8.rpm
 fi
+
 
 ### PowerTool repo,  install DNF plugins package:
 dnf -y install dnf-plugins-core
 dnf config-manager --set-enabled powertools
 ### 
 
-
-yum install -y gcc gcc-c++ unixODBC-devel libiodbc-devel yum-utils bison mysql-devel mysql-server tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver sox newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel crontabs cronie cronie-anacron wget vim libtool sqlite-devel unixODBC libuuid-devel binutils-devel xmlstarlet opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot certbot-apache mod_ssl iptables tcpdump ngrep fail2ban net-tools libsrtp-devel
+## xmlstarlet?
+yum install -y gcc gcc-c++ unixODBC-devel libiodbc-devel yum-utils bison mysql-devel mysql-server tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver sox newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel crontabs cronie cronie-anacron wget vim libtool sqlite-devel unixODBC libuuid-devel binutils-devel opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot certbot-apache mod_ssl iptables iptables-services tcpdump ngrep fail2ban net-tools libsrtp-devel
 
 
 
@@ -273,8 +277,9 @@ EOF
 
 read -p " Configure CoTURN with IP[${IP_}]/Domain: $DOMAIN  [ enter ]" next
 ## Coturn install 
+yum install coturn -y
  if [ ! -f /usr/bin/turnserver ]; then
-  wget http://turnserver.open-sys.org/downloads/v4.5.1.1/turnserver-4.5.1.1.tar.gz 
+  wget http://turnserver.open-sys.org/downloads/v4.5.1.1/turnserver-4.5.1.1.tar.gz   
   tar -xvzf turnserver-4.5.1.1.tar.gz 
   cd turnserver-4.5.1.1 
   ./configure --prefix=/usr 
