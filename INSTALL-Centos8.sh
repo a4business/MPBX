@@ -30,6 +30,7 @@ if [ $(rpm -qa|grep remi-release|wc -l) -eq 0 ];  then
     rpm -Uvh https://rpms.remirepo.net/enterprise/8/remi/x86_64/remi-release-8.5-2.el8.remi.noarch.rpm
  else   
     rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-8.rpm
+ fi
 fi
 
 
