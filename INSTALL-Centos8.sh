@@ -354,6 +354,7 @@ perl -pi -e "s/^;debug =/debug=/" /etc/asterisk/asterisk.conf
 perl -pi -e "s/^;full =/full =/" /etc/asterisk/logger.conf
 rasterisk -rx 'logger reload'
 
+## Make sure cert files exists!!
 cat <<EOF > /etc/asterisk/sip_tls.conf
 tlsenable=yes
 tlsbindaddr=0.0.0.0:5061
@@ -378,7 +379,7 @@ cat <<EOF > /etc/cron.d/mpbx
 ## Generate additional SIP settings every minute #
 * * * * * root  /var/www/html/pbx/core/gen_sip_settings.php > /etc/asterisk/sip.include >/dev/null  2>&1 &
 ## Every Night clean CDRs
-0 3 * * * root curl -k https://localhost:8182/jaxer.php?cleanCDRS=1 >> /var/log/pbx.log 2>&1 &
+0 3 * * * root curl -k http://localhost:8081/jaxer.php?cleanCDRS=1 >> /var/log/pbx.log 2>&1 &
 EOF
 
 service crond restart
@@ -393,7 +394,7 @@ action_  = %(default/action_)s[name=%(__name__)s-tcp, protocol="tcp"]
            %(default/action_)s[name=%(__name__)s-udp, protocol="udp"]
 logpath  = /var/log/asterisk/full
 actionban = <iptables> -I f2b-<name> 1 -s <ip> -j <blocktype>
-            curl -k "https://localhost:8081/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT" 2>/dev/null
+            curl -k "http://localhost:8081/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT" 2>/dev/null
 maxretry = 3
 bantime  = 3600
 findtime = 300
@@ -468,6 +469,9 @@ followme      => mysql,pbxdb,t_user_options
 followme_numbers => mysql,pbxdb,t_user_followme
 EOF
 
+# Enable WEB clients to receive calls :
+perl -pi -e "s/;rtcachefriends=yes/rtcachefriends=yes/" /etc/asterisk/sip.conf
+
 CONF=manager.conf
 [ $(cat /etc/asterisk/$CONF|grep pbx-manager-dev|wc -l) -eq 0 ] && cat <<EOF >> /etc/asterisk/$CONF
 cat <<EOF >>  /etc/asterisk/manager.conf
@@ -509,9 +513,11 @@ EOF
  done
  cd /var/www/html/pbx/core && php ./gen_sip_settings.php 
 
+## Do not load some  depricated modules  (chan_sip is next)
+[ $(cat /etc/asterisk/modules.conf|grep cdr_musql|wc -l) -eq 0 ] &&  echo -e  "noload = app_image\nnoload = chan_oss\nnoload = chan_skinny\nnoload = cdr_mysql" >> /etc/asterisk/modules.conf
 
  
- chmod +x /usr/sbin/asterisk 
+ chmod +s /usr/sbin/asterisk 
  service firewalld stop
  chkconfig firewalld off
  
