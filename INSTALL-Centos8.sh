@@ -202,14 +202,25 @@ RewriteCond %{SERVER_NAME} =${DOMAIN} [OR]
 RewriteCond %{SERVER_NAME} =www.${DOMAIN}
 RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
+
+<VirtualHost localhost:8081>
+    ServerName ${DOMAIN}
+    DocumentRoot /var/www/html/pbx
+    ServerAlias www.${DOMAIN}
+    <Directory /var/www/html/pbx >
+     AllowOverride All
+     Options Indexes MultiViews FollowSymLinks
+    </Directory>
+ </VirtualHost>
 EOF
 fi
 
 if [ ! -f /etc/httpd/conf.d/${DOMAIN}-le-ssl.conf ]; then
 cat <<EOF > /etc/httpd/conf.d/${DOMAIN}-le-ssl.conf
 <IfModule mod_ssl.c>
- Listen 8081 https
  Listen 443 https
+ Listen 8182 https
+ 
  <VirtualHost _default_:443>
     ServerName ${DOMAIN}
     DocumentRoot /var/www/html/crm
@@ -222,7 +233,8 @@ cat <<EOF > /etc/httpd/conf.d/${DOMAIN}-le-ssl.conf
   SSLCertificateKeyFile /etc/letsencrypt/live/${DOMAIN}/privkey.pem
   Include /etc/letsencrypt/options-ssl-apache.conf
  </VirtualHost>
- <VirtualHost *:8081>
+ 
+ <VirtualHost *:8182>
     ServerName ${DOMAIN}
     DocumentRoot /var/www/html/pbx
     ServerAlias www.${DOMAIN}
