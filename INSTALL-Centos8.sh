@@ -238,6 +238,8 @@ cat <<EOF > /etc/httpd/conf.d/${DOMAIN}-le-ssl.conf
 EOF
 fi
 
+[ ! -f /etc/httpd/options-ssl-apache.conf ] && cp /etc/letsencrypt/options-ssl-apache.conf /etc/httpd/
+
 service httpd restart
 
 
