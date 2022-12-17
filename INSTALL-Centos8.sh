@@ -378,7 +378,9 @@ tlscipher=ALL
 tlsclientmethod=tlsv1
 tlsdontverifyserver=yes
 EOF
+
 perl -pi -e "s/^;tlscertfile/#include sip_tls.conf\n;;;tlscertfile/" /etc/asterisk/sip.conf
+perl -pi -e "s/^;rtcachefriends=yes/rtcachefriends=yes/" /etc/asterisk/sip.conf
 
 
 
@@ -532,7 +534,10 @@ EOF
  chmod +s /usr/sbin/asterisk 
  service firewalld stop
  chkconfig firewalld off
- 
+  
+ chown -R  apache.apache /var/lib/asterisk/sounds
+
+ chkconfig --level 345 fail2ban on && service fail2ban start 
  chkconfig --level 345 mysqld on && service mysqld start 
  chkconfig --level 345 httpd on && service httpd start
  chkconfig --level 345 turnd on && service turnserverd start
