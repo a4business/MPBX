@@ -67,6 +67,8 @@ if [ ! -f /usr/bin/php ]; then
  php -v
 fi
 
+[ -f /etc/opt/remi/php56/php.ini ] && perl -pi -e "s/post_max_size = 8M/post_max_size = 32M/" /etc/opt/remi/php56/php.ini
+[ -f /etc/opt/remi/php56/php.ini ] && perl -pi -e "s/upload_max_filesize = 2M/upload_max_filesize = 20M/" /etc/opt/remi/php56/php.ini
 
 if [ -f /usr/sbin/mysqld ] ; then
   echo  -n " ### Install mysql-server:" && read -p '  [enter]' next
@@ -536,8 +538,10 @@ EOF
  chkconfig firewalld off
   
  chown -R  apache.apache /var/lib/asterisk/sounds /var/lib/asterisk/moh
+ service php56-php-fpm restart
 
- chkconfig --level 345 fail2ban on && service fail2ban start 
+ chkconfig --level 345 fail2ban on && service fail2ban restart 
+ chkconfig --level 345 fail2ban on && service fail2ban restart 
  chkconfig --level 345 mysqld on && service mysqld start 
  chkconfig --level 345 httpd on && service httpd start
  chkconfig --level 345 turnd on && service turnserverd start
