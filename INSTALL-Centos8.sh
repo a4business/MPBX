@@ -537,7 +537,7 @@ EOF
  service firewalld stop
  chkconfig firewalld off
   
- chown -R  apache.apache /var/lib/asterisk/sounds /var/lib/asterisk/moh
+ chown   apache.apache /var/lib/asterisk/sounds /var/lib/asterisk/moh  /var/lib/asterisk
  service php56-php-fpm restart
 
  chkconfig --level 345 fail2ban on && service fail2ban restart 
