@@ -394,8 +394,8 @@ perl -pi -e "s/^;rtcachefriends=yes/rtcachefriends=yes/" /etc/asterisk/sip.conf
 cat <<EOF > /etc/cron.d/mpbx  
 ## Generate additional SIP settings every minute #
 * * * * * root  /var/www/html/pbx/core/gen_sip_settings.php > /etc/asterisk/sip.include >/dev/null  2>&1 &
-## Every Night clean CDRs
-0 3 * * * root curl -k http://localhost:8081/jaxer.php?cleanCDRS=1 >> /var/log/pbx.log 2>&1 &
+## Every Night clean CDRs/CEL
+0 3 * * * root curl -k https://localhost:8182/jaxer.php?cleanCDRS=1 >> /var/log/pbx.log 2>&1 &
 EOF
 
 service crond restart
@@ -510,7 +510,7 @@ CONF=http.conf
 [ $(cat /etc/asterisk/$CONF|grep TLS.pem|wc -l) -eq 0 ] && cat <<EOF > /etc/asterisk/$CONF
 [general]
 servername=Asterisk
-enabled=yes
+enabled=no
 bindaddr=127.0.0.1
 bindport=8081
 tlsenable=yes         
