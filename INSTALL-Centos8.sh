@@ -539,7 +539,8 @@ EOF
   
  chown   apache.apache /var/lib/asterisk/sounds /var/lib/asterisk/moh  /var/lib/asterisk
  service php56-php-fpm restart
-
+ 
+ chkconfig --level 345 sendmail on && service sendmail start
  chkconfig --level 345 fail2ban on && service fail2ban restart 
  chkconfig --level 345 fail2ban on && service fail2ban restart 
  chkconfig --level 345 mysqld on && service mysqld start 
