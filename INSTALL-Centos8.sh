@@ -510,7 +510,7 @@ CONF=http.conf
 [ $(cat /etc/asterisk/$CONF|grep TLS.pem|wc -l) -eq 0 ] && cat <<EOF > /etc/asterisk/$CONF
 [general]
 servername=Asterisk
-enabled=no
+enabled=yes
 bindaddr=127.0.0.1
 bindport=8081
 tlsenable=yes         
