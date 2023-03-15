@@ -532,6 +532,25 @@ EOF
 ## Do not load some  depricated modules  (chan_sip is next)
 [ $(cat /etc/asterisk/modules.conf|grep cdr_musql|wc -l) -eq 0 ] &&  echo -e  "noload = app_image\nnoload = chan_oss\nnoload = chan_skinny\nnoload = cdr_mysql" >> /etc/asterisk/modules.conf
 
+ ### Logrotate:
+cat <<EOF > /etc/logrotate.d/asterisk
+/var/log/asterisk/full
+/var/log/asterisk/debug
+/var/log/asterisk/messages
+/var/log/pbx.log
+/var/log/reports.log
+{ 
+  rotate 6
+  missingok
+  maxsize 50M 
+  delaycompress 
+  daily
+  postrotate
+	/usr/sbin/asterisk -rx 'logger reload' 2>/dev/null || true
+  endscript
+}  
+EOF
+ 
  
  chmod +s /usr/sbin/asterisk 
  service firewalld stop
