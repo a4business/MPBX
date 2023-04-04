@@ -402,6 +402,7 @@ service crond restart
 
 ###  Fail2ban:
 read -p '  Configure Fail2ban? [ enter ]'  next
+[ -f /etc/fail2ban/jail.d/00-firewalld.conf ] && perl -pi -e "s/banaction/#banaction/g" /etc/fail2ban/jail.d/00-firewalld.conf
 cat <<EOF > /etc/fail2ban/jail.local
 [asterisk]
 enabled = true
@@ -556,13 +557,12 @@ EOF
  service firewalld stop
  chkconfig firewalld off
   
- chown   apache.apache /var/lib/asterisk/sounds /var/lib/asterisk/moh  /var/lib/asterisk
+ chown   apache.apache /var/lib/asterisk/sounds /var/lib/asterisk/moh  /var/lib/asterisk /tts
  service php56-php-fpm restart
  
- chkconfig --level 345 sendmail on && service sendmail start
- chkconfig --level 345 fail2ban on && service fail2ban restart 
- chkconfig --level 345 fail2ban on && service fail2ban restart 
- chkconfig --level 345 mysqld on && service mysqld start 
- chkconfig --level 345 httpd on && service httpd start
- chkconfig --level 345 turnd on && service turnserverd start
- chkconfig --level 345 asterisk on && service asterisk start
+ for SERVICE in sendmail fail2ban mysqld httpd turnd asterisk
+ do
+   chkconfig --level 345 ${SERVICE} on
+   service ${SERVICE} start
+ done  
+ 
