@@ -404,8 +404,8 @@ service crond restart
 read -p '  Configure Fail2ban? [ enter ]'  next
 [ -f /etc/fail2ban/jail.d/00-firewalld.conf ] && perl -pi -e "s/banaction/#banaction/g" /etc/fail2ban/jail.d/00-firewalld.conf
 
-sed -i "45i\  \t     curl -k 'https://localhost:8182/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT'" /etc/fail2ban/action.d/iptables-allports.conf
-sed -i "42i\  \t     curl -k 'https://localhost:8182/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT'" /etc/fail2ban/action.d/iptables-multiport.conf
+sed -i "45i\  \t     curl -k 'https://localhost:8182/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT&bantime=<bantime>'" /etc/fail2ban/action.d/iptables-allports.conf
+sed -i "42i\  \t     curl -k 'https://localhost:8182/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT&bantime=<bantime>'" /etc/fail2ban/action.d/iptables-multiport.conf
 
 cat <<EOF > /etc/fail2ban/jail.local
 [asterisk]
@@ -415,7 +415,7 @@ action_  = %(default/action_)s[name=%(__name__)s-tcp, protocol="tcp"]
            %(default/action_)s[name=%(__name__)s-udp, protocol="udp"]
 logpath  = /var/log/asterisk/full
 actionban = <iptables> -I f2b-<name> 1 -s <ip> -j <blocktype>
-            curl -k "https://localhost:8182/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT" 2>/dev/null
+            curl -k "https://localhost:8182/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT&bantime=<bantime>" 2>/dev/null
 maxretry = 3
 bantime  = 3600
 findtime = 300
