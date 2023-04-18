@@ -561,7 +561,7 @@ EOF
  service firewalld stop
  chkconfig firewalld off
   
- chown   apache.apache /var/lib/asterisk/sounds /var/lib/asterisk/moh  /var/lib/asterisk /tts
+ chown -R apache.apache /var/lib/asterisk/sounds /var/lib/asterisk/moh  /var/lib/asterisk /tts /var/spool/asterisk/monitor
  service php56-php-fpm restart
  
  for SERVICE in sendmail fail2ban mysqld httpd turnd asterisk
