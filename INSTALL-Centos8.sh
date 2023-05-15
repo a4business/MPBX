@@ -40,7 +40,8 @@ dnf config-manager --set-enabled powertools
 ### 
 
 ## xmlstarlet?
-yum install -y gcc gcc-c++ unixODBC-devel libiodbc-devel yum-utils bison mysql-devel mysql-server tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver sox newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel crontabs cronie cronie-anacron wget vim libtool sqlite-devel unixODBC libuuid-devel binutils-devel opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot certbot-apache mod_ssl iptables iptables-services tcpdump ngrep fail2ban net-tools libsrtp-devel
+yum install -y gcc gcc-c++ unixODBC-devel libiodbc-devel yum-utils bison mysql-devel mysql-server tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver 
+newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel crontabs cronie cronie-anacron wget vim libtool sqlite-devel unixODBC libuuid-devel binutils-devel opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot certbot-apache mod_ssl iptables iptables-services tcpdump ngrep fail2ban net-tools libsrtp-devel
 
 
 
@@ -55,7 +56,8 @@ fi
 
 if [ ! -f /usr/bin/sox ]; then
    read -p " ### Install SOx from Sources: [enter]" next
-   wget https://kent.dl.sourceforge.net/project/sox/sox/14.4.2/sox-14.4.2.tar.bz2 && tar -xvjf  sox-14.4.2.tar.bz2 && cd sox-14.4.2 && ./configure && make && make install
+   GETSOX=https://ftp.icm.edu.pl/packages/sox/14.4.2/sox-14.4.2.tar.gz
+   wget ${GETSOX} && tar -xvjf  sox-14.4.2.tar.bz2 && cd sox-14.4.2 && ./configure && make && make install
 fi
 
 
