@@ -494,6 +494,8 @@ EOF
 
 # Enable WEB clients to receive calls :
 perl -pi -e "s/;rtcachefriends=yes/rtcachefriends=yes/" /etc/asterisk/sip.conf
+# Disable skinny public access :
+perl -pi -e "s/0.0.0.0/127.0.0.1/g" /etc/asterisk/skinny.conf
 
 CONF=manager.conf
 [ $(cat /etc/asterisk/$CONF|grep pbx-manager-dev|wc -l) -eq 0 ] && cat <<EOF >> /etc/asterisk/$CONF
