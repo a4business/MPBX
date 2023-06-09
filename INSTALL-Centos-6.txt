@@ -1,9 +1,12 @@
 
 ########
-##### Multitenant PBS installation steps 
+#####  !!!!!   D E P R I C A T E D   !!!!!
+#####    please use:  INSTALL-Centos8.sh   
+########
+##### Multitenant mPBX installation steps 
 ####  I do not tested all the file well, please use it at your own risk and  
 ####  Just be sure - it will not work from the first time,   try  to fix errors, and try again,  fix&try untill success.
-#### !!! EVERY ONE welcome to suggest changes by  doing merge request !!!!
+####
 ########
 
 setenforce 0
