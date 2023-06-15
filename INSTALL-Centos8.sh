@@ -34,14 +34,14 @@ if [ $(rpm -qa|grep remi-release|wc -l) -eq 0 ];  then
 fi
 
 
-### PowerTool repo,  install DNF plugins package:
+### 
+Tool repo,  install DNF plugins package:
 dnf -y install dnf-plugins-core
 dnf config-manager --set-enabled powertools
 ### 
 
 ## xmlstarlet?
-yum install -y gcc gcc-c++ unixODBC-devel libiodbc-devel yum-utils bison mysql-devel mysql-server tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver 
-newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel crontabs cronie cronie-anacron wget vim libtool sqlite-devel unixODBC libuuid-devel binutils-devel opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot certbot-apache mod_ssl iptables iptables-services tcpdump ngrep fail2ban net-tools libsrtp-devel
+yum install -y gcc gcc-c++ unixODBC-devel libiodbc-devel yum-utils bison mysql-devel mysql-server tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel crontabs cronie cronie-anacron wget vim certbot libtool sqlite-devel sqlite-devel srtp srtp-devel unixODBC uuid-devel libuuid-devel binutils-devel opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot certbot-apache mod_ssl iptables iptables-services tcpdump ngrep fail2ban net-tools libsrtp-devel
 
 
 
@@ -109,6 +109,7 @@ fi
  git clone https://git.a4business.com/george/crm.git ./crm
  curl -sS https://getcomposer.org/installer | php
  mv composer.phar /usr/local/bin/composer 
+ cp /usr/local/bin/composer  /usr/bin/composer 
  cd /var/www/html/pbx && composer install
  cd /var/www/html/crm && composer install
  
@@ -519,7 +520,7 @@ CONF=http.conf
 [ $(cat /etc/asterisk/$CONF|grep TLS.pem|wc -l) -eq 0 ] && cat <<EOF > /etc/asterisk/$CONF
 [general]
 servername=Asterisk
-enabled=yes
+enabled=no
 bindaddr=127.0.0.1
 bindport=8081
 tlsenable=yes         
