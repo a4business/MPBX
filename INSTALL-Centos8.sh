@@ -34,8 +34,7 @@ if [ $(rpm -qa|grep remi-release|wc -l) -eq 0 ];  then
 fi
 
 
-### 
-Tool repo,  install DNF plugins package:
+### Tool repo,  install DNF plugins package:
 dnf -y install dnf-plugins-core
 dnf config-manager --set-enabled powertools
 ### 
