@@ -43,6 +43,8 @@ dnf config-manager --set-enabled powertools
 ## xmlstarlet?
 yum install -y gcc gcc-c++ unixODBC-devel libiodbc-devel yum-utils bison mysql-devel mysql-server tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel crontabs cronie cronie-anacron wget vim certbot libtool sqlite-devel sqlite-devel srtp srtp-devel unixODBC uuid-devel libuuid-devel binutils-devel opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot certbot-apache mod_ssl iptables iptables-services tcpdump ngrep fail2ban net-tools libsrtp-devel
 
+## Captagent Dependeces:
+yum install -y json-c-devel expat-devel libpcap-devel flex-devel automake libtool bison libuv-devel flex
 
 
 ## Install Statically linked ffmpeg:
@@ -59,6 +61,22 @@ if [ ! -f /usr/bin/sox ]; then
    GETSOX=https://ftp.icm.edu.pl/packages/sox/14.4.2/sox-14.4.2.tar.gz
    wget ${GETSOX} && tar -xvjf  sox-14.4.2.tar.bz2 && cd sox-14.4.2 && ./configure && make && make install
 fi
+
+if [ ! -f /usr/local/captagent/sbin/captagent ]; then
+  echo "[ Install CAPAGENT  for HOMER7 ] "  ### https://github.com/sipcapture/captagent/wiki/Installation
+  cd /usr/src
+  git clone https://github.com/sipcapture/captagent.git captagent
+  cd captagent
+  ./build.sh
+  ./configure
+  make && make install
+  cp init/el/captagent.sysconfig /etc/sysconfig/captagent
+  cp init/el/captagent.service /usr/lib/systemd/system
+  systemctl enable captagent
+  systemctl status captagent
+else
+  echo "[ CAPAGENT INSTALLED ALREADY ] "
+fi  
 
 
 if [ ! -f /usr/bin/php ]; then
