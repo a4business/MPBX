@@ -59,7 +59,7 @@ fi
 if [ ! -f /usr/bin/sox ]; then
    read -p " ### Install SOx from Sources: [enter]" next
    GETSOX=https://ftp.icm.edu.pl/packages/sox/14.4.2/sox-14.4.2.tar.gz
-   wget ${GETSOX} && tar -xvjf  sox-14.4.2.tar.bz2 && cd sox-14.4.2 && ./configure && make && make install
+   wget ${GETSOX} && tar -xvzf  sox-14.4.2.tar.gz && cd sox-14.4.2 && ./configure && make && make install
 fi
 
 if [ ! -f /usr/local/captagent/sbin/captagent ]; then
