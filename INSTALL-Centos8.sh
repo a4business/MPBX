@@ -140,6 +140,7 @@ fi
   cd /etc/asterisk && for CONF in extensions.tenants inbound.include internal.include ivrmenus.include outbound.include queues.include res_parking.include ringgroups.include sip-register.tenants sip.tenants tenants.include; do touch $CONF; chown apache.apache $CONF; done
   echo "#include  res_parking.include" >>  /etc/asterisk/res_parking.conf
 
+rm -rf /var/lib/asterisk/agi-bin && ln -sf /var/www/html/pbx/agi-bin /var/lib/asterisk/agi-bin
 
 ### Create Databas ###
  ## To get tmeporary pass:          grep 'temporary password' /var/log/mysqld.log
