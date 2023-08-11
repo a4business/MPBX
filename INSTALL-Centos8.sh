@@ -66,6 +66,7 @@ if [ ! -f /usr/bin/sox ]; then
 fi
 
 if [ ! -f /usr/local/captagent/sbin/captagent ]; then
+  PWD=$(pwd)
   echo "[ Install CAPAGENT  for HOMER7 ] "  ### https://github.com/sipcapture/captagent/wiki/Installation
   cd /usr/src
   git clone https://github.com/sipcapture/captagent.git captagent
@@ -77,6 +78,7 @@ if [ ! -f /usr/local/captagent/sbin/captagent ]; then
   cp init/el/captagent.service /usr/lib/systemd/system
   systemctl enable captagent
   systemctl status captagent
+  cd $PWD
 else
   echo "[ CAPAGENT INSTALLED ALREADY ] "
 fi  
