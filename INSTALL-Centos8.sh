@@ -94,6 +94,7 @@ fi
 
 [ -f /etc/opt/remi/php56/php.ini ] && perl -pi -e "s/post_max_size = 8M/post_max_size = 32M/" /etc/opt/remi/php56/php.ini
 [ -f /etc/opt/remi/php56/php.ini ] && perl -pi -e "s/upload_max_filesize = 2M/upload_max_filesize = 20M/" /etc/opt/remi/php56/php.ini
+[ -f /usr/lib/systemd/system/php56-php-fpm.service ] && perl -pi -e "s/PrivateTmp=true/PrivateTmp=false/" /usr/lib/systemd/system/php56-php-fpm.service && systemctl daemon-reload && systemctl restart php56-php-fpm
 
 if [ -f /usr/sbin/mysqld ] ; then
   echo  -n " ### Install mysql-server:" && read -p '  [enter]' next
@@ -430,6 +431,7 @@ service crond restart
 ###  Fail2ban:
 read -p '  Configure Fail2ban? [ enter ]'  next
 [ -f /etc/fail2ban/jail.d/00-firewalld.conf ] && perl -pi -e "s/banaction/#banaction/g" /etc/fail2ban/jail.d/00-firewalld.conf
+echo -e  "[DEFAULT]\nignoreip = 127.0.0.1/8 ::1\n" > /etc/fail2ban/jail.d/local.conf
 
 sed -i "45i\  \t     curl -k 'https://localhost:8182/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT&bantime=<bantime>'" /etc/fail2ban/action.d/iptables-allports.conf
 sed -i "42i\  \t     curl -k 'https://localhost:8182/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT&bantime=<bantime>'" /etc/fail2ban/action.d/iptables-multiport.conf
@@ -589,7 +591,8 @@ EOF
  chmod +s /usr/sbin/asterisk 
  service firewalld stop
  chkconfig firewalld off
-  
+
+ touch /var/log/pbx.log && chown apache.apache /var/log/pbx.log 
  chown -R apache.apache /var/lib/asterisk/sounds /var/lib/asterisk/moh  /var/lib/asterisk /tts /var/spool/asterisk/monitor
  chmod a+z  /var/spool/asterisk chmod a+x /var/spool/asterisk/monitor
  service php56-php-fpm restart
