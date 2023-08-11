@@ -18,6 +18,10 @@ echo "DOMAIN_=$DOMAIN" > ./.domain
 
 # Disable Security #
 setenforce 0
+if [ ! -f /usr/bin/perl ];then
+  echo 'Check Perl install...'
+  yum install perl -y >/dev/null
+fi  
 perl -pi -e "s/=enforcing/=disabled/g"  /etc/selinux/config
 
 
@@ -79,7 +83,7 @@ fi
 
 
 if [ ! -f /usr/bin/php ]; then
- echo -n " ### Install PHP ( 5.x ) " && read -p '  [enter]' next
+ echo -n " ### Install f@ck!ng old PHP ( 5.x ) ? " && read -p '  [enter]' next
  yum install -y php56 php56-php-curl php56-php-ldap php56-php-fileinfo php56-php-zip php56-php-fileinfo php56-php-xml php56-php-mbstring php56-php-process php56-php-http php56-php-devel php56-php-mysql php56-mod_php
  php56-pear channel-update pear.php.net && php56-pear install db-1.7.14
  update-alternatives --install /usr/bin/php php /opt/remi/php56/root/bin/php 1
