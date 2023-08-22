@@ -24,6 +24,9 @@ if [ ! -f /usr/bin/perl ];then
 fi  
 perl -pi -e "s/=enforcing/=disabled/g"  /etc/selinux/config
 
+## This will ask confirmation to delete selinux: ##
+[ $(rpm -qa |grep selinux-policy-targeted  | wc -l) -gt 0 ] &&  yum remove selinux-policy-targeted
+
 
 yum groupinstall core base 'Development Tools' -y
 
@@ -44,7 +47,7 @@ dnf config-manager --set-enabled powertools
 ### 
 
 ## xmlstarlet?
-yum install -y gcc gcc-c++ unixODBC-devel libiodbc-devel yum-utils bison mysql-devel mysql-server tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel crontabs cronie cronie-anacron wget vim certbot libtool sqlite-devel sqlite-devel  unixODBC uuid-devel libuuid-devel binutils-devel opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot certbot-apache mod_ssl iptables iptables-services tcpdump ngrep fail2ban net-tools libsrtp libsrtp-devel
+yum install -y gcc gcc-c++ unixODBC-devel libiodbc-devel yum-utils bison mysql-devel mysql-server tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel crontabs cronie cronie-anacron wget vim certbot libtool sqlite-devel sqlite-devel  unixODBC uuid-devel libuuid-devel binutils-devel opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot certbot-apache mod_ssl iptables iptables-services tcpdump ngrep fail2ban net-tools libsrtp libsrtp-devel sox sox-devel
 
 ## Captagent Dependeces:
 yum install -y json-c-devel expat-devel libpcap-devel flex-devel automake libtool bison libuv-devel flex
@@ -63,6 +66,13 @@ if [ ! -f /usr/bin/sox ]; then
    read -p " ### Install SOx from Sources: [enter]" next
    GETSOX=https://ftp.icm.edu.pl/packages/sox/14.4.2/sox-14.4.2.tar.gz
    wget ${GETSOX} && tar -xvzf  sox-14.4.2.tar.gz && cd sox-14.4.2 && ./configure --prefix=/usr && make && make install
+   if [ ! -f /usr/bin/sox ]; then
+      read -p " [WARNING]: SOX  is not installed form sources, Re-try install from packages y/n? [y]" P
+      P=${P:-y}
+      if [ "$P" = "y" ]; then
+        yum install sox sox-devel -y
+      fi
+   fi
 fi
 
 if [ ! -f /usr/local/captagent/sbin/captagent ]; then
