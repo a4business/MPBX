@@ -244,6 +244,9 @@ RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
 
 <VirtualHost localhost:8081>
+    SSLProxyEngine on
+    Timeout 1200
+    ProxyTimeout 1200 
     ServerName ${DOMAIN}
     DocumentRoot /var/www/html/pbx
     ServerAlias www.${DOMAIN}
