@@ -7,7 +7,7 @@ More details at http://a4business.com/?p=1070
  
  [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/a4business)
 
- 
+ REST API: https://documenter.getpostman.com/view/8483481/2s9Y5creqA
 
 <center>
 <img src='http://a4business.com/wp-content/uploads/2018/08/how-hosted-pbx-works.png'>
