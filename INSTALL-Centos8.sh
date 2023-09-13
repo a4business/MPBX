@@ -434,7 +434,7 @@ perl -pi -e "s/^;rtcachefriends=yes/rtcachefriends=yes/" /etc/asterisk/sip.conf
 
 cat <<EOF > /etc/cron.d/mpbx  
 ## Generate additional SIP settings every minute #
-* * * * * root  /var/www/html/pbx/core/gen_sip_settings.php > /etc/asterisk/sip.include >/dev/null  2>&1 &
+* * * * * root  cd  /var/www/html/pbx && core/gen_sip_settings.php > /etc/asterisk/sip.include >/dev/null  2>&1 &
 ## Every Night clean CDRs/CEL
 0 3 * * * root curl -k https://localhost:8182/jaxer.php?cleanCDRS=1 >> /var/log/pbx.log 2>&1 &
 EOF
@@ -576,7 +576,7 @@ EOF
    [ ! -f /var/www/html/${PRJ}/include/config.ini ] && cp /var/www/html/${PRJ}/include/config.ini.sample /var/www/html/${PRJ}/include/config.ini 2>/dev/null
    [ "$DOMAIN" != "" ] &&  perl -pi -e "s/app.a4business.com/$DOMAIN/g" /var/www/html/${PRJ}/include/config.ini
  done
- cd /var/www/html/pbx/core && php ./gen_sip_settings.php 
+ cd /var/www/html/pbx && php core/gen_sip_settings.php 
 
 ## Do not load some  depricated modules  (chan_sip is next)
 [ $(cat /etc/asterisk/modules.conf|grep cdr_musql|wc -l) -eq 0 ] &&  echo -e  "noload = app_image\nnoload = chan_oss\nnoload = chan_skinny\nnoload = cdr_mysql" >> /etc/asterisk/modules.conf
@@ -607,7 +607,8 @@ EOF
 
  touch /var/log/pbx.log && chown apache.apache /var/log/pbx.log 
  chown -R apache.apache /var/lib/asterisk/sounds /var/lib/asterisk/moh  /var/lib/asterisk /tts /var/spool/asterisk/monitor
- chmod a+z  /var/spool/asterisk chmod a+x /var/spool/asterisk/monitor
+ chmod a+s  /var/spool/asterisk 
+ chmod a+x /var/spool/asterisk/monitor
  service php56-php-fpm restart
  
  for SERVICE in sendmail fail2ban mysqld httpd turnd asterisk
@@ -615,4 +616,25 @@ EOF
    chkconfig --level 345 ${SERVICE} on
    service ${SERVICE} start
  done  
+
+ cat  <<EOF 
+
+
+ ============================================================
+ MPBX   INSTALLATION COMPLETED !
+ ============================================================
+  Access your server with default login:   
+     Admin panel:   https://${DOMAIN}:8182       admin : CHANGEME1
+     Agent panel:    https://${DOMAIN}           admin : CHANGEME1
+   
+   To create more agents,  follow this plan: 
+
+     1. Create more extensions in tenant
+     2. Create a user, and link it with extension
+     3. Login to WEBrtc Dialer: 
+	https://${DOMAIN}   with created user credentials , call to *600  ( echo test  app )
+ =============================================================
+ 
+EOF
+
  
