@@ -35,6 +35,20 @@ fi
 perl -pi -e "s/=enforcing/=disabled/g"  /etc/selinux/config
 [ $(rpm -qa |grep selinux-policy-targeted  | wc -l) -gt 0 ] &&  yum remove selinux-policy-targeted -y
 
+   
+   firewall-cmd  --zone public --add-port 80/tcp --permanent
+   firewall-cmd  --zone public --add-port 443/tcp --permanent
+   firewall-cmd --zone public --add-source 127.0.0.1 --permanent
+   firewall-cmd --zone public --add-port 5060/udp --permanent
+   firewall-cmd --zone public --add-port 8081/udp --permanent
+   firewall-cmd --zone public --add-port 8443/udp --permanent
+   firewall-cmd --zone public --add-port 19302/udp --permanent
+   firewall-cmd --zone public --add-port 19303/udp --permanent
+   firewall-cmd --zone public --add-port 8081/tcp --permanent
+   firewall-cmd --zone public --add-port 8443/tcp --permanent
+   firewall-cmd --zone public --add-port 19302/tcp --permanent   
+   firewall-cmd --reload
+
 
 
 yum groupinstall core base 'Development Tools' -y
@@ -71,7 +85,11 @@ if [ ! -f /usr/bin/ffmpeg ]; then
    [ ! -f /usr/bin/ffmpeg ] && wget ${LINK} &&  tar -xJf ${FILE} && cp ./ffmpeg-*-amd64-static/ffmpeg  /usr/bin/ffmpeg
 fi
 
-
+## SOX
+if [ -f /usr/bin/sox ];then
+  read -p " SOX Already installed, Re-Install it??? [n]" P  
+  [ "${P:-n}" == "y" ] && rm -rf /usr/bin/sox
+fi
 if [ ! -f /usr/bin/sox ]; then
    read -p " ### Install SOx from Sources: [enter]" next
    GETSOX=https://ftp.icm.edu.pl/packages/sox/14.4.2/sox-14.4.2.tar.gz
@@ -87,9 +105,8 @@ fi
 
 
 if [ -f /usr/local/captagent/sbin/captagent ];then
-  read -p " CAPTAGENT  for HOMER7  Already installed, Reinstall ir ?[y]" P
-  P=${P:-y}
-  [ "${P}es" == "yes" ] && rm -rf /usr/local/captagent/sbin/captagent
+  read -p " CAPTAGENT  for HOMER7  Already installed, Re-Install it??? [n]" P  
+  [ "${P:-n}" == "y" ] && rm -rf /usr/local/captagent/sbin/captagent
 fi
 
 if [ ! -f /usr/local/captagent/sbin/captagent ]; then
@@ -125,12 +142,12 @@ fi
 [ -f /etc/opt/remi/php56/php.ini ] && perl -pi -e "s/upload_max_filesize = 2M/upload_max_filesize = 20M/" /etc/opt/remi/php56/php.ini
 [ -f /usr/lib/systemd/system/php56-php-fpm.service ] && perl -pi -e "s/PrivateTmp=true/PrivateTmp=false/" /usr/lib/systemd/system/php56-php-fpm.service && systemctl daemon-reload && systemctl restart php56-php-fpm
 
+
+
 if [ -f /usr/sbin/mysqld ] ; then
   echo  -n " ### Install mysql-server:" && read -p '  [enter]' next
   yum install mysql-server  mysql-devel  -y 
   yum install php56-php-mysqlnd perl-DBD-MySQL  cyrus-sasl-sql postfix -y
-  
-
   service mysqld start
   /usr/bin/mysql_secure_installation
   wget https://repo.mysql.com//mysql80-community-release-el8-1.noarch.rpm
@@ -143,9 +160,13 @@ fi
  #VER=16
   VER=18
 
-[ -f /usr/sbin/asterisk ] && EXISTS=" Asterisk v${VER} Already Installed, RE-"
-
-  read -p " ### ${EXISTS}Install Asterisk v${VER} From Sources ? [ enter ]" next
+## ASTERISK
+if [ -f /usr/sbin/asterisk ];then
+  read -p " ASTERISK Pbx Already installed, Re-Install it??? [n]" P  
+  [ "${P:-n}" == "y" ] && rm -rf /usr/sbin/asterisk && AST_PREFIX="RE-"
+fi
+if [ ! -f /usr/sbin/asterisk ] ; then 
+   read -p " ### ${AST_PREFIX}Install Asterisk v${VER} From Sources ? [ enter ]" next
    rm -rf asterisk-${VER}.*
    [ ! -f asterisk-${VER}-current.tar.gz ] && wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-${VER}-current.tar.gz
    tar -xvzf asterisk-${VER}-current.tar.gz  && cd asterisk-${VER}.*
@@ -162,9 +183,16 @@ fi
    contrib/scripts/get_mp3_source.sh
    make && make install && make samples && make config
    [ $VER == 18 ] && perl -pi -e "s/noload = chan_sip.so/;noload = chan_sip.so/" /etc/asterisk/modules.conf
+fi
+   
 
 ## SNGREP Install  
+if [ -f /usr/local/bin/sngrep ];then
+  read -p " SNGREP tool Already installed, Re-Install it??? [n]" P  
+  [ "${P:-n}" == "y" ] && rm -rf /usr/local/bin/sngrep  && SNGREP_PREFIX="RE-"
+fi
 if [ ! -f /usr/local/bin/sngrep ]; then
+   read -p " ### ${SNGREP_PREFIX}Install SNGREP ? [ enter ]" next
    cd /usr/src
    git clone https://github.com/irontec/sngrep.git
    cd sngrep
@@ -183,20 +211,22 @@ fi
  mv composer.phar /usr/local/bin/composer 
  cp /usr/local/bin/composer  /usr/bin/composer 
  cd /var/www/html/pbx && composer install
+ cd /var/www/html/pbx/code && composer install
  cd /var/www/html/crm && composer install
  
 ## Make forlder for Text2Speech cache:
  mkdir -p /tts && chmod 777 /tts
 
-
+read -p " Next - Configure Asterisk PBX server? [ enter ] " next  
 
 ##  Link Asterisk config files
   for CONF in func_odbc.conf macros.include conferences.include;  do ln -sf /var/www/html/pbx/core/${CONF} /etc/asterisk/${CONF}; done
   cd /etc/asterisk && for CONF in extensions.tenants inbound.include internal.include ivrmenus.include outbound.include queues.include res_parking.include ringgroups.include sip-register.tenants sip.tenants tenants.include; do touch $CONF; chown apache.apache $CONF; done
   echo "#include  res_parking.include" >>  /etc/asterisk/res_parking.conf
+  rm -rf /var/lib/asterisk/agi-bin && ln -sf /var/www/html/pbx/agi-bin /var/lib/asterisk/agi-bin
 
-rm -rf /var/lib/asterisk/agi-bin && ln -sf /var/www/html/pbx/agi-bin /var/lib/asterisk/agi-bin
 
+read -p " Next - Configure MySQL Server ? [ enter ] " next  
 ### Create Databas ###
  ## To get tmeporary pass:          grep 'temporary password' /var/log/mysqld.log
  ## or reset root:
@@ -215,10 +245,11 @@ rm -rf /var/lib/asterisk/agi-bin && ln -sf /var/www/html/pbx/agi-bin /var/lib/as
       echo 'grant all privileges on mpbx.* to mpbx_web@`localhost` '| mysql -p${P} 
 
   ## Create database structure 
-      cat /var/www/html/pbx/core/proc/mpbx.sql | mysql -u root -p${P} mpbx 2>/dev/null 
-      cat /var/www/html/pbx/core/proc/mpbx-initial-data.sql | mysql -u root -p${P} mpbx 2>/dev/null
-      cd /var/www/html/pbx/core/proc && ./install ${P} 2>/dev/null
+      cat /var/www/html/pbx/core/proc/mpbx.sql | mysql -u root -p${P} mpbx 
+      cat /var/www/html/pbx/core/proc/mpbx-initial-data.sql | mysql -u root -p${P} mpbx 
+      cd /var/www/html/pbx/core/proc && ./install ${P} 
 
+read -p " Next - Configure Apache WEB server ? [ enter ] " next  
 
 cat <<EOF > /etc/httpd/conf.d/${DOMAIN}.conf
 <VirtualHost *:80>
@@ -236,21 +267,7 @@ EOF
 read -p " Generate TLS certificates  for Domain: ${DOMAIN}  [ enter ]" next
 ################ Create  ssl certificates  ( required for webrtc (wss/dtls) and for SIP/tls )
    service httpd restart
-
-   firewall-cmd  --zone public --add-port 80/tcp --permanent
-   firewall-cmd  --zone public --add-port 443/tcp --permanent
-   firewall-cmd --zone public --add-source 127.0.0.1 --permanent
-   firewall-cmd --zone public --add-port 5060/udp --permanent
-   firewall-cmd --zone public --add-port 8081/udp --permanent
-   firewall-cmd --zone public --add-port 8443/udp --permanent
-   firewall-cmd --zone public --add-port 19302/udp --permanent
-   firewall-cmd --zone public --add-port 19303/udp --permanent
-   firewall-cmd --zone public --add-port 8081/tcp --permanent
-   firewall-cmd --zone public --add-port 8443/tcp --permanent
-   firewall-cmd --zone public --add-port 19302/tcp --permanent
-   
-   firewall-cmd --reload
-
+ 
 
    if [ "${DOMAIN:-no}" != "no" ]; then
         [ ! -d /etc/letsencrypt/live/${DOMAIN} ] && certbot -d ${DOMAIN} certonly --apache
@@ -303,9 +320,12 @@ if [ ! -f /etc/httpd/conf.d/${DOMAIN}-le-ssl.conf ]; then
 cat <<EOF > /etc/httpd/conf.d/${DOMAIN}-le-ssl.conf
 <IfModule mod_ssl.c>
  Listen 443 https
- Listen 8182 https
+ Listen 8081 https
  
  <VirtualHost _default_:443>
+    SSLProxyEngine on
+    Timeout 1200
+    ProxyTimeout 1200
     ServerName ${DOMAIN}
     DocumentRoot /var/www/html/crm
     ServerAlias www.${DOMAIN}
@@ -318,7 +338,7 @@ cat <<EOF > /etc/httpd/conf.d/${DOMAIN}-le-ssl.conf
   Include /etc/letsencrypt/options-ssl-apache.conf
  </VirtualHost>
  
- <VirtualHost *:8182>
+ <VirtualHost *:8081>
     ServerName ${DOMAIN}
     DocumentRoot /var/www/html/pbx
     ServerAlias www.${DOMAIN}
@@ -475,9 +495,9 @@ perl -pi -e "s/^;rtcachefriends=yes/rtcachefriends=yes/" /etc/asterisk/sip.conf
 
 cat <<EOF > /etc/cron.d/mpbx  
 ## Generate additional SIP settings every minute #
-* * * * * root  cd  /var/www/html/pbx && core/gen_sip_settings.php > /etc/asterisk/sip.include >/dev/null  2>&1 &
+* * * * * root [ $(ps ax|grep gen_sip_settings|grep -v grep) -eq 0 ] && (  cd  /var/www/html/pbx && php core/gen_sip_settings.php > /etc/asterisk/sip.include  2>&1)
 ## Every Night clean CDRs/CEL
-0 3 * * * root curl -k https://localhost:8182/jaxer.php?cleanCDRS=1 >> /var/log/pbx.log 2>&1 &
+0 3 * * * root curl -k https://localhost:8081/jaxer.php?cleanCDRS=1 >> /var/log/pbx.log 2>&1 &
 EOF
 
 service crond restart
@@ -487,8 +507,8 @@ read -p '  Configure Fail2ban? [ enter ]'  next
 [ -f /etc/fail2ban/jail.d/00-firewalld.conf ] && perl -pi -e "s/banaction/#banaction/g" /etc/fail2ban/jail.d/00-firewalld.conf
 echo -e  "[DEFAULT]\nignoreip = 127.0.0.1/8 ::1\n" > /etc/fail2ban/jail.d/local.conf
 
-sed -i "45i\  \t     curl -k 'https://localhost:8182/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT&bantime=<bantime>'" /etc/fail2ban/action.d/iptables-allports.conf
-sed -i "42i\  \t     curl -k 'https://localhost:8182/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT&bantime=<bantime>'" /etc/fail2ban/action.d/iptables-multiport.conf
+sed -i "45i\  \t     curl -k 'https://localhost:8081/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT&bantime=<bantime>'" /etc/fail2ban/action.d/iptables-allports.conf
+sed -i "42i\  \t     curl -k 'https://localhost:8081/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT&bantime=<bantime>'" /etc/fail2ban/action.d/iptables-multiport.conf
 
 cat <<EOF > /etc/fail2ban/jail.local
 [asterisk]
@@ -498,10 +518,32 @@ action_  = %(default/action_)s[name=%(__name__)s-tcp, protocol="tcp"]
            %(default/action_)s[name=%(__name__)s-udp, protocol="udp"]
 logpath  = /var/log/asterisk/full
 actionban = <iptables> -I f2b-<name> 1 -s <ip> -j <blocktype>
-            curl -k "https://localhost:8182/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT&bantime=<bantime>" 2>/dev/null
+            curl -k "https://localhost:8081/jaxer.php?blockIP=<ip>&block_reason=by-Fail2Ban-<name>-REJECT&bantime=<bantime>" 2>/dev/null
 maxretry = 3
 bantime  = 3600
 findtime = 300
+EOF
+
+CONF=cel_odbc.conf
+[ $(cat /etc/asterisk/$CONF|grep 'pbxdb'|wc -l) -eq 0 ] && cat <<EOF > /etc/asterisk/$CONF
+[general]
+[cel]
+connection=pbxdb
+username = mpbx_web
+password = P@ssw0rd123
+loguniqueid=yes
+table=t_cel            ;"cdr" is default table name
+usegmtime=no             ; set to "yes" to log in GMT
+alias userfield => tenant_id
+EOF
+
+CONF=cel.conf
+[ $(cat /etc/asterisk/$CONF|grep 'events=ALL'|wc -l) -eq 0 ] && cat <<EOF > /etc/asterisk/$CONF
+[general]
+enable=yes   
+apps=all
+events=ALL
+dateformat = %d-%m-%Y %T
 EOF
 
 
@@ -666,7 +708,7 @@ EOF
  MPBX   INSTALLATION COMPLETED !
  ============================================================
   Access your server with default login:   
-     Admin panel:   https://${DOMAIN}:8182       admin : CHANGEME1
+     Admin panel:   https://${DOMAIN}:8081       admin : CHANGEME1
      Agent panel:    https://${DOMAIN}           admin : CHANGEME1
    
    To create more agents,  follow this plan: 
