@@ -143,8 +143,16 @@ fi
    contrib/scripts/get_mp3_source.sh
    make && make install && make samples && make config
    [ $VER == 18 ] && perl -pi -e "s/noload = chan_sip.so/;noload = chan_sip.so/" /etc/asterisk/modules.conf
-  
-  
+
+## SNGREP Install  
+if [ ! -f /usr/local/bin/sngrep ]; then
+   cd /usr/src
+   git clone https://github.com/irontec/sngrep.git
+   cd sngrep
+   ./bootstrap.sh
+   ./configure
+   make && make install 
+fi   
 
 
 ####### Install WEB files form this Remote:#######################################
