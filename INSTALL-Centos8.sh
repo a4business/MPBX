@@ -27,13 +27,14 @@ echo "DOMAIN_=$DOMAIN" > ./.domain
 # Disable Security #
 setenforce 0
 if [ ! -f /usr/bin/perl ];then
-  echo 'Check Perl install...'
-  yum install perl -y >/dev/null
+  echo '  Perl install...'
+  yum install perl -y 
 fi  
-perl -pi -e "s/=enforcing/=disabled/g"  /etc/selinux/config
 
-## This will ask confirmation to delete selinux: ##
-[ $(rpm -qa |grep selinux-policy-targeted  | wc -l) -gt 0 ] &&  yum remove selinux-policy-targeted
+## Disable SeLinux : ## This will ask confirmation to delete selinux: ##
+perl -pi -e "s/=enforcing/=disabled/g"  /etc/selinux/config
+[ $(rpm -qa |grep selinux-policy-targeted  | wc -l) -gt 0 ] &&  yum remove selinux-policy-targeted -y
+
 
 
 yum groupinstall core base 'Development Tools' -y
@@ -53,12 +54,13 @@ fi
 dnf -y install dnf-plugins-core
 dnf config-manager --set-enabled powertools
 ### 
+[ $(rpm -qa |grep selinux-policy-targeted  | wc -l) -gt 0 ] &&  yum remove selinux-policy-targeted -y
 
 ## xmlstarlet?
 yum install -y gcc gcc-c++ unixODBC-devel libiodbc-devel yum-utils bison mysql-devel mysql-server tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel crontabs cronie cronie-anacron wget vim certbot libtool sqlite-devel sqlite-devel  unixODBC uuid-devel libuuid-devel binutils-devel opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot certbot-apache mod_ssl iptables iptables-services tcpdump ngrep fail2ban net-tools libsrtp libsrtp-devel sox sox-devel
 
 ## Captagent Dependeces:
-yum install -y json-c-devel expat-devel libpcap-devel flex-devel automake libtool bison libuv-devel flex
+yum install -y json-c-devel expat-devel libpcap-devel flex-devel automake libtool bison libuv-devel flex pcre-devel
 
 
 ## Install Statically linked ffmpeg:
@@ -201,10 +203,13 @@ rm -rf /var/lib/asterisk/agi-bin && ln -sf /var/www/html/pbx/agi-bin /var/lib/as
  ##         sudo mysqld_safe --skip-grant-tables &
  ##         alter user 'root'@'localhost' IDENTIFIED BY 'p@ssw0rd';
  ##         /etc/init.d/mysqld restart
-      read -p " Provide Mysql root password to setup DB(type help for reset info):" P
+     [ -f ~/.mysql ] && . ~/.mysql
+      read -p " Provide Mysql root password to setup DB(type help for reset info):[${mysql_pass}]" P      
       [ "${P}" = "help" ] && echo -e "To get myslq root after mysqld install:   grep 'temporary password' /var/log/mysqld.log\n\t To reset mysql root: \n\t\tsudo mysqld_safe --skip-grant-tables\n\t\techo alter user 'root'@'localhost' IDENTIFIED BY 'p@ssw0rd'; | mysql\n\t\t/etc/init.d/mysqld restart\n" && exit
+      P=${P:-$mysql_pass}
       export MYSQL_PWD=${P}
-      echo $MYSQL_PWD >> ~/.mysql_history 
+      echo "mysql_pass=$MYSQL_PWD" > ~/.mysql
+  ## Create Local User:    
       echo 'create database mpbx ;'| mysql -p${P} 
       echo 'create user mpbx_web@`localhost` identified by "P@ssw0rd123" ;'| mysql -p${P} 
       echo 'grant all privileges on mpbx.* to mpbx_web@`localhost` '| mysql -p${P} 
