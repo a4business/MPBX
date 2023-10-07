@@ -121,18 +121,29 @@ if [ -f /usr/sbin/mysqld ] ; then
 fi
  
 
-if [ ! -f /usr/sbin/asterisk ]; then
-  VER=18 
  #VER=16
-   read -p " ### Install Asterisk From Sources ( recommended to keep sources on the server  for future bug/patches  ) [ enter ]" next
+  VER=18
+
+[ -f /usr/sbin/asterisk ] && EXISTS=" Asterisk v${VER} Already Installed, RE-"
+
+  read -p " ### ${EXISTS}Install Asterisk v${VER} From Sources ? [ enter ]" next
+   rm -rf asterisk-${VER}.*
    [ ! -f asterisk-${VER}-current.tar.gz ] && wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-${VER}-current.tar.gz
    tar -xvzf asterisk-${VER}-current.tar.gz  && cd asterisk-${VER}.*
-   ./configure --with-pjproject-bundled --with-jansson-bundled 
-   menuselect/menuselect --enable res_config_mysql  menuselect.makeopts && menuselect/menuselect --enable cdr_mysql  menuselect.makeopts
-   make menuselect  ### Make sure res_config_odbc , cdr_mysql,  cdr_odbc,  res_odbc are enabled.
+   contrib/scripts/install_prereq install
+   make clean
+   ./configure --with-pjproject-bundled --with-jansson-bundled
+   make menuselect.makeopts
+   menuselect/menuselect --enable res_config_mysql  menuselect.makeopts
+   menuselect/menuselect --enable format_mp3  menuselect.makeopts
+   menuselect/menuselect --enable codec_opus  menuselect.makeopts
+   menuselect/menuselect --enable codec_silk  menuselect.makeopts
+   menuselect/menuselect --enable codec_siren7  menuselect.makeopts
+   menuselect/menuselect --enable codec_siren14  menuselect.makeopts
+   contrib/scripts/get_mp3_source.sh
    make && make install && make samples && make config
-   [ $VER = 18 ] && perl -pi -e "s/noload = chan_sip.so/;noload = chan_sip.so/" /etc/asterisk/modules.conf
-fi  
+   [ $VER == 18 ] && perl -pi -e "s/noload = chan_sip.so/;noload = chan_sip.so/" /etc/asterisk/modules.conf
+  
   
 
 
@@ -168,7 +179,7 @@ rm -rf /var/lib/asterisk/agi-bin && ln -sf /var/www/html/pbx/agi-bin /var/lib/as
       read -p " Provide Mysql root password to setup DB(type help for reset info):" P
       [ "${P}" = "help" ] && echo -e "To get myslq root after mysqld install:   grep 'temporary password' /var/log/mysqld.log\n\t To reset mysql root: \n\t\tsudo mysqld_safe --skip-grant-tables\n\t\techo alter user 'root'@'localhost' IDENTIFIED BY 'p@ssw0rd'; | mysql\n\t\t/etc/init.d/mysqld restart\n" && exit
       export MYSQL_PWD=${P}
-
+      echo $MYSQL_PWD >> ~/.mysql_history 
       echo 'create database mpbx ;'| mysql -p${P} 
       echo 'create user mpbx_web@`localhost` identified by "P@ssw0rd123" ;'| mysql -p${P} 
       echo 'grant all privileges on mpbx.* to mpbx_web@`localhost` '| mysql -p${P} 
@@ -576,6 +587,7 @@ EOF
    [ ! -f /var/www/html/${PRJ}/include/config.ini ] && cp /var/www/html/${PRJ}/include/config.ini.sample /var/www/html/${PRJ}/include/config.ini 2>/dev/null
    [ "$DOMAIN" != "" ] &&  perl -pi -e "s/app.a4business.com/$DOMAIN/g" /var/www/html/${PRJ}/include/config.ini
  done
+ ## Test run :
  cd /var/www/html/pbx && php core/gen_sip_settings.php 
 
 ## Do not load some  depricated modules  (chan_sip is next)
