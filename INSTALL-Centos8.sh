@@ -4,6 +4,10 @@
 ##### Centos 8
 ########
 
+###  Refresh outdated Repo Locations:
+sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
 # Detect External IP:
 IP_=$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
 read -p " Your External IP[${IP_}]" IP
