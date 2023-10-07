@@ -8,14 +8,18 @@
 sed -i 's/^mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
 sed -i 's|^#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
 
-# Detect External IP:
+[ -f ./.domain ] && . .domain
+[ -f ./.ip ] && . .ip
+
+# External IP:
 IP_=$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
-read -p " Your External IP[${IP_}]" IP
 IP=${IP:-$IP_}
+read -p "  Server External IP[${IP}]" IP_
+IP=${IP_:-$IP}
+echo "IP=$IP" > ./.ip
 
 #Domain:
-[ -f ./.domain ] && . .domain
-read -p " Enter resolvable Domain name(TLS/HTTPS/WSS):${DOMAIN_}" DOMAIN
+read -p "  FQDN Domain name:[${DOMAIN_}]" DOMAIN
 DOMAIN=${DOMAIN:-$DOMAIN_}
 echo "DOMAIN_=$DOMAIN" > ./.domain
 
@@ -79,10 +83,18 @@ if [ ! -f /usr/bin/sox ]; then
    fi
 fi
 
+
+if [ -f /usr/local/captagent/sbin/captagent ];then
+  read -p " CAPTAGENT  for HOMER7  Already installed, Reinstall ir ?[y]" P
+  P=${P:-y}
+  [ "${P}es" == "yes" ] && rm -rf /usr/local/captagent/sbin/captagent
+fi
+
 if [ ! -f /usr/local/captagent/sbin/captagent ]; then
   PWD=$(pwd)
-  echo "[ Install CAPAGENT  for HOMER7 ] "  ### https://github.com/sipcapture/captagent/wiki/Installation
+  echo "  [ Installing CAPTAGENT  for HOMER7 ] "  ### https://github.com/sipcapture/captagent/wiki/Installation
   cd /usr/src
+  rm -rf captagent
   git clone https://github.com/sipcapture/captagent.git captagent
   cd captagent
   ./build.sh
@@ -94,8 +106,9 @@ if [ ! -f /usr/local/captagent/sbin/captagent ]; then
   systemctl status captagent
   cd $PWD
 else
-  echo "[ CAPAGENT INSTALLED ALREADY ] "
-fi  
+  echo " [ CAPTAGENT INSTALLED ALREADY! ] "
+fi
+
 
 
 if [ ! -f /usr/bin/php ]; then
