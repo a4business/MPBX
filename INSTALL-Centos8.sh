@@ -169,7 +169,7 @@ if [ ! -f /usr/sbin/asterisk ] ; then
    read -p " ### ${AST_PREFIX}Install Asterisk v${VER} From Sources ? [ enter ]" next
    rm -rf asterisk-${VER}.*
    [ ! -f asterisk-${VER}-current.tar.gz ] && wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-${VER}-current.tar.gz
-   tar -xvzf asterisk-${VER}-current.tar.gz  && cd asterisk-${VER}.*
+   tar -xzf asterisk-${VER}-current.tar.gz  && cd asterisk-${VER}.*
    contrib/scripts/install_prereq install
    make clean
    ./configure --with-pjproject-bundled --with-jansson-bundled
@@ -211,7 +211,7 @@ fi
  mv composer.phar /usr/local/bin/composer 
  cp /usr/local/bin/composer  /usr/bin/composer 
  cd /var/www/html/pbx && composer install
- cd /var/www/html/pbx/code && composer install
+ cd /var/www/html/pbx/core && composer install
  cd /var/www/html/crm && composer install
  
 ## Make forlder for Text2Speech cache:
@@ -693,9 +693,11 @@ EOF
  chown -R apache.apache /var/lib/asterisk/sounds /var/lib/asterisk/moh  /var/lib/asterisk /tts /var/spool/asterisk/monitor
  chmod a+s  /var/spool/asterisk 
  chmod a+x /var/spool/asterisk/monitor
- service php56-php-fpm restart
  
- for SERVICE in sendmail fail2ban mysqld httpd turnd asterisk
+ service turnd stop
+ service turnd start
+ 
+ for SERVICE in sendmail fail2ban mysqld httpd asterisk php56-php-fpm
  do
    chkconfig --level 345 ${SERVICE} on
    service ${SERVICE} start
