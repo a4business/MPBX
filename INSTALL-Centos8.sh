@@ -73,8 +73,8 @@ dnf config-manager --set-enabled powertools
 ## xmlstarlet?
 yum install -y gcc gcc-c++ unixODBC-devel libiodbc-devel yum-utils bison mysql-devel mysql-server tftp-server httpd make ncurses-devel libtermcap-devel sendmail sendmail-cf caching-nameserver newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel subversion kernel-devel git subversion kernel-devel crontabs cronie cronie-anacron wget vim certbot libtool sqlite-devel sqlite-devel  unixODBC uuid-devel libuuid-devel binutils-devel opus opus-devel libedit-devel openssl-devel libevent libevent-devel libedit-devel libxml2-devel sqlite-devel curl-devel unixODBC-devel certbot certbot-apache mod_ssl iptables iptables-services tcpdump ngrep fail2ban net-tools libsrtp libsrtp-devel sox sox-devel
 
-## Captagent Dependeces:
-yum install -y json-c-devel expat-devel libpcap-devel flex-devel automake libtool bison libuv-devel flex pcre-devel
+## Captagent Dependeces + Zabbix agent
+yum install -y json-c-devel expat-devel libpcap-devel flex-devel automake libtool bison libuv-devel flex pcre-devel zabbix-agent
 
 
 ## Install Statically linked ffmpeg:
@@ -621,8 +621,8 @@ perl -pi -e "s/;rtcachefriends=yes/rtcachefriends=yes/" /etc/asterisk/sip.conf
 perl -pi -e "s/0.0.0.0/127.0.0.1/g" /etc/asterisk/skinny.conf
 
 CONF=manager.conf
+perl -pi -e "s/bindaddr = 127.0.0.1/bindaddr = 0.0.0.0/" /etc/asterisk/$CONF
 [ $(cat /etc/asterisk/$CONF|grep pbx-manager-dev|wc -l) -eq 0 ] && cat <<EOF >> /etc/asterisk/$CONF
-cat <<EOF >>  /etc/asterisk/manager.conf
 [pbx-manager-dev]
 writetimeout=200
 displayconnects=no
@@ -720,7 +720,9 @@ EOF
      3. Login to WEBrtc Dialer: 
 	https://${DOMAIN}   with created user credentials , call to *600  ( echo test  app )
  =============================================================
- 
+ Check MySQL collation(check migration script)
+ sip.conf for sip.include script, 
+ ODBC Driver version /etc/odbc.ini [isql mpbx] 
 EOF
 
  
