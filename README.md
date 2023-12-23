@@ -1,23 +1,13 @@
-# MPBX
-Multi-tenant hosted PBX based on asterisk.  
-One server for 100+  offices PBX.
+# MPBX #
+Multi-tenant hosted PBX based on asterisk.
+Single server for 100+ undepnded offices PBX.
+########
 
-More details at http://a4business.com/?p=1070 
- 
- 
- [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/a4business)
+<b>[ This PROJECT HAS BEEN ARCHIVED !]</b> 
 
- REST API: https://documenter.getpostman.com/view/8483481/2s9Y5creqA
+UPDATES NO longer available on this Public repo.
 
-<center>
-<img src='http://a4business.com/wp-content/uploads/2018/08/how-hosted-pbx-works.png'>
-<br>
-
- <img src='http://a4business.com/wp-content/uploads/2018/08/Selection_346.png'>
- <br>
-  <img src='http://a4business.com/wp-content/uploads/2018/08/Selection_344.png'>
-</center>
-
+All Code has been re-imported into the private projects. 
 
 
 
@@ -36,17 +26,11 @@ Each client (or separate office, tenant) has a dedicated, isolated cloud PBX , w
 
 All clients/offices share the same server and the same asterisk instance and managemed in one place.
 With a multitenant architecture, a software application is designed to virtually partition its data and configuration, and each client works with a customized virtual application instance. Using the same asterisk instance for all the clients is a real cost and resource saving solution.
-Some more key features:
-- supports custom scripting, i.e. assigning a dialplan contexts to Feture codes, which connects extensions with unlimited functionality of the asterisk dialplan.
-- Call recording (full or by one-touch on demand recording while conversation).
-
-Uppong receiving call, manager can activate inbound route with actions:
-
 
 Demo screencast of main PBX functions demonstration : <br>
 [<img src="http://a4business.com/wp-content/uploads/2021/02/Selection_200.png" width="80%">](https://vimeo.com/516227435)
 <br>
-The video demonstrates following steps:
+The video demonstrates following actions:
 
 - Create PBX Cloud
 - Create Trunks
@@ -57,8 +41,8 @@ The video demonstrates following steps:
 - Create Outbuond Routing
 - Assigne Context Script to get external Info by json API
 - Receive INBOUND call via Queue from CRM WEB phone, check recording
-Now I am dialing inbound GSM line to reach the virtual office and support queue .
-answering...
+- Call inbound GSM line to reach the virtual office and support queue .
+- Answer the call 
 - Call Forward using DTMF digits: , Call Parking/Unparking
 Pressed #77 to park the call, got played 703 . this is position where call has been parked
 to pickup, we just dial 703 now. ... connected with customer now again /
