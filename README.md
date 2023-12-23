@@ -3,15 +3,19 @@ Multi-tenant hosted PBX based on asterisk.
 Single server for 100+ undepnded offices PBX.
 ########
 
-<b>[ This PROJECT HAS BEEN ARCHIVED !]</b> 
+
+
+
+# <h2>[ This PROJECT HAS BEEN ARCHIVED !]</h2> #
+
 
 UPDATES NO longer available on this Public repo.
-
-All Code has been re-imported into the private projects. 
-
+Code have been re-imported into the private projects. 
 
 
 
+Some description about this project functions:
+=========================================================================================
 Each client (or separate office, tenant) has a dedicated, isolated cloud PBX , with separate :
 - exntensions (with PBX functions — followme, Forward, Voice/Video Mail, Blacklists etc..)
 - VoiceMail boxes,
