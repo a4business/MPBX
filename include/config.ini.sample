@@ -12,7 +12,7 @@
 [tts-ibm]
     default_voice = 'en-US_MichaelVoice'
 	user = 'apikey'
-	pass = 'AyrWhRj66K_vH8N6cVLevKM2cmUXuvRvNQtXUAx5GLff'
+	pass = ''
     url = 'https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/f61011f1-cc52-482b-8a15-5dd9098a2f8b/v1/synthesize?accept=audio/wav'
 
 [tts-google]
